@@ -81,17 +81,18 @@
 
 
 
-<meta name="description" content="stay hungery, stay foolish">
+<meta name="description" content="1. 具体1.使用git add .添加了所有修改文件到暂存区之后在commite到本地之前想撤销add操作可以使用1git reset HEAD &amp;lt;file&amp;gt; 将某个文件从暂存区拿出来。 2.已经commite了提交到了本地但是还没有push到远端，这时候发现有个文件不能提交到远端可以使用1git reset -soft/--mix/--hard &amp;lt;commite id&amp;gt;">
 <meta name="keywords" content="Developer">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ervin">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git使用心得">
+<meta property="og:url" content="http://yoursite.com/2018/10/18/git使用心得/index.html">
 <meta property="og:site_name" content="Ervin">
-<meta property="og:description" content="stay hungery, stay foolish">
+<meta property="og:description" content="1. 具体1.使用git add .添加了所有修改文件到暂存区之后在commite到本地之前想撤销add操作可以使用1git reset HEAD &amp;lt;file&amp;gt; 将某个文件从暂存区拿出来。 2.已经commite了提交到了本地但是还没有push到远端，这时候发现有个文件不能提交到远端可以使用1git reset -soft/--mix/--hard &amp;lt;commite id&amp;gt;">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-18T06:01:14.107Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ervin">
-<meta name="twitter:description" content="stay hungery, stay foolish">
+<meta name="twitter:title" content="Git使用心得">
+<meta name="twitter:description" content="1. 具体1.使用git add .添加了所有修改文件到暂存区之后在commite到本地之前想撤销add操作可以使用1git reset HEAD &amp;lt;file&amp;gt; 将某个文件从暂存区拿出来。 2.已经commite了提交到了本地但是还没有push到远端，这时候发现有个文件不能提交到远端可以使用1git reset -soft/--mix/--hard &amp;lt;commite id&amp;gt;">
 
 
 
@@ -121,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/18/git使用心得/"/>
 
 
 
 
 
-  <title>Ervin</title>
+  <title>Git使用心得 | Ervin</title>
   
 
 
@@ -146,8 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -230,9 +230,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -262,9 +262,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/18/git使用心得/" itemprop="url">Git使用心得</a></h1>
+          <h1 class="post-title" itemprop="name headline">Git使用心得</h1>
         
 
         <div class="post-meta">
@@ -336,9 +334,7 @@
       
 
       
-        
-          
-            <h3 id="1-具体"><a href="#1-具体" class="headerlink" title="1. 具体"></a>1. 具体</h3><p>1.使用git add .添加了所有修改文件到暂存区之后在commite到本地之前想撤销add操作可以使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD &lt;file&gt;</span><br></pre></td></tr></table></figure></p>
+        <h3 id="1-具体"><a href="#1-具体" class="headerlink" title="1. 具体"></a>1. 具体</h3><p>1.使用git add .添加了所有修改文件到暂存区之后在commite到本地之前想撤销add操作可以使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD &lt;file&gt;</span><br></pre></td></tr></table></figure></p>
 <p>将某个文件从暂存区拿出来。</p>
 <p>2.已经commite了提交到了本地但是还没有push到远端，这时候发现有个文件不能提交到远端可以使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset -soft/--mix/--hard &lt;commite id&gt;</span><br></pre></td></tr></table></figure></p>
 <p>会将本地仓库回退到commite id这个版本（可以是上一次commite的版本）。reset后的参数代表了是否保留本地代码的修改，具体可以查询网络。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查询所有git的提交记录，包括详细commite id</span><br><span class="line">git reflog</span><br></pre></td></tr></table></figure></p>
@@ -421,8 +417,6 @@
 <h3 id="11-git-rebase"><a href="#11-git-rebase" class="headerlink" title="11.git rebase"></a>11.git rebase</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 12.git detached HEAD</span><br><span class="line">在一些情况下，会出现detached HEAD的情况，（后面分析下原因）。detached head即游离的HEAD，HEAD指向了未知的分支，即不在所有已知的分支范围内。</span><br><span class="line"></span><br><span class="line">解决办法：</span><br><span class="line"></span><br><span class="line">```git</span><br><span class="line">$ git branch</span><br><span class="line">* (HEAD detached at origin/master)</span><br><span class="line">  dev</span><br><span class="line">  master</span><br></pre></td></tr></table></figure>
 <p>  HEAD指向了一个未知的分支，可用git checkout -b基于当前分支创建一个新的临时分支保留代码，合并到合适的分支后删除<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b temp</span><br><span class="line">Switched to a new branch &apos;temp&apos;</span><br><span class="line">$ git branch</span><br><span class="line">  dev</span><br><span class="line">  master</span><br><span class="line">* temp</span><br><span class="line">$ git checkout master</span><br><span class="line">Switched to branch &apos;master&apos;</span><br><span class="line">Your branch is up-to-date with &apos;origin/master&apos;.</span><br><span class="line">$ git merge temp</span><br><span class="line">Already up-to-date.</span><br><span class="line">$ git branch -d temp</span><br><span class="line">Deleted branch temp (was 3e74a7a).</span><br></pre></td></tr></table></figure></p>
 
-          
-        
       
     </div>
     
@@ -439,162 +433,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/18/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ervin Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ervin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/18/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-18T10:10:52+08:00">
-                2018-10-18
-              </time>
+              <a href="/2018/10/18/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/文章/" itemprop="url" rel="index">
-                    <span itemprop="name">文章</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -604,10 +464,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -615,6 +476,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -635,8 +500,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -694,6 +568,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-具体"><span class="nav-number">1.</span> <span class="nav-text">1. 具体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-git-add语法"><span class="nav-number">2.</span> <span class="nav-text">2. git add语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-git-merge合并"><span class="nav-number">3.</span> <span class="nav-text">3. git merge合并</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-git-tag打标签"><span class="nav-number">4.</span> <span class="nav-text">4. git tag打标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-git-stash"><span class="nav-number">5.</span> <span class="nav-text">5. git stash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-git分支管理"><span class="nav-number">6.</span> <span class="nav-text">6. git分支管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-git-push"><span class="nav-number">7.</span> <span class="nav-text">7.git push</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-git-reset"><span class="nav-number">8.</span> <span class="nav-text">8.git reset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-git-remote"><span class="nav-number">9.</span> <span class="nav-text">9.git remote</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-git-commit"><span class="nav-number">10.</span> <span class="nav-text">10.git commit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-git-rebase"><span class="nav-number">11.</span> <span class="nav-text">11.git rebase</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -827,6 +717,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
