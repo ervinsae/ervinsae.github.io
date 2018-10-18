@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-10-18T06:38:52.994Z</updated>
+  <updated>2018-10-18T16:44:53.311Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mac下的常用命令行</title>
+    <link href="http://yoursite.com/2018/10/19/Mac%E4%B8%8B%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    <id>http://yoursite.com/2018/10/19/Mac下的常用命令/</id>
+    <published>2018-10-18T16:40:41.924Z</published>
+    <updated>2018-10-18T16:44:53.311Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="查看IP"><a href="#查看IP" class="headerlink" title="查看IP"></a>查看IP</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$curl ip.gs</span><br><span class="line"></span><br><span class="line">$ifconfig</span><br></pre></td></tr></table></figure><a id="more"></a><h3 id="关于文件操作"><a href="#关于文件操作" class="headerlink" title="关于文件操作"></a>关于文件操作</h3><p>由于mac下面不能使用右键新建文件，所以需要使用一些工具，如workflow，或者直接命令行</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 查看文件如果没有则创建新文件</span><br><span class="line">touch filename</span><br><span class="line"># 新建文件夹</span><br><span class="line">mkdir filename</span><br><span class="line"># 删除文件或者目录</span><br><span class="line">rm -rf filename</span><br><span class="line"># 查看文件详细信息</span><br><span class="line">stat filename</span><br><span class="line"></span><br><span class="line"># 查看目录结果，需要装tree</span><br><span class="line">npm install tree</span><br><span class="line">tree -L 1</span><br></pre></td></tr></table></figure><h3 id="vim常规操作"><a href="#vim常规操作" class="headerlink" title="vim常规操作"></a>vim常规操作</h3><table><thead><tr><th>操作命令</th><th>效果</th></tr></thead><tbody><tr><td>i</td><td>在光标处插入，进入编辑模式</td></tr><tr><td>dd</td><td>剪切光标所在的一行内容</td></tr><tr><td>yy</td><td>复制光标所在的一行内容</td></tr><tr><td>D</td><td><strong>删除光标右边的所有内容</strong></td></tr><tr><td>gg</td><td>将光标快速移动到文件首</td></tr><tr><td>G</td><td>将光标快速移动到文件尾</td></tr><tr><td>0</td><td>将光标快速移动到行首</td></tr><tr><td>$</td><td>将光标快速移动到行尾</td></tr></tbody></table><table><thead><tr><th>退出命令</th><th>效果</th></tr></thead><tbody><tr><td>:w</td><td>保存</td></tr><tr><td>:q</td><td>未保存直接退出（如果没有修改，用下面的命令）</td></tr><tr><td>:q！</td><td>强制退出</td></tr><tr><td>:wq</td><td>保存退出</td></tr><tr><td>:wq</td><td>强制保存退出</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;查看IP&quot;&gt;&lt;a href=&quot;#查看IP&quot; class=&quot;headerlink&quot; title=&quot;查看IP&quot;&gt;&lt;/a&gt;查看IP&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$curl ip.gs&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ifconfig&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Git使用心得</title>
