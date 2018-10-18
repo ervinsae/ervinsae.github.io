@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="Ervin">
 <meta property="og:description" content="1. 具体1.使用git add .添加了所有修改文件到暂存区之后在commite到本地之前想撤销add操作可以使用1git reset HEAD &amp;lt;file&amp;gt; 将某个文件从暂存区拿出来。 2.已经commite了提交到了本地但是还没有push到远端，这时候发现有个文件不能提交到远端可以使用1git reset -soft/--mix/--hard &amp;lt;commite id&amp;gt;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-18T06:01:14.107Z">
+<meta property="og:updated_time" content="2018-10-18T06:38:52.994Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git使用心得">
 <meta name="twitter:description" content="1. 具体1.使用git add .添加了所有修改文件到暂存区之后在commite到本地之前想撤销add操作可以使用1git reset HEAD &amp;lt;file&amp;gt; 将某个文件从暂存区拿出来。 2.已经commite了提交到了本地但是还没有push到远端，这时候发现有个文件不能提交到远端可以使用1git reset -soft/--mix/--hard &amp;lt;commite id&amp;gt;">
@@ -212,6 +212,16 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
 
       
     </ul>
@@ -250,7 +260,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ervin Zhang">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -338,6 +348,7 @@
 <p>将某个文件从暂存区拿出来。</p>
 <p>2.已经commite了提交到了本地但是还没有push到远端，这时候发现有个文件不能提交到远端可以使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset -soft/--mix/--hard &lt;commite id&gt;</span><br></pre></td></tr></table></figure></p>
 <p>会将本地仓库回退到commite id这个版本（可以是上一次commite的版本）。reset后的参数代表了是否保留本地代码的修改，具体可以查询网络。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查询所有git的提交记录，包括详细commite id</span><br><span class="line">git reflog</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <h3 id="2-git-add语法"><a href="#2-git-add语法" class="headerlink" title="2. git add语法"></a>2. git add语法</h3><table>
 <thead>
 <tr>
@@ -514,6 +525,10 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Ervin Zhang" />
+            
               <p class="site-author-name" itemprop="name">Ervin Zhang</p>
               <p class="site-description motion-element" itemprop="description">stay hungery, stay foolish</p>
           </div>
@@ -555,6 +570,28 @@
             </div>
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/ervinsae" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="ervinsae@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/ervinsae" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
           
 
           
