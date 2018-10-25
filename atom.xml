@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-10-22T03:18:30.572Z</updated>
+  <updated>2018-10-25T03:48:21.155Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>HEXO+Github搭建个人Blog</title>
+    <link href="http://yoursite.com/2018/10/24/HEXO+Github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BABlog/"/>
+    <id>http://yoursite.com/2018/10/24/HEXO+Github搭建个人Blog/</id>
+    <published>2018-10-24T10:53:18.938Z</published>
+    <updated>2018-10-25T03:48:21.155Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="HEXO背景"><a href="#HEXO背景" class="headerlink" title="HEXO背景"></a>HEXO背景</h2><p>hexo是基于NodeJS的静态博客框架，简单，轻量，其生成的静态页面可以托管在Github或者Heroku上面</p><ul><li>超快部署</li><li>支持MarkDown</li><li>一键部署</li><li>丰富的插件</li></ul><blockquote><p>下面以我的<a href="https://ervinsae.github.io/" target="_blank" rel="noopener">Blog</a>为例，记录搭建过程。</p></blockquote><a id="more"></a><h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><ul><li><strong>安装NodeJs</strong></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//mac下安装node很简单，使用mac下的包管理工具brew命令就可以了</span><br><span class="line"></span><br><span class="line">$ brew install node</span><br><span class="line">$ brew install npm</span><br><span class="line"></span><br><span class="line">//brew一般被安装在/usr/local/bin 目录下面</span><br><span class="line"></span><br><span class="line">//验证是否安装成功</span><br><span class="line">$ node -v</span><br></pre></td></tr></table></figure><ul><li><strong>安装HEXO</strong></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-cli -g</span><br></pre></td></tr></table></figure><ul><li><strong>运行</strong></li></ul><p>装上Hexo后就可以在本地跑服务了，执行一下命令（HEXO的常见命令）</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">// 生成静态网页</span><br><span class="line">$ hexo g / hexo generator</span><br><span class="line">// 开启服务</span><br><span class="line">$ hexo s / hexo server</span><br><span class="line"></span><br><span class="line">运行：localhost：4000</span><br></pre></td></tr></table></figure><h2 id="托管"><a href="#托管" class="headerlink" title="托管"></a>托管</h2><p>托管就是将你生成的静态网页保存在服务器上，别人可以通过域名去访问（当然需要在hexo上去配置）.</p><p>一般是在github上免费托管，也可以自己去买个小鸡，既可以搭个小机场，也可以托管博客.</p><blockquote><p>如果要部署到github上，首先要有GitHub账号（没有的可以不用看了），然后在仓库建一个”github账号.github.io” <strong>名字一定要一样</strong></p></blockquote><ul><li>添加部署插件<a href="https://github.com/hexojs/hexo-deployer-git" target="_blank" rel="noopener">hexo-deployer-git</a></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure><ul><li>添加git源</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 编辑根目录.config.yml</span><br><span class="line">vim .config.yml</span><br><span class="line"></span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: &lt;repository url&gt;</span><br><span class="line">  branch: [branch]</span><br></pre></td></tr></table></figure><blockquote><p>branch为分支，默认为master,可以不配置 repo为仓库地址，在github上新建仓库后，可复制此地址</p></blockquote><ul><li>添加源后就可以部署了</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="全局配置"><a href="#全局配置" class="headerlink" title="全局配置"></a>全局配置</h3><p>关于hexo的配置都在根目录下的.config_yml下面，而关于主题的配置都在/theme/**/.config_yml下面，详细配置可以查看<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="noopener">官方文档</a></p><ul><li><strong>title</strong> -&gt; 网站标题</li><li><strong>subtitle</strong> -&gt; 网站副标题</li><li><strong>description</strong> -&gt; 网站描述</li><li><strong>author</strong> -&gt; 您的名字</li><li><strong>language</strong> -&gt; 网站使用的语言</li><li><strong>theme</strong> -&gt; 主题配置（主题名字 /theme目录下）</li></ul><blockquote><p>坑：<strong>进行配置时，需要在冒号:后加一个英文空格</strong></p></blockquote><h3 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h3><p>Hexo 中有很多主题，可以在<a href="https://hexo.io/themes/" target="_blank" rel="noopener">官网</a>查看。主题现在比较流行的是Next — <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">hexo-theme-next</a>。</p><ul><li>下载：<br>推荐去官方看最新下载。</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure><ul><li>设置<br>主要是在theme/next/_config.yml文件。然后去找官方或者别人的方案修改即可。</li></ul><ul><li>发布文章</li></ul><ol><li>使用命令：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new test</span><br></pre></td></tr></table></figure></li></ol><p>此时会在<code>source/_posts</code>目录下生成<code>test.md</code>文件，输入些许内容，然后保存.</p><ol start="2"><li>直接将写好的markdown文件放在_posts文件下面即可，在markdown下添加头部</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: </span><br><span class="line">categories: []</span><br><span class="line">---</span><br></pre></td></tr></table></figure><ol start="3"><li>使用命令查看效果</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;HEXO背景&quot;&gt;&lt;a href=&quot;#HEXO背景&quot; class=&quot;headerlink&quot; title=&quot;HEXO背景&quot;&gt;&lt;/a&gt;HEXO背景&lt;/h2&gt;&lt;p&gt;hexo是基于NodeJS的静态博客框架，简单，轻量，其生成的静态页面可以托管在Github或者Heroku上面&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;超快部署&lt;/li&gt;
+&lt;li&gt;支持MarkDown&lt;/li&gt;
+&lt;li&gt;一键部署&lt;/li&gt;
+&lt;li&gt;丰富的插件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;下面以我的&lt;a href=&quot;https://ervinsae.github.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Blog&lt;/a&gt;为例，记录搭建过程。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Android存储</title>
