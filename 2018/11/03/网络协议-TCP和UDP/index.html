@@ -81,13 +81,13 @@
 
 
 
-<meta name="description" content="主要通过以下几个方面来解释两种方式的区别（enough talk and let’s look at some code）   TCP方式和UDP的区别 TCP的上层应用Socket实现：Socket，ServerSocket以及代码实现 UDP的上层应用Socket实现：DatagramSocket，DatagramPacket以及代码实现     网络协议简介通过上图知道不管是TCP还是UD">
+<meta name="description" content="主要通过以下几个方面来解释两种方式的区别（enough talk and let’s look at some code）   TCP方式和UDP的区别 TCP的上层应用Socket实现：Socket，ServerSocket以及代码实现 UDP的上层应用Socket实现：DatagramSocket，DatagramPacket以及代码实现">
 <meta name="keywords" content="Developer">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java网络编程中的TCP和UDP通信方式简介">
 <meta property="og:url" content="http://yoursite.com/2018/11/03/网络协议-TCP和UDP/index.html">
 <meta property="og:site_name" content="Ervin">
-<meta property="og:description" content="主要通过以下几个方面来解释两种方式的区别（enough talk and let’s look at some code）   TCP方式和UDP的区别 TCP的上层应用Socket实现：Socket，ServerSocket以及代码实现 UDP的上层应用Socket实现：DatagramSocket，DatagramPacket以及代码实现     网络协议简介通过上图知道不管是TCP还是UD">
+<meta property="og:description" content="主要通过以下几个方面来解释两种方式的区别（enough talk and let’s look at some code）   TCP方式和UDP的区别 TCP的上层应用Socket实现：Socket，ServerSocket以及代码实现 UDP的上层应用Socket实现：DatagramSocket，DatagramPacket以及代码实现">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://img-blog.csdn.net/20160804172608004">
 <meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/2017/bg2017060804.png">
@@ -96,10 +96,10 @@
 <meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/2017/bg2017060808.jpg">
 <meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/2017/bg2017060812.jpg">
 <meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/2017/bg2017060811.png">
-<meta property="og:updated_time" content="2018-11-03T07:49:05.989Z">
+<meta property="og:updated_time" content="2018-11-03T07:51:22.335Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java网络编程中的TCP和UDP通信方式简介">
-<meta name="twitter:description" content="主要通过以下几个方面来解释两种方式的区别（enough talk and let’s look at some code）   TCP方式和UDP的区别 TCP的上层应用Socket实现：Socket，ServerSocket以及代码实现 UDP的上层应用Socket实现：DatagramSocket，DatagramPacket以及代码实现     网络协议简介通过上图知道不管是TCP还是UD">
+<meta name="twitter:description" content="主要通过以下几个方面来解释两种方式的区别（enough talk and let’s look at some code）   TCP方式和UDP的区别 TCP的上层应用Socket实现：Socket，ServerSocket以及代码实现 UDP的上层应用Socket实现：DatagramSocket，DatagramPacket以及代码实现">
 <meta name="twitter:image" content="https://img-blog.csdn.net/20160804172608004">
 
 
@@ -362,7 +362,7 @@
 </ol>
 <div style="text-align: center"><img width="460" src="https://img-blog.csdn.net/20160804172608004"></div>
 
-
+<a id="more"></a>
 <h3 id="网络协议简介"><a href="#网络协议简介" class="headerlink" title="网络协议简介"></a>网络协议简介</h3><p>通过上图知道不管是TCP还是UDP都是<a href="http://www.ruanyifeng.com/blog/2012/05/internet_protocol_suite_part_i.html" target="_blank" rel="noopener">互联网络协议</a>中的一层—传输层协议。</p>
 <div style="text-align: center"><img src="http://www.ruanyifeng.com/blogimg/asset/2017/bg2017060804.png"></div>
 
