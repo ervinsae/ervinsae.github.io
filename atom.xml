@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-11-03T07:51:22.335Z</updated>
+  <updated>2018-11-13T03:45:28.554Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>小程序之CSS入门</title>
+    <link href="http://yoursite.com/2018/11/09/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8BCSS/"/>
+    <id>http://yoursite.com/2018/11/09/微信小程序之CSS/</id>
+    <published>2018-11-09T04:07:35.660Z</published>
+    <updated>2018-11-13T03:45:28.554Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="详解css中的display属性（行内元素和块级元素）"><a href="#详解css中的display属性（行内元素和块级元素）" class="headerlink" title="详解css中的display属性（行内元素和块级元素）"></a>详解css中的display属性（行内元素和块级元素）</h1><blockquote><p>首先，所有主流浏览器都支持<strong>display</strong>属性。其次，display属性规定了元素应该生成的框的类型。默认值：<strong>inline</strong></p></blockquote><p>我们常用的display属性有：</p><ol><li>inline</li><li>block</li><li>inlien-block</li><li>none</li></ol><a id="more"></a><p>把display设置成none就不会保留元素本该显示的空间（元素直接不显示），但是visibility：hidden会保留。那么其他三个有什么区别呢？看下下面css代码：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">&lt;span class=&quot;inline&quot;&gt;</span><br><span class="line">inline</span><br><span class="line">&lt;/span&gt;inline </span><br><span class="line">&lt;span class=&quot;block&quot;&gt;</span><br><span class="line">block</span><br><span class="line">&lt;/span&gt;block </span><br><span class="line">&lt;span class=&quot;inline-block&quot;&gt;</span><br><span class="line">inline-block</span><br><span class="line">&lt;/span&gt; inline-block</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure><p><a href="http://jsfiddle.net/qjgcjLm8/" target="_blank" rel="noopener">点此看效果</a></p><h2 id="inline特性"><a href="#inline特性" class="headerlink" title="inline特性"></a>inline特性</h2><p>我们发现内联对象inline给它设置属性height和width是没用的，致使它变宽变大的原因是：</p><blockquote><p>内部元素的宽高‘+padding’。观察inline对象的前后元素我们会发现inline<strong>不单独占一行</strong>，其他元素会紧跟其后。</p></blockquote><h2 id="block特性"><a href="#block特性" class="headerlink" title="block特性"></a>block特性</h2><blockquote><p>而块对象‘block’是可以设置宽高的，但是它的实际宽高是本身宽高+’padding‘。观察block的前后元素，我们会发现block<strong>会独占一行</strong>。</p></blockquote><p>如果，我们即希望div有宽高，又不希望它独占一行要怎么办？</p><h2 id="inline-block"><a href="#inline-block" class="headerlink" title="inline-block"></a>inline-block</h2><p>这个时候我们就需要’inline-block‘属性了，我们看下显示效果，就会发现：</p><blockquote><p>inline-block即具有block的宽高特性又具有inline的同行元素特性。</p></blockquote><p>也就是说，当我们想让一个元素即不独占一行，又可以设置其宽高属性的时候，我们就可以选择inline-block了。</p><h2 id="行内元素特点"><a href="#行内元素特点" class="headerlink" title="行内元素特点"></a>行内元素特点</h2><ol><li>和其他元素都在一行上；</li><li>元素的高度，宽度，行高及顶部和底部边距<strong>不可设置</strong>；</li><li>元素的宽度就是它包含的文字或图片的宽度，不可改变。</li></ol><h2 id="块级元素特点"><a href="#块级元素特点" class="headerlink" title="块级元素特点"></a>块级元素特点</h2><ol><li>每个块级元素都是从新的一行开始，并且其后的元素也另起一行；</li><li>元素的高度，宽度，行高及顶部和底部边距都是可以设置的；</li><li>元素宽度在不设置的情况下，是它本身父容器的100%（和父元素一致），除非设定一个宽度。</li></ol><p>在html中，span,a,lable,input,img,strong和em就是典型的行内元素。div,p,h1,form,ul,li就是块级元素。</p><p><strong>块级元素是可以设置宽高的，但是它的实际宽高是本身宽高+padding。block元素要单独占一行。内联元素不单独占一行，给他设置宽高是没有用的。</strong></p><p><a href="http://www.w3school.com.cn/cssref/pr_class_display.asp" target="_blank" rel="noopener">更多CSS display请参考</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;详解css中的display属性（行内元素和块级元素）&quot;&gt;&lt;a href=&quot;#详解css中的display属性（行内元素和块级元素）&quot; class=&quot;headerlink&quot; title=&quot;详解css中的display属性（行内元素和块级元素）&quot;&gt;&lt;/a&gt;详解css中的display属性（行内元素和块级元素）&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;首先，所有主流浏览器都支持&lt;strong&gt;display&lt;/strong&gt;属性。其次，display属性规定了元素应该生成的框的类型。默认值：&lt;strong&gt;inline&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我们常用的display属性有：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;inline&lt;/li&gt;
+&lt;li&gt;block&lt;/li&gt;
+&lt;li&gt;inlien-block&lt;/li&gt;
+&lt;li&gt;none&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Java网络编程中的TCP和UDP通信方式简介</title>
