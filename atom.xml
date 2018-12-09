@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-12-07T10:20:04.015Z</updated>
+  <updated>2018-12-09T08:23:03.980Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>GDG Shenzhen 2018</title>
+    <link href="http://yoursite.com/2018/12/09/GDG%20Shenzhen%202018/"/>
+    <id>http://yoursite.com/2018/12/09/GDG Shenzhen 2018/</id>
+    <published>2018-12-09T07:27:54.609Z</published>
+    <updated>2018-12-09T08:23:03.980Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="关于GDG"><a href="#关于GDG" class="headerlink" title="关于GDG"></a>关于GDG</h2><p>GDG是Google Developer Group的缩写，也就是Google开发者组织，一般是Google信仰者线下组织，目前全球各地很多城市都有GDG组织，包括中国。<br><img src="https://chinagdg.org/wp-content/uploads/2015/07/2015_ChinaSummit-1024x382.jpg" alt="全国组织"></p><p><a href="https://chinagdg.org/" target="_blank" rel="noopener">GDG官网</a></p><p>昨天（2018/12/08），深圳GDG组织了2018年的线下活动，我在9月份就申请了门票，10月份就通过了。我本身就是Android开发者，也觉得Google大法好，GDG正好就是这种开发者线下交流平台。下面来贴些照片以及直播的图文链接，包括我的心得感受，记录下来。</p><a id="more"></a><h2 id="活动打卡"><a href="#活动打卡" class="headerlink" title="活动打卡"></a>活动打卡</h2><p>活动地址，关键离我住的地方很近。</p><p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fy0jnaidt2j30u0140qv6.jpg" alt="活动地址"></p><p><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fy0jpf392lj30u0140kjl.jpg" alt="活动标题"></p><p><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fy0jqeujphj31400u04qq.jpg" alt="现场"></p><p><a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx183defebc64b7a84&amp;redirect_uri=https%3A%2F%2Fgallery.vphotos.cn%2Fvphotosgallery%2Findex.html%3Fvphotowechatid%3D1EF7FAB4CF1DE5D92DAC7EE20115154C%26gallery_source_code%3D0%26from%3Dgroupmessage%26isappinstalled%3D0%26gallery_source_code%3D0%23%2F&amp;response_type=code&amp;scope=snsapi_base&amp;state=STATE&amp;connect_redirect=1#wechat_redirect" target="_blank" rel="noopener">更多照片–现场图片直播</a></p><h2 id="心得感想"><a href="#心得感想" class="headerlink" title="心得感想"></a>心得感想</h2><p>今年的活动收获还比较多，GDE（Google developer expert）将了很多AI，TensorFlow，Google的一些东西，包括很具体的Flutter，Kotlin以及Android的优化等等东西。干活还是比较多的。作为一个Android开发者，对于Android的未来其实一直有关注，blog里面也写了很多，这里就写一些经过这个活动后的感受吧，Google其实已经在开发Android的替代系统了，而且kotlin也迭代到了V1.3版本，这个时候又来了个Flutter（跨平台开发），感觉这些项目都是各自为政，其实看过《硅谷之谜》这本书后也能理解，大公司其实内部为了保持创新活力会鼓励团队或者部门去折腾，类似公司里面的成立小的创业团队，每个团队负责一个项目，如果做好了就会被公司收购，做的不好就被关掉（垃圾Google关掉了多少优秀的服务，看看隔壁百度。。。）。对于我们这些开发者而言，其实还是要靠自己的兴趣去选择，感觉李锐博士说的很好：选择职业要看自己的兴趣，不要太功利，AI很火大家都去AI，市场饱和后还是靠大家的实力，如果已自己的兴趣为出发点，赚钱是一个自然的过程。保持好奇心，紧跟前沿技术，不断去学习。然后，我自己感觉，flutter这个东西还是需要去认真对待的，特别是感受到他的hot reload的特性后，感觉非常爽，还有kotlin也是需要快速去掌握的，目前个人掌握的并不全面。另外，需要移动端结合AI来做些东西，可能会有不一样的发现。下面列出个人比较关注和感兴趣的点：</p><ol><li>数据安全，在中国还有很多工作要做</li><li>隐藏的歧视，这里其实指的是，在技术发展飞速的今天，很多年轻人已经享受到了技术带来的好处，但是还有些人是没有得到实惠的，这些人在这个时代是弱势群体，但是他们经常会被忽略。</li><li>Flutter的优势在众多跨平台框架中是很out standing的</li><li>Android WorkManager某些情况下是可以替代Service的，比如在那些不用立即在后台执行操作的场景下</li><li>Kotlin的协程概念。这个我比较感兴趣，这个特性是V1.3刚发布的，这个是kotlin中的异步概念的实现，很像Rxjava的链式调用，需要去学习一下，另外kotlin好像也能有在大数据里面。</li><li>供web和移动端调用的轻量级TensorFlow，包括tensorflwo.js tensorflow.lite。</li><li>中国的AI发展很快，美帝国主义可能要制裁这些公司了。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;关于GDG&quot;&gt;&lt;a href=&quot;#关于GDG&quot; class=&quot;headerlink&quot; title=&quot;关于GDG&quot;&gt;&lt;/a&gt;关于GDG&lt;/h2&gt;&lt;p&gt;GDG是Google Developer Group的缩写，也就是Google开发者组织，一般是Google信仰者线下组织，目前全球各地很多城市都有GDG组织，包括中国。&lt;br&gt;&lt;img src=&quot;https://chinagdg.org/wp-content/uploads/2015/07/2015_ChinaSummit-1024x382.jpg&quot; alt=&quot;全国组织&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://chinagdg.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GDG官网&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;昨天（2018/12/08），深圳GDG组织了2018年的线下活动，我在9月份就申请了门票，10月份就通过了。我本身就是Android开发者，也觉得Google大法好，GDG正好就是这种开发者线下交流平台。下面来贴些照片以及直播的图文链接，包括我的心得感受，记录下来。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="文章" scheme="http://yoursite.com/categories/%E6%96%87%E7%AB%A0/"/>
+    
+    
+      <category term="GDG" scheme="http://yoursite.com/tags/GDG/"/>
+    
+      <category term="Google" scheme="http://yoursite.com/tags/Google/"/>
+    
+  </entry>
   
   <entry>
     <title>悖论之共有知识和公共知识</title>
