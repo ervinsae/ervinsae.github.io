@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="主题," />
+  <meta name="keywords" content="算法," />
 
 
 
@@ -81,18 +81,30 @@
 
 
 
-<meta name="description" content="HEXO背景hexo是基于NodeJS的静态博客框架，简单，轻量，其生成的静态页面可以托管在Github或者Heroku上面  超快部署 支持MarkDown 一键部署 丰富的插件   下面以我的Blog为例，记录搭建过程。">
-<meta name="keywords" content="主题">
+<meta name="description" content="背景面试过程中，特别是一些大公司，对于程序员的要求越来越高，你必须会一些和本职工作没什么关系的技能，这样才能使你stand out，面试其实是需要精心准备的，也许你在面试完后，这些东西你都用不到，但是为了那个offer你还是要去准备，这些可以概括为“面试造航母，工作拧螺丝”，另一方面，这些知识其实对我们自身来说是有用的（有用和无用其实不好定义，而且看似无用的东西往往它的生命周期会更长），它能帮我们">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HEXO+Github搭建个人Blog">
-<meta property="og:url" content="http://yoursite.com/2018/10/24/HEXO+Github搭建个人Blog/index.html">
+<meta property="og:title" content="常见算法（二）">
+<meta property="og:url" content="http://yoursite.com/2018/12/21/常见算法（二）/index.html">
 <meta property="og:site_name" content="Ervin">
-<meta property="og:description" content="HEXO背景hexo是基于NodeJS的静态博客框架，简单，轻量，其生成的静态页面可以托管在Github或者Heroku上面  超快部署 支持MarkDown 一键部署 丰富的插件   下面以我的Blog为例，记录搭建过程。">
+<meta property="og:description" content="背景面试过程中，特别是一些大公司，对于程序员的要求越来越高，你必须会一些和本职工作没什么关系的技能，这样才能使你stand out，面试其实是需要精心准备的，也许你在面试完后，这些东西你都用不到，但是为了那个offer你还是要去准备，这些可以概括为“面试造航母，工作拧螺丝”，另一方面，这些知识其实对我们自身来说是有用的（有用和无用其实不好定义，而且看似无用的东西往往它的生命周期会更长），它能帮我们">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-14T07:31:04.343Z">
+<meta property="og:image" content="https://img-blog.csdn.net/20170419120811149?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveHloMjY5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20170419120851823?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveHloMjY5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwgy1fyhomubpa9j30pq059glm.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1fyhoo4er7vj30nz06p74d.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwgy1fyhoq2nt8hj30po079aa7.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1fyhor37xb8j30pw07yt8w.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1fyhosor3w2j30qa07h74g.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwgy1fyhovdga7nj30q807tt90.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwgy1fyhowpw07sj30p106zq37.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwgy1fyhoykh8iqj30op06taab.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwgy1fyhozd97bpj30p206f74j.jpg">
+<meta property="og:updated_time" content="2018-12-24T03:54:50.196Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HEXO+Github搭建个人Blog">
-<meta name="twitter:description" content="HEXO背景hexo是基于NodeJS的静态博客框架，简单，轻量，其生成的静态页面可以托管在Github或者Heroku上面  超快部署 支持MarkDown 一键部署 丰富的插件   下面以我的Blog为例，记录搭建过程。">
+<meta name="twitter:title" content="常见算法（二）">
+<meta name="twitter:description" content="背景面试过程中，特别是一些大公司，对于程序员的要求越来越高，你必须会一些和本职工作没什么关系的技能，这样才能使你stand out，面试其实是需要精心准备的，也许你在面试完后，这些东西你都用不到，但是为了那个offer你还是要去准备，这些可以概括为“面试造航母，工作拧螺丝”，另一方面，这些知识其实对我们自身来说是有用的（有用和无用其实不好定义，而且看似无用的东西往往它的生命周期会更长），它能帮我们">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20170419120811149?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveHloMjY5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
 
@@ -122,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/24/HEXO+Github搭建个人Blog/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/12/21/常见算法（二）/"/>
 
 
 
 
 
-  <title>HEXO+Github搭建个人Blog | Ervin</title>
+  <title>常见算法（二） | Ervin</title>
   
 
 
@@ -289,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/24/HEXO+Github搭建个人Blog/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/21/常见算法（二）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ervin Zhang">
@@ -306,7 +318,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">HEXO+Github搭建个人Blog</h1>
+          <h1 class="post-title" itemprop="name headline">常见算法（二）</h1>
         
 
         <div class="post-meta">
@@ -318,8 +330,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-24T18:53:18+08:00">
-                2018-10-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-21T15:45:16+08:00">
+                2018-12-21
               </time>
             
 
@@ -372,7 +384,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  738
+                  800
                 </span>
               
 
@@ -409,91 +421,31 @@
       
 
       
-        <h2 id="HEXO背景"><a href="#HEXO背景" class="headerlink" title="HEXO背景"></a>HEXO背景</h2><p>hexo是基于NodeJS的静态博客框架，简单，轻量，其生成的静态页面可以托管在Github或者Heroku上面</p>
-<ul>
-<li>超快部署</li>
-<li>支持MarkDown</li>
-<li>一键部署</li>
-<li>丰富的插件</li>
-</ul>
-<blockquote>
-<p>下面以我的<a href="https://ervinsae.github.io/" target="_blank" rel="noopener">Blog</a>为例，记录搭建过程。</p>
-</blockquote>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>面试过程中，特别是一些大公司，对于程序员的要求越来越高，你必须会一些和本职工作没什么关系的技能，这样才能使你stand out，面试其实是需要精心准备的，也许你在面试完后，这些东西你都用不到，但是为了那个offer你还是要去准备，这些可以概括为“面试造航母，工作拧螺丝”，另一方面，这些知识其实对我们自身来说是有用的（有用和无用其实不好定义，而且看似无用的东西往往它的生命周期会更长），它能帮我们开阔眼界，系统搭建我们的知识架构，让我们掌握的东西能串起来，而且我们在未来碰到问题的时候可以多一种选择。算法就是这样一个东西。</p>
 <a id="more"></a>
-<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><ul>
-<li><strong>安装NodeJs</strong></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//mac下安装node很简单，使用mac下的包管理工具brew命令就可以了</span><br><span class="line"></span><br><span class="line">$ brew install node</span><br><span class="line">$ brew install npm</span><br><span class="line"></span><br><span class="line">//brew一般被安装在/usr/local/bin 目录下面</span><br><span class="line"></span><br><span class="line">//验证是否安装成功</span><br><span class="line">$ node -v</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong>安装HEXO</strong></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong>运行</strong></li>
-</ul>
-<p>装上Hexo后就可以在本地跑服务了，执行一下命令（HEXO的常见命令）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">// 生成静态网页</span><br><span class="line">$ hexo g / hexo generator</span><br><span class="line">// 开启服务</span><br><span class="line">$ hexo s / hexo server</span><br><span class="line"></span><br><span class="line">运行：localhost：4000</span><br></pre></td></tr></table></figure>
-<h2 id="托管"><a href="#托管" class="headerlink" title="托管"></a>托管</h2><p>托管就是将你生成的静态网页保存在服务器上，别人可以通过域名去访问（当然需要在hexo上去配置）.</p>
-<p>一般是在github上免费托管，也可以自己去买个小鸡，既可以搭个小机场，也可以托管博客.</p>
+<h3 id="单向链表转置"><a href="#单向链表转置" class="headerlink" title="单向链表转置"></a>单向链表转置</h3><p>这个问题其实是很常见的一个算法问题，但是如果没弄清楚就会被它给搞晕了，从晕到不晕的过程就是你理解该算法的过程。</p>
 <blockquote>
-<p>如果要部署到github上，首先要有GitHub账号（没有的可以不用看了），然后在仓库建一个”github账号.github.io” <strong>名字一定要一样</strong></p>
+<p>算法还是需要理解它，才能真正的去掌握它</p>
 </blockquote>
-<ul>
-<li>添加部署插件<a href="https://github.com/hexojs/hexo-deployer-git" target="_blank" rel="noopener">hexo-deployer-git</a></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<ul>
-<li>添加git源</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 编辑根目录.config.yml</span><br><span class="line">vim .config.yml</span><br><span class="line"></span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: &lt;repository url&gt;</span><br><span class="line">  branch: [branch]</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>branch为分支，默认为master,可以不配置 repo为仓库地址，在github上新建仓库后，可复制此地址</p>
-</blockquote>
-<ul>
-<li>添加源后就可以部署了</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="全局配置"><a href="#全局配置" class="headerlink" title="全局配置"></a>全局配置</h3><p>关于hexo的配置都在根目录下的.config_yml下面，而关于主题的配置都在/theme/**/.config_yml下面，详细配置可以查看<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="noopener">官方文档</a></p>
-<ul>
-<li><strong>title</strong> -&gt; 网站标题</li>
-<li><strong>subtitle</strong> -&gt; 网站副标题</li>
-<li><strong>description</strong> -&gt; 网站描述</li>
-<li><strong>author</strong> -&gt; 您的名字</li>
-<li><strong>language</strong> -&gt; 网站使用的语言</li>
-<li><strong>theme</strong> -&gt; 主题配置（主题名字 /theme目录下）</li>
-</ul>
-<blockquote>
-<p>坑：<strong>进行配置时，需要在冒号:后加一个英文空格</strong></p>
-</blockquote>
-<h3 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h3><p>Hexo 中有很多主题，可以在<a href="https://hexo.io/themes/" target="_blank" rel="noopener">官网</a>查看。主题现在比较流行的是Next — <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">hexo-theme-next</a>。</p>
-<ul>
-<li>下载：<br>推荐去官方看最新下载。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
-<ul>
-<li>设置<br>主要是在theme/next/_config.yml文件。然后去找官方或者别人的方案修改即可。</li>
-</ul>
-<ul>
-<li>发布文章</li>
-</ul>
-<ol>
-<li>使用命令：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new test</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>此时会在<code>source/_posts</code>目录下生成<code>test.md</code>文件，输入些许内容，然后保存.</p>
-<ol start="2">
-<li>直接将写好的markdown文件放在_posts文件下面即可，在markdown下添加头部</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: </span><br><span class="line">categories: []</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>使用命令查看效果</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
-<h3 id="主题美化"><a href="#主题美化" class="headerlink" title="主题美化"></a>主题美化</h3><p>主题美化借鉴了一些前人的集思广益，参考了网上许多文章教程，本博客就是实践出来的，感谢！</p>
-<p>这里mark一些借鉴连接，供大家详参！</p>
-<p><a href="http://jeffyang.top/Hexo/Hexo%E4%B8%BB%E9%A2%98Next%E7%BE%8E%E5%8C%96/" target="_blank" rel="noopener">Hexo主题美化</a></p>
-<p><a href="https://www.jianshu.com/p/f054333ac9e6" target="_blank" rel="noopener">干货</a></p>
-<p><a href="http://theme-next.iissnan.com/third-party-services.html" target="_blank" rel="noopener">Hexo官网</a></p>
+<p>下图是一个单向链表转置的初始状态和终止状态。<br><img src="https://img-blog.csdn.net/20170419120811149?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveHloMjY5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<p>转置后：<br><img src="https://img-blog.csdn.net/20170419120851823?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveHloMjY5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<h4 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h4><p>首先要知道链表的数据结构是怎么样的，链表首先有自己的值（value），其次它有一个指针指向了下个结点，我们用代码来表示是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Node&#123;</span><br><span class="line">    public int value;</span><br><span class="line">    </span><br><span class="line">    public Node next;</span><br><span class="line">    </span><br><span class="line">    public Node(int data)&#123;</span><br><span class="line">        this.value = data</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从上面代码可以很清楚的看到链表的特点，他是区别于数组的一种数据结构。</p>
+<h4 id="链表和数组"><a href="#链表和数组" class="headerlink" title="链表和数组"></a>链表和数组</h4><p>在数组中，是通过==索引==来访问元素的，很多算法都是利用索引来操作的，所以数组这种数据结构可以快速的查询到数据。<br>链表的优势则是删除/插入数据，因为数组是固定长度的，所以增删都会改变数组的所有元素（下标变化了），而链表是可以动态改变大小的，他只会影响左右相邻的两个结点。另外链表在内存中的存储不是连续的。</p>
+<h4 id="算法分析过程"><a href="#算法分析过程" class="headerlink" title="算法分析过程"></a>算法分析过程</h4><p>先上代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public Node reverseList(Node head)&#123;</span><br><span class="line">    //临时变量</span><br><span class="line">    Node pre = null</span><br><span class="line">    Node next = null</span><br><span class="line">    </span><br><span class="line">    while(head != null)&#123;</span><br><span class="line">        next = head.next // 1</span><br><span class="line">        head.next = pre // 2</span><br><span class="line">        </span><br><span class="line">        pre = head  //3</span><br><span class="line">        head = next. //4</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return pre</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们来分析下具体过程，其实主要是while循环中四句话。我们逐一来分析，第一轮过程：</p>
+<p>首先初始状态：<br><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fyhomubpa9j30pq059glm.jpg" alt=""></p>
+<p>执行完1：next = head.next后：<br><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fyhoo4er7vj30nz06p74d.jpg" alt=""></p>
+<p>执行完2: head.next = pre后：（pre此时是null）<br><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fyhoq2nt8hj30po079aa7.jpg" alt=""></p>
+<p>执行完3: pre = head后：<br><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fyhor37xb8j30pw07yt8w.jpg" alt=""></p>
+<p>执行完4: head = next后：<br><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fyhosor3w2j30qa07h74g.jpg" alt=""></p>
+<p>第一轮结束，我们看到头结点head在2的位置了，递归操作，我们继续分析第二轮：</p>
+<p>执行完1：next = head.next后：<br><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fyhovdga7nj30q807tt90.jpg" alt=""></p>
+<p>执行完2: head.next = pre后：（pre此时是指向了1）<br><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fyhowpw07sj30p106zq37.jpg" alt=""><br>这一步很巧妙将1和2转置了。<br>执行完3: pre = head后：<br><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fyhoykh8iqj30op06taab.jpg" alt=""></p>
+<p>执行完4: head = next后：<br><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fyhozd97bpj30p206f74j.jpg" alt=""></p>
+<p>如此，经过5次循环就能将这个单向链表成功转置了。</p>
 
       
     </div>
@@ -511,8 +463,8 @@
       
         <div class="post-tags">
           
-            <a href="/tags/主题/" rel="tag"><i class="fa fa-tag"></i>
- 主题</a>
+            <a href="/tags/算法/" rel="tag"><i class="fa fa-tag"></i>
+ 算法</a>
           
         </div>
       
@@ -525,8 +477,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/22/Android存储/" rel="next" title="Android存储">
-                <i class="fa fa-chevron-left"></i> Android存储
+              <a href="/2018/12/16/常见排序算法（一）/" rel="next" title="常见排序算法 (一)">
+                <i class="fa fa-chevron-left"></i> 常见排序算法 (一)
               </a>
             
           </div>
@@ -534,10 +486,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/03/网络协议-TCP和UDP/" rel="prev" title="Java网络编程中的TCP和UDP通信方式简介">
-                Java网络编程中的TCP和UDP通信方式简介 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -702,7 +650,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HEXO背景"><span class="nav-number">1.</span> <span class="nav-text">HEXO背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境准备"><span class="nav-number">2.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#托管"><span class="nav-number">3.</span> <span class="nav-text">托管</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">4.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#全局配置"><span class="nav-number">4.1.</span> <span class="nav-text">全局配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主题配置"><span class="nav-number">4.2.</span> <span class="nav-text">主题配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主题美化"><span class="nav-number">4.3.</span> <span class="nav-text">主题美化</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单向链表转置"><span class="nav-number">1.1.</span> <span class="nav-text">单向链表转置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#链表"><span class="nav-number">1.1.1.</span> <span class="nav-text">链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#链表和数组"><span class="nav-number">1.1.2.</span> <span class="nav-text">链表和数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法分析过程"><span class="nav-number">1.1.3.</span> <span class="nav-text">算法分析过程</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
