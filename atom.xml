@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-01-03T06:51:56.985Z</updated>
+  <updated>2019-01-30T09:25:18.006Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SBT环境搭建</title>
+    <link href="http://yoursite.com/2019/01/30/SBT%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
+    <id>http://yoursite.com/2019/01/30/SBT环境配置/</id>
+    <published>2019-01-30T08:32:09.016Z</published>
+    <updated>2019-01-30T09:25:18.006Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><ol><li>由于临时的变动，我需要去搭建一个跑Scala的环境去跑后台服务，但是Scala和Sbt我都不太熟悉，只能去找资料和问人了，这里做个记录（凑数）。</li></ol><h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><ul><li>前提<br>必须要装JDK，sbt也是运行在JVM上的，所以需要java的环境，没有环境sbt会提示你先要装JDK，然后就是配置好环境变量了。</li><li><p>下载IDE<br>现在宇宙IDE非IDEA莫属了（VS Code表示不服），前后端主要的平台都支持，AndroidStudio就是基于这个IDE写的。咱也熟。下载完成后下载插件：Scala和Sbt。下载完成后重启IDE，导入Sbt项目后，会自动在右侧多了个sbt编译按钮<br><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fzopvtb2v6j30l40ocacg.jpg" alt=""></p></li><li><p>下载sbt sdk<br>这里要下载sbt最新版本（好像是1.2.+），配置好环境变量，在命令行测试命令：sbt或者sbt test。这样在user目录下会生成一个.sbt目录。</p></li></ul><ul><li>配置私服访问<br>一般上面三步基本就能配好环境。直接导入代码就可以使用sbt编译了，但是我们的后端很多依赖包是在自己公司搭建的私服上的，所以还需要配置访问私服的密钥和路径。（问人的，这个貌似很多文章都找不到），生成两个文件（一个私服仓库的路径文件，一个授权访问私服的文件）见图：<br><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fzoqdm8mctj30dc0e0gmc.jpg" alt=""><br>需要放在上面所说的.sbt文件中。</li></ul><blockquote><p>这里还有一个很坑人的地方，导致你编译失败，代码一片红，因为我们在上面的私服仓库路径文件里面配置的第三方依赖包和我们自己仓库的依赖包都会同时下载，但是基于经验判断我们下载自己仓库的包的时候先决条件是需要把第三方包都下载好，这样如果同时下载会导致所有包都下不下来（坑），这时候就需要根据经验先下载一些优先的第三方包，注释掉另外一些路径，等下载完成后再打开这些路径，接着下载所需的私有仓库中的包。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;由于临时的变动，我需要去搭建一个跑Scala的环境去跑后台服务，但是Scala和Sbt我都不太熟悉，只能去找资料和问人了，这里做
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="scala，sbt" scheme="http://yoursite.com/tags/scala%EF%BC%8Csbt/"/>
+    
+  </entry>
   
   <entry>
     <title>kotlin常用操作符</title>
@@ -557,30 +583,6 @@
     
     
       <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac下的常用命令行</title>
-    <link href="http://yoursite.com/2018/10/19/Mac%E4%B8%8B%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
-    <id>http://yoursite.com/2018/10/19/Mac下的常用命令/</id>
-    <published>2018-10-18T16:40:41.924Z</published>
-    <updated>2018-11-14T07:31:34.922Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="查看IP"><a href="#查看IP" class="headerlink" title="查看IP"></a>查看IP</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$curl ip.gs</span><br><span class="line"></span><br><span class="line">$ifconfig</span><br></pre></td></tr></table></figure><a id="more"></a><h3 id="关于文件操作"><a href="#关于文件操作" class="headerlink" title="关于文件操作"></a>关于文件操作</h3><p>由于mac下面不能使用右键新建文件，所以需要使用一些工具，如workflow，或者直接命令行</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 查看文件如果没有则创建新文件</span><br><span class="line">touch filename</span><br><span class="line"># 新建文件夹</span><br><span class="line">mkdir filename</span><br><span class="line"># 删除文件或者目录</span><br><span class="line">rm -rf filename</span><br><span class="line"># 查看文件详细信息</span><br><span class="line">stat filename</span><br><span class="line"></span><br><span class="line"># 查看目录结果，需要装tree</span><br><span class="line">npm install tree</span><br><span class="line">tree -L 1</span><br></pre></td></tr></table></figure><h3 id="vim常规操作"><a href="#vim常规操作" class="headerlink" title="vim常规操作"></a>vim常规操作</h3><table><thead><tr><th>操作命令</th><th>效果</th></tr></thead><tbody><tr><td>i</td><td>在光标处插入，进入编辑模式</td></tr><tr><td>dd</td><td>剪切光标所在的一行内容</td></tr><tr><td>yy</td><td>复制光标所在的一行内容</td></tr><tr><td>D</td><td><strong>删除光标右边的所有内容</strong></td></tr><tr><td>gg</td><td>将光标快速移动到文件首</td></tr><tr><td>G</td><td>将光标快速移动到文件尾</td></tr><tr><td>0</td><td>将光标快速移动到行首</td></tr><tr><td>$</td><td>将光标快速移动到行尾</td></tr></tbody></table><table><thead><tr><th>退出命令</th><th>效果</th></tr></thead><tbody><tr><td>:w</td><td>保存</td></tr><tr><td>:q</td><td>未保存直接退出（如果没有修改，用下面的命令）</td></tr><tr><td>:q！</td><td>强制退出</td></tr><tr><td>:wq</td><td>保存退出</td></tr><tr><td>:wq</td><td>强制保存退出</td></tr></tbody></table>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;查看IP&quot;&gt;&lt;a href=&quot;#查看IP&quot; class=&quot;headerlink&quot; title=&quot;查看IP&quot;&gt;&lt;/a&gt;查看IP&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$curl ip.gs&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ifconfig&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="Mac" scheme="http://yoursite.com/tags/Mac/"/>
-    
-      <category term="mac" scheme="http://yoursite.com/tags/mac/"/>
     
   </entry>
   

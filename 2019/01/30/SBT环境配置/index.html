@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="scala，sbt," />
 
 
 
@@ -81,17 +81,21 @@
 
 
 
-<meta name="description" content="stay hungry, stay foolish">
-<meta name="keywords" content="Developer">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ervin">
-<meta property="og:url" content="http://yoursite.com/archives/2018/12/index.html">
+<meta name="description" content="背景 由于临时的变动，我需要去搭建一个跑Scala的环境去跑后台服务，但是Scala和Sbt我都不太熟悉，只能去找资料和问人了，这里做个记录（凑数）。  步骤 前提必须要装JDK，sbt也是运行在JVM上的，所以需要java的环境，没有环境sbt会提示你先要装JDK，然后就是配置好环境变量了。 下载IDE现在宇宙IDE非IDEA莫属了（VS Code表示不服），前后端主要的平台都支持，Androi">
+<meta name="keywords" content="scala，sbt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SBT环境搭建">
+<meta property="og:url" content="http://yoursite.com/2019/01/30/SBT环境配置/index.html">
 <meta property="og:site_name" content="Ervin">
-<meta property="og:description" content="stay hungry, stay foolish">
+<meta property="og:description" content="背景 由于临时的变动，我需要去搭建一个跑Scala的环境去跑后台服务，但是Scala和Sbt我都不太熟悉，只能去找资料和问人了，这里做个记录（凑数）。  步骤 前提必须要装JDK，sbt也是运行在JVM上的，所以需要java的环境，没有环境sbt会提示你先要装JDK，然后就是配置好环境变量了。 下载IDE现在宇宙IDE非IDEA莫属了（VS Code表示不服），前后端主要的平台都支持，Androi">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fzopvtb2v6j30l40ocacg.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fzoqdm8mctj30dc0e0gmc.jpg">
+<meta property="og:updated_time" content="2019-01-30T09:25:18.006Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ervin">
-<meta name="twitter:description" content="stay hungry, stay foolish">
+<meta name="twitter:title" content="SBT环境搭建">
+<meta name="twitter:description" content="背景 由于临时的变动，我需要去搭建一个跑Scala的环境去跑后台服务，但是Scala和Sbt我都不太熟悉，只能去找资料和问人了，这里做个记录（凑数）。  步骤 前提必须要装JDK，sbt也是运行在JVM上的，所以需要java的环境，没有环境sbt会提示你先要装JDK，然后就是配置好环境变量了。 下载IDE现在宇宙IDE非IDEA莫属了（VS Code表示不服），前后端主要的平台都支持，Androi">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fzopvtb2v6j30l40ocacg.jpg">
 
 
 
@@ -121,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2018/12/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/01/30/SBT环境配置/"/>
 
 
 
 
 
-  <title>归档 | Ervin</title>
+  <title>SBT环境搭建 | Ervin</title>
   
 
 
@@ -146,7 +150,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -274,296 +278,216 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/30/SBT环境配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ervin Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ervin">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">SBT环境搭建</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-30T16:32:09+08:00">
+                2019-01-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 23 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/21/常见算法（二）/" itemprop="url">
+          
+
+          
+            <div class="post-wordcount">
               
-                <span itemprop="name">常见算法（二）</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  554
+                </span>
               
-            </a>
-        
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-12-21T15:45:16+08:00"
-              content="2018-12-21" >
-          12-21
-        </time>
-      </div>
+              
+                <span class="post-meta-divider">|</span>
+              
 
-    </header>
-  </article>
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
 
+          
 
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/16/常见排序算法（一）/" itemprop="url">
-              
-                <span itemprop="name">常见排序算法 (一)</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-12-16T14:39:02+08:00"
-              content="2018-12-16" >
-          12-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/09/GDG Shenzhen 2018/" itemprop="url">
-              
-                <span itemprop="name">GDG Shenzhen 2018</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-12-09T15:27:54+08:00"
-              content="2018-12-09" >
-          12-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><ol>
+<li>由于临时的变动，我需要去搭建一个跑Scala的环境去跑后台服务，但是Scala和Sbt我都不太熟悉，只能去找资料和问人了，这里做个记录（凑数）。</li>
+</ol>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><ul>
+<li>前提<br>必须要装JDK，sbt也是运行在JVM上的，所以需要java的环境，没有环境sbt会提示你先要装JDK，然后就是配置好环境变量了。</li>
+<li><p>下载IDE<br>现在宇宙IDE非IDEA莫属了（VS Code表示不服），前后端主要的平台都支持，AndroidStudio就是基于这个IDE写的。咱也熟。下载完成后下载插件：Scala和Sbt。下载完成后重启IDE，导入Sbt项目后，会自动在右侧多了个sbt编译按钮<br><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fzopvtb2v6j30l40ocacg.jpg" alt=""></p>
+</li>
+<li><p>下载sbt sdk<br>这里要下载sbt最新版本（好像是1.2.+），配置好环境变量，在命令行测试命令：sbt或者sbt test。这样在user目录下会生成一个.sbt目录。</p>
+</li>
+</ul>
+<ul>
+<li>配置私服访问<br>一般上面三步基本就能配好环境。直接导入代码就可以使用sbt编译了，但是我们的后端很多依赖包是在自己公司搭建的私服上的，所以还需要配置访问私服的密钥和路径。（问人的，这个貌似很多文章都找不到），生成两个文件（一个私服仓库的路径文件，一个授权访问私服的文件）见图：<br><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fzoqdm8mctj30dc0e0gmc.jpg" alt=""><br>需要放在上面所说的.sbt文件中。</li>
+</ul>
+<blockquote>
+<p>这里还有一个很坑人的地方，导致你编译失败，代码一片红，因为我们在上面的私服仓库路径文件里面配置的第三方依赖包和我们自己仓库的依赖包都会同时下载，但是基于经验判断我们下载自己仓库的包的时候先决条件是需要把第三方包都下载好，这样如果同时下载会导致所有包都下不下来（坑），这时候就需要根据经验先下载一些优先的第三方包，注释掉另外一些路径，等下载完成后再打开这些路径，接着下载所需的私有仓库中的包。</p>
+</blockquote>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/07/悖论之共有知识和公共知识/" itemprop="url">
-              
-                <span itemprop="name">悖论之共有知识和公共知识</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-12-07T17:24:04+08:00"
-              content="2018-12-07" >
-          12-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/06/悖论之三姬分金/" itemprop="url">
-              
-                <span itemprop="name">悖论系列之分金问题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-12-06T20:10:53+08:00"
-              content="2018-12-06" >
-          12-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/06/Flutter1.0发布/" itemprop="url">
-              
-                <span itemprop="name">Flutter V1.0.0发布</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-12-06T14:26:33+08:00"
-              content="2018-12-06" >
-          12-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/04/Https详解/" itemprop="url">
-              
-                <span itemprop="name">Https简介</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-12-04T11:42:18+08:00"
-              content="2018-12-04" >
-          12-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/scala，sbt/" rel="tag"><i class="fa fa-tag"></i>
+ scala，sbt</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/03/Kotlin中常见的操作符/" rel="next" title="kotlin常用操作符">
+                <i class="fa fa-chevron-left"></i> kotlin常用操作符
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -571,6 +495,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -591,8 +519,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -685,6 +622,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#步骤"><span class="nav-number">2.</span> <span class="nav-text">步骤</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -839,6 +792,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
