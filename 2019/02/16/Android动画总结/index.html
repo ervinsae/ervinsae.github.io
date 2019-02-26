@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="微信,CSS,小程序,前端," />
+  <meta name="keywords" content="Android,动画," />
 
 
 
@@ -81,18 +81,21 @@
 
 
 
-<meta name="description" content="详解css中的display属性（行内元素和块级元素） 首先，所有主流浏览器都支持display属性。其次，display属性规定了元素应该生成的框的类型。默认值：inline  我们常用的display属性有：  inline block inlien-block none">
-<meta name="keywords" content="微信,CSS,小程序,前端">
+<meta name="description" content="背景Android动画其实是Android开发的一个基础能力，在开发中不可避免的需要去用到动画，github上也有一些很好的动画开源库例如：lottie,SVGA 等，但是轮子用多了，基础的倒是很容易忘，所以这里做个总结，备查纠错。(未完成待续。。)">
+<meta name="keywords" content="Android,动画">
 <meta property="og:type" content="article">
-<meta property="og:title" content="小程序之CSS入门">
-<meta property="og:url" content="http://yoursite.com/2018/11/09/微信小程序之CSS/index.html">
+<meta property="og:title" content="Android动画总结">
+<meta property="og:url" content="http://yoursite.com/2019/02/16/Android动画总结/index.html">
 <meta property="og:site_name" content="Ervin">
-<meta property="og:description" content="详解css中的display属性（行内元素和块级元素） 首先，所有主流浏览器都支持display属性。其次，display属性规定了元素应该生成的框的类型。默认值：inline  我们常用的display属性有：  inline block inlien-block none">
+<meta property="og:description" content="背景Android动画其实是Android开发的一个基础能力，在开发中不可避免的需要去用到动画，github上也有一些很好的动画开源库例如：lottie,SVGA 等，但是轮子用多了，基础的倒是很容易忘，所以这里做个总结，备查纠错。(未完成待续。。)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-14T07:24:37.245Z">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/944365-16a162a731f548d8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/944365-d74ed6378954939b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-02-26T06:52:38.431Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小程序之CSS入门">
-<meta name="twitter:description" content="详解css中的display属性（行内元素和块级元素） 首先，所有主流浏览器都支持display属性。其次，display属性规定了元素应该生成的框的类型。默认值：inline  我们常用的display属性有：  inline block inlien-block none">
+<meta name="twitter:title" content="Android动画总结">
+<meta name="twitter:description" content="背景Android动画其实是Android开发的一个基础能力，在开发中不可避免的需要去用到动画，github上也有一些很好的动画开源库例如：lottie,SVGA 等，但是轮子用多了，基础的倒是很容易忘，所以这里做个总结，备查纠错。(未完成待续。。)">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/944365-16a162a731f548d8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -122,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/09/微信小程序之CSS/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/02/16/Android动画总结/"/>
 
 
 
 
 
-  <title>小程序之CSS入门 | Ervin</title>
+  <title>Android动画总结 | Ervin</title>
   
 
 
@@ -289,7 +292,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/微信小程序之CSS/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/16/Android动画总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ervin Zhang">
@@ -306,7 +309,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">小程序之CSS入门</h1>
+          <h1 class="post-title" itemprop="name headline">Android动画总结</h1>
         
 
         <div class="post-meta">
@@ -318,8 +321,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-09T12:07:35+08:00">
-                2018-11-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-16T15:55:33+08:00">
+                2019-02-16
               </time>
             
 
@@ -372,7 +375,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  651
+                  878
                 </span>
               
 
@@ -388,7 +391,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -409,46 +412,123 @@
       
 
       
-        <h1 id="详解css中的display属性（行内元素和块级元素）"><a href="#详解css中的display属性（行内元素和块级元素）" class="headerlink" title="详解css中的display属性（行内元素和块级元素）"></a>详解css中的display属性（行内元素和块级元素）</h1><blockquote>
-<p>首先，所有主流浏览器都支持<strong>display</strong>属性。其次，display属性规定了元素应该生成的框的类型。默认值：<strong>inline</strong></p>
-</blockquote>
-<p>我们常用的display属性有：</p>
-<ol>
-<li>inline</li>
-<li>block</li>
-<li>inlien-block</li>
-<li>none</li>
-</ol>
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>Android动画其实是Android开发的一个基础能力，在开发中不可避免的需要去用到动画，github上也有一些很好的动画开源库例如：<a href="https://github.com/airbnb/lottie-android" target="_blank" rel="noopener">lottie</a>,<a href="https://github.com/yyued/SVGAPlayer-Android" target="_blank" rel="noopener">SVGA</a> 等，但是轮子用多了，基础的倒是很容易忘，所以这里做个总结，备查纠错。(未完成待续。。)</p>
 <a id="more"></a>
-<p>把display设置成none就不会保留元素本该显示的空间（元素直接不显示），但是visibility：hidden会保留。那么其他三个有什么区别呢？看下下面css代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">&lt;span class=&quot;inline&quot;&gt;</span><br><span class="line">inline</span><br><span class="line">&lt;/span&gt;inline </span><br><span class="line">&lt;span class=&quot;block&quot;&gt;</span><br><span class="line">block</span><br><span class="line">&lt;/span&gt;block </span><br><span class="line">&lt;span class=&quot;inline-block&quot;&gt;</span><br><span class="line">inline-block</span><br><span class="line">&lt;/span&gt; inline-block</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
-<p><a href="http://jsfiddle.net/qjgcjLm8/" target="_blank" rel="noopener">点此看效果</a></p>
-<h2 id="inline特性"><a href="#inline特性" class="headerlink" title="inline特性"></a>inline特性</h2><p>我们发现内联对象inline给它设置属性height和width是没用的，致使它变宽变大的原因是：</p>
-<blockquote>
-<p>内部元素的宽高‘+padding’。观察inline对象的前后元素我们会发现inline<strong>不单独占一行</strong>，其他元素会紧跟其后。</p>
-</blockquote>
-<h2 id="block特性"><a href="#block特性" class="headerlink" title="block特性"></a>block特性</h2><blockquote>
-<p>而块对象‘block’是可以设置宽高的，但是它的实际宽高是本身宽高+’padding‘。观察block的前后元素，我们会发现block<strong>会独占一行</strong>。</p>
-</blockquote>
-<p>如果，我们即希望div有宽高，又不希望它独占一行要怎么办？</p>
-<h2 id="inline-block"><a href="#inline-block" class="headerlink" title="inline-block"></a>inline-block</h2><p>这个时候我们就需要’inline-block‘属性了，我们看下显示效果，就会发现：</p>
-<blockquote>
-<p>inline-block即具有block的宽高特性又具有inline的同行元素特性。</p>
-</blockquote>
-<p>也就是说，当我们想让一个元素即不独占一行，又可以设置其宽高属性的时候，我们就可以选择inline-block了。</p>
-<h2 id="行内元素特点"><a href="#行内元素特点" class="headerlink" title="行内元素特点"></a>行内元素特点</h2><ol>
-<li>和其他元素都在一行上；</li>
-<li>元素的高度，宽度，行高及顶部和底部边距<strong>不可设置</strong>；</li>
-<li>元素的宽度就是它包含的文字或图片的宽度，不可改变。</li>
-</ol>
-<h2 id="块级元素特点"><a href="#块级元素特点" class="headerlink" title="块级元素特点"></a>块级元素特点</h2><ol>
-<li>每个块级元素都是从新的一行开始，并且其后的元素也另起一行；</li>
-<li>元素的高度，宽度，行高及顶部和底部边距都是可以设置的；</li>
-<li>元素宽度在不设置的情况下，是它本身父容器的100%（和父元素一致），除非设定一个宽度。</li>
-</ol>
-<p>在html中，span,a,lable,input,img,strong和em就是典型的行内元素。div,p,h1,form,ul,li就是块级元素。</p>
-<p><strong>块级元素是可以设置宽高的，但是它的实际宽高是本身宽高+padding。block元素要单独占一行。内联元素不单独占一行，给他设置宽高是没有用的。</strong></p>
-<p><a href="http://www.w3school.com.cn/cssref/pr_class_display.asp" target="_blank" rel="noopener">更多CSS display请参考</a></p>
+<h1 id="动画分类"><a href="#动画分类" class="headerlink" title="动画分类"></a>动画分类</h1><h2 id="各自特点及区别"><a href="#各自特点及区别" class="headerlink" title="各自特点及区别"></a>各自特点及区别</h2><p>Android动画主要分为视图动画和属性动画，视图动画只有透明度，旋转，平移，伸缩四种，而属性动画则是只要是对象的属性且有setter该属性的方法就可以对该属性执行一种动态变化效果。视图动画主要是使用<strong>Animation</strong>，组合动画使用AnimationSet，而属性动画主要是<strong>Animator</strong>，组合使用AnimatorSet。视图动画主要就是四种操作，对对象的颜色，背景等就无能为力了。相对来说，属性动画会更精细点，能实现更多更好的效果。</p>
+<h2 id="视图动画"><a href="#视图动画" class="headerlink" title="视图动画"></a>视图动画</h2><p>视图动画很早就出现在Android中，主要在android.view.animation包下面，这里可以看到主要是对View进行操作的，里面有很多的类帮助我们实现一些简单动画效果，如对view进行移动，缩放，旋转，淡入淡出等，并且我们可以借助AnimationSet将这些动作组合起来</p>
+<ul>
+<li>补间动画（Tween Animation）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>原理</th>
+<th>对应Animation 子类</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平移动画</td>
+<td>移动视图位置</td>
+<td>TranslateAnimation</td>
+</tr>
+<tr>
+<td>缩放动画</td>
+<td>放大缩小视图</td>
+<td>ScaleAnimation</td>
+</tr>
+<tr>
+<td>旋转动画</td>
+<td>旋转视图位置</td>
+<td>RotateAnimation</td>
+</tr>
+<tr>
+<td>透明度动画</td>
+<td>改变视图透明度</td>
+<td>AlphaAnimation</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>逐帧动画（Frame Animation）</li>
+</ul>
+<p>这个类似动画片，一帧一帧播放，每一帧是一张图片，按顺序去播放一组预先定义好的图片，简单方便，但是容易OOM，占资源</p>
+<h2 id="属性动画"><a href="#属性动画" class="headerlink" title="属性动画"></a>属性动画</h2><p>属性动画在Android3.1的时候才引入到Android中，主要在android.animator包下面。属性动画机制已经不仅仅是针对View来设计了（看包名就知道），也不限定于只能实现移动、缩放、旋转和淡入淡出这几种动画操作，同时也不在是视觉上的动画效果了。它实际上是一种不断对值进行操作的机制，并将值赋值到指定对象的指定属性上，可以是任意对象的任意属性（真的改变了对象属性）。属性动画的工作原理和逻辑：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/944365-16a162a731f548d8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>步骤2中的插值器，默认会有一些系统自带的插值器，如下表，表示的是初始值到结束值的一个变化关系，关系到动画的一个显示效果。</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>插值器（Interpolator）</td>
+<td>值的变化模式（匀速,加速）</td>
+</tr>
+<tr>
+<td>估值器（TypeEvaluator）</td>
+<td>决定值的具体变化数值</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>插值器名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AccelerateDecelerateInterpolator</td>
+<td>先加速再减速</td>
+</tr>
+<tr>
+<td>AccelerateInterpolator</td>
+<td>先加速再一直加速</td>
+</tr>
+<tr>
+<td>AnticipateInterpolator</td>
+<td>先往后一下，再加速往前</td>
+</tr>
+<tr>
+<td>AnticipateOvershootInterpolator</td>
+<td>先往后一下，再一直往前超过终点，再往回收一下。</td>
+</tr>
+<tr>
+<td>BounceInterpolator</td>
+<td>最后会回弹一下</td>
+</tr>
+<tr>
+<td>CycleInterpolator</td>
+<td>重复几次，感觉就是环形进度条那种，具体我还没试过</td>
+</tr>
+<tr>
+<td>DecelerateInterpolator</td>
+<td>一直减速</td>
+</tr>
+<tr>
+<td>LinearInterpolator</td>
+<td>线性匀速</td>
+</tr>
+<tr>
+<td>OvershootInterpolator</td>
+<td>到了终点之后，超过一点，再往回走。有个参数可以定义，超过的力度。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ValueAnimator"><a href="#ValueAnimator" class="headerlink" title="ValueAnimator"></a>ValueAnimator</h3><ul>
+<li><p>定义：通过不断控制值的变化，再不断手动赋值给对象的属性，从而实现动画效果。如下图：<br><img src="http://upload-images.jianshu.io/upload_images/944365-d74ed6378954939b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+<li><p>用法</p>
+</li>
+</ul>
+<pre><code>
+</code></pre><h3 id="ObjectAnimator"><a href="#ObjectAnimator" class="headerlink" title="ObjectAnimator"></a>ObjectAnimator</h3><p>ObjectAnimator继承自ValueAnimator</p>
 
       
     </div>
@@ -466,17 +546,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/微信/" rel="tag"><i class="fa fa-tag"></i>
- 微信</a>
+            <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i>
+ Android</a>
           
-            <a href="/tags/CSS/" rel="tag"><i class="fa fa-tag"></i>
- CSS</a>
-          
-            <a href="/tags/小程序/" rel="tag"><i class="fa fa-tag"></i>
- 小程序</a>
-          
-            <a href="/tags/前端/" rel="tag"><i class="fa fa-tag"></i>
- 前端</a>
+            <a href="/tags/动画/" rel="tag"><i class="fa fa-tag"></i>
+ 动画</a>
           
         </div>
       
@@ -489,8 +563,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/03/网络协议-TCP和UDP/" rel="next" title="Java网络编程中的TCP和UDP通信方式简介">
-                <i class="fa fa-chevron-left"></i> Java网络编程中的TCP和UDP通信方式简介
+              <a href="/2019/01/30/SBT环境配置/" rel="next" title="SBT环境搭建">
+                <i class="fa fa-chevron-left"></i> SBT环境搭建
               </a>
             
           </div>
@@ -499,8 +573,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/11/14/寒冬已至，Android的出路/" rel="prev" title="寒冬将至，Android的出路">
-                寒冬将至，Android的出路 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/25/Android开发的几个方向/" rel="prev" title="Android后期开发的几个方向">
+                Android后期开发的几个方向 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -666,7 +740,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#详解css中的display属性（行内元素和块级元素）"><span class="nav-number">1.</span> <span class="nav-text">详解css中的display属性（行内元素和块级元素）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#inline特性"><span class="nav-number">1.1.</span> <span class="nav-text">inline特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#block特性"><span class="nav-number">1.2.</span> <span class="nav-text">block特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#inline-block"><span class="nav-number">1.3.</span> <span class="nav-text">inline-block</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行内元素特点"><span class="nav-number">1.4.</span> <span class="nav-text">行内元素特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#块级元素特点"><span class="nav-number">1.5.</span> <span class="nav-text">块级元素特点</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动画分类"><span class="nav-number">2.</span> <span class="nav-text">动画分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#各自特点及区别"><span class="nav-number">2.1.</span> <span class="nav-text">各自特点及区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视图动画"><span class="nav-number">2.2.</span> <span class="nav-text">视图动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性动画"><span class="nav-number">2.3.</span> <span class="nav-text">属性动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ValueAnimator"><span class="nav-number">2.3.1.</span> <span class="nav-text">ValueAnimator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ObjectAnimator"><span class="nav-number">2.3.2.</span> <span class="nav-text">ObjectAnimator</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
