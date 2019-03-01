@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwgy1fxujt3fucij30eo0dijsh.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1fxujz356pej30fj062weu.jpg">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/6957712/293b52fc-d932-11e4-854d-cb47be67949a.png">
-<meta property="og:updated_time" content="2018-12-04T03:30:33.822Z">
+<meta property="og:updated_time" content="2019-03-01T15:50:50.980Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android内存优化（一）">
 <meta name="twitter:description" content="Android内存优化（一）在Android开发的时候，我们大部分使用的是java的api，但是对于移动端来说，内存是一个很敏感的资源，如果不注意的话很容易crash，而内存优化又没有一个可以立竿见影的东西说是使用了就会很显著的降低内存消耗，而是需要在代码中根据具体的使用场景来合理去优化，每个细节都做到了优化那么整体的性能当然就会提升。所针对Android这种移动平台，也推出了更符合自己的api，">
@@ -407,6 +407,7 @@
 <p>扩容条件：HashMap中的数据量&gt;容量*加载因子，默认加载因子是0.75</p>
 </blockquote>
 <p><a href="https://yikun.github.io/2015/04/01/Java-HashMap%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/" target="_blank" rel="noopener">参见HashMap详解</a></p>
+<p><a href="https://crossoverjie.top/2018/07/23/java-senior/ConcurrentHashMap/" target="_blank" rel="noopener">参见HashMap的实现</a></p>
 <p>只要一满足扩容条件，HashMap的空间将会以2倍的规律进行增大。假如我们有几十万、几百万条数据，那么HashMap要存储完这些数据将要不断的扩容，而且在此过程中也需要不断的做hash运算，这将对我们的内存空间造成很大消耗和浪费。附上hash函数的实现图：<br><img src="https://cloud.githubusercontent.com/assets/1736354/6957712/293b52fc-d932-11e4-854d-cb47be67949a.png" alt=""></p>
 <blockquote>
 <p>可以看到这个函数大概的作用就是：高16bit不变，低16bit和高16bit做了一个异或。</p>
