@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[alfred的简单配置]]></title>
+    <url>%2F2019%2F03%2F14%2Falfred%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[Alfredalfred是Mac上著名的效率工具，自从上手后，基本每天都会用到。他和Mac的官方应用Spotlite是一类的，不过相比之下，alfred除了能全文搜素以外还有强大的“工作流”等扩展功能。下面简单介绍下我在使用中的感受，以及经常用的功能。先看下官网是怎么说的吧 获取从官网就可能下载使用Alfred了，但是想用他的完整功能，比如workflow就要激活powerpack了，在天朝这些都不是问题，推荐几个Mac软件搬运工网站： 大名鼎鼎的xclinet 域名很黄的waitsun 未来软件园 等等吧，收藏夹里一堆。 基础功能介绍首先是启动alfred了，一般为避免和spotlight快捷键冲突，会将alfred启动快捷键设置为：double cmd。这样也确实挺方便的 搜索这个是最简单最基础的功能了，alfred自带了一些查询，例如： 只要输入关键字，就可以打开浏览器Google一下你要的内容了，alfred会自动匹配所有和关键字相关的内容（10个）给你选择。你也可以自己设置自定义的搜索规则： Clipboard剪切板功能也是一个很赞的功能，我的使用频率也是最高的之一，一般快捷键设置为：cmd+option+C。会弹出最近你所复制的文本，图片，甚至文件。如果一段文字你需要多次用到，那么这个将会大大提高你的效率。 System这个功能主要是你可以使用alfred的感觉真关机，待机，锁定屏幕等等。 Terminal/shell这个是由于我在Mac上使用的是程序员专用的iTerm命令行工具，然后Alfred可以通过“&gt;”来开启命令行（很好的功能），但是它默认使用的是mac系统自带的terminal，如果你想开启iTerm，那么： Preference - Terminal/shell - Application:custom 1234567891011121314151617181920212223242526272829303132333435363738394041424344//适用于iTerm2on alfred_script(q) if application &quot;iTerm2&quot; is running or application &quot;iTerm&quot; is running then run script &quot; on run &#123;q&#125; tell application \&quot;:Applications:iTerm.app\&quot; activate try select first window set onlywindow to false on error create window with default profile select first window set onlywindow to true end try tell current session of the first window if onlywindow is false then tell split vertically with default profile write text q end tell end if end tell end tell end run &quot; with parameters &#123;q&#125; else run script &quot; on run &#123;q&#125; tell application \&quot;:Applications:iTerm.app\&quot; activate try select first window on error create window with default profile select first window end try tell the first window tell current session to write text q end tell end tell end run &quot; with parameters &#123;q&#125; end ifend alfred_script WorkFlow这个是收费功能，也是alfred可以拥有无限可能的功能，他类似于IOS中的捷径（其实原来也叫workflow，被Apple收编后叫捷径） 下面简单介绍几个有用的workflow： New Filemac上新建文件是个比较蛋痛的事，一般人还新建不来。如果有这个就好办了。该插件默认启动关键字是：new。默认情况下，你可以直接新建 TXT、MD、自定义文件类型这三种类型的文件和目录。其中 TXT、MD 格式也是比较常用的文本格式，插件就将这两种类型的文件直接作为了默认文件类型。真是非常贴心！ TerminalFinder看名字就知道是Finder和Terminal互相切换的，有时候我们在Finder中想开启命令行，还有时候在命令行中打开了一个目录又想在Finder中显示。用这个吧。 有道词典系统自带的词典，查找起来不太方便，alfred的workflow中使用yd关键字就能英汉互查 好用的workflow其实有很多，需要大家去发掘去使用，但是另一方面我们其实也用不到那么多功能，所以还是适合自己的才是最好的。 搜索插件workflow插件是傻瓜式的，直接下载.workflow文件下来后，点击就能安装了。下面给几个下载workflow的网站： Packal alfredflow 还有就是Google了。。。。。 配置最后，如果你有多台mac之间都在用alfred，你想使用一个配置文件，那么你就要使用同步功能了。坑爹的是，aflred默认是不同步的（连iCloud都不支持），它只是把配置文件保存在本地，那么怎么才能同步呢，上图： 说白了也就是自己把配置文件上传到云端，多端同步。 最后，其实这个blog只是我使用的一个简单介绍或者记录，alfred还有很多高级功能没有去涉及，还是希望能帮助到别人吧。生命在于折腾！]]></content>
+      <categories>
+        <category>文章</category>
+      </categories>
+      <tags>
+        <tag>alfred，效率</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Git的常规配置]]></title>
     <url>%2F2019%2F02%2F28%2Fgit%E7%9A%84%E5%B8%B8%E8%A7%84%E9%85%8D%E7%BD%AE%2F</url>
     <content type="text"><![CDATA[Markgit的全局和单个仓库的用户名和邮箱的配置 全局 1234git config --global user.name &quot;name&quot;git config --global user.email &quot;email&quot;//查询git config --list 某个仓库 12git config user.name &quot;name&quot;git config user.email &quot;email&quot; 未完待续，持续更新。。。]]></content>
