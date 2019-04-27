@@ -85,7 +85,7 @@
 <meta name="keywords" content="Developer">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ervin">
-<meta property="og:url" content="http://yoursite.com/tags/Kotlin/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/kotlin/index.html">
 <meta property="og:site_name" content="Ervin">
 <meta property="og:description" content="stay hungry, stay foolish">
 <meta property="og:locale" content="zh-Hans">
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/Kotlin/"/>
+  <link rel="canonical" href="http://yoursite.com/tags/kotlin/"/>
 
 
 
 
 
-  <title>标签: Kotlin | Ervin</title>
+  <title>标签: kotlin | Ervin</title>
   
 
 
@@ -281,7 +281,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>Kotlin<small>标签</small>
+        <h1>kotlin<small>标签</small>
         </h1>
       </div>
 
@@ -293,9 +293,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2019/03/28/Kotlin之集合操作符/" itemprop="url">
+            <a class="post-title-link" href="/2019/01/03/Kotlin中常见的操作符/" itemprop="url">
               
-                <span itemprop="name">Kotlin之集合操作符</span>
+                <span itemprop="name">kotlin常用操作符</span>
               
             </a>
         
@@ -303,9 +303,65 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2019-03-28T11:10:02+08:00"
-              content="2019-03-28" >
-          03-28
+              datetime="2019-01-03T14:43:00+08:00"
+              content="2019-01-03" >
+          01-03
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2018/11/28/Kotlin之object详解/" itemprop="url">
+              
+                <span itemprop="name">kotlin之object详解</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-11-28T18:25:55+08:00"
+              content="2018-11-28" >
+          11-28
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2018/11/23/Kotlin-Tips/" itemprop="url">
+              
+                <span itemprop="name">怎么用Kotlin去提高生产力：Kotlin Tips</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-11-23T10:16:01+08:00"
+              content="2018-11-23" >
+          11-23
         </time>
       </div>
 
@@ -369,7 +425,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -380,7 +436,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -391,7 +447,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -471,7 +527,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">46.1k</span>
+    <span title="Site words total count">47.7k</span>
   
 </div>
 
@@ -910,75 +966,6 @@
                 searchResultList += result.item;
               })
               searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-</body>
-</html>
-tList += "</ul>";
               resultContent.innerHTML = searchResultList;
             }
           }
