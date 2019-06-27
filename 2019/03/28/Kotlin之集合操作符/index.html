@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,13 +68,13 @@
 
 
 
-  <meta name="keywords" content="Kotlin,集合," />
+  <meta name="keywords" content="Kotlin,集合,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Ervin" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="Ervin" type="application/atom+xml">
 
 
 
@@ -127,7 +127,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/28/Kotlin之集合操作符/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/03/28/Kotlin之集合操作符/">
 
 
 
@@ -161,7 +161,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Ervin</span>
         <span class="logo-line-after"><i></i></span>
@@ -191,7 +191,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -201,7 +201,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -211,7 +211,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -221,7 +221,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -234,7 +234,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -255,9 +255,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -298,7 +296,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ervin Zhang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
@@ -334,7 +332,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -430,7 +428,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * list操作符groupBy</span><br><span class="line"> */</span><br><span class="line">fun listOperatorGroupBy()&#123;</span><br><span class="line">    val people = listOf(Person2(&quot;Bob&quot;,24),</span><br><span class="line">        Person2(&quot;Alice&quot;,42),</span><br><span class="line">        Person2(&quot;Ervin&quot;,34),</span><br><span class="line">        Person2(&quot;Anny&quot;,34))</span><br><span class="line"></span><br><span class="line">    people.groupBy &#123; it.age &#125;</span><br><span class="line"></span><br><span class="line">    //每一组都被保存成一个列表。所以结果的类型为 Map&lt;Int, List&lt;Person&gt;&gt; 。</span><br><span class="line">    // 你可以使用像 mapKeys 和 mapValues 这样的函数对这个映射做更多的修改。</span><br><span class="line">    print(people.groupBy &#123; it.age &#125;[34])</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>groupBy之后返回结果是一个Map集合，最后<code>print(people.groupBy { it.age }[34])</code>中[34]其实是输出以34为key的Person。</p>
 <h2 id="map和flatMap"><a href="#map和flatMap" class="headerlink" title="map和flatMap"></a>map和flatMap</h2><p>这两个操作符在RxJava中是使用频率很高的操作符，map是对一个基本类型做一个转换，例如string -&gt; int，而flagMap则是将上游的observerable变为另外一个observerable。Kotlin中，map其实也是类型转换的意思，flatmap则是将集合中每个元素映射（map），然后把多个列表合并成一个。最终，其实它是一个集合</p>
-<p>flatMap 函数做了两件事：首先它根据作为参数而给定的函数把每一个元素都变换（或映射）到一个集合中。然后它把多个列表合并为一个。有一个处理字符串的案例很好的解析了这个概念<br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1g1k0wgeommj30ig0act9c.jpg" alt=""></p>
+<p>flatMap 函数做了两件事：首先它根据作为参数而给定的函数把每一个元素都变换（或映射）到一个集合中。然后它把多个列表合并为一个。有一个处理字符串的案例很好的解析了这个概念<br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1g1k0wgeommj30ig0act9c.jpg" alt></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * list操作符flatMap</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">fun listOperatorMap()&#123;</span><br><span class="line"></span><br><span class="line">    val people = listOf(Person2(&quot;Bob&quot;,24), Person2(&quot;Alice&quot;,42),Person2(&quot;Ervin&quot;,34))</span><br><span class="line">    print(people.map &#123; it.name + &quot;&apos;s&quot; &#125;) //[Bob&apos;s, Alice&apos;s, Ervin&apos;s]</span><br><span class="line">    println(people.flatMap &#123; it.name.toList() &#125;) //[B, o, b, A, l, i, c, e, E, r, v, i, n]</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="sequence"><a href="#sequence" class="headerlink" title="sequence"></a>sequence</h2><ul>
 <li>集合的序列操作，这个是很有用的东西。一般在集合的链式调用中会生成很多的中间集合来存放过程中的临时变量，当集合中元素过多，则明显会影响性能，这时候使用序列会是一种好的选择，举个例子：<blockquote>
@@ -443,7 +441,7 @@
 <ul>
 <li>序列的中间和最终操作</li>
 </ul>
-<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1g1k0xt8zioj30ty06c0tu.jpg" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1g1k0xt8zioj30ty06c0tu.jpg" alt></p>
 <p>看一个例子</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * list的序列操作之不同点</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">fun listOperatorSequence1()&#123;</span><br><span class="line"></span><br><span class="line">    //sequence的操作</span><br><span class="line">    //map(1) filter(1) map(2) filter(4) map(3) filter(9) map(4) filter(16)</span><br><span class="line">    listOf( 1 , 2 , 3 , 4 )</span><br><span class="line">        .asSequence()</span><br><span class="line">        .map &#123; print( &quot;map($it) &quot; ); it * it &#125;</span><br><span class="line">        .filter &#123; print( &quot;filter($it) &quot; ); it % 2 == 0 &#125;</span><br><span class="line">        .toList()//最终操作</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //集合本身操作</span><br><span class="line">    //map(1) map(2) map(3) map(4) filter(1) filter(4) filter(9) filter(16)</span><br><span class="line">    listOf( 1 , 2 , 3 , 4 )</span><br><span class="line">        .map &#123; print( &quot;map($it) &quot; ); it * it &#125;</span><br><span class="line">        .filter &#123; print( &quot;filter($it) &quot; ); it % 2 == 0 &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -452,11 +450,11 @@
 <p>最终操作导致所有的延迟计算都被执行了。 还有一个更重要的事要注意，在这个例子中，计算的执行顺序。原始的方法首先将会对每个元素调用 map 函数，然后对结果序列中的每个元素调用 filter 函数。这就是 map 和 filter 在集合上如何工作的。但序列并不是这样的。对于序列来说，所有的操作都会逐个应用于每个元素：处理完第一个元素（映射，然后过滤），然后处理第二个，以此类推。 这个方法意味着如果过早获取结果，某些元素根本不会被变换。我们来看一个有 map 和 find 操作的例子。首先，你把一个数映射为它的平方，之后你查找当中<strong>第一个大于３的元素</strong>（find操作符的作用）：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fun listOperatorSequence2()&#123;</span><br><span class="line"></span><br><span class="line">    println(listOf( 1 , 2 , 3 , 4 )</span><br><span class="line">        .asSequence()</span><br><span class="line">        .map &#123; it * it &#125;</span><br><span class="line">        .find &#123; it &gt; 3 &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果同样的操作应用于一个集合而不是序列，那么首先会计算 map 的结果，变换初始集合中所有的元素。第二步，在中间集合中发现一个满足预言的元素。使用序列，惰性方法意味着你可以提阿偶偶处理某些元素。下图解释了（使用集合）提前和延迟（使用序列）方式执行这份代码的不同点。</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1g1k107da1kj30uw0bsq56.jpg" alt=""></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1g1k107da1kj30uw0bsq56.jpg" alt></p>
 <p>集合提前计算对整个集合运行每一个操作，惰性求值则逐个计算（元素多的时候效率高，性能好）</p>
 <p>再看一个例子啊：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">fun listOperatorSequence2()&#123;</span><br><span class="line"></span><br><span class="line">    println(listOf( 1 , 2 , 3 , 4 )</span><br><span class="line">        .asSequence()</span><br><span class="line">        .map &#123; it * it &#125;</span><br><span class="line">        .find &#123; it &gt; 3 &#125;)</span><br><span class="line"></span><br><span class="line">    val people = listOf(Person2(&quot;Bob&quot;,24),</span><br><span class="line">        Person2(&quot;Alice&quot;,42),</span><br><span class="line">        Person2(&quot;Ervin&quot;,34),</span><br><span class="line">        Person2(&quot;Dan&quot;,34)</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 先filter有助于减少变换的总次数，</span><br><span class="line">     * 如果先进行 map ，每个元素都会进行变换。</span><br><span class="line">     * 但是如果你先进行 filter ，不合适的元素会尽快过滤掉，而且不会进行变换。</span><br><span class="line">     */</span><br><span class="line">    //先map再过滤</span><br><span class="line">    println(people.asSequence().map(Person2::name).filter&#123; it.length &lt; 4&#125;.toList())</span><br><span class="line">    //println(people.asSequence().map&#123; person: Person2 -&gt; person.name&#125;.filter &#123; it.length &lt; 4 &#125;.toList())</span><br><span class="line"></span><br><span class="line">    //先过滤再映射</span><br><span class="line">    println(people.asSequence().filter&#123;it.name.length &lt; 4&#125;.map(Person2::name).toList())</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1g1k115spoaj30ta09ugng.jpg" alt=""></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1g1k115spoaj30ta09ugng.jpg" alt></p>
 <p>先filter有助于减少变换的总次数。如果先进行 map ，每个元素都会进行变换。但是如果你先进行 filter ，不合适的元素会尽快过滤掉，而且不会进行变换。</p>
 <blockquote>
 <p>流 vs 序列 如果你熟悉Java 8的流，你将会看到，（Kotlin的）序列是完全一样的概念。由于Java 8的流在使用旧版本的Java搭建的平台中无法使用，比如Android，所以Kotlin提供了它自己的轮子。如果你把Java 8作为目标平台，流会给你带来一个很大的好处。但是，Kotlin的集合与序列并未实现在多个CPU上并行执行流操作（ map() 或者 filter() ）的能力。你可以基于你面向的Java版本和你的具体要求来选择流和序列。</p>
@@ -574,9 +572,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
-                alt="Ervin Zhang" />
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Ervin Zhang">
             
               <p class="site-author-name" itemprop="name">Ervin Zhang</p>
               <p class="site-description motion-element" itemprop="description">stay hungry, stay foolish</p>
@@ -589,7 +585,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -600,7 +596,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -611,7 +607,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -707,7 +703,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">47.7k</span>
+    <span title="Site words total count">48.5k</span>
   
 </div>
 
