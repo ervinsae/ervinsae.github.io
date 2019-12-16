@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Android,kotlin,">
+  <meta name="keywords" content="JS,">
 
 
 
@@ -81,23 +81,20 @@
 
 
 
-<meta name="description" content="在写kotlin代码的时候，特别是在写Rxjava的时候经常会碰到（object：类名称）这样的表达式，完全不知道怎么回事，故搜集了些资料彻底搞清楚kotlin中object的含义。 object是kotlin中的一个重要关键字，也是java中没有的。object主要有以下三种使用场景：  对象声明（Object Decalaration） 伴生对象（Companion Object） 对象表达式">
-<meta name="keywords" content="Android,kotlin">
+<meta name="description" content="最近在看js事件循环，事件循环是js运行的核心，js是单线程的，js的异步事件就是依赖于事件循环机制，这里进行总结一下。 事件循环首先，我们来解释下事件循环是什么东西：就我们所知道的，浏览器的js是单线程的，也就是说，在同一时刻，最多有且只有一个代码段在执行，可是浏览器又能很好的处理异步请求，这是为什么呢？">
+<meta name="keywords" content="JS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kotlin之object详解">
-<meta property="og:url" content="http://yoursite.com/2018/11/28/Kotlin之object详解/index.html">
+<meta property="og:title" content="JS事件循环">
+<meta property="og:url" content="http://yoursite.com/2019/12/16/JS事件循环/index.html">
 <meta property="og:site_name" content="Ervin">
-<meta property="og:description" content="在写kotlin代码的时候，特别是在写Rxjava的时候经常会碰到（object：类名称）这样的表达式，完全不知道怎么回事，故搜集了些资料彻底搞清楚kotlin中object的含义。 object是kotlin中的一个重要关键字，也是java中没有的。object主要有以下三种使用场景：  对象声明（Object Decalaration） 伴生对象（Companion Object） 对象表达式">
+<meta property="og:description" content="最近在看js事件循环，事件循环是js运行的核心，js是单线程的，js的异步事件就是依赖于事件循环机制，这里进行总结一下。 事件循环首先，我们来解释下事件循环是什么东西：就我们所知道的，浏览器的js是单线程的，也就是说，在同一时刻，最多有且只有一个代码段在执行，可是浏览器又能很好的处理异步请求，这是为什么呢？">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://img-blog.csdn.net/20180312203901905?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGxoMTE5MTg2MDkzOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:image" content="https://img-blog.csdn.net/20180313102935601?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGxoMTE5MTg2MDkzOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:image" content="https://img-blog.csdn.net/20180312204822460?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGxoMTE5MTg2MDkzOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:image" content="https://img-blog.csdn.net/20180314102249748?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L3hsaDExOTE4NjA5Mzk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:updated_time" content="2018-11-28T13:26:28.012Z">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1g9yd9c7ijxj30u00vhgmp.jpg">
+<meta property="og:updated_time" content="2019-12-16T09:29:22.078Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="kotlin之object详解">
-<meta name="twitter:description" content="在写kotlin代码的时候，特别是在写Rxjava的时候经常会碰到（object：类名称）这样的表达式，完全不知道怎么回事，故搜集了些资料彻底搞清楚kotlin中object的含义。 object是kotlin中的一个重要关键字，也是java中没有的。object主要有以下三种使用场景：  对象声明（Object Decalaration） 伴生对象（Companion Object） 对象表达式">
-<meta name="twitter:image" content="https://img-blog.csdn.net/20180312203901905?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGxoMTE5MTg2MDkzOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta name="twitter:title" content="JS事件循环">
+<meta name="twitter:description" content="最近在看js事件循环，事件循环是js运行的核心，js是单线程的，js的异步事件就是依赖于事件循环机制，这里进行总结一下。 事件循环首先，我们来解释下事件循环是什么东西：就我们所知道的，浏览器的js是单线程的，也就是说，在同一时刻，最多有且只有一个代码段在执行，可是浏览器又能很好的处理异步请求，这是为什么呢？">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1g9yd9c7ijxj30u00vhgmp.jpg">
 
 
 
@@ -127,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/28/Kotlin之object详解/">
+  <link rel="canonical" href="http://yoursite.com/2019/12/16/JS事件循环/">
 
 
 
 
 
-  <title>kotlin之object详解 | Ervin</title>
+  <title>JS事件循环 | Ervin</title>
   
 
 
@@ -292,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/28/Kotlin之object详解/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/16/JS事件循环/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ervin Zhang">
@@ -309,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">kotlin之object详解</h1>
+          <h1 class="post-title" itemprop="name headline">JS事件循环</h1>
         
 
         <div class="post-meta">
@@ -321,8 +318,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-28T18:25:55+08:00">
-                2018-11-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-16T09:15:58+08:00">
+                2019-12-16
               </time>
             
 
@@ -375,7 +372,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.7k
+                  2.2k
                 </span>
               
 
@@ -391,7 +388,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  7
+                  8
                 </span>
               
             </div>
@@ -412,69 +409,79 @@
       
 
       
-        <p>在写kotlin代码的时候，特别是在写Rxjava的时候经常会碰到（object：类名称）这样的表达式，完全不知道怎么回事，故搜集了些资料彻底搞清楚kotlin中object的含义。</p>
-<p>object是kotlin中的一个重要关键字，也是java中没有的。object主要有以下三种使用场景：</p>
-<ol>
-<li>对象声明（Object Decalaration）</li>
-<li>伴生对象（Companion Object）</li>
-<li>对象表达式（Object Expression）– 上面提到的就是这种</li>
-</ol>
+        <p>最近在看js事件循环，事件循环是js运行的核心，js是单线程的，js的异步事件就是依赖于事件循环机制，这里进行总结一下。</p>
+<h1 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h1><p>首先，我们来解释下事件循环是什么东西：就我们所知道的，浏览器的js是单线程的，也就是说，在同一时刻，最多有且只有一个代码段在执行，可是浏览器又能很好的处理异步请求，这是为什么呢？</p>
 <a id="more"></a>
-<h3 id="对象声明"><a href="#对象声明" class="headerlink" title="对象声明"></a>对象声明</h3><p>语法：通过object实现kotlin中的单例<br>例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">object RepositoryManager&#123;</span><br><span class="line">    fun method()&#123;</span><br><span class="line">        println(&quot;I&apos;m in object declaration&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>即将object代替class关键字，声明一个类，这个类就是单例了</p>
-<p>使用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fun main(args: Array&lt;String&gt;) &#123;</span><br><span class="line">    RepositoryManager.method()//kotlin的调用</span><br><span class="line">    RepositoryManager.INSTANCE.method();//java的调用</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>像在Java中调用静态方法（kotlin中没有静态方法）一样去调用其中定义的方法。其实，object声明的类最终被编译成：一个类拥有一个静态成员变量来持有对自己的引用，并且这个静态成员的名称是INSTANCE。它等价于java代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class RepositoryManager&#123;</span><br><span class="line">    private RepositoryManager()&#123;&#125;</span><br><span class="line">    public static final RepositoryManager INSTANCE = new RepositoryManager();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>尽管和普通类的声明一样，可以包含属性，方法，初始化代码块以及可以继承其他类或者实现某个接口，但是它不能包含构造器，java中构造器是私有的。</p>
-</blockquote>
-<p>它也可以定义在一个类的内部：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class ObjectOuter &#123;</span><br><span class="line">     object Inner&#123;</span><br><span class="line">         fun method()&#123;</span><br><span class="line">             println(&quot;I&apos;m in inner class&quot;)</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> fun main(args: Array&lt;String&gt;) &#123;</span><br><span class="line">     ObjectOuter.Inner.method()</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="伴生对象（Companion-object）"><a href="#伴生对象（Companion-object）" class="headerlink" title="伴生对象（Companion object）"></a>伴生对象（Companion object）</h3><p>在kotlin中是没有static关键字的，也就意味着没有了静态方法和静态成员。那么在kotlin中如果想表示这种概率，取而代之的是==包级别函数==这里的伴生对象。他们的区别在下面会介绍。</p>
-<p>包级别函数是指在kotlin中fun可以不依赖于class，直接新建.kt文件在文件中直接可以写fun方法，调用的时候IDE会自动导入文件急fun的方法名可以在其他类中直接使用。（其实编译后它还是在类中的，只不过类名称是.kt的文件名）</p>
-<p>伴生对象的语法形式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">    companion object 伴生对象名(可以省略)&#123;</span><br><span class="line">        //define method and field here</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>示例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class ObjectTest &#123;</span><br><span class="line"></span><br><span class="line">    companion object MyObjec&#123;</span><br><span class="line"></span><br><span class="line">        val a = 20</span><br><span class="line"></span><br><span class="line">        fun method() &#123;</span><br><span class="line">            println(&quot;I&apos;m in companion object&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fun main(args: Array&lt;String&gt;) &#123;</span><br><span class="line">    //方式一</span><br><span class="line">    ObjectTest.MyObject.method()</span><br><span class="line">    println(ObjectTest.MyObject.a)</span><br><span class="line"></span><br><span class="line">    //方式二（推荐方式）</span><br><span class="line">    ObjectTest.method()</span><br><span class="line">    println(ObjectTest.a)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>在定义时如果省略了伴生对象名称，那么编辑器会为其提供默认的名字Companion。在方法二中，我们是直接通过类名称.方法名()的形式调用的，我们在没有生成ObjectTest类对象时，直接调用了其伴生对象中定义的属性和方法，和java中的静态方法很相似。</p>
-</blockquote>
-<p>通过javap命令，让我们看下其生成的字节码：<br><img src="https://img-blog.csdn.net/20180312203901905?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGxoMTE5MTg2MDkzOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
-<p><img src="https://img-blog.csdn.net/20180313102935601?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGxoMTE5MTg2MDkzOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
-<blockquote>
-<p>注意红框中，这个MyObject成员变量的类型，是用$符号连接的，那么说明我们在定义伴生对象的时候，实际上是把它当作了静态内部类来看待的，并且目标类会持有该内部类的一个应用，最终调用的是定义在这个静态内部类中的实例方法。</p>
-</blockquote>
-<p>那么伴生对象和包级别函数的区别是什么呢？我们反编译下kt文件。<br><img src="https://img-blog.csdn.net/20180312204822460?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGxoMTE5MTg2MDkzOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
-<p>可以看出，一个名叫ObjectTest2.kt文件实际上会生成一个名叫ObjectTest2Kt的类，而这个顶级函数是作为这个类的静态方法的形式存在的。<br>所以实际上类中的静态方法和内部类中的实例方法的区别，因为成员内部类中的方法是可以访问外部内定义的方法和成员变量的，哪怕是private的，而静态方法是做不到这一点的。<br><img src="https://img-blog.csdn.net/20180314102249748?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L3hsaDExOTE4NjA5Mzk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
-<h3 id="对象表达式（Object-Expression）"><a href="#对象表达式（Object-Expression）" class="headerlink" title="对象表达式（Object Expression）"></a>对象表达式（Object Expression）</h3><p>先来看下java中的匿名内部类：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">interface Contents &#123;</span><br><span class="line">    void absMethod();</span><br><span class="line">&#125;</span><br><span class="line">public class Hello &#123;</span><br><span class="line"></span><br><span class="line">    public Contents contents() &#123;</span><br><span class="line">        return new Contents() &#123;</span><br><span class="line">           </span><br><span class="line">            @Override</span><br><span class="line">            public void absMethod() &#123;</span><br><span class="line">                System.out.println(&quot;method invoked...&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">        Hello hello = new Hello();</span><br><span class="line">        hello.contents().absMethod();    //打印method invoked...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里指出两点java中内部类的局限性</p>
+<p>关于执行中的线程：</p>
+<ul>
+<li>主线程：也就是js引擎执行的线程，这个线程只有一个，页面渲染，函数处理都在这个主线程上执行。</li>
+<li>工作线程：也称幕后线程，这个线程可能存在于浏览器或js引擎内，与主线程是分开的，处理文件读取，网络请求灯异步事件。</li>
+</ul>
+<p>如图：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006tNbRwgy1g9yd9c7ijxj30u00vhgmp.jpg" alt></p>
+<p>从上图我们可以看出，<strong>js主线程</strong>它是有一个执行栈的，所有的js代码都会在执行栈里运行，在执行代码过程中，如果遇到一些异步代码（比如setTimeout，ajax，promise.then以及用户点击等操作），那么浏览器就会将这些代码放到另一个线程（工作线程）中执行，在前端由浏览器底层执行，在node端由libuv执行，这个线程的执行不阻塞主线程的执行，主线程执行栈中剩余的代码。</p>
+<p>当工作线程里的代码执行完成后（比如setTimeout时间都了，ajax请求的到了响应），该线程就会将它的回调函数放在任务队列中（又称为事件队列，消息队列）中等待执行，而当主线程执行完栈中的所有代码后，它会检查任务队列是否有任务要执行，如果有任务要执行的话，那么久将该任务放到执行任务栈中执行。如果当前任务队列为空的话，它就会一直循环等待任务到来。跟大部分框架的消息队列其实本质原理都是一样的。下面我们来具体分析这套机制的运行过程。</p>
+<h1 id="任务队列"><a href="#任务队列" class="headerlink" title="任务队列"></a>任务队列</h1><p>那么，问题来了。如果任务队列中，有很多个任务的话，那么要先执行哪个任务呢？js是有两个任务队列的，一个叫做Macrotask Queue（Task Queue）大任务，一个叫Microtask Queue小任务。</p>
+<p>Macrotask常见的任务：</p>
+<ul>
+<li>setTimeout</li>
+<li>setInterval</li>
+<li>setImmediate</li>
+<li>I/O</li>
+<li>用户交互操作，UI渲染</li>
+</ul>
+<p>Micraotask常见任务：</p>
+<ul>
+<li><strong>Promise</strong></li>
+<li>process.nextTick(nodejs)</li>
+<li>Object.observe（不推荐使用)</li>
+</ul>
+<p><strong>重点来了</strong><br>事件循环执行流程如下：<br>主线程在执行主流程</p>
 <ol>
-<li>如果在匿名内部类中添加了一些方法和属性，那么在外部是无法调用的</li>
+<li>检查Macrotask队列是否为空，若不为空，则进行下一步，若为空，则跳到第3步；</li>
+<li>从Macrotask队列中取队首（在队列时间最长）的任务进去执行栈中执行，执行完后进入下一步；</li>
+<li>检查Microtask队列是否为空，若不为空，则进入下一步，否则，跳到第一步（开始新的事件循环）；</li>
+<li>从Microtask队列中取队首（在队列中时间最长）的任务进去事件队列执行，执行完后，跳到第3步中，<strong>在执行过程中新增的microtask任务会在当前事件循环周期内执行，而新增的macrotask任务只能等到下一个事件循环才能执行。</strong></li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">return new Contents() &#123;</span><br><span class="line">            private int i = 1;</span><br><span class="line"></span><br><span class="line">            public int value() &#123;</span><br><span class="line">                return i;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public void absMethod() &#123;</span><br><span class="line">                System.out.println(&quot;method invoked...&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line"> public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">        Hello hello = new Hello();</span><br><span class="line">        hello.contents().absMethod();</span><br><span class="line">        hello.value();  //Cannot resolve method &apos;value()&apos;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>当你想使用这个value方式的时候，编译会报错，因为java的多态导致父类型的引用是无法知晓子类添加的方法的。</p>
-<ol>
-<li>一个匿名内部类肯定只能实现一个接口或者继承一个类。</li>
-</ol>
-<p>在看看kotlin的对象表达式：<br>语法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">object [ : 接口1,接口2,类型1, 类型2]&#123;&#125;    //中括号中的可省略</span><br></pre></td></tr></table></figure>
-<p>示例：<br>实现一个接口或者类</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">interface AA &#123;</span><br><span class="line">    fun a()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fun main(args: Array&lt;String&gt;) &#123;</span><br><span class="line"></span><br><span class="line">    val aa = object : AA &#123;</span><br><span class="line">        override fun a() &#123;</span><br><span class="line">            println(&quot;a invoked&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    aa.a()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>不实现任何接口和类，并且在匿名内部类中添加方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fun main(args: Array&lt;String&gt;) &#123;</span><br><span class="line"></span><br><span class="line">    val obj = object  &#123;</span><br><span class="line">        fun a() &#123;</span><br><span class="line">            println(&quot;a invoked&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    obj.a()  //打印：a invoked</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>从这个例子看出kotlin中，新添加的方式是可以调用的<br>那么，实现多个接口和类（NB）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">fun main(args: Array&lt;String&gt;) &#123;</span><br><span class="line">    val cc = object : AA, BB() &#123;</span><br><span class="line">        override fun a() &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        override fun b() &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cc.a()</span><br><span class="line">    cc.b()</span><br><span class="line"></span><br><span class="line">&#125;//注意写法</span><br></pre></td></tr></table></figure>
+<p>来看一段代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//settimeout1</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">2</span>)</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">const</span> intervalId = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//setinterval1</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">3</span>)</span><br><span class="line">&#125;, <span class="number">0</span>)</span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//settimeout2</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">10</span>)</span><br><span class="line">  <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//promise1</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">11</span>)</span><br><span class="line">    resolve()</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">12</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">13</span>)</span><br><span class="line">    clearInterval(intervalId)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//promise2</span></span><br><span class="line"><span class="built_in">Promise</span>.resolve()</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">7</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">8</span>)</span><br><span class="line">  &#125;)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">9</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>运行结果</strong></p>
 <blockquote>
-<p>kotlin官方文档上的一句话：匿名对象只定义局部变量和private成员变量时，才能体现它的真实类型，如果你是将匿名对象作为public函数的返回值或者是public的属性时，你只能将它看作是它的父类，当然你不指定类型时就当Any看待，这时你在匿名对象中添加的方法和属性时不能被访问的。</p>
+<p>1,9,7,8,2,3,10,11,12,13</p>
 </blockquote>
-<p>例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">class MyTest &#123;</span><br><span class="line"></span><br><span class="line">    private val foo = object &#123;</span><br><span class="line">        fun method() &#123;</span><br><span class="line">            println(&quot;private&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    val foo2 = object &#123;</span><br><span class="line">        fun method() &#123;</span><br><span class="line">            println(&quot;public&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fun m() = object &#123;</span><br><span class="line">        fun method()&#123;</span><br><span class="line">            println(&quot;method&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fun invoke()&#123;</span><br><span class="line"></span><br><span class="line">        val local = object &#123;</span><br><span class="line">            fun method()&#123;</span><br><span class="line">                println(&quot;local&quot;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        local.method()  //编译通过</span><br><span class="line">        foo.method()    //编译通过</span><br><span class="line">        foo2.method()   //编译通不过</span><br><span class="line">        m().method()    //编译通不过</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>最后：<br>object声明：当第一次访问它时才初始化，是一种懒加载<br>伴生对象：当他对应的类被加载后，它才初始化，类似java中的额静态代码块<br>对象表达式：一旦被执行，就立刻初始化。</p>
+<p><strong>运行结果分析</strong></p>
+<ul>
+<li><p>第一次事件循环： </p>
+<ol>
+<li>console.log(1)被执行，输出1</li>
+<li>settimeout1执行，加入macrotask队列</li>
+<li>setinterval2执行，加入macrotask队列</li>
+<li>settimeout2执行，加入macrotask队列</li>
+<li>promise2执行，它的两个then函数加入microtask队列</li>
+<li>console.log(9)执行，输出9</li>
+<li>根据事件循环定义，接下来会执行新增的microtask任务，（上面标记的：在执行过程中新增的microtask任务会在当前事件循环周期内执行），按照进入队列的顺序，执行console.log(7)和console.log(8),输出7和8，microtask队列为空，回到第1步，进入下一个事件循环，此时macrotask队列为：settimeout1，setinterval1,settimeout2。</li>
+</ol>
+</li>
+<li><p>第二次事件循环：<br>  从macrotask队列里面取出队首元素：settimeout1并执行，输出2，microtask队列为空，回到第1步，进行下一个事件循环，此时macrotask队列为：setinterval1，settimeout2。</p>
+</li>
+<li><p>第三次事件循环：<br>  从macrotask队列里取位于队首元素：setiverval1并执行，输出3，然后又将新生成的setinterval1（间隔生产）加入macrotask队列，mincrotask队列为空，回道第1步，进入下一个事件循环，此时macrotask队列为：settimeout2，setinterval1。</p>
+</li>
+<li><p>第四次事件循环<br>  从macrotask对列中取出队首元素：settimeout2并执行，输出10，并且执行new promise内的函数（new promise内的函数式同步操作，并不是异步操作），输出11，并且将它的两个then函数加入到microtask队列中，再从microtask队列中（当前事件循环周期内执行）取队首的任务执行，直到队列为空。因此，两个新增的microtask任务按照顺序执行，输出12和13，并且将setinterval1清空（不会再产生setiterval1的事件）。</p>
+</li>
+<li><p>结束<br>  此时，mac和mic队列都为空，浏览器会一直检查队列是否为空，等待新的任务加入队列。在第一次循环中，<strong>为什么不是macrotask先执行呢</strong>？因为按照流程的话，不是应该先检查macrotask队列是否为空，再检查microtask队列吗。<br>  原因：<strong>因为一开始js主线程中跑的任务就是macrotask任务</strong>，而根据事件循环流程，一次事件循环只会执行一个macrotask任务，因此，执行完主线程的代码后，它就去从microtask队列中取首任务来执行了。</p>
+</li>
+</ul>
+<blockquote>
+<p>注意：由于在执行microtask任务的时候，只有当microtask队列为空的时候，它才会进入下一个事件循环，因此，如果它源源不断地产生新的microtask任务，就会导致主线程一直在执行microtask任务，而没有办法执行macrotask任务，这样我们就无法进行UI渲染/IO操作/ajax请求了，因此，我们应该避免这种情况发生，在nodejs中process.necttick就可以设置最大的调用次数，以此来防止阻塞主线程。</p>
+</blockquote>
+<h1 id="定时器问题"><a href="#定时器问题" class="headerlink" title="定时器问题"></a>定时器问题</h1><p>由上，我们来引入一个新的问题，定时器的问题。定时器是否真实可靠呢？比如我执行一个命令：settimeout（task,100）,他是否就能准确的在100ms后执行呢，如果知道上面运行机制就知道答案是否定的。</p>
+<p>看个例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> s = <span class="keyword">new</span> <span class="built_in">Date</span>().getSeconds();</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 输出 "2"，表示回调函数并没有在 500 毫秒之后立即执行</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Ran after "</span> + (<span class="keyword">new</span> <span class="built_in">Date</span>().getSeconds() - s) + <span class="string">" seconds"</span>);</span><br><span class="line">&#125;, <span class="number">500</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">new</span> <span class="built_in">Date</span>().getSeconds() - s &gt;= <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Good, looped for 2 seconds"</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>主线程跑了2s后才结束while循环，这才去执行macrotask中的settimeout回调任务。其实，你执行setTimeout（task,100）后只是确保这个任务会在100ms进入macrotask队列，但并不意味着他能立刻运行，可能当前主线程正在进行一个耗时的操作，也可能目前microtask队列有很多个任务，所以用setTimeout作为倒计时其实不会保证准确。</p>
+<h1 id="阻塞和非阻塞"><a href="#阻塞和非阻塞" class="headerlink" title="阻塞和非阻塞"></a>阻塞和非阻塞</h1><p>关于 js 阻塞还是非阻塞的问题，我觉得可以这么理解，不够在这之前，我们先理解下同步、异步、阻塞还是非阻塞的解释，在网上看到一段描述的非常好，引用下：</p>
+<blockquote>
+<p>同步阻塞：小明一直盯着下载进度条，到 100% 的时候就完成。<br>同步非阻塞：小明提交下载任务后就去干别的，每过一段时间就去瞄一眼进度条，看到 100% 就完成。（轮询）<br>异步阻塞：小明换了个有下载完成通知功能的软件，下载完成就“叮”一声。不过小明仍然一直等待“叮”的声音（看起来很傻，不是吗最蠢）<br>异步非阻塞：仍然是那个会“叮”一声的下载软件，小明提交下载任务后就去干别的，听到“叮”的一声就知道完成了。</p>
+</blockquote>
+<p><a href="https://www.zcfy.cc/article/node-js-at-scale-understanding-the-node-js-event-loop-risingstack-1652.html" target="_blank" rel="noopener">理解 Node.js 事件循环</a></p>
 
       
     </div>
@@ -492,11 +499,8 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i>
- Android</a>
-          
-            <a href="/tags/kotlin/" rel="tag"><i class="fa fa-tag"></i>
- kotlin</a>
+            <a href="/tags/JS/" rel="tag"><i class="fa fa-tag"></i>
+ JS</a>
           
         </div>
       
@@ -509,8 +513,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/23/Kotlin-Tips/" rel="next" title="怎么用Kotlin去提高生产力：Kotlin Tips">
-                <i class="fa fa-chevron-left"></i> 怎么用Kotlin去提高生产力：Kotlin Tips
+              <a href="/2019/07/18/日本游记（三）/" rel="next" title="日本游记（三）">
+                <i class="fa fa-chevron-left"></i> 日本游记（三）
               </a>
             
           </div>
@@ -518,10 +522,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/30/Android内存优化（一）/" rel="prev" title="Android内存优化（一）">
-                Android内存优化（一） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -684,7 +684,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象声明"><span class="nav-number">1.</span> <span class="nav-text">对象声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#伴生对象（Companion-object）"><span class="nav-number">2.</span> <span class="nav-text">伴生对象（Companion object）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象表达式（Object-Expression）"><span class="nav-number">3.</span> <span class="nav-text">对象表达式（Object Expression）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#事件循环"><span class="nav-number">1.</span> <span class="nav-text">事件循环</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#任务队列"><span class="nav-number">2.</span> <span class="nav-text">任务队列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定时器问题"><span class="nav-number">3.</span> <span class="nav-text">定时器问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#阻塞和非阻塞"><span class="nav-number">4.</span> <span class="nav-text">阻塞和非阻塞</span></a></li></ol></div>
             
 
           </div>
