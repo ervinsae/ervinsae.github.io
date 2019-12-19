@@ -207,29 +207,6 @@
   </entry>
   
   <entry>
-    <title>Alfred的简单配置</title>
-    <link href="http://yoursite.com/2019/03/14/alfred%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE/"/>
-    <id>http://yoursite.com/2019/03/14/alfred简单配置/</id>
-    <published>2019-03-14T15:19:27.085Z</published>
-    <updated>2019-12-19T07:39:39.338Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>Alfred是Mac上著名的效率工具，自从上手后，基本每天都会用到。他和Mac的官方应用Spotlite是一类的，不过相比之下，alfred除了能全文搜素以外还有强大的“工作流”等扩展功能。下面简单介绍下我在使用中的感受，以及经常用的功能。先看下官网是怎么说的吧</p><p><img src="https://www.hi-linux.com/img/linux/alfred19.png" alt></p><a id="more"></a><h2 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h2><p>从官网就可能下载使用Alfred了，但是想用他的完整功能，比如workflow就要激活powerpack了，在天朝这些都不是问题，推荐几个Mac软件搬运工网站：</p><ul><li><p><a href="https://xclient.info/?t=6dacdaeb762299d9df9fac82782e70febed6d9c3" target="_blank" rel="noopener">大名鼎鼎的xclinet</a></p></li><li><p><a href="https://www.waitsun.com/" target="_blank" rel="noopener">域名很黄的waitsun</a></p></li><li><p><a href="http://www.orsoon.com/" target="_blank" rel="noopener">未来软件园</a></p></li></ul><p>等等吧，收藏夹里一堆。</p><h2 id="基础功能介绍"><a href="#基础功能介绍" class="headerlink" title="基础功能介绍"></a>基础功能介绍</h2><p>首先是启动alfred了，一般为避免和spotlight快捷键冲突，会将alfred启动快捷键设置为：double cmd。这样也确实挺方便的</p><h3 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h3><p>这个是最简单最基础的功能了，alfred自带了一些查询，例如：</p><p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1g13w98d0wmj30we0rqkbi.jpg" alt></p><p>只要输入关键字，就可以打开浏览器Google一下你要的内容了，alfred会自动匹配所有和关键字相关的内容（10个）给你选择。你也可以自己设置自定义的搜索规则：</p><p><img src="https://tva1.sinaimg.cn/large/006tNbRwgy1ga22detzflj31880u00x3.jpg" alt></p><h3 id="Clipboard"><a href="#Clipboard" class="headerlink" title="Clipboard"></a>Clipboard</h3><p>剪切板功能也是一个很赞的功能，我的使用频率也是最高的之一，一般快捷键设置为：cmd+option+C。会弹出最近你所复制的文本，图片，甚至文件。如果一段文字你需要多次用到，那么这个将会大大提高你的效率。</p><p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1g13wiqzej1j30w00nuaop.jpg" alt></p><h3 id="System"><a href="#System" class="headerlink" title="System"></a>System</h3><p>这个功能主要是你可以使用alfred的感觉真关机，待机，锁定屏幕等等。</p><p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1g13wkaz6fqj30w409swko.jpg" alt></p><h3 id="Terminal-shell"><a href="#Terminal-shell" class="headerlink" title="Terminal/shell"></a>Terminal/shell</h3><p>这个是由于我在Mac上使用的是程序员专用的iTerm命令行工具，然后Alfred可以通过“&gt;”来开启命令行（很好的功能），但是它默认使用的是mac系统自带的terminal，如果你想开启iTerm，那么：</p><blockquote><p>Preference - Terminal/shell - Application:custom</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">//适用于iTerm2</span><br><span class="line">on alfred_script(q)</span><br><span class="line">if application &quot;iTerm2&quot; is running or application &quot;iTerm&quot; is running then</span><br><span class="line">run script &quot;</span><br><span class="line">on run &#123;q&#125;</span><br><span class="line">tell application \&quot;:Applications:iTerm.app\&quot;</span><br><span class="line">activate</span><br><span class="line">try</span><br><span class="line">select first window</span><br><span class="line">set onlywindow to false</span><br><span class="line">on error</span><br><span class="line">create window with default profile</span><br><span class="line">select first window</span><br><span class="line">set onlywindow to true</span><br><span class="line">end try</span><br><span class="line">tell current session of the first window</span><br><span class="line">if onlywindow is false then</span><br><span class="line">tell split vertically with default profile</span><br><span class="line">write text q</span><br><span class="line">end tell</span><br><span class="line">end if</span><br><span class="line">end tell</span><br><span class="line">end tell</span><br><span class="line">end run</span><br><span class="line">&quot; with parameters &#123;q&#125;</span><br><span class="line">else</span><br><span class="line">run script &quot;</span><br><span class="line">on run &#123;q&#125;</span><br><span class="line">tell application \&quot;:Applications:iTerm.app\&quot;</span><br><span class="line">activate</span><br><span class="line">try</span><br><span class="line">select first window</span><br><span class="line">on error</span><br><span class="line">create window with default profile</span><br><span class="line">select first window</span><br><span class="line">end try</span><br><span class="line">tell the first window</span><br><span class="line">tell current session to write text q</span><br><span class="line">end tell</span><br><span class="line">end tell</span><br><span class="line">end run</span><br><span class="line">&quot; with parameters &#123;q&#125;</span><br><span class="line">end if</span><br><span class="line">end alfred_script</span><br></pre></td></tr></table></figure><h2 id="WorkFlow"><a href="#WorkFlow" class="headerlink" title="WorkFlow"></a>WorkFlow</h2><p>这个是收费功能，也是alfred可以拥有无限可能的功能，他类似于IOS中的捷径（其实原来也叫workflow，被Apple收编后叫捷径）</p><p>下面简单介绍几个有用的workflow：</p><h3 id="New-File"><a href="#New-File" class="headerlink" title="New File"></a>New File</h3><p>mac上新建文件是个比较蛋痛的事，一般人还新建不来。如果有这个就好办了。该插件默认启动关键字是：new。默认情况下，你可以直接新建 TXT、MD、自定义文件类型这三种类型的文件和目录。其中 TXT、MD 格式也是比较常用的文本格式，插件就将这两种类型的文件直接作为了默认文件类型。真是非常贴心！</p><p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1g13wwgsd46j30w20ikdpy.jpg" alt></p><h3 id="TerminalFinder"><a href="#TerminalFinder" class="headerlink" title="TerminalFinder"></a>TerminalFinder</h3><p>看名字就知道是Finder和Terminal互相切换的，有时候我们在Finder中想开启命令行，还有时候在命令行中打开了一个目录又想在Finder中显示。用这个吧。</p><p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1g13wz57gcaj31q20cy45w.jpg" alt></p><h3 id="有道词典"><a href="#有道词典" class="headerlink" title="有道词典"></a>有道词典</h3><p>系统自带的词典，查找起来不太方便，alfred的workflow中使用yd关键字就能英汉互查</p><p><img src="https://static.hufangyun.com/hexo/img/alfred-youdao.jpg?imageView2/2/w/500" alt></p><blockquote><p>好用的workflow其实有很多，需要大家去发掘去使用，但是另一方面我们其实也用不到那么多功能，所以还是适合自己的才是最好的。</p></blockquote><h3 id="搜索插件"><a href="#搜索插件" class="headerlink" title="搜索插件"></a>搜索插件</h3><p>workflow插件是傻瓜式的，直接下载.workflow文件下来后，点击就能安装了。下面给几个下载workflow的网站：</p><p><a href="http://www.packal.org/" target="_blank" rel="noopener">Packal</a></p><p><a href="http://www.alfredworkflow.com/" target="_blank" rel="noopener">alfredflow</a></p><p>还有就是Google了。。。。。</p><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>最后，如果你有多台mac之间都在用alfred，你想使用一个配置文件，那么你就要使用同步功能了。坑爹的是，aflred默认是不同步的（连iCloud都不支持），它只是把配置文件保存在本地，那么怎么才能同步呢，上图：</p><p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1g13x8udixpj319j0u01j0.jpg" alt></p><p>说白了也就是自己把配置文件上传到云端，多端同步。</p><p>最后，其实这个blog只是我使用的一个简单介绍或者记录，alfred还有很多高级功能没有去涉及，还是希望能帮助到别人吧。生命在于折腾！</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;Alfred是Mac上著名的效率工具，自从上手后，基本每天都会用到。他和Mac的官方应用Spotlite是一类的，不过相比之下，alfred除了能全文搜素以外还有强大的“工作流”等扩展功能。下面简单介绍下我在使用中的感受，以及经常用的功能。先看下官网是怎么说的吧&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.hi-linux.com/img/linux/alfred19.png&quot; alt&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="文章" scheme="http://yoursite.com/categories/%E6%96%87%E7%AB%A0/"/>
-    
-    
-      <category term="效率" scheme="http://yoursite.com/tags/%E6%95%88%E7%8E%87/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Git的常规配置</title>
     <link href="http://yoursite.com/2019/02/28/git%E7%9A%84%E5%B8%B8%E8%A7%84%E9%85%8D%E7%BD%AE/"/>
     <id>http://yoursite.com/2019/02/28/git的常规配置/</id>
@@ -503,6 +480,32 @@
       <category term="跨平台" scheme="http://yoursite.com/tags/%E8%B7%A8%E5%B9%B3%E5%8F%B0/"/>
     
       <category term="flutter" scheme="http://yoursite.com/tags/flutter/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Https简介</title>
+    <link href="http://yoursite.com/2018/12/04/Https%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://yoursite.com/2018/12/04/Https详解/</id>
+    <published>2018-12-04T03:42:18.327Z</published>
+    <updated>2018-12-04T06:20:44.537Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="https协议"><a href="#https协议" class="headerlink" title="https协议"></a>https协议</h2><blockquote><p>Http协议是运行在TCP之上的应用层协议，所有传输的内容都是明文的并且客户端和服务器端都是无法验证对方的身份的。Http通常运行在80端口（监听）。</p><p>Https协议则是运行在TCP之上还有一层加密层（SSL/TLS），所有的传输内容都是通过对称加密算法去加密的，而对称加密的密钥则是用服务器上的证书（含有非对称加密公钥）去加密的。Https通常运行在443端口。</p></blockquote><p><img src="https://pic1.zhimg.com/80/v2-54ff04e1b0cc698f08f76d6356f59fac_hd.png" alt></p><a id="more"></a><p>下面我们来看下加密图解过程：<br><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fxukq90qjfj30a50bf3yj.jpg" alt></p><p>加密过程解析：</p><ol><li>客户端发送https请求，服务端返回给客户端证书（证书中含有服务端随机产生的非对称加密的公钥P）==非对称加密的算法首推RSA，可以去看原理，其实就是求一个大数的质数分解==</li><li>客户端验证发送的证书是有有效，是否去信任该证书，并随机产生对称加密的密钥K，使用P对K进行加密。</li><li>将加密后的对称加密密钥K传回给服务端，服务端用非对称加密的私钥将其解开，这样服务端和客户端都有了对称加密密钥K了。（这么做的目的是防止在传输过程中K被泄漏）</li><li>以后客户端会通过K进行数据加密，而服务端也会用K进行解密</li><li>1-2是密钥协商过程，3是加密传输过程，其中密钥协商过程解决了对称加密密钥的传输问题，由于非对称加密比对称加密解析效率低，但是安全的多的特点，因此将非对称加密用来传递对称加密密钥，而用对称加密去加解密数据。这样既保证了对称加密密钥，又保证了数据解析过程中效率。</li></ol><h2 id="证书"><a href="#证书" class="headerlink" title="证书"></a>证书</h2><p>证书应该是第三方认证机构颁发出来的，具有签名的一种信任凭证。而证书是需要购买的：<br>免费的：<br>国内沃通：<a href="https://freessl.wosign.com/" target="_blank" rel="noopener">沃通</a><br>国外：<a href="https://www.startssl.com/" target="_blank" rel="noopener">woturs</a></p><blockquote><p>其实，国内这家的根证书也是startssl签发的，实际上也是国外的。</p></blockquote><p><a href="https://www.jianshu.com/p/55e402bcbc18" target="_blank" rel="noopener">参考链接</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;https协议&quot;&gt;&lt;a href=&quot;#https协议&quot; class=&quot;headerlink&quot; title=&quot;https协议&quot;&gt;&lt;/a&gt;https协议&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;Http协议是运行在TCP之上的应用层协议，所有传输的内容都是明文的并且客户端和服务器端都是无法验证对方的身份的。Http通常运行在80端口（监听）。&lt;/p&gt;
+&lt;p&gt;Https协议则是运行在TCP之上还有一层加密层（SSL/TLS），所有的传输内容都是通过对称加密算法去加密的，而对称加密的密钥则是用服务器上的证书（含有非对称加密公钥）去加密的。Https通常运行在443端口。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;https://pic1.zhimg.com/80/v2-54ff04e1b0cc698f08f76d6356f59fac_hd.png&quot; alt&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="https" scheme="http://yoursite.com/tags/https/"/>
     
   </entry>
   
