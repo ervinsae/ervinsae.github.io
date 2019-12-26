@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-12-16T09:29:22.078Z</updated>
+  <updated>2019-12-26T03:24:00.641Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SpringBoot初解</title>
+    <link href="http://yoursite.com/2019/12/25/Spring%20Boot%E5%88%9D%E8%A7%A3/"/>
+    <id>http://yoursite.com/2019/12/25/Spring Boot初解/</id>
+    <published>2019-12-25T11:43:00.000Z</published>
+    <updated>2019-12-26T03:24:00.641Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="SpringBoot是什么"><a href="#SpringBoot是什么" class="headerlink" title="SpringBoot是什么"></a>SpringBoot是什么</h1><p>从本质上来说，Springboot是一个专注于框架的框架。Spring Boot就是对各种框架的整合，让他们集成在一起更加简单。目前ssm框架还是比较常用的，其中ss指的无非就是Spring和SpringMVC，我们可以简单的认为“Spring Boot &gt;= Spring + SpringMVC”。Spring Boot的配置极其简单，可以让你不用或者只需要很少的配置就可以快速运行项目。</p><a id="more"></a><h1 id="Spirng-Boot的优缺点"><a href="#Spirng-Boot的优缺点" class="headerlink" title="Spirng Boot的优缺点"></a>Spirng Boot的优缺点</h1><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ol><li>快速构建项目</li><li><p>对主流开发框架的无配置集成</p><blockquote><p>spring-boot-starter-web启动器自动依赖其它组件，减少了maven配置</p></blockquote></li><li><p>项目可以独立运行，无需外部依赖Servlet容器（自带一个Tomcat）</p><blockquote><p>内嵌离各种servlet容器，Tomcat，Jetty等，现在不用打成war包部署到容器中，Spring Boot只要打成一个可执行的jar包就能独立运行了（java -jar **.jar）,所有的依赖都在一个jar包内。</p></blockquote></li><li>提供运行时的应用监控</li><li>极大提高开发部署效率（还是因为配置简单）</li><li>与云计算天然集成</li></ol><h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ol><li>Spring Boot作为一个微框架，离微服务的实现还是有距离的。没有提供相应的服务发现和注册的配套功能，自身的acturator所提供的监控功能，也需要与现有的监控对接。没有配套的安全管控方案，对于REST的落地，还需要自行结合实际URI的规范化工作。</li></ol><h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><p>上面提到使用Spring boot可以让你不用或者只需要很少的配置就可以让项目快速运行，说的就是使用代码注解来取代xml配置。其实从Spring3开始就已经提供java配置方式，使用java配置方式可以更好的理解你配置的Bean，如今Spring4更是推荐使用java配置方式，java配置方式可以完全替代xml配置，下面看两个最基本的注解</p><ul><li>@Configuration 和 @Bean<br>Spring的Java配置方式时通过@Configuration和@Bean来实现的<ul><li>@configuration作用与类上，相当于一个xml配置文件</li><li>@Bean作用与方法上，相当于xml中的<bean></bean></li></ul></li><li>例子<ul><li>这是一个简单模拟从数据库取User数据的Dao类（注意代码，它没有使用过任何注解，也就是说UserDao目前没有交给Spring容器管理）</li></ul></li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">queryUserList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            list.add(<span class="string">"User "</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这是一个常见的service，通过注入UserDao，使用UserDao的方法获取用户数据</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    UserDao userDao;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getUserList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; list = userDao.queryUserList();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; list.size(); i++) &#123;</span><br><span class="line">            System.out.println(list.get(i));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>从这里就开始和Spring不一样了，这个类使用了两个新的注解，其中@Configuration表明该类相当于Spring的一个xml配置文件，@Bean将一开始的UserDao配置给Spring管理</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span><span class="comment">// 通过注解来表明该类是一个Spring的配置，相当于一个xml文件</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span><span class="comment">// 这里要注意,方法名"getUserDao"将作为UserDao在容器中的id</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserDao <span class="title">getUserDao</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> UserDao();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>接下来就时获取Spring容器，从容器中拿到UserService，并调用其获取用户数据的方法，代码如下：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        AnnotationConfigApplicationContext acac = <span class="keyword">new</span> AnnotationConfigApplicationContext(SpringConfig.class);</span><br><span class="line">        UserService userService = (UserService) acac.getBean(<span class="string">"userService"</span>);</span><br><span class="line">        userService.getUserList();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="Spring-第一个Hello-world"><a href="#Spring-第一个Hello-world" class="headerlink" title="Spring 第一个Hello world"></a>Spring 第一个Hello world</h1>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;SpringBoot是什么&quot;&gt;&lt;a href=&quot;#SpringBoot是什么&quot; class=&quot;headerlink&quot; title=&quot;SpringBoot是什么&quot;&gt;&lt;/a&gt;SpringBoot是什么&lt;/h1&gt;&lt;p&gt;从本质上来说，Springboot是一个专注于框架的框架。Spring Boot就是对各种框架的整合，让他们集成在一起更加简单。目前ssm框架还是比较常用的，其中ss指的无非就是Spring和SpringMVC，我们可以简单的认为“Spring Boot &amp;gt;= Spring + SpringMVC”。Spring Boot的配置极其简单，可以让你不用或者只需要很少的配置就可以快速运行项目。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Spring boot" scheme="http://yoursite.com/tags/Spring-boot/"/>
+    
+  </entry>
   
   <entry>
     <title>JS事件循环</title>
@@ -474,35 +496,6 @@
       <category term="悖论" scheme="http://yoursite.com/tags/%E6%82%96%E8%AE%BA/"/>
     
       <category term="心理学" scheme="http://yoursite.com/tags/%E5%BF%83%E7%90%86%E5%AD%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Flutter V1.0.0发布</title>
-    <link href="http://yoursite.com/2018/12/06/Flutter1.0%E5%8F%91%E5%B8%83/"/>
-    <id>http://yoursite.com/2018/12/06/Flutter1.0发布/</id>
-    <published>2018-12-06T06:26:33.488Z</published>
-    <updated>2018-12-06T07:01:51.231Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="flutter是什么"><a href="#flutter是什么" class="headerlink" title="flutter是什么"></a>flutter是什么</h2><p>Flutter是Google开发出来的一套跨平台开源框架，使用Dart语言编写。2018/12/04Google正式发布了它的V1.0.0稳定版本，也就是说移动端的开发有可能会发生革命性的变化。本人第二天看了youtube上的发布会，然后试玩了一下发布会上说的Google三个员工三个月为这场发布会写的Demo app：The history of everything。个人感觉：完全感觉不出是非原生的，动画，过渡非常流畅，而且我还用的是老的Nexus 6P来运行的，这种表现打破了我对跨平台开发的认知，让我相当震撼，也许原生开发真的要被取代了，喊了N多遍的狼来了看来也只是时间问题了。</p><h2 id="个人感想"><a href="#个人感想" class="headerlink" title="个人感想"></a>个人感想</h2><p>当变化来的时候，也许最好的方式是去拥抱变化，而不是墨守成规，扛着原生开发的大旗拉上kotlin小弟一起为Google的保守势力买单。技术现在发展月来越快，技术更新周期越来越短，这也对开发者提出了更高的要求，你需要不断的学习新东西，去适应这个快速发展的世界；但是，每个人的精力都是有限的，怎样在这个信息爆炸的时代学习到保命技能做到以不变应万变，这就需要你的眼光，高度以及眼界了，形而上的东西看着像套路但是归根结底被前人总结的其实就是这些东西，如果你具有了这些“能力”，你就会敏锐的知道在这些快速发展的技术中，哪些是革命性的？哪些是过渡的？集中精力去学习革命性的技术会让你在以后有先发优势，而如果你选择错误，则只能看着刚学的内容马上就out了。</p><p>个人总结的几点建议：</p><ol><li>不盲目跟风口。如果自己专业领域就是风口，那就是最好，这里说的是不同领域为了去风口而盲目转型，最少要有关联性，而且是你喜欢的。</li><li>跟随大公司。这里的大公司指的是掌握核心科技的公司，站在业界前沿的公司如Google，他们发布的技术有可能就是革命性的。</li><li>对新技术保持永远的好奇心。还是刚说的要去拥抱变化，而不是抵触。</li><li>抓住机会，去更大的平台。大平台的优势不用说了。在技术变革期，大平台是最敏感的。</li><li>在技术外，丰富自己的知识库，多看书，多阅历，多和优秀的人沟通。</li></ol><h2 id="flutter的特性"><a href="#flutter的特性" class="headerlink" title="flutter的特性"></a>flutter的特性</h2><p>这里就贴一些文章，看到的都是各种赞不绝口，希望我也能把它收进武器库。<br><a href="https://mp.weixin.qq.com/s/lYisub0Zg9Yz6o9KsYopvA" target="_blank" rel="noopener">Google 要用 Flutter 一统移动、桌面开发江湖？</a></p><p><a href="https://mp.weixin.qq.com/s/hCIN42OMmmc6HkOveegwWQ" target="_blank" rel="noopener">Flutter 1.0 正式版: Google 的便携 UI 工具包</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;flutter是什么&quot;&gt;&lt;a href=&quot;#flutter是什么&quot; class=&quot;headerlink&quot; title=&quot;flutter是什么&quot;&gt;&lt;/a&gt;flutter是什么&lt;/h2&gt;&lt;p&gt;Flutter是Google开发出来的一套跨平台开源框架，使用Dart语言编
-      
-    
-    </summary>
-    
-      <category term="文章" scheme="http://yoursite.com/categories/%E6%96%87%E7%AB%A0/"/>
-    
-    
-      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
-    
-      <category term="跨平台" scheme="http://yoursite.com/tags/%E8%B7%A8%E5%B9%B3%E5%8F%B0/"/>
-    
-      <category term="flutter" scheme="http://yoursite.com/tags/flutter/"/>
     
   </entry>
   

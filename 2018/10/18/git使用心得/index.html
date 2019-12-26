@@ -81,18 +81,20 @@
 
 
 
-<meta name="description" content="1. 具体1.使用git add .添加了所有修改文件到暂存区之后在commite到本地之前想撤销add操作可以使用1git reset HEAD &amp;lt;file&amp;gt; 将某个文件从暂存区拿出来。 2.已经commite了提交到了本地但是还没有push到远端，这时候发现有个文件不能提交到远端可以使用1git reset -soft/--mix/--hard &amp;lt;commite id&amp;gt;">
+<meta name="description" content="1. git reset1.使用git add .添加了所有修改文件到暂存区之后在commite到本地之前想撤销add操作可以使用1git reset HEAD &amp;lt;file&amp;gt; 将某个文件从暂存区拿出来。 2.已经commite了提交到了本地但是还没有push到远端，这时候发现有个文件不能提交到远端可以使用1git reset -soft/--mix/--hard &amp;lt;commite">
 <meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git使用心得">
 <meta property="og:url" content="http://yoursite.com/2018/10/18/git使用心得/index.html">
 <meta property="og:site_name" content="Ervin">
-<meta property="og:description" content="1. 具体1.使用git add .添加了所有修改文件到暂存区之后在commite到本地之前想撤销add操作可以使用1git reset HEAD &amp;lt;file&amp;gt; 将某个文件从暂存区拿出来。 2.已经commite了提交到了本地但是还没有push到远端，这时候发现有个文件不能提交到远端可以使用1git reset -soft/--mix/--hard &amp;lt;commite id&amp;gt;">
+<meta property="og:description" content="1. git reset1.使用git add .添加了所有修改文件到暂存区之后在commite到本地之前想撤销add操作可以使用1git reset HEAD &amp;lt;file&amp;gt; 将某个文件从暂存区拿出来。 2.已经commite了提交到了本地但是还没有push到远端，这时候发现有个文件不能提交到远端可以使用1git reset -soft/--mix/--hard &amp;lt;commite">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-14T07:25:18.482Z">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1ga9yt7x5esj31pk0eodht.jpg">
+<meta property="og:updated_time" content="2019-12-26T03:53:23.656Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git使用心得">
-<meta name="twitter:description" content="1. 具体1.使用git add .添加了所有修改文件到暂存区之后在commite到本地之前想撤销add操作可以使用1git reset HEAD &amp;lt;file&amp;gt; 将某个文件从暂存区拿出来。 2.已经commite了提交到了本地但是还没有push到远端，这时候发现有个文件不能提交到远端可以使用1git reset -soft/--mix/--hard &amp;lt;commite id&amp;gt;">
+<meta name="twitter:description" content="1. git reset1.使用git add .添加了所有修改文件到暂存区之后在commite到本地之前想撤销add操作可以使用1git reset HEAD &amp;lt;file&amp;gt; 将某个文件从暂存区拿出来。 2.已经commite了提交到了本地但是还没有push到远端，这时候发现有个文件不能提交到远端可以使用1git reset -soft/--mix/--hard &amp;lt;commite">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1ga9yt7x5esj31pk0eodht.jpg">
 
 
 
@@ -370,7 +372,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.4k
+                  2.8k
                 </span>
               
 
@@ -386,7 +388,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  9
+                  10
                 </span>
               
             </div>
@@ -407,11 +409,59 @@
       
 
       
-        <h3 id="1-具体"><a href="#1-具体" class="headerlink" title="1. 具体"></a>1. 具体</h3><p>1.使用git add .添加了所有修改文件到暂存区之后在commite到本地之前想撤销add操作可以使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD &lt;file&gt;</span><br></pre></td></tr></table></figure></p>
+        <h3 id="1-git-reset"><a href="#1-git-reset" class="headerlink" title="1. git reset"></a>1. git reset</h3><p>1.使用git add .添加了所有修改文件到暂存区之后在commite到本地之前想撤销add操作可以使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD &lt;file&gt;</span><br></pre></td></tr></table></figure></p>
 <p>将某个文件从暂存区拿出来。</p>
 <p>2.已经commite了提交到了本地但是还没有push到远端，这时候发现有个文件不能提交到远端可以使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset -soft/--mix/--hard &lt;commite id&gt;</span><br></pre></td></tr></table></figure></p>
-<p>会将本地仓库回退到commite id这个版本（可以是上一次commite的版本）。reset后的参数代表了是否保留本地代码的修改，具体可以查询网络。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查询所有git的提交记录，包括详细commite id</span><br><span class="line">git reflog</span><br></pre></td></tr></table></figure></p>
+<p>会将本地仓库回退到commite id这个版本（可以是上一次commite的版本）。reset后的参数代表了是否保留本地代码的修改，具体可以查询网络。<a href="https://www.jianshu.com/p/cbd5cd504f14" target="_blank" rel="noopener">git reset命令的使用</a></p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>git reset的影响</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选项</td>
+<td>HEAD</td>
+<td>索引（暂存区）</td>
+<td>工作目录（源代码）</td>
+</tr>
+<tr>
+<td>–soft</td>
+<td>是</td>
+<td>否</td>
+<td>否</td>
+</tr>
+<tr>
+<td>–mix</td>
+<td>是</td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td>–hard</td>
+<td>是</td>
+<td>是</td>
+<td>是</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>HEAD：表示当前git指针指向的位置<br>索引：表示add之后去到的暂存区<br>工作目录：表示代码文件的改动<br>提交C1 –&gt; 提交C2<br>总结就是：soft后git指针会指向C1的提交，而C2修改的文件还是add状态，修改内容不会丢失，对现有的版本改动最小；mix后（git reset默认操作）git指针会指向C1提交，C2修改的文件不是add状态（需要重新add）不在暂存区，文件修改内容不丢失；hard后git指针指向C1提交，C2修改文件不在暂存区，文件修改丢失，完全恢复到C1提交的状态. ==hard慎用==</p>
+</blockquote>
 <a id="more"></a>
+<p>==或者==<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD~</span><br><span class="line">git reset HEAD~1</span><br></pre></td></tr></table></figure></p>
+<p>如果你提交了多个commit，那么可以通过修改HEAD～之后的数字，如撤销前3次的commit</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD~3</span><br></pre></td></tr></table></figure>
+<p>==下面是一个很有用的后悔药==<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查询所有git的提交记录，包括详细commite id</span><br><span class="line">git reflog</span><br></pre></td></tr></table></figure></p>
+<p>下图为git reflog的界面<br><img src="https://tva1.sinaimg.cn/large/006tNbRwgy1ga9yt7x5esj31pk0eodht.jpg" alt></p>
+<blockquote>
+<p>这里面记录了你本地仓库中相关切换和更改的详细描述清单，你可以通过：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 可以通过以下命令回到任何一个位置</span><br><span class="line">git reset HEAD@&#123;n&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="2-git-add语法"><a href="#2-git-add语法" class="headerlink" title="2. git add语法"></a>2. git add语法</h3><table>
 <thead>
 <tr>
@@ -612,7 +662,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -634,7 +684,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -696,7 +746,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-具体"><span class="nav-number">1.</span> <span class="nav-text">1. 具体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-git-add语法"><span class="nav-number">2.</span> <span class="nav-text">2. git add语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-git-merge合并"><span class="nav-number">3.</span> <span class="nav-text">3. git merge合并</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-git-tag打标签"><span class="nav-number">4.</span> <span class="nav-text">4. git tag打标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-git-stash"><span class="nav-number">5.</span> <span class="nav-text">5. git stash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-git分支管理"><span class="nav-number">6.</span> <span class="nav-text">6. git分支管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-git-push"><span class="nav-number">7.</span> <span class="nav-text">7.git push</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-git-reset"><span class="nav-number">8.</span> <span class="nav-text">8.git reset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-git-remote"><span class="nav-number">9.</span> <span class="nav-text">9.git remote</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-git-commit"><span class="nav-number">10.</span> <span class="nav-text">10.git commit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-git-rebase"><span class="nav-number">11.</span> <span class="nav-text">11.git rebase</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-git-reset"><span class="nav-number">1.</span> <span class="nav-text">1. git reset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-git-add语法"><span class="nav-number">2.</span> <span class="nav-text">2. git add语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-git-merge合并"><span class="nav-number">3.</span> <span class="nav-text">3. git merge合并</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-git-tag打标签"><span class="nav-number">4.</span> <span class="nav-text">4. git tag打标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-git-stash"><span class="nav-number">5.</span> <span class="nav-text">5. git stash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-git分支管理"><span class="nav-number">6.</span> <span class="nav-text">6. git分支管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-git-push"><span class="nav-number">7.</span> <span class="nav-text">7.git push</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-git-reset"><span class="nav-number">8.</span> <span class="nav-text">8.git reset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-git-remote"><span class="nav-number">9.</span> <span class="nav-text">9.git remote</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-git-commit"><span class="nav-number">10.</span> <span class="nav-text">10.git commit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-git-rebase"><span class="nav-number">11.</span> <span class="nav-text">11.git rebase</span></a></li></ol></div>
             
 
           </div>
@@ -730,7 +780,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">51.6k</span>
+    <span title="Site words total count">52.8k</span>
   
 </div>
 
