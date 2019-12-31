@@ -90,7 +90,7 @@
 <meta property="og:description" content="1. git reset1.使用git add .添加了所有修改文件到暂存区之后在commite到本地之前想撤销add操作可以使用1git reset HEAD &amp;lt;file&amp;gt; 将某个文件从暂存区拿出来。 2.已经commite了提交到了本地但是还没有push到远端，这时候发现有个文件不能提交到远端可以使用1git reset -soft/--mix/--hard &amp;lt;commite">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1ga9yt7x5esj31pk0eodht.jpg">
-<meta property="og:updated_time" content="2019-12-26T03:53:23.656Z">
+<meta property="og:updated_time" content="2019-12-31T01:57:41.922Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git使用心得">
 <meta name="twitter:description" content="1. git reset1.使用git add .添加了所有修改文件到暂存区之后在commite到本地之前想撤销add操作可以使用1git reset HEAD &amp;lt;file&amp;gt; 将某个文件从暂存区拿出来。 2.已经commite了提交到了本地但是还没有push到远端，这时候发现有个文件不能提交到远端可以使用1git reset -soft/--mix/--hard &amp;lt;commite">
@@ -388,7 +388,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  10
+                  11
                 </span>
               
             </div>
@@ -450,13 +450,13 @@
 </tbody>
 </table>
 <blockquote>
-<p>HEAD：表示当前git指针指向的位置<br>索引：表示add之后去到的暂存区<br>工作目录：表示代码文件的改动<br>提交C1 –&gt; 提交C2<br>总结就是：soft后git指针会指向C1的提交，而C2修改的文件还是add状态，修改内容不会丢失，对现有的版本改动最小；mix后（git reset默认操作）git指针会指向C1提交，C2修改的文件不是add状态（需要重新add）不在暂存区，文件修改内容不丢失；hard后git指针指向C1提交，C2修改文件不在暂存区，文件修改丢失，完全恢复到C1提交的状态. ==hard慎用==</p>
+<p>HEAD：表示当前git指针指向的位置<br>索引：表示add之后去到的暂存区<br>工作目录：表示代码文件的改动<br>提交C1 –&gt; 提交C2<br>总结就是：soft后git指针会指向C1的提交，而C2修改的文件还是add状态，修改内容不会丢失，对现有的版本改动最小；mix后（git reset默认操作）git指针会指向C1提交，C2修改的文件不是add状态（需要重新add）不在暂存区，文件修改内容不丢失；hard后git指针指向C1提交，C2修改文件不在暂存区，文件修改丢失，完全恢复到C1提交的状态. <code>hard慎用</code></p>
 </blockquote>
 <a id="more"></a>
-<p>==或者==<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD~</span><br><span class="line">git reset HEAD~1</span><br></pre></td></tr></table></figure></p>
+<p><code>或者</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD~</span><br><span class="line">git reset HEAD~1</span><br></pre></td></tr></table></figure></p>
 <p>如果你提交了多个commit，那么可以通过修改HEAD～之后的数字，如撤销前3次的commit</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD~3</span><br></pre></td></tr></table></figure>
-<p>==下面是一个很有用的后悔药==<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查询所有git的提交记录，包括详细commite id</span><br><span class="line">git reflog</span><br></pre></td></tr></table></figure></p>
+<p><code>下面是一个很有用的后悔药</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查询所有git的提交记录，包括详细commite id</span><br><span class="line">git reflog</span><br></pre></td></tr></table></figure></p>
 <p>下图为git reflog的界面<br><img src="https://tva1.sinaimg.cn/large/006tNbRwgy1ga9yt7x5esj31pk0eodht.jpg" alt></p>
 <blockquote>
 <p>这里面记录了你本地仓库中相关切换和更改的详细描述清单，你可以通过：</p>
@@ -495,7 +495,7 @@
 <p>3.切换标签</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git show v0.1.2</span><br></pre></td></tr></table></figure>
 <p>4.删除标签</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 删除本地标签</span><br><span class="line">git tag -d v0.1.2</span><br><span class="line"># 删除远程标签</span><br><span class="line">git push origin --delete tag v1.0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 删除本地标签</span><br><span class="line">git tag -d v0.1.2</span><br><span class="line"># 删除远程标签</span><br><span class="line">git push origin --delete tag v1.0</span><br><span class="line"># 或者(已验证)</span><br><span class="line">git push origin :refs/tags/V1.2.0</span><br></pre></td></tr></table></figure>
 <p>5.标签发布</p>
 <p>通常的git push不会将标签对象提交到git服务器，我们需要进行显式的操作：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 将v0.1.2标签提交到git服务器</span><br><span class="line">git push origin v0.1.2</span><br><span class="line"># 将本地所有标签一次性提交到git服务器</span><br><span class="line">git push origin –tags</span><br></pre></td></tr></table></figure>
@@ -780,7 +780,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">52.8k</span>
+    <span title="Site words total count">52.9k</span>
   
 </div>
 

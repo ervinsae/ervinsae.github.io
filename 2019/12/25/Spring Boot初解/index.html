@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="Ervin">
 <meta property="og:description" content="SpringBoot是什么从本质上来说，Springboot是一个专注于框架的框架。Spring Boot就是对各种框架的整合，让他们集成在一起更加简单。目前ssm框架还是比较常用的，其中ss指的无非就是Spring和SpringMVC，我们可以简单的认为“Spring Boot &amp;gt;= Spring + SpringMVC”。Spring Boot的配置极其简单，可以让你不用或者只需要很少的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-26T03:24:00.641Z">
+<meta property="og:updated_time" content="2019-12-27T08:42:22.421Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot初解">
 <meta name="twitter:description" content="SpringBoot是什么从本质上来说，Springboot是一个专注于框架的框架。Spring Boot就是对各种框架的整合，让他们集成在一起更加简单。目前ssm框架还是比较常用的，其中ss指的无非就是Spring和SpringMVC，我们可以简单的认为“Spring Boot &amp;gt;= Spring + SpringMVC”。Spring Boot的配置极其简单，可以让你不用或者只需要很少的">
@@ -370,7 +370,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  878
+                  954
                 </span>
               
 
@@ -418,7 +418,7 @@
 </li>
 <li><p>项目可以独立运行，无需外部依赖Servlet容器（自带一个Tomcat）</p>
 <blockquote>
-<p>内嵌离各种servlet容器，Tomcat，Jetty等，现在不用打成war包部署到容器中，Spring Boot只要打成一个可执行的jar包就能独立运行了（java -jar **.jar）,所有的依赖都在一个jar包内。</p>
+<p>内嵌离各种servlet容器，Tomcat，Jetty等，现在不用打成war包部署到容器中，Spring Boot只要打成一个可执行的jar包就能独立运行了（java -jar <strong>.jar）,所有的依赖都在一个jar包内。可以以下命令修改tomcat的端口号：（java -jar </strong>.jar –server.port=9090）</p>
 </blockquote>
 </li>
 <li>提供运行时的应用监控</li>
@@ -447,7 +447,9 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span><span class="comment">// 通过注解来表明该类是一个Spring的配置，相当于一个xml文件</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span><span class="comment">// 这里要注意,方法名"getUserDao"将作为UserDao在容器中的id</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserDao <span class="title">getUserDao</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> UserDao();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>接下来就时获取Spring容器，从容器中拿到UserService，并调用其获取用户数据的方法，代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        AnnotationConfigApplicationContext acac = <span class="keyword">new</span> AnnotationConfigApplicationContext(SpringConfig.class);</span><br><span class="line">        UserService userService = (UserService) acac.getBean(<span class="string">"userService"</span>);</span><br><span class="line">        userService.getUserList();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="Spring-第一个Hello-world"><a href="#Spring-第一个Hello-world" class="headerlink" title="Spring 第一个Hello world"></a>Spring 第一个Hello world</h1>
+<h1 id="Spring-boot注解"><a href="#Spring-boot注解" class="headerlink" title="Spring boot注解"></a>Spring boot注解</h1><h2 id="SpringBootApplication"><a href="#SpringBootApplication" class="headerlink" title="SpringBootApplication"></a>SpringBootApplication</h2><p>是Spring boot项目的核心注解，主要目的是开启自动配置。后续详解原理。</p>
+<h2 id="RestController"><a href="#RestController" class="headerlink" title="@RestController"></a>@RestController</h2><p>该注解等价于@Controller+@ResponseBody的结合，使用这个注解的类里面的方法都是以json格式输出。</p>
+
       
     </div>
     
@@ -649,7 +651,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringBoot是什么"><span class="nav-number">1.</span> <span class="nav-text">SpringBoot是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spirng-Boot的优缺点"><span class="nav-number">2.</span> <span class="nav-text">Spirng Boot的优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#优点"><span class="nav-number">2.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缺点"><span class="nav-number">2.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#快速入门"><span class="nav-number">3.</span> <span class="nav-text">快速入门</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-第一个Hello-world"><span class="nav-number">4.</span> <span class="nav-text">Spring 第一个Hello world</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringBoot是什么"><span class="nav-number">1.</span> <span class="nav-text">SpringBoot是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spirng-Boot的优缺点"><span class="nav-number">2.</span> <span class="nav-text">Spirng Boot的优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#优点"><span class="nav-number">2.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缺点"><span class="nav-number">2.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#快速入门"><span class="nav-number">3.</span> <span class="nav-text">快速入门</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-boot注解"><span class="nav-number">4.</span> <span class="nav-text">Spring boot注解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringBootApplication"><span class="nav-number">4.1.</span> <span class="nav-text">SpringBootApplication</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RestController"><span class="nav-number">4.2.</span> <span class="nav-text">@RestController</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -683,7 +685,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">52.8k</span>
+    <span title="Site words total count">52.9k</span>
   
 </div>
 
