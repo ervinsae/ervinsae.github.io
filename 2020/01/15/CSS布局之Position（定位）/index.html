@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="CSS重点属性之Positionposition属性指定了元素的定位类型，它有5个值  static（默认） relative fixed absolute sticky  元素可以使用的top / bottom / left / right的属性进行定位。然而，这些属性无法正常工作，除非先设定position属性。他们也有不同的工作方式，这取决于定位方法。 staticHTML元素的默认值，没有">
+<meta name="description" content="CSS重点属性之Positionposition属性指定了元素的定位类型，它有5个值  static（默认） relative fixed absolute sticky  元素可以使用的top / bottom / left / right的属性进行定位。然而，这些属性无法正常工作，除非先设定position属性。他们也有不同的工作方式，这取决于定位方法。">
 <meta name="keywords" content="CSS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS布局之Position（定位）">
 <meta property="og:url" content="http://yoursite.com/2020/01/15/CSS布局之Position（定位）/index.html">
 <meta property="og:site_name" content="Ervin">
-<meta property="og:description" content="CSS重点属性之Positionposition属性指定了元素的定位类型，它有5个值  static（默认） relative fixed absolute sticky  元素可以使用的top / bottom / left / right的属性进行定位。然而，这些属性无法正常工作，除非先设定position属性。他们也有不同的工作方式，这取决于定位方法。 staticHTML元素的默认值，没有">
+<meta property="og:description" content="CSS重点属性之Positionposition属性指定了元素的定位类型，它有5个值  static（默认） relative fixed absolute sticky  元素可以使用的top / bottom / left / right的属性进行定位。然而，这些属性无法正常工作，除非先设定position属性。他们也有不同的工作方式，这取决于定位方法。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-15T10:55:15.462Z">
+<meta property="og:updated_time" content="2020-01-17T06:07:58.924Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS布局之Position（定位）">
-<meta name="twitter:description" content="CSS重点属性之Positionposition属性指定了元素的定位类型，它有5个值  static（默认） relative fixed absolute sticky  元素可以使用的top / bottom / left / right的属性进行定位。然而，这些属性无法正常工作，除非先设定position属性。他们也有不同的工作方式，这取决于定位方法。 staticHTML元素的默认值，没有">
+<meta name="twitter:description" content="CSS重点属性之Positionposition属性指定了元素的定位类型，它有5个值  static（默认） relative fixed absolute sticky  元素可以使用的top / bottom / left / right的属性进行定位。然而，这些属性无法正常工作，除非先设定position属性。他们也有不同的工作方式，这取决于定位方法。">
 
 
 
@@ -370,7 +370,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  403
+                  557
                 </span>
               
 
@@ -386,7 +386,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -416,6 +416,7 @@
 <li>sticky</li>
 </ul>
 <p>元素可以使用的top / bottom / left / right的属性进行定位。然而，这些属性无法正常工作，除非先设定position属性。他们也有不同的工作方式，这取决于定位方法。</p>
+<a id="more"></a>
 <h2 id="static"><a href="#static" class="headerlink" title="static"></a>static</h2><p>HTML元素的默认值，没有定位，遵循正常的文档流对象。静态定位的元素不会收到top，bottom，left，right影响。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-class">.static</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: static;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">3px</span> solid <span class="number">#73AD21</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><a href="https://www.runoob.com/try/try.php?filename=trycss_position_static" target="_blank" rel="noopener">运行效果</a></p>
@@ -434,7 +435,10 @@
 <blockquote>
 <p>同fixed定位一样，absolute定位使元素的位置与文档流无关，因此不占据空间，和其它元素会有重叠。</p>
 </blockquote>
-<h2 id="sticky"><a href="#sticky" class="headerlink" title="sticky"></a>sticky</h2>
+<h2 id="sticky"><a href="#sticky" class="headerlink" title="sticky"></a>sticky</h2><p>基于用户的滚动位置来定位，粘性定位的元素是依赖于用户的滚动，在position：relative与position：fixed定位之间切换。它的行为就像position：relative；而当页面滚动超出目标区域时，它的表现就像position：fixed；它会固定在目标位置。固定的位置指的是top, right, bottom 或 left 之一，换言之，指定 top, right, bottom 或 left 四个阈值其中之一，才可使粘性定位生效。否则其行为与相对定位相同。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-class">.sticky</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: -webkit-sticky; <span class="comment">/* Safari */</span></span><br><span class="line">    <span class="attribute">position</span>: sticky;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: green;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">2px</span> solid <span class="number">#4CAF50</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.runoob.com/try/try.php?filename=trycss_position_sticky" target="_blank" rel="noopener">运行效果</a></p>
+
       
     </div>
     
@@ -670,7 +674,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">54.8k</span>
+    <span title="Site words total count">55k</span>
   
 </div>
 
