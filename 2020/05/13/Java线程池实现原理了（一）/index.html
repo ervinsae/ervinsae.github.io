@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="技能提升,线程,">
 
 
 
@@ -81,17 +81,21 @@
 
 
 
-<meta name="description" content="stay hungry, stay foolish">
-<meta name="keywords" content="Developer">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ervin">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+<meta name="description" content="背景线程池是什么线程池（Thread Pool）是一种基于池化思想管理线程的工具，经常出现在多线程服务器中，或者涉及到一些复杂线程操作需要重复开启线程。线程过多会带来额外的开销，包括创建线程的开销，调度线程的开销等等，同时也降低了计算机的整体性能。线程池能维护多个线程，等待监督管理分配可并发执行的任务，这种做法一方面避免了处理任务时创建销毁线程开销的代价，另一方面也避免了线程数量膨胀的过分调度问题">
+<meta name="keywords" content="技能提升,线程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java线程池实现原理（一）">
+<meta property="og:url" content="http://yoursite.com/2020/05/13/Java线程池实现原理了（一）/index.html">
 <meta property="og:site_name" content="Ervin">
-<meta property="og:description" content="stay hungry, stay foolish">
+<meta property="og:description" content="背景线程池是什么线程池（Thread Pool）是一种基于池化思想管理线程的工具，经常出现在多线程服务器中，或者涉及到一些复杂线程操作需要重复开启线程。线程过多会带来额外的开销，包括创建线程的开销，调度线程的开销等等，同时也降低了计算机的整体性能。线程池能维护多个线程，等待监督管理分配可并发执行的任务，这种做法一方面避免了处理任务时创建销毁线程开销的代价，另一方面也避免了线程数量膨胀的过分调度问题">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://p1.meituan.net/travelcube/912883e51327e0c7a9d753d11896326511272.png">
+<meta property="og:image" content="https://p0.meituan.net/travelcube/77441586f6b312a54264e3fcf5eebe2663494.png">
+<meta property="og:updated_time" content="2020-05-13T05:39:18.732Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ervin">
-<meta name="twitter:description" content="stay hungry, stay foolish">
+<meta name="twitter:title" content="Java线程池实现原理（一）">
+<meta name="twitter:description" content="背景线程池是什么线程池（Thread Pool）是一种基于池化思想管理线程的工具，经常出现在多线程服务器中，或者涉及到一些复杂线程操作需要重复开启线程。线程过多会带来额外的开销，包括创建线程的开销，调度线程的开销等等，同时也降低了计算机的整体性能。线程池能维护多个线程，等待监督管理分配可并发执行的任务，这种做法一方面避免了处理任务时创建销毁线程开销的代价，另一方面也避免了线程数量膨胀的过分调度问题">
+<meta name="twitter:image" content="https://p1.meituan.net/travelcube/912883e51327e0c7a9d753d11896326511272.png">
 
 
 
@@ -121,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/page/2/">
+  <link rel="canonical" href="http://yoursite.com/2020/05/13/Java线程池实现原理了（一）/">
 
 
 
 
 
-  <title>归档 | Ervin</title>
+  <title>Java线程池实现原理（一） | Ervin</title>
   
 
 
@@ -146,7 +150,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -272,390 +276,246 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      <span class="archive-page-counter">
-        
-        
-         
-        
-        OK! 目前共计 43 篇日志。 继续努力。
-      </span>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/13/Java线程池实现原理了（一）/">
 
-      
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ervin Zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ervin">
+    </span>
+
+    
+      <header class="post-header">
 
         
         
+          <h1 class="post-title" itemprop="name headline">Java线程池实现原理（一）</h1>
         
 
-        
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-13T10:57:46+08:00">
+                2020-05-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/07/04/日本游记（二）/" itemprop="url">
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
               
-                <span itemprop="name">日本游记（二）</span>
+                <span class="post-meta-item-text">分类于</span>
               
-            </a>
-        
-      </h2>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-04T22:17:22+08:00" content="2019-07-04">
-          07-04
-        </time>
-      </div>
+                
+                
+              
+            </span>
+          
 
-    </header>
-  </article>
+          
+            
+          
 
+          
+          
 
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/06/27/日本游记/" itemprop="url">
-              
-                <span itemprop="name">日本游记（一）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-06-27T22:34:56+08:00" content="2019-06-27">
-          06-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/04/28/熵/" itemprop="url">
-              
-                <span itemprop="name">熵</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-28T00:12:34+08:00" content="2019-04-28">
-          04-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><h2 id="线程池是什么"><a href="#线程池是什么" class="headerlink" title="线程池是什么"></a>线程池是什么</h2><p>线程池（Thread Pool）是一种基于池化思想管理线程的工具，经常出现在多线程服务器中，或者涉及到一些复杂线程操作需要重复开启线程。线程过多会带来额外的开销，包括创建线程的开销，调度线程的开销等等，同时也降低了计算机的整体性能。<br>线程池能维护多个线程，等待监督管理分配可并发执行的任务，这种做法一方面避免了处理任务时创建销毁线程开销的代价，另一方面也避免了线程数量膨胀的过分调度问题，保证了对内核的充分利用。<br>Java中对线程池的实现都是基于ThreadPoolExcutor类，它能带来一系列的好处：</p>
+<ul>
+<li><strong>降低资源消耗：</strong> 通过池化技术重复利用已经创建的线程，降低线程创建和销毁造成的损耗</li>
+<li><strong>提高响应速度：</strong> 任务到达时，无需等待线程创建就可以立即执行（前提是线程池中有可用的线程）</li>
+<li><strong>提高线程的可管理性：</strong> 线程是稀缺资源，如果无限制创建，不仅会消耗系统资源，还会因为线程的不合理分布导致资源调度失衡，降低系统的稳定性。使用线程池可以进行统一的分配、调优和监控。不用开发者自己去维护这一整个流程。</li>
+<li><strong>提供更多更强大的功能：</strong> 线程池具备可拓展性，允许开发人员向其中增加更多的功能。比如延时定时线程池ScheduledThreadPoolExecutor，就允许任务延期执行或定期执行。</li>
+</ul>
+<a id="more"></a>
+<h2 id="线程池能解决什么问题"><a href="#线程池能解决什么问题" class="headerlink" title="线程池能解决什么问题"></a>线程池能解决什么问题</h2><p>线程池解决的核心问题就是资源管理问题。在并发环境下，系统不能够确定在任意时刻中，有多少任务需要执行，有多少资源需要投入。这种不确定性将带来以下若干问题：</p>
+<ol>
+<li>频繁申请/销毁资源和调度资源，将带来额外的消耗，可能会非常巨大。</li>
+<li>对资源无限申请缺少抑制手段，易引发系统资源耗尽的风险。</li>
+<li>系统无法合理管理内部的资源分布，会降低系统的稳定性。</li>
+</ol>
+<p>为解决资源分配这个问题，线程池采用了“池化”（Pooling）思想。池化，顾名思义，是为了最大化收益并最小化风险，而将资源统一在一起管理的一种思想。这种思想也广泛应用于计算机的其它领域中：</p>
+<ul>
+<li>内存池(Memory Pooling)：预先申请内存，提升申请内存速度，减少内存碎片。</li>
+<li>连接池(Connection Pooling)：预先申请数据库连接，提升申请连接的速度，降低系统的开销。例如Sql连接池</li>
+<li>实例池(Object Pooling)：循环使用对象，减少资源在初始化和释放时的昂贵损耗。例如String。</li>
+</ul>
+<h1 id="Java线程池核心设计于实现"><a href="#Java线程池核心设计于实现" class="headerlink" title="Java线程池核心设计于实现"></a>Java线程池核心设计于实现</h1><h2 id="总体设计"><a href="#总体设计" class="headerlink" title="总体设计"></a>总体设计</h2><p>Java中的线程池核心实现类是ThreadPoolExecutor，首先分析UML类图，如下：</p>
+<p><img src="https://p1.meituan.net/travelcube/912883e51327e0c7a9d753d11896326511272.png" alt="ThreadPoolExcutor UML类图"></p>
+<p>具体分析：</p>
+<p><strong>Executor：</strong> ThreadPoolExecutor实现的顶层接口是Executor，顶层接口Executor提供了一种思想：将任务提交和任务执行进行解耦，用户无需关注如何创建线程，如何调度线程来执行任务，用户只需要提供Runable对象，将任务的执行逻辑提交到执行器（Executor）中，由Executor框架完成线程的调配和任务的执行部分。<br><strong>ExecutorService：</strong>接口增加了一些能力：</p>
+<ol>
+<li>扩充执行任务的能力，补充可以为一个或是一批异步任务生成Future方法</li>
+<li>提供了管控线程池的方法，比如停止线程池的运行。</li>
+</ol>
+<p><strong>AbstractExecutorService：</strong>是上层的抽象类，将执行任务的流程串联起来，保证下层的实现只需关注一个执行任务的方法即可。<br><strong>ThreadPoolExecutor：</strong>最下层的实现类实现最复杂的运行部分，一方面维护自身的生命周期，另一方面同时还需要管理线程和任务，使两者良好的结合从而执行并行任务。</p>
+<p>下图是ThreadPoolExecutor的运行机制：</p>
+<p><img src="https://p0.meituan.net/travelcube/77441586f6b312a54264e3fcf5eebe2663494.png" alt></p>
+<p>从图中可以看出来，线程池内部实际上构建了一个生产者消费者模型，将线程和任务两者解耦，并不直接关联，从而良好的缓冲任务，复用线程。</p>
+<p>线程池的运行主要分成两部分：<strong>任务管理</strong>，<strong>线程管理</strong>。<br>任务管理：充当生成者的角色，当任务提交后，线程池会判断该任务后续的流转：</p>
+<pre><code>1. 直接申请线程执行该任务
+2. 缓冲到队列中等待线程执行
+3. 拒绝该任务
+</code></pre><p>线程管理：线程管理部分是消费者，他们被统一维护在线程池内，根据任务请求进行线程的分配，当线程执行完任务后则会继续获取新的任务去执行，最终当线程获取不到任务，线程就会被回收。</p>
+<p>下一节继续按照下面三个部分去介绍线程池的运行机制：</p>
+<ol>
+<li>线程池如何维护自身的生命周期</li>
+<li>线程池如果管理任务</li>
+<li>线程池如何管理线程</li>
+</ol>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/28/Kotlin之集合操作符/" itemprop="url">
-              
-                <span itemprop="name">Kotlin之集合操作符</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-28T11:10:02+08:00" content="2019-03-28">
-          03-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/21/Android Https证书详解/" itemprop="url">
-              
-                <span itemprop="name">Android Https证书详解</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-21T10:36:35+08:00" content="2019-03-21">
-          03-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/18/Quantumult配置/" itemprop="url">
-              
-                <span itemprop="name">QUANTUMULT的配置</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-18T23:43:00+08:00" content="2019-03-18">
-          03-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/14/alfred简单配置/" itemprop="url">
-              
-                <span itemprop="name">Alfred的简单配置</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-14T23:19:27+08:00" content="2019-03-14">
-          03-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/02/28/git的常规配置/" itemprop="url">
-              
-                <span itemprop="name">Git的常规配置</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-28T16:16:18+08:00" content="2019-02-28">
-          02-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/02/25/Android开发的几个方向/" itemprop="url">
-              
-                <span itemprop="name">Android后期开发的几个方向</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-25T12:05:41+08:00" content="2019-02-25">
-          02-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/02/16/Android动画总结/" itemprop="url">
-              
-                <span itemprop="name">Android动画总结</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-16T15:55:33+08:00" content="2019-02-16">
-          02-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/技能提升/" rel="tag"><i class="fa fa-tag"></i>
+ 技能提升</a>
+          
+            <a href="/tags/线程/" rel="tag"><i class="fa fa-tag"></i>
+ 线程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/12/JavaGuide之AQS/" rel="next" title="JavaGuide之AQS">
+                <i class="fa fa-chevron-left"></i> JavaGuide之AQS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/5/">5</a><a class="extend next" rel="next" href="/archives/page/3/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -663,6 +523,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -683,8 +547,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -775,6 +648,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线程池是什么"><span class="nav-number">1.1.</span> <span class="nav-text">线程池是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程池能解决什么问题"><span class="nav-number">1.2.</span> <span class="nav-text">线程池能解决什么问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java线程池核心设计于实现"><span class="nav-number">2.</span> <span class="nav-text">Java线程池核心设计于实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#总体设计"><span class="nav-number">2.1.</span> <span class="nav-text">总体设计</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -929,6 +818,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
