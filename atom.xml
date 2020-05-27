@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-20T02:13:58.951Z</updated>
+  <updated>2020-05-27T02:20:30.592Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java线程池实现原理（三）</title>
+    <link href="http://yoursite.com/2020/05/27/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%89%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/05/27/Java线程池实现原理（三）/</id>
+    <published>2020-05-27T02:20:00.000Z</published>
+    <updated>2020-05-27T02:20:30.592Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html" target="_blank" rel="noopener">转自美团技术团队</a></p></blockquote><h1 id="线程池生命周期管理"><a href="#线程池生命周期管理" class="headerlink" title="线程池生命周期管理"></a>线程池生命周期管理</h1><p>上一期讲了线程池生命周期管理的任务管理，对于线程池来说，任务管理和线程管理是它必须关注的事情，而线程管理比任务管理则更复杂。</p><h2 id="线程管理"><a href="#线程管理" class="headerlink" title="线程管理"></a>线程管理</h2><h3 id="Worker线程（工作线程）"><a href="#Worker线程（工作线程）" class="headerlink" title="Worker线程（工作线程）"></a>Worker线程（工作线程）</h3><p>线程池为了掌握线程的状态并维护线程的生命周期，设计了线程池内的工作线程Worker，先看一下源码：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Worker</span> <span class="keyword">extends</span> <span class="title">AbstractQueuedSynchronizer</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="keyword">final</span> Thread thread;<span class="comment">//Worker持有的线程</span></span><br><span class="line">    Runnable firstTask;<span class="comment">//初始化的任务，可以为null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Worker这个线程，实现了Runnable接口，并持有一个线程thread变量，一个初始化的任务firstTask，thread是在调用构造方法时通过ThreadFactory来创建的线程，可以用来执行任务；firstTask用它来保存传入的第一个任务，这个任务可以有也可以为null。如果这个值时非空的，那么线程就会在启动初期立即执行这个任务，<strong>也就是对应核心线程（corePool）创建时的情况</strong>，如果这个值时null，那么就需要创建一个线程去执行任务列表（workQueue）中的任务，<strong>也就是非核心线程的创建</strong>。</p><a id="more"></a><p>Worker执行任务的模型如下图所示：</p><p><img src="https://p0.meituan.net/travelcube/03268b9dc49bd30bb63064421bb036bf90315.png" alt></p><p>线程池需要管理线程的生命周期，需要在线程池长时间不允许的时候进行回收。<strong><em><em>线程池使用一张Hash表去持有线程的引用</em></em></strong>，这样可以通过添加引用，移除引用这样的操作来控制线程的生命周期，这个时候重要的是如何判断线程是否在运行。 </p><blockquote><p>Worker是通过继承AQS，使用AQS来实现<strong>独占锁</strong>这个功能（每次只能有一个线程能持有锁，是针对共享锁而言的，AQS源码中其内部类Node定义来两个常量SHARED和EXCLUSIVE，分别就是共享模式和独占模式，标示了AQS队列中等待线程的锁获取模式），为的就是实现不可重入的特性去反应线程当前的执行状态。</p></blockquote><p>下图是Java中主流锁的分类：（锁的概念有很多，但是其实各种锁的维度是不同的，后面会详细深入了解）</p><p><img src="https://awps-assets.meituan.net/mit-x/blog-images-bundle-2018b/7f749fc8.png" alt="java各种主流锁分类"></p><p>那么如何判断线程是否正在运行呢：</p><ol><li>lock方法一旦获取了独占锁，表示当前线程正在执行任务中</li><li>如果正在执行任务，则不应该中断线程</li><li>如果该线程现在不是独占锁的状态，也就是空闲的状态，说明它没有在处理任务，这时可以对该线程进行中断</li><li>线程池在执行shutdown方法或者tryTerminate方法时会调用interruptIdleWorkers方法来中断空闲的线程，interruptIdleWorkers方法使用tryLock方法来判断线程池中的线程是否空闲状态；如果是空闲状态则可以安全回收。 </li></ol><p>会在线程回收过程中也使用到了这种特性，回收过程如下图所示：<br><img src="https://p1.meituan.net/travelcube/9d8dc9cebe59122127460f81a98894bb34085.png" alt></p><h3 id="Worker线程增加"><a href="#Worker线程增加" class="headerlink" title="Worker线程增加"></a>Worker线程增加</h3><p>增加线程时通过线程池中addWorker方法，该方法的功能就是增加一个线程，该方法不考虑线程池是在哪个阶段增加的该线程，这个分配线程的策略是在上个步骤完成，<strong>该步骤仅仅完成增加线程，并使它运行，最后返回是否成功这个结果。</strong> addWorker方法有两个参数：firstTask，core。firstTask参数用于指定新增的线程执行的第一个任务，该参数可以为空（和Worker线程中的firstTask差不多），<strong><em>core参数为true表示在新增线程时会判断当前活动线程数是否少于corePoolSize（核心线程数），false表示新增线程前需要判断当前活动线程数是否少于maximumPoolSize（最大线程数）</em></strong>，其执行流程如下：</p><p><img src="https://p0.meituan.net/travelcube/49527b1bb385f0f43529e57b614f59ae145454.png" alt></p><h3 id="Worker线程回收"><a href="#Worker线程回收" class="headerlink" title="Worker线程回收"></a>Worker线程回收</h3><p>线程池中线程的销毁依赖于JVM自动的回收，线程池做的工作时根据当前线程池的状态维护一定数量的线程引用<strong>（前面提到的用Hash表）</strong>，防止这部分线程被JVM回收，当线程池决定哪些线程需要回收时，只需要将其引用消除即可。<strong>Worker被创建出来后，就会不断的进行轮训，然后获取任务去执行，核心线程可以无限等待获取任务，非核心线程要限时获取任务。</strong>当Worker无法获取到任务，也就是获取的任务为空时，循环就会结束，Worker会主动消除自身在线程池内的引用。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">while</span> (task != <span class="keyword">null</span> || (task = getTask()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">    <span class="comment">//执行任务（循环）</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">  processWorkerExit(w, completedAbruptly);<span class="comment">//获取不到任务时，主动回收自己</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>上述代码可以看出线程池回收时在processWorkerExit方法中完成的，下面是线程回收流程图：</p><p><img src="https://p0.meituan.net/travelcube/90ea093549782945f2c968403fdc39d415386.png" alt></p><p>实时上，在这个方法中，将线程引用移除线程池就已经结束线程池销毁线程的工作了（等待JVM自动回收线程）。但是由于引起线程销毁的可能性有很多，线程池还要判断是什么引发了这次销毁，是否要改变线程池的状态，是否要根据新状态，重新分配线程。</p><h3 id="Woker线程执行任务"><a href="#Woker线程执行任务" class="headerlink" title="Woker线程执行任务"></a>Woker线程执行任务</h3><p>在Worker类中的run方法调用了runWorker方法来执行任务，runWorker方法执行过程是：</p><ol><li>while循环不断通过getTask方法来获取任务</li><li>getTask方法总阻塞队列中获取任务</li><li>如果线程池正在停止，那么要保证当前线程是中断状态，否则要保证当前线程不是中断状态。</li><li>执行任务</li><li>如果getTask方法结果为null，则跳出循环，执行processWorkerExit方法，销毁线程</li></ol><p>流程图如下：</p><p><img src="https://p0.meituan.net/travelcube/879edb4f06043d76cea27a3ff358cb1d45243.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;转自美团技术团队&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;线程池生命周期管理&quot;&gt;&lt;a href=&quot;#线程池生命周期管理&quot; class=&quot;headerlink&quot; title=&quot;线程池生命周期管理&quot;&gt;&lt;/a&gt;线程池生命周期管理&lt;/h1&gt;&lt;p&gt;上一期讲了线程池生命周期管理的任务管理，对于线程池来说，任务管理和线程管理是它必须关注的事情，而线程管理比任务管理则更复杂。&lt;/p&gt;
+&lt;h2 id=&quot;线程管理&quot;&gt;&lt;a href=&quot;#线程管理&quot; class=&quot;headerlink&quot; title=&quot;线程管理&quot;&gt;&lt;/a&gt;线程管理&lt;/h2&gt;&lt;h3 id=&quot;Worker线程（工作线程）&quot;&gt;&lt;a href=&quot;#Worker线程（工作线程）&quot; class=&quot;headerlink&quot; title=&quot;Worker线程（工作线程）&quot;&gt;&lt;/a&gt;Worker线程（工作线程）&lt;/h3&gt;&lt;p&gt;线程池为了掌握线程的状态并维护线程的生命周期，设计了线程池内的工作线程Worker，先看一下源码：&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Worker&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;AbstractQueuedSynchronizer&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Runnable&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; Thread thread;&lt;span class=&quot;comment&quot;&gt;//Worker持有的线程&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Runnable firstTask;&lt;span class=&quot;comment&quot;&gt;//初始化的任务，可以为null&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Worker这个线程，实现了Runnable接口，并持有一个线程thread变量，一个初始化的任务firstTask，thread是在调用构造方法时通过ThreadFactory来创建的线程，可以用来执行任务；firstTask用它来保存传入的第一个任务，这个任务可以有也可以为null。如果这个值时非空的，那么线程就会在启动初期立即执行这个任务，&lt;strong&gt;也就是对应核心线程（corePool）创建时的情况&lt;/strong&gt;，如果这个值时null，那么就需要创建一个线程去执行任务列表（workQueue）中的任务，&lt;strong&gt;也就是非核心线程的创建&lt;/strong&gt;。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="技能提升" scheme="http://yoursite.com/tags/%E6%8A%80%E8%83%BD%E6%8F%90%E5%8D%87/"/>
+    
+      <category term="线程" scheme="http://yoursite.com/tags/%E7%BA%BF%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>Java线程池实现原理（二）</title>
@@ -535,28 +565,6 @@
     
     
       <category term="git" scheme="http://yoursite.com/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android后期开发的几个方向</title>
-    <link href="http://yoursite.com/2019/02/25/Android%E5%BC%80%E5%8F%91%E7%9A%84%E5%87%A0%E4%B8%AA%E6%96%B9%E5%90%91/"/>
-    <id>http://yoursite.com/2019/02/25/Android开发的几个方向/</id>
-    <published>2019-02-25T04:05:41.864Z</published>
-    <updated>2019-02-26T06:51:36.778Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>从2008年左右移动端的兴起，到2012-2015年左右移动端的炙手可热，到如今各种“凉凉论”的现状，作为一个Android开发者，自己的思考以及别人的观点，写一些自己的看法，供自己参考。目前，大环境也比较差（好像每年都这么说），焦虑没用，说白了只有积累自己，厚积薄发才可能不被市场和时间淘汰。</p><a id="more"></a><h1 id="移动端未来的几个方向"><a href="#移动端未来的几个方向" class="headerlink" title="移动端未来的几个方向"></a>移动端未来的几个方向</h1><h2 id="动态化"><a href="#动态化" class="headerlink" title="动态化"></a>动态化</h2><p>目前我们项目已经在尝试走组件化和插件化，前两年，插件化火起来了，为什么火呢，因为可以实现Android不用发布版本就可以热更新，但是插件化有自己的问题，就是兼容性。Android机型太多（马上要出折叠屏了），插件化框架难免要涉及到系统API的hook，兼容性问题就出现了，开发者会莫名其妙碰到各种错误，随着Android版本迭代，插件化这条路越来越不好走，Android P给了开发者一个信号，不能再随便hook系统API了，Google要开始整顿了。然后，另外一个动态化就是Hybrid开发了，利用H5和原生混合开发（目前最为流行的开发方式），例如老牌的Cordova，Facebook的React-Native（通过Jscore进行js解析，使得原生View进行渲染，提供桥机制调用原生的能力）。RN是第一个真正的高性能动态框架，它的出现让Web前端和客户端的界限变得模糊。随之而来的是各个大公司的自研框架，例如阿里巴巴的Weex和美团的Picasso框架，RN只提供了Android和IOS的支持，Weex扩展了思路，提供了Web端的支持，一个是React语法糖，一个Vue语法糖。另外，Google自己在2018年下半年正式推出了自己的跨平台方案—Flutter（前面Blog已经写过），通过Dart编写APP，然后编译成机器码运行在IOS和Android上，对开发者最好的是Hot reload，而且做到了原生跨平台。</p><h2 id="移动端机器学习"><a href="#移动端机器学习" class="headerlink" title="移动端机器学习"></a>移动端机器学习</h2><p>毫无疑问，移动端机器学习从2017年年底就开始火起来了，TensorFlow 也推出了移动端框架，很多应用都开始在移动端部署机器学习模型，例如相机类应用（FaceU）、电商类应用（唯品会）等，包括离线的机器学习。<br>如果深挖这个方向，我觉得十年内不会被淘汰。当然了，难度也不小。</p><h2 id="AR和VR"><a href="#AR和VR" class="headerlink" title="AR和VR"></a>AR和VR</h2><p>从支付宝的 AR抢红包、QQ的AR踢球等玩法被越来越多的人体验，AR走进了人们的视野。对于广告引流玩法来说，AR无疑是能带来巨大收益的。那么开发AR引擎的移动开发者自然成了香饽饽，目前AR主要应用的领域是广告变现，不过很多公司也找到了AR的一些落地场景，如果是研究OpenGL，计算机图形学的移动开发者，可以往AR引擎开发方向发展，非常有前景。</p><h2 id="移动端音视频"><a href="#移动端音视频" class="headerlink" title="移动端音视频"></a>移动端音视频</h2><p> 这个领域最火的就是抖音了，还有各种相机，图片应用等都需要音视频开发领域的专业开发人员，图像处理，滤镜，剪裁等，研究OpenGL，计算机图形学的移动开发者在这个领域也有很大的优势</p><h2 id="移动端区块链"><a href="#移动端区块链" class="headerlink" title="移动端区块链"></a>移动端区块链</h2><p>在人人都知道比特币的时候，背后的区块链技术也得到了大家的拥护，区块链应用目前最多的还是数字钱包，但是未来应该会有更多的落地方式，例如Status。如果有移动开发同学对区块链方向感兴趣的，可以开始研究起来了。如果要学习智能合约开发的同学，我推荐一个非常好的网站：Cryptozombies，绝对是入门 solidity 智能合约开发的精品。</p><p>目前移动端的区块链人才还不多，各大公司也没有在招，但是两三年内，应该就会爆发了，现在还在探索落地场景的阶段，也给了对区块链技术感兴趣的移动开发同学学习的时间。改变世界的技术了解一下？</p><h2 id="移动端基础框架"><a href="#移动端基础框架" class="headerlink" title="移动端基础框架"></a>移动端基础框架</h2><p>UI未来可能都会被动态化技术接管，但是移动基础框架不会。一个APP总要有网络请求，日志处理，ORM，缓存，PUSH等框架，这部分和UI关系不大，但是是组成APP不可或缺的部分。框架其实就是轮子，我们用轮子用的很溜并不代表你的代码能力很溜，而是人间写的轮子很溜，好的轮子就是无论开发者代码能力好坏，写出来的功能和性能都是差不多的，比如Retrofit，OKhttp等。在这些框架基础上P5和P7写的代码不会有多大差别。然后，轮子总要有人写，而且大公司的需求可能开源的轮子不满足，这时候就要自创轮子了。写轮子就需要开发者的知识深度和广度了，需要沉淀和学习。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;从2008年左右移动端的兴起，到2012-2015年左右移动端的炙手可热，到如今各种“凉凉论”的现状，作为一个Android开发者，自己的思考以及别人的观点，写一些自己的看法，供自己参考。目前，大环境也比较差（好像每年都这么说），焦虑没用，说白了只有积累自己，厚积薄发才可能不被市场和时间淘汰。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="文章" scheme="http://yoursite.com/categories/%E6%96%87%E7%AB%A0/"/>
-    
-    
-      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
     
   </entry>
   
