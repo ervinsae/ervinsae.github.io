@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2018/10/18/git%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</loc>
+    
+    <lastmod>2020-06-11T09:03:03.883Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/05/30/Kotlin%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0/</loc>
     
     <lastmod>2020-05-30T09:16:09.149Z</lastmod>
@@ -33,13 +40,6 @@
     <loc>http://yoursite.com/2020/05/12/JavaGuide%E4%B9%8BAQS/</loc>
     
     <lastmod>2020-05-12T07:18:30.357Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2018/10/18/git%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</loc>
-    
-    <lastmod>2020-05-12T06:24:24.632Z</lastmod>
     
   </url>
   
