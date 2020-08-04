@@ -89,12 +89,12 @@
 <meta property="og:site_name" content="Ervin">
 <meta property="og:description" content="概述以前聊过HashMap的数据结构，其实就是一个数组+链表Android内存优化。HashMap是无序的，因为他是按照key值去存放数据的，key值和你put进去的顺序几乎是不会相同的。那怎么能保证我put进去的数据和get出来的数据是相同顺序呢，这就要用到这里的LinkedHashMap。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4843132-7abca1abd714341d.png?imageMogr2/auto-orient/strip|imageView2/2/w/739">
-<meta property="og:updated_time" content="2020-07-25T08:34:51.954Z">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gheuq9kpiaj30kj0autae.jpg">
+<meta property="og:updated_time" content="2020-08-04T08:19:57.431Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="聊一聊LRU算法及LinkedHashMap">
 <meta name="twitter:description" content="概述以前聊过HashMap的数据结构，其实就是一个数组+链表Android内存优化。HashMap是无序的，因为他是按照key值去存放数据的，key值和你put进去的顺序几乎是不会相同的。那怎么能保证我put进去的数据和get出来的数据是相同顺序呢，这就要用到这里的LinkedHashMap。">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/4843132-7abca1abd714341d.png?imageMogr2/auto-orient/strip|imageView2/2/w/739">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gheuq9kpiaj30kj0autae.jpg">
 
 
 
@@ -415,7 +415,8 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> K key;</span><br><span class="line">V value;</span><br><span class="line"><span class="keyword">final</span> <span class="keyword">int</span> hash;</span><br><span class="line">HashMapEntry&lt;K, V&gt; next;</span><br></pre></td></tr></table></figure>
 <p>而LinkedHashMap的Entry则多了before和after：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> K key;</span><br><span class="line">V value;</span><br><span class="line"><span class="keyword">final</span> <span class="keyword">int</span> hash;</span><br><span class="line">HashMapEntry&lt;K, V&gt; next;</span><br><span class="line">Entry&lt;K, V&gt; before; <span class="comment">//上一个元素的引用</span></span><br><span class="line">Entry&lt;K, V&gt; after; <span class="comment">//下一个元素的引用</span></span><br></pre></td></tr></table></figure>
-<p>next指针是每一个数组后面的链表，而before和after则是整个LinkedHashMap的元素顺序，看图可能更好理解：<br><img src="https://upload-images.jianshu.io/upload_images/4843132-7abca1abd714341d.png?imageMogr2/auto-orient/strip|imageView2/2/w/739" alt><br>正是由于拥有before和after指针，所以LinkedHashMap是有序的而HashMap是无序的</p>
+<p>next指针是每一个数组后面的链表，而before和after则是整个LinkedHashMap的元素顺序，看图可能更好理解：</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gheuq9kpiaj30kj0autae.jpg" alt><br>正是由于拥有before和after指针，所以LinkedHashMap是有序的而HashMap是无序的</p>
 <h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><p>先来看例子：HashMap是无序的，而LinkedHashMap是有顺序的</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, String&gt; hashMap = <span class="keyword">new</span> HashMap&lt;String, String&gt;();</span><br><span class="line">hashMap.put(<span class="string">"name1"</span>, <span class="string">"josan1"</span>);</span><br><span class="line">hashMap.put(<span class="string">"name2"</span>, <span class="string">"josan2"</span>);</span><br><span class="line">hashMap.put(<span class="string">"name3"</span>, <span class="string">"josan3"</span>);</span><br><span class="line">Set&lt;Entry&lt;String, String&gt;&gt; set = hashMap.entrySet();</span><br><span class="line">Iterator&lt;Entry&lt;String, String&gt;&gt; iterator = set.iterator();</span><br><span class="line"><span class="keyword">while</span>(iterator.hasNext()) &#123;</span><br><span class="line">    Entry entry = iterator.next();</span><br><span class="line">    String key = (String) entry.getKey();</span><br><span class="line">    String value = (String) entry.getValue();</span><br><span class="line">    System.out.println(<span class="string">"key:"</span> + key + <span class="string">",value:"</span> + value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>自己可以打印输出结果看到，它不是按照put顺序的，同样的数据我们换成LinkedHashMap</p>
