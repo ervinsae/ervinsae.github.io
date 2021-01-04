@@ -2,16 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2020/07/23/%E8%81%8A%E8%81%8AHashMap/</loc>
+    <loc>http://yoursite.com/2018/01/04/JavaGuide%E4%B9%8Bvolatile/</loc>
     
-    <lastmod>2020-08-04T08:19:57.431Z</lastmod>
+    <lastmod>2021-01-04T09:01:44.608Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/2020/07/14/%E5%9F%BA%E4%BA%8ECAS%E6%80%9D%E6%83%B3%E7%9A%84AtomicBoolean/</loc>
     
-    <lastmod>2020-07-15T13:06:40.315Z</lastmod>
+    <lastmod>2021-01-04T06:08:35.080Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/05/30/Kotlin%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0/</loc>
+    
+    <lastmod>2020-12-29T08:24:32.474Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/07/23/%E8%81%8A%E8%81%8AHashMap/</loc>
+    
+    <lastmod>2020-08-04T08:19:57.431Z</lastmod>
     
   </url>
   
@@ -26,13 +40,6 @@
     <loc>http://yoursite.com/2018/10/18/git%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</loc>
     
     <lastmod>2020-06-11T09:03:03.883Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/05/30/Kotlin%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0/</loc>
-    
-    <lastmod>2020-05-30T09:16:09.149Z</lastmod>
     
   </url>
   

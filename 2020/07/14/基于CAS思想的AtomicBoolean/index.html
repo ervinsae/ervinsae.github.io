@@ -90,7 +90,8 @@
 <meta property="og:description" content="背景java中并发的类基本都在java.util.concurrent这个包中，包括前面介绍的大名鼎鼎的AQS。这个AtomicBoolean也是这个包的类，它支持在单个变量上解除锁的线程安全编程。java.util.concurrent.atomic此包中的类可以将volatile值，字段和数组元素的概念扩展到那些也提供院子条件更新操作的类。后续会一个一个研究。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggry7p6nl7j31780jaq5g.jpg">
-<meta property="og:updated_time" content="2020-07-15T13:06:40.315Z">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggrylt0w8sj30y20bo403.jpg">
+<meta property="og:updated_time" content="2021-01-04T06:08:35.080Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AtomicBoolean详解">
 <meta name="twitter:description" content="背景java中并发的类基本都在java.util.concurrent这个包中，包括前面介绍的大名鼎鼎的AQS。这个AtomicBoolean也是这个包的类，它支持在单个变量上解除锁的线程安全编程。java.util.concurrent.atomic此包中的类可以将volatile值，字段和数组元素的概念扩展到那些也提供院子条件更新操作的类。后续会一个一个研究。">
@@ -372,7 +373,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  791
+                  783
                 </span>
               
 
@@ -420,7 +421,7 @@
 <p>可以看到这个结果是相当混乱，所有线程都抢占了资源。我们再看下使用了AtomicBoolean来看看</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AtomicDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> AtomicBoolean aFlag = <span class="keyword">new</span> AtomicBoolean(<span class="keyword">true</span>);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Boolean bFlag = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        ExecutorService es = Executors.newFixedThreadPool(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">        AtomicDemo demo = <span class="keyword">new</span> AtomicDemo();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ;i &lt; <span class="number">10</span> ;i++) &#123;</span><br><span class="line">            es.submit(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    demo.executeAtomicLogic();</span><br><span class="line">                    <span class="comment">//demo.executeLogic();</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">executeAtomicLogic</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (aFlag.compareAndSet(<span class="keyword">true</span>, <span class="keyword">false</span>)) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">                System.out.println(LocalDate.now() + <span class="string">" "</span> + LocalTime.now() + <span class="string">"--"</span> + Thread.currentThread().getName() + <span class="string">"--处理业务逻辑开始..."</span>);</span><br><span class="line">                Thread.sleep(<span class="number">5000</span>);</span><br><span class="line">                System.out.println(LocalDate.now() + <span class="string">" "</span> + LocalTime.now() + <span class="string">"--"</span> + Thread.currentThread().getName() + <span class="string">"--处理业务逻辑完毕."</span>);</span><br><span class="line">            &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">                System.out.println(LocalDate.now() + <span class="string">" "</span> + LocalTime.now() + <span class="string">"--"</span> + Thread.currentThread().getName() + <span class="string">"--处理业务逻辑失败!!!"</span>);</span><br><span class="line">            &#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">                aFlag.set(<span class="keyword">true</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">            System.out.println(LocalDate.now() + <span class="string">" "</span> + LocalTime.now() + <span class="string">"--"</span> + Thread.currentThread().getName() + <span class="string">"--已经存在处理中的业务，请稍后再试!"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>结果：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![](https:<span class="comment">//tva1.sinaimg.cn/large/007S8ZIlgy1ggrylt0w8sj30y20bo403.jpg)</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggrylt0w8sj30y20bo403.jpg" alt></p>
 <p>和加锁的效果完全一样。</p>
 
       
@@ -544,7 +545,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -555,7 +556,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -566,7 +567,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -648,7 +649,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -662,7 +663,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">80.2k</span>
+    <span title="Site words total count">82k</span>
   
 </div>
 
