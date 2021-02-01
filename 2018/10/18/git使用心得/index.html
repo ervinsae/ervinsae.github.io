@@ -90,7 +90,7 @@
 <meta property="og:description" content="git reset1.使用git add .添加了所有修改文件到暂存区之后在commite到本地之前想撤销add操作可以使用1git reset HEAD &amp;lt;file&amp;gt; 将某个文件从暂存区拿出来。 2.已经commite了提交到了本地但是还没有push到远端，这时候发现有个文件不能提交到远端可以使用1git reset -soft/--mix/--hard &amp;lt;commite id">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1ga9yt7x5esj31pk0eodht.jpg">
-<meta property="og:updated_time" content="2021-01-11T11:35:16.337Z">
+<meta property="og:updated_time" content="2021-02-01T10:42:47.171Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git使用心得">
 <meta name="twitter:description" content="git reset1.使用git add .添加了所有修改文件到暂存区之后在commite到本地之前想撤销add操作可以使用1git reset HEAD &amp;lt;file&amp;gt; 将某个文件从暂存区拿出来。 2.已经commite了提交到了本地但是还没有push到远端，这时候发现有个文件不能提交到远端可以使用1git reset -soft/--mix/--hard &amp;lt;commite id">
@@ -372,7 +372,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.9k
+                  3k
                 </span>
               
 
@@ -517,10 +517,12 @@
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 合并代码</span><br><span class="line"># 切换到本地develop分支</span><br><span class="line">git checkout develop</span><br><span class="line"># 拉取最新的远程origin/develop分支代码，因为可能已经有人提交了代码</span><br><span class="line">git pull --rebase</span><br><span class="line"># 从本地feature-login分支合并代码，--no-ff为禁止fast-farward模式</span><br><span class="line">git merge --no-ff feature-login</span><br><span class="line"># 推送到远程分支</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 代码已经合并完，可以删除本地特性分支和远程特性分支</span><br><span class="line"># 删除本地feature-login特性分支</span><br><span class="line">git branch -d feature-login</span><br><span class="line"># 删除远程origin/feature-login特性分支（废除，实验无效）</span><br><span class="line">git branch -r -d origin/feature-login</span><br><span class="line">#在v1.7.0 之后，可以使用这种语法删除远程分支(同删除标签tag类似)</span><br><span class="line">git push origin --delete &lt;branch name&gt;</span><br></pre></td></tr></table></figure>
+<p>当你用上面删除远程分支（删除tag）命令时，当你的分支名称和tag名称一样时，会报错，因为git不知道你到底要删除branch还是head。所以可以这样做</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//删除 dev_test 分支</span><br><span class="line">git push origin :refs/heads/branchName</span><br><span class="line">//删除 dev_test 标签</span><br><span class="line">git push origin :refs/tags/branchName</span><br></pre></td></tr></table></figure>
 <ol start="7">
-<li>本地根据tag创建分支<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 根据tag创建分支</span><br><span class="line">git branch &lt;new-branch-name&gt; &lt;tag-name&gt;</span><br><span class="line">git branch v2.2-fixbug V2.2</span><br><span class="line">#将新分支推送到远程仓库</span><br><span class="line">git push origin v2.2-fixbug</span><br></pre></td></tr></table></figure>
-</li>
+<li>本地根据tag创建分支</li>
 </ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 根据tag创建分支</span><br><span class="line">git branch &lt;new-branch-name&gt; &lt;tag-name&gt;</span><br><span class="line">git branch v2.2-fixbug V2.2</span><br><span class="line">#将新分支推送到远程仓库</span><br><span class="line">git push origin v2.2-fixbug</span><br></pre></td></tr></table></figure>
 <h3 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h3><p>push到远程分支有https和ssh两种方式，https每次push都会要求输入用户名和密码，而ssh只要在远端注册了ssh key则不需要。<br>另外，ssh可以上传大文件，https貌似不行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 这个会把本地当前分支的内容push到远端的demo分支，如果远端没有该分支则自动创建</span><br><span class="line">git push -u origin demo</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 生成ssh key,该程序在 Linux/Mac 系统上由 SSH 包提供，而在 Windows 上则包含在 MSysGit 包里：</span><br><span class="line">ssh-keygen</span><br><span class="line"># 可以查看远程分支情况</span><br><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
 <h3 id="git-reset-1"><a href="#git-reset-1" class="headerlink" title="git reset"></a>git reset</h3><p>第一小节有类似操作。</p>
@@ -789,7 +791,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">83.3k</span>
+    <span title="Site words total count">83.4k</span>
   
 </div>
 

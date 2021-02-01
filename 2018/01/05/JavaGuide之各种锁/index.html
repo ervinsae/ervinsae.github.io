@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="并发,多线程,基础,">
+  <meta name="keywords" content="多线程,并发,基础,">
 
 
 
@@ -82,7 +82,7 @@
 
 
 <meta name="description" content="背景多线程的本质其实就是各种线程对静态资源的合理使用问题，怎么能最大限度发挥CPU性能执行任务。锁这种概念就是解决多个线程抢占资源问题的办法，当A线程使用资源时起时不希望B线程也去使用，因为如果同时操作静态资源会导致读写不一致等问题。 各种锁的分类以下的分类都是站在不同角度对锁这种概念的分类，相互之间并没有必然的关系。">
-<meta name="keywords" content="并发,多线程,基础">
+<meta name="keywords" content="多线程,并发,基础">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaGuide之各种锁">
 <meta property="og:url" content="http://yoursite.com/2018/01/05/JavaGuide之各种锁/index.html">
@@ -91,7 +91,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://awps-assets.meituan.net/mit-x/blog-images-bundle-2018b/452a3363.png">
 <meta property="og:image" content="https://awps-assets.meituan.net/mit-x/blog-images-bundle-2018b/83b3f85e.png">
-<meta property="og:updated_time" content="2021-01-11T12:39:12.990Z">
+<meta property="og:updated_time" content="2021-01-21T12:40:56.872Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaGuide之各种锁">
 <meta name="twitter:description" content="背景多线程的本质其实就是各种线程对静态资源的合理使用问题，怎么能最大限度发挥CPU性能执行任务。锁这种概念就是解决多个线程抢占资源问题的办法，当A线程使用资源时起时不希望B线程也去使用，因为如果同时操作静态资源会导致读写不一致等问题。 各种锁的分类以下的分类都是站在不同角度对锁这种概念的分类，相互之间并没有必然的关系。">
@@ -428,7 +428,7 @@
 <p>自旋锁本身是有缺点的，它不能代替阻塞。自旋等待虽然避免了线程切换的开销，但它要占用处理器时间。如果锁被占用的时间短，自旋等待的效果就很好，反之，如果锁被占用的时间很长，那么自旋的线程只会白白浪费处理器资源。所以，自旋等待的时间必须要有限制，如果自旋超过了限定的次数（默认是10次，可以更改）没有成功获取到锁，就应当挂起线程。</p>
 <p>自旋锁的实现原理同样也是CAS，AtomicInteger中调用unsafe进行自增操作的源码中do-while循环就是一个自旋操作，如果修改数值失败则通过循环来执行自旋，直至修改成功。<br><img src="https://awps-assets.meituan.net/mit-x/blog-images-bundle-2018b/83b3f85e.png" alt><br>自适应自旋锁其实就是自旋的时间（次数，循环次数）不是固定的，而是由前一次在同一个锁上的自旋时间及锁的拥有者来决定（怎么决定）。如果在同一个锁对象上，自旋等待刚刚成功获得过锁，并且持有锁的线程正在运行，那么虚拟机就会认为这次自旋也是很有可能再次成功，进而它将允许自旋邓艾持续相对更长的时间，如果对于某个锁，自旋很少成功获得过，那么以后再尝试获取这个锁时将可能不自旋，直接阻塞线程，避免浪费处理器资源。</p>
 <p>在自旋锁中，另有三种常见的锁形式：TicketLock，CLHlock和MSlock。（TODO查查资料）</p>
-<h2 id="无锁-偏向锁-轻量级锁-重量级锁"><a href="#无锁-偏向锁-轻量级锁-重量级锁" class="headerlink" title="无锁/偏向锁/轻量级锁/重量级锁"></a>无锁/偏向锁/轻量级锁/重量级锁</h2><p>这四种锁是指锁的状态，专门针对synchronized的。</p>
+<h2 id="无锁-偏向锁-轻量级锁-重量级锁"><a href="#无锁-偏向锁-轻量级锁-重量级锁" class="headerlink" title="无锁/偏向锁/轻量级锁/重量级锁"></a>无锁/偏向锁/轻量级锁/重量级锁</h2><p>这四种锁是指锁的状态，专门针对synchronized的。(<a href="https://juejin.cn/post/6844904102560972808" target="_blank" rel="noopener">synchronized在JDK 1.6之后有被优化</a>)</p>
 
       
     </div>
@@ -446,11 +446,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/并发/" rel="tag"><i class="fa fa-tag"></i>
- 并发</a>
-          
             <a href="/tags/多线程/" rel="tag"><i class="fa fa-tag"></i>
  多线程</a>
+          
+            <a href="/tags/并发/" rel="tag"><i class="fa fa-tag"></i>
+ 并发</a>
           
             <a href="/tags/基础/" rel="tag"><i class="fa fa-tag"></i>
  基础</a>
@@ -675,7 +675,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">83.3k</span>
+    <span title="Site words total count">83.4k</span>
   
 </div>
 
