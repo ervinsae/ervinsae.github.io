@@ -287,6 +287,223 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/Kotlin-Tips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ervin Zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ervin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/23/Kotlin-Tips/" itemprop="url">怎么用Kotlin去提高生产力：Kotlin Tips</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-23T10:16:01+08:00">
+                2018-11-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  10.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  46
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li><a href="#Tip1-更简洁的字符串">Tip1-更简洁的字符串</a><ul>
+<li>1、三个引号  2、字符串模版</li>
+</ul>
+</li>
+<li><a href="#Tip2-Kotlin中大多数控制结构都是表达式">Tip2-Kotlin中大多数控制结构都是表达式</a><ul>
+<li>1、语句和表达式  2、if  3、when</li>
+</ul>
+</li>
+<li><a href="#Tip3-更好调用的函数-显式参数名及默认参数值">Tip3-更好调用的函数：显式参数名及默认参数值</a><ul>
+<li>1、显式参数名  2、默认参数值  3、@JvmOverloads </li>
+</ul>
+</li>
+<li><a href="#Tip4-扩展函数和属性">Tip4-扩展函数和属性</a><ul>
+<li>1、扩展函数  2、扩展属性</li>
+</ul>
+</li>
+<li><a href="#Tip5-懒初始化bylazy和延迟初始化lateinit">Tip5-懒初始化bylazy和延迟初始化lateinit</a><ul>
+<li>1、by lazy  2、lateinit</li>
+</ul>
+</li>
+<li><a href="#Tip6-不用再手写findViewById">Tip6-不用再手写findViewById</a><ul>
+<li>1、Activity  2、子View或者include标签  3、Fragment</li>
+</ul>
+</li>
+<li><a href="#Tip7-利用局部函数抽取重复代码">Tip7-利用局部函数抽取重复代码</a><ul>
+<li>1、局部函数  2、扩展函数</li>
+</ul>
+</li>
+<li><a href="#Tip8-使用数据类来快速实现model类">Tip8-使用数据类来快速实现model类</a>  </li>
+<li><a href="#Tip9-用类委托来快速实现装饰器模式">Tip9-用类委托来快速实现装饰器模式</a> </li>
+<li><a href="#Tip10-Lambda表达式简化OnClickListener">Tip10-Lambda表达式简化OnClickListener</a></li>
+<li><a href="#Tip11-with函数来简化代码">Tip11-with函数来简化代码</a> </li>
+<li><a href="#Tip12-apply函数来简化代码">Tip12-apply函数来简化代码</a> </li>
+<li><a href="#Tip13-在编译阶段避免掉NullPointerException">Tip13-在编译阶段避免掉NullPointerException</a><ul>
+<li>1、可空和不可空类型  2、let  3、Elvis操作符</li>
+</ul>
+</li>
+<li><a href="#Tip14-运算符重载">Tip14-运算符重载</a> </li>
+<li><a href="#Tip15-高阶函数简化代码">Tip15-高阶函数简化代码</a> </li>
+<li><a href="#Tip16-用Lambda来简化策略模式">Tip16-用Lambda来简化策略模式</a>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/23/Kotlin-Tips/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </li></ul></div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/14/寒冬已至，Android的出路/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1920,225 +2137,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/18/git使用心得/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ervin Zhang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ervin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/18/git使用心得/" itemprop="url">Git使用心得</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-18T12:17:12+08:00">
-                2018-10-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  11
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h3><p>1.使用git add .添加了所有修改文件到暂存区之后在commite到本地之前想撤销add操作可以使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD &lt;file&gt;</span><br></pre></td></tr></table></figure></p>
-<p>将某个文件从暂存区拿出来。</p>
-<p>2.已经commite了提交到了本地但是还没有push到远端，这时候发现有个文件不能提交到远端可以使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset -soft/--mix/--hard &lt;commite id&gt;</span><br></pre></td></tr></table></figure></p>
-<p>会将本地仓库回退到commite id这个版本（可以是上一次commite的版本）。reset后的参数代表了是否保留本地代码的修改，具体可以查询网络。<a href="https://www.jianshu.com/p/cbd5cd504f14" target="_blank" rel="noopener">git reset命令的使用</a></p>
-<table>
-<thead>
-<tr>
-<th>选项</th>
-<th>git reset的影响</th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>选项</td>
-<td>HEAD</td>
-<td>索引（暂存区）</td>
-<td>工作目录（源代码）</td>
-</tr>
-<tr>
-<td>–soft</td>
-<td>是</td>
-<td>否</td>
-<td>否</td>
-</tr>
-<tr>
-<td>–mix</td>
-<td>是</td>
-<td>是</td>
-<td>否</td>
-</tr>
-<tr>
-<td>–hard</td>
-<td>是</td>
-<td>是</td>
-<td>是</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>HEAD：表示当前git指针指向的位置<br>索引：表示add之后去到的暂存区<br>工作目录：表示代码文件的改动<br>提交C1 –&gt; 提交C2<br>总结就是：soft后git指针会指向C1的提交，而C2修改的文件还是add状态，修改内容不会丢失，对现有的版本改动最小；mix后（git reset默认操作）git指针会指向C1提交，C2修改的文件不是add状态（需要重新add）不在暂存区，文件修改内容不丢失；hard后git指针指向C1提交，C2修改文件不在暂存区，文件修改丢失，完全恢复到C1提交的状态. <code>hard慎用</code></p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/18/git使用心得/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2191,7 +2189,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2279,7 +2277,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -2293,7 +2291,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">81.7k</span>
+    <span title="Site words total count">82.8k</span>
   
 </div>
 
