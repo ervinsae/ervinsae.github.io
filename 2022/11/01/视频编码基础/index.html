@@ -85,7 +85,7 @@
 <meta name="keywords" content="技能提升">
 <meta property="og:type" content="article">
 <meta property="og:title" content="视频编码基础">
-<meta property="og:url" content="http://yoursite.com/2022/05/01/视频编码基础/index.html">
+<meta property="og:url" content="http://yoursite.com/2022/11/01/视频编码基础/index.html">
 <meta property="og:site_name" content="Ervin">
 <meta property="og:description" content="视频传输基本原理视频是利用人眼的视觉暂留的原理，通过播放一系列的图片，使人眼产生运动的感觉。单纯传输视频画面，视频量非常大，对现有的网络和存储来说很不友好。为了能够使视频便于传输和存储，人们发现有视频有大量重复的信息，如果将重复信息在发送端去掉，在接收端回复回来，这样就大大减少了视频数据的文件，因此有了H.264视频压缩标准。 视频里面最常用的编码格式就说H.264，基于这个编码格式还有H.265">
 <meta property="og:locale" content="zh-Hans">
@@ -93,7 +93,7 @@
 <meta property="og:image" content="https://s2.51cto.com/images/blog/202107/08/84e6f4363aad1267eb6ccab8deff75fb.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184">
 <meta property="og:image" content="https://s2.51cto.com/images/blog/202107/08/8b94a54c69de71e27977d562b8eecfcf.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184">
 <meta property="og:image" content="https://s2.51cto.com/images/blog/202107/08/ca6f098048f8800d693d124a31b4f3eb.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184">
-<meta property="og:updated_time" content="2022-11-01T10:06:59.379Z">
+<meta property="og:updated_time" content="2022-11-01T10:18:57.601Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="视频编码基础">
 <meta name="twitter:description" content="视频传输基本原理视频是利用人眼的视觉暂留的原理，通过播放一系列的图片，使人眼产生运动的感觉。单纯传输视频画面，视频量非常大，对现有的网络和存储来说很不友好。为了能够使视频便于传输和存储，人们发现有视频有大量重复的信息，如果将重复信息在发送端去掉，在接收端回复回来，这样就大大减少了视频数据的文件，因此有了H.264视频压缩标准。 视频里面最常用的编码格式就说H.264，基于这个编码格式还有H.265">
@@ -127,7 +127,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2022/05/01/视频编码基础/">
+  <link rel="canonical" href="http://yoursite.com/2022/11/01/视频编码基础/">
 
 
 
@@ -292,7 +292,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/01/视频编码基础/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/11/01/视频编码基础/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ervin Zhang">
@@ -321,8 +321,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-05-01T08:00:00+08:00">
-                2022-05-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-11-01T00:00:00+08:00">
+                2022-11-01
               </time>
             
 
@@ -418,6 +418,7 @@
 <blockquote>
 <p>GOP是一组连续的画面，由一张I帧和数张B帧和P帧组成，它是视频图像编码器和解码器存取的基本单位，它的排列顺序将会一直重复到影像结束。I帧是内部编码帧（也称为关键帧），P帧是前向预测帧（前向参考帧），B帧是双向内插帧（双向参考帧）。简单说，I帧是一个完整的画面，而P帧和B帧记录的是相对于I帧的变化。如果没有I帧，P和B是无法解码的。<br><img src="https://s2.51cto.com/images/blog/202107/08/84e6f4363aad1267eb6ccab8deff75fb.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" alt="在H.264编码中I帧，P帧，B帧传输的视频画面"></p>
 </blockquote>
+<a id="more"></a>
 <h1 id="I帧-P帧-B帧"><a href="#I帧-P帧-B帧" class="headerlink" title="I帧,P帧,B帧"></a>I帧,P帧,B帧</h1><ul>
 <li><strong>I帧</strong><br>I帧:即Intra-coded picture（帧内编码图像帧），I帧表示<strong>关键帧</strong>，你可以理解为这一帧画面的完整保留；每个GOP组中第一帧一定是I帧，而且是一种特殊的I帧，也可以称为IDR帧，一个GOP可以有很多I帧，但是只有1个IDR帧。I帧法是基于离散余弦变换DCT（Discrete Cosine Transform）的压缩技术，这种算法与JPEG压缩算法类似。采用I帧压缩可达到1/6的压缩比而无明显的压缩痕迹。</li>
 </ul>
@@ -486,8 +487,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/06/18/消息角标/" rel="next" title="消息推送">
-                <i class="fa fa-chevron-left"></i> 消息推送
+              <a href="/2022/06/29/Flutter技术规划/" rel="next" title="跨平台技术Flutter技术规划">
+                <i class="fa fa-chevron-left"></i> 跨平台技术Flutter技术规划
               </a>
             
           </div>
@@ -495,10 +496,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2022/05/19/怎么看懂UML类图和时序图/" rel="prev" title="怎么看懂UML类图">
-                怎么看懂UML类图 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2022-07-01T13:24:24.694Z</updated>
+  <updated>2022-11-01T10:18:57.601Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,23 +17,51 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
-    <link href="http://yoursite.com/2022/06/29/Flutter%E6%8A%80%E6%9C%AF%E8%A7%84%E5%88%92/"/>
-    <id>http://yoursite.com/2022/06/29/Flutter技术规划/</id>
-    <published>2022-06-29T13:44:54.453Z</published>
-    <updated>2022-07-01T13:24:24.694Z</updated>
+    <title>视频编码基础</title>
+    <link href="http://yoursite.com/2022/11/01/%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E5%9F%BA%E7%A1%80/"/>
+    <id>http://yoursite.com/2022/11/01/视频编码基础/</id>
+    <published>2022-10-31T16:00:00.000Z</published>
+    <updated>2022-11-01T10:18:57.601Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="跨平台技术Flutter技术规划"><a href="#跨平台技术Flutter技术规划" class="headerlink" title="跨平台技术Flutter技术规划"></a>跨平台技术Flutter技术规划</h1><h2 id="跨平台技术的使用目的"><a href="#跨平台技术的使用目的" class="headerlink" title="跨平台技术的使用目的"></a>跨平台技术的使用目的</h2><p>   目前，我们前端项目中其实已经使用了跨平台技术：医动力中使用了部分H5页面。这种会带来一些好处，例如可以并行开发，可以不同端UI保持一致，加快开发节奏等。但是H5属于前端技术，对于移动端来说并没有复用人力。所以就有了移动端可以开发的跨平台技术例如RN，Flutter等。Flutter是Google主导的跨平台技术，目前已经到了3.0，技术社区很活跃，已经有比较多的厂商在项目中使用。本文主要基于Flutter来讲解。</p><h2 id="跨平台技术的好处"><a href="#跨平台技术的好处" class="headerlink" title="跨平台技术的好处"></a>跨平台技术的好处</h2><ul><li><p>UI一致性<br>医动力中UI不一致的问题一直被诟病，通过跨平台技术就可以很好解决这个问题，特别是Flutter因为是自己做的渲染，所以在iOS和Android的表现基本完全一致。</p></li><li><p>动态化技术<br>Flutter的一大特点，是支持热重载，就是不需要编辑即能看到修改代码后的效果。另外一般跨平台技术都能支持热更新，但是热更新在上应用市场时需要慎用。</p></li><li><p>APP体积<br>包大小也一直是APP优化的主要方向之一，目前主要是通过混淆，无用资源的识别，第三方库的按需引用等。第三方的跨平台技术由于封装的关系，同样的实现包体积会小很多。</p></li></ul><h2 id="跨平台技术的一些弱点"><a href="#跨平台技术的一些弱点" class="headerlink" title="跨平台技术的一些弱点"></a>跨平台技术的一些弱点</h2><ul><li><p>适配问题<br>跨平台技术绕不开的难题，由于需要跨平台所以在不同平台下的适配，包括原生接入了第三方SDK后都会存在一定的问题。另外，开发工具升级后，本身的版本适配也是一个问题。</p></li><li><p>组件贫乏<br>很多控件需要重新开发，前期需要很多人力去构建基础组件，维护组件。</p></li><li><p>维护问题<br>代码可读性比较差，跨平台代码天然与原生代码不一样，例如Flutter的回调地狱，一层一层的嵌套布局等，会增加维护成本。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>对于跨平台技术而言，首先这肯定是一种提高开发效率的工具，对于优化APP是有助力作用的，另一方面它也存在一些不可避免的问题，这个要求我们合理合规的去使用它。综上，我们在跨平台技术上需要做一些技术积累，找到和业务最合适的接入点去接入这些跨平台技术，并及时总结不断修正使用方式。</p><h2 id="目标路线"><a href="#目标路线" class="headerlink" title="目标路线"></a>目标路线</h2><p>Flutter相对H5的优势主要是它的UI渲染引擎Skia来绘制UI时，能够达到颦美原生的UI效果，相对H5而言体验会顺畅很多，而且也可以避免对原生控件的依赖。基于这些优势，结合我们医动力项目中的实际情况，可以分阶段实现Flutter技术在移动端项目中的应用。</p></li></ul><p><img src="media/16566818209440.jpg" alt></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="视频传输基本原理"><a href="#视频传输基本原理" class="headerlink" title="视频传输基本原理"></a>视频传输基本原理</h1><p>视频是利用人眼的视觉暂留的原理，通过播放一系列的图片，使人眼产生运动的感觉。单纯传输视频画面，视频量非常大，对现有的网络和存储来说很不友好。为了能够使视频便于传输和存储，人们发现有视频有大量重复的信息，如果将重复信息在发送端去掉，在接收端回复回来，这样就大大减少了视频数据的文件，因此有了H.264视频压缩标准。</p><p>视频里面最常用的编码格式就说H.264，基于这个编码格式还有H.265（后续研究），音频采样数据会采用AAC编码格式进行压缩。视频内容经过编码压缩后，确实有利于存储和传输。不过当要观看播放视频时，相应也需要解码过程，将压缩的视频还原。所以，编解码之间显然需要约定一种协议，这种协议大概的流程是：<strong>编码器将多张图像进行编码后产生一段一段的GOP（Group of picture），解码器则在播放时读取一段一段的GOP进行解码后读取画面再渲染显示。</strong></p><p><img src="https://img-blog.csdnimg.cn/20210710150024450.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMDA0OTMy,size_16,color_FFFFFF,t_70" alt="GOP"></p><blockquote><p>GOP是一组连续的画面，由一张I帧和数张B帧和P帧组成，它是视频图像编码器和解码器存取的基本单位，它的排列顺序将会一直重复到影像结束。I帧是内部编码帧（也称为关键帧），P帧是前向预测帧（前向参考帧），B帧是双向内插帧（双向参考帧）。简单说，I帧是一个完整的画面，而P帧和B帧记录的是相对于I帧的变化。如果没有I帧，P和B是无法解码的。<br><img src="https://s2.51cto.com/images/blog/202107/08/84e6f4363aad1267eb6ccab8deff75fb.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" alt="在H.264编码中I帧，P帧，B帧传输的视频画面"></p></blockquote><a id="more"></a><h1 id="I帧-P帧-B帧"><a href="#I帧-P帧-B帧" class="headerlink" title="I帧,P帧,B帧"></a>I帧,P帧,B帧</h1><ul><li><strong>I帧</strong><br>I帧:即Intra-coded picture（帧内编码图像帧），I帧表示<strong>关键帧</strong>，你可以理解为这一帧画面的完整保留；每个GOP组中第一帧一定是I帧，而且是一种特殊的I帧，也可以称为IDR帧，一个GOP可以有很多I帧，但是只有1个IDR帧。I帧法是基于离散余弦变换DCT（Discrete Cosine Transform）的压缩技术，这种算法与JPEG压缩算法类似。采用I帧压缩可达到1/6的压缩比而无明显的压缩痕迹。</li></ul><p><u>I帧的特点：</u></p><ol><li>它是一个全帧压缩编码帧。它将全帧图像信息进行JPEG压缩编码及传输</li><li>解码时仅用I帧的数据就可以重构完整的图像</li><li>I帧描述了图像背景和运动主体的详情</li><li>I帧不需要参考其他画面而生成</li><li>I帧是P帧和B帧的参考帧</li><li>I帧所占数据的信息量比较大</li></ol><ul><li><strong>P帧</strong><br>P帧:即Predictive-coded Picture（前向预测编码图像帧）。P帧表示的是这一帧跟之前的一个关键帧（或P帧）的差别，解码时需要用之前缓存的画面叠加上本帧定义的差别，生成最终画面。（也就是差别帧，P帧没有完整画面数据，只有与前一帧的画面差别的数据）</li></ul><p><img src="https://s2.51cto.com/images/blog/202107/08/8b94a54c69de71e27977d562b8eecfcf.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" alt="P帧"><br><u>P帧的特点：</u></p><ol><li>P帧是I帧后面相隔1-2帧的编码帧</li><li>P帧采用运动补偿的方法传送它与前面的I或者P帧的差值及运动矢量预测误差</li><li>解码时必须将I帧中的预测值与预测误差求和后才能重构完整的P帧图像</li><li>P帧属于前向预测的帧间编码。它只参考前面最靠近它的I帧或P帧</li><li>P帧可以是其后面P帧的参考帧，也可以是其前后的B帧的参考帧</li><li>由于P帧是参考帧，它可能造成解码错误的扩散</li><li>由于是差值传输，P帧的压缩比较高（大概I帧的一半大小）</li></ol><ul><li><strong>B帧</strong><br>B帧：即Bidirectionally predicted picture（双向预测编码图像帧)。B帧是双向差别帧，也就是B帧记录的是本帧与前后帧的差别，换言之，要解码B帧，不仅要取得之前的缓存画面，还要解码之后的画面，通过前后画面的与本帧数据的叠加取得最终的画面。B帧压缩率高，但是解码时CPU会比较累。</li></ul><p><img src="https://s2.51cto.com/images/blog/202107/08/ca6f098048f8800d693d124a31b4f3eb.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" alt="B帧"><br><u>B帧的特点</u></p><ol><li>B帧是由前面的I或P帧和后面的P帧来进行预测的</li><li>B帧传送的是它与前面的I帧或者P帧和后面的P帧之间的预测误差及运动矢量</li><li>B帧是双向预测编码帧</li><li>B帧压缩比最高，对解码性能要求也高（大概I帧的四分之一）</li><li>需要参考前一个I帧或者P帧及其后面的一个P帧来生成一张完整的视频画面，所以P帧与B帧去掉的是视频帧在时间维度上的冗余信息。</li></ol><p><u>B帧存在的价值</u><br>从上面分析可知，I帧和P帧的解码算法比较简单，资源占用比较少，I只要自己完成就行了，P帧也只需要解码器把前一个画面缓存一下，遇到P时就使用之前缓存的画面就好了，如果只有I和P，解码器可以不用处理后续数据，边读边解码，那为什么还要引入B帧呢？因为B帧记录了前后帧的差别，<strong>比P帧能节约更多空间</strong>，这样视频文件可以变小，但是相应的就要求解码器性能比较高了，因为在解码时，不仅要用之前缓存的画面，还要知道下一个I或者P的画面（也就时说要预读，预解码），而且，B帧不能简单丢掉，因为B帧其实也包含了画面信息，如果简单丢掉，并用之前的缓慢简单重复，就会造成画面卡顿（丢帧）。</p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;h1 id=&quot;跨平台技术Flutter技术规划&quot;&gt;&lt;a href=&quot;#跨平台技术Flutter技术规划&quot; class=&quot;headerlink&quot; title=&quot;跨平台技术Flutter技术规划&quot;&gt;&lt;/a&gt;跨平台技术Flutter技术规划&lt;/h1&gt;&lt;h2 id=&quot;跨平台技术的使用目
-      
+      &lt;h1 id=&quot;视频传输基本原理&quot;&gt;&lt;a href=&quot;#视频传输基本原理&quot; class=&quot;headerlink&quot; title=&quot;视频传输基本原理&quot;&gt;&lt;/a&gt;视频传输基本原理&lt;/h1&gt;&lt;p&gt;视频是利用人眼的视觉暂留的原理，通过播放一系列的图片，使人眼产生运动的感觉。单纯传输视频画面，视频量非常大，对现有的网络和存储来说很不友好。为了能够使视频便于传输和存储，人们发现有视频有大量重复的信息，如果将重复信息在发送端去掉，在接收端回复回来，这样就大大减少了视频数据的文件，因此有了H.264视频压缩标准。&lt;/p&gt;
+&lt;p&gt;视频里面最常用的编码格式就说H.264，基于这个编码格式还有H.265（后续研究），音频采样数据会采用AAC编码格式进行压缩。视频内容经过编码压缩后，确实有利于存储和传输。不过当要观看播放视频时，相应也需要解码过程，将压缩的视频还原。所以，编解码之间显然需要约定一种协议，这种协议大概的流程是：&lt;strong&gt;编码器将多张图像进行编码后产生一段一段的GOP（Group of picture），解码器则在播放时读取一段一段的GOP进行解码后读取画面再渲染显示。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://img-blog.csdnimg.cn/20210710150024450.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMDA0OTMy,size_16,color_FFFFFF,t_70&quot; alt=&quot;GOP&quot;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;GOP是一组连续的画面，由一张I帧和数张B帧和P帧组成，它是视频图像编码器和解码器存取的基本单位，它的排列顺序将会一直重复到影像结束。I帧是内部编码帧（也称为关键帧），P帧是前向预测帧（前向参考帧），B帧是双向内插帧（双向参考帧）。简单说，I帧是一个完整的画面，而P帧和B帧记录的是相对于I帧的变化。如果没有I帧，P和B是无法解码的。&lt;br&gt;&lt;img src=&quot;https://s2.51cto.com/images/blog/202107/08/84e6f4363aad1267eb6ccab8deff75fb.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184&quot; alt=&quot;在H.264编码中I帧，P帧，B帧传输的视频画面&quot;&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
     
     </summary>
     
+      <category term="技术" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="技能提升" scheme="http://yoursite.com/tags/%E6%8A%80%E8%83%BD%E6%8F%90%E5%8D%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>跨平台技术Flutter技术规划</title>
+    <link href="http://yoursite.com/2022/06/29/Flutter%E6%8A%80%E6%9C%AF%E8%A7%84%E5%88%92/"/>
+    <id>http://yoursite.com/2022/06/29/Flutter技术规划/</id>
+    <published>2022-06-29T13:44:54.453Z</published>
+    <updated>2022-11-01T10:18:57.686Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="跨平台技术的使用目的"><a href="#跨平台技术的使用目的" class="headerlink" title="跨平台技术的使用目的"></a>跨平台技术的使用目的</h2><p>   目前，我们前端项目中其实已经使用了跨平台技术：医动力中使用了部分H5页面。这种会带来一些好处，例如可以并行开发，可以不同端UI保持一致，加快开发节奏等。但是H5属于前端技术，对于移动端来说并没有复用人力。所以就有了移动端可以开发的跨平台技术例如RN，Flutter等。Flutter是Google主导的跨平台技术，目前已经到了3.0，技术社区很活跃，已经有比较多的厂商在项目中使用。本文主要基于Flutter来讲解。</p>   <a id="more"></a><h2 id="跨平台技术的好处"><a href="#跨平台技术的好处" class="headerlink" title="跨平台技术的好处"></a>跨平台技术的好处</h2><ul><li><p>UI一致性<br>医动力中UI不一致的问题一直被诟病，通过跨平台技术就可以很好解决这个问题，特别是Flutter因为是自己做的渲染，所以在iOS和Android的表现基本完全一致。</p></li><li><p>动态化技术<br>Flutter的一大特点，是支持热重载，就是不需要编辑即能看到修改代码后的效果。另外一般跨平台技术都能支持热更新，但是热更新在上应用市场时需要慎用。</p></li><li><p>APP体积<br>包大小也一直是APP优化的主要方向之一，目前主要是通过混淆，无用资源的识别，第三方库的按需引用等。第三方的跨平台技术由于封装的关系，同样的实现包体积会小很多。</p></li></ul><h2 id="跨平台技术的一些弱点"><a href="#跨平台技术的一些弱点" class="headerlink" title="跨平台技术的一些弱点"></a>跨平台技术的一些弱点</h2><ul><li><p>适配问题<br>跨平台技术绕不开的难题，由于需要跨平台所以在不同平台下的适配，包括原生接入了第三方SDK后都会存在一定的问题。另外，开发工具升级后，本身的版本适配也是一个问题。</p></li><li><p>组件贫乏<br>很多控件需要重新开发，前期需要很多人力去构建基础组件，维护组件。</p></li><li><p>维护问题<br>代码可读性比较差，跨平台代码天然与原生代码不一样，例如Flutter的回调地狱，一层一层的嵌套布局等，会增加维护成本。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>对于跨平台技术而言，首先这肯定是一种提高开发效率的工具，对于优化APP是有助力作用的，另一方面它也存在一些不可避免的问题，这个要求我们合理合规的去使用它。综上，我们在跨平台技术上需要做一些技术积累，找到和业务最合适的接入点去接入这些跨平台技术，并及时总结不断修正使用方式。</p><h2 id="目标路线"><a href="#目标路线" class="headerlink" title="目标路线"></a>目标路线</h2><p>Flutter相对H5的优势主要是它的UI渲染引擎Skia来绘制UI时，能够达到颦美原生的UI效果，相对H5而言体验会顺畅很多，而且也可以避免对原生控件的依赖。基于这些优势，结合我们医动力项目中的实际情况，可以分阶段实现Flutter技术在移动端项目中的应用。</p></li></ul><p><img src="media/16566818209440.jpg" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;跨平台技术的使用目的&quot;&gt;&lt;a href=&quot;#跨平台技术的使用目的&quot; class=&quot;headerlink&quot; title=&quot;跨平台技术的使用目的&quot;&gt;&lt;/a&gt;跨平台技术的使用目的&lt;/h2&gt;&lt;p&gt;   目前，我们前端项目中其实已经使用了跨平台技术：医动力中使用了部分H5页面。这种会带来一些好处，例如可以并行开发，可以不同端UI保持一致，加快开发节奏等。但是H5属于前端技术，对于移动端来说并没有复用人力。所以就有了移动端可以开发的跨平台技术例如RN，Flutter等。Flutter是Google主导的跨平台技术，目前已经到了3.0，技术社区很活跃，已经有比较多的厂商在项目中使用。本文主要基于Flutter来讲解。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="跨平台" scheme="http://yoursite.com/tags/%E8%B7%A8%E5%B9%B3%E5%8F%B0/"/>
     
   </entry>
   
@@ -83,31 +111,6 @@
 &lt;li&gt;学生和身份证之间为&lt;strong&gt;关联关系&lt;/strong&gt;（下面会介绍和组合关系的区别），&lt;em&gt;使用一根实线表示&lt;/em&gt;；&lt;/li&gt;
 &lt;li&gt;学生上学需要用到自行车，与自行车是一种&lt;strong&gt;依赖关系&lt;/strong&gt;，&lt;em&gt;使用带箭头的虚线表示&lt;/em&gt;；&lt;/li&gt;
 &lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="技能提升" scheme="http://yoursite.com/tags/%E6%8A%80%E8%83%BD%E6%8F%90%E5%8D%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>视频编码基础</title>
-    <link href="http://yoursite.com/2022/05/01/%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E5%9F%BA%E7%A1%80/"/>
-    <id>http://yoursite.com/2022/05/01/视频编码基础/</id>
-    <published>2022-05-01T00:00:00.000Z</published>
-    <updated>2022-11-01T10:06:59.379Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="视频传输基本原理"><a href="#视频传输基本原理" class="headerlink" title="视频传输基本原理"></a>视频传输基本原理</h1><p>视频是利用人眼的视觉暂留的原理，通过播放一系列的图片，使人眼产生运动的感觉。单纯传输视频画面，视频量非常大，对现有的网络和存储来说很不友好。为了能够使视频便于传输和存储，人们发现有视频有大量重复的信息，如果将重复信息在发送端去掉，在接收端回复回来，这样就大大减少了视频数据的文件，因此有了H.264视频压缩标准。</p><p>视频里面最常用的编码格式就说H.264，基于这个编码格式还有H.265（后续研究），音频采样数据会采用AAC编码格式进行压缩。视频内容经过编码压缩后，确实有利于存储和传输。不过当要观看播放视频时，相应也需要解码过程，将压缩的视频还原。所以，编解码之间显然需要约定一种协议，这种协议大概的流程是：<strong>编码器将多张图像进行编码后产生一段一段的GOP（Group of picture），解码器则在播放时读取一段一段的GOP进行解码后读取画面再渲染显示。</strong></p><p><img src="https://img-blog.csdnimg.cn/20210710150024450.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMDA0OTMy,size_16,color_FFFFFF,t_70" alt="GOP"></p><blockquote><p>GOP是一组连续的画面，由一张I帧和数张B帧和P帧组成，它是视频图像编码器和解码器存取的基本单位，它的排列顺序将会一直重复到影像结束。I帧是内部编码帧（也称为关键帧），P帧是前向预测帧（前向参考帧），B帧是双向内插帧（双向参考帧）。简单说，I帧是一个完整的画面，而P帧和B帧记录的是相对于I帧的变化。如果没有I帧，P和B是无法解码的。<br><img src="https://s2.51cto.com/images/blog/202107/08/84e6f4363aad1267eb6ccab8deff75fb.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" alt="在H.264编码中I帧，P帧，B帧传输的视频画面"></p></blockquote><h1 id="I帧-P帧-B帧"><a href="#I帧-P帧-B帧" class="headerlink" title="I帧,P帧,B帧"></a>I帧,P帧,B帧</h1><ul><li><strong>I帧</strong><br>I帧:即Intra-coded picture（帧内编码图像帧），I帧表示<strong>关键帧</strong>，你可以理解为这一帧画面的完整保留；每个GOP组中第一帧一定是I帧，而且是一种特殊的I帧，也可以称为IDR帧，一个GOP可以有很多I帧，但是只有1个IDR帧。I帧法是基于离散余弦变换DCT（Discrete Cosine Transform）的压缩技术，这种算法与JPEG压缩算法类似。采用I帧压缩可达到1/6的压缩比而无明显的压缩痕迹。</li></ul><p><u>I帧的特点：</u></p><ol><li>它是一个全帧压缩编码帧。它将全帧图像信息进行JPEG压缩编码及传输</li><li>解码时仅用I帧的数据就可以重构完整的图像</li><li>I帧描述了图像背景和运动主体的详情</li><li>I帧不需要参考其他画面而生成</li><li>I帧是P帧和B帧的参考帧</li><li>I帧所占数据的信息量比较大</li></ol><ul><li><strong>P帧</strong><br>P帧:即Predictive-coded Picture（前向预测编码图像帧）。P帧表示的是这一帧跟之前的一个关键帧（或P帧）的差别，解码时需要用之前缓存的画面叠加上本帧定义的差别，生成最终画面。（也就是差别帧，P帧没有完整画面数据，只有与前一帧的画面差别的数据）</li></ul><p><img src="https://s2.51cto.com/images/blog/202107/08/8b94a54c69de71e27977d562b8eecfcf.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" alt="P帧"><br><u>P帧的特点：</u></p><ol><li>P帧是I帧后面相隔1-2帧的编码帧</li><li>P帧采用运动补偿的方法传送它与前面的I或者P帧的差值及运动矢量预测误差</li><li>解码时必须将I帧中的预测值与预测误差求和后才能重构完整的P帧图像</li><li>P帧属于前向预测的帧间编码。它只参考前面最靠近它的I帧或P帧</li><li>P帧可以是其后面P帧的参考帧，也可以是其前后的B帧的参考帧</li><li>由于P帧是参考帧，它可能造成解码错误的扩散</li><li>由于是差值传输，P帧的压缩比较高（大概I帧的一半大小）</li></ol><ul><li><strong>B帧</strong><br>B帧：即Bidirectionally predicted picture（双向预测编码图像帧)。B帧是双向差别帧，也就是B帧记录的是本帧与前后帧的差别，换言之，要解码B帧，不仅要取得之前的缓存画面，还要解码之后的画面，通过前后画面的与本帧数据的叠加取得最终的画面。B帧压缩率高，但是解码时CPU会比较累。</li></ul><p><img src="https://s2.51cto.com/images/blog/202107/08/ca6f098048f8800d693d124a31b4f3eb.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" alt="B帧"><br><u>B帧的特点</u></p><ol><li>B帧是由前面的I或P帧和后面的P帧来进行预测的</li><li>B帧传送的是它与前面的I帧或者P帧和后面的P帧之间的预测误差及运动矢量</li><li>B帧是双向预测编码帧</li><li>B帧压缩比最高，对解码性能要求也高（大概I帧的四分之一）</li><li>需要参考前一个I帧或者P帧及其后面的一个P帧来生成一张完整的视频画面，所以P帧与B帧去掉的是视频帧在时间维度上的冗余信息。</li></ol><p><u>B帧存在的价值</u><br>从上面分析可知，I帧和P帧的解码算法比较简单，资源占用比较少，I只要自己完成就行了，P帧也只需要解码器把前一个画面缓存一下，遇到P时就使用之前缓存的画面就好了，如果只有I和P，解码器可以不用处理后续数据，边读边解码，那为什么还要引入B帧呢？因为B帧记录了前后帧的差别，<strong>比P帧能节约更多空间</strong>，这样视频文件可以变小，但是相应的就要求解码器性能比较高了，因为在解码时，不仅要用之前缓存的画面，还要知道下一个I或者P的画面（也就时说要预读，预解码），而且，B帧不能简单丢掉，因为B帧其实也包含了画面信息，如果简单丢掉，并用之前的缓慢简单重复，就会造成画面卡顿（丢帧）。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;视频传输基本原理&quot;&gt;&lt;a href=&quot;#视频传输基本原理&quot; class=&quot;headerlink&quot; title=&quot;视频传输基本原理&quot;&gt;&lt;/a&gt;视频传输基本原理&lt;/h1&gt;&lt;p&gt;视频是利用人眼的视觉暂留的原理，通过播放一系列的图片，使人眼产生运动的感觉。单纯传输视频画面
-      
     
     </summary>
     
