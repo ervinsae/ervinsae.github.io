@@ -287,6 +287,354 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/29/Flutter技术规划/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ervin Zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ervin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/06/29/Flutter技术规划/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-06-29T21:44:54+08:00">
+                2022-06-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  797
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="跨平台技术Flutter技术规划"><a href="#跨平台技术Flutter技术规划" class="headerlink" title="跨平台技术Flutter技术规划"></a>跨平台技术Flutter技术规划</h1><h2 id="跨平台技术的使用目的"><a href="#跨平台技术的使用目的" class="headerlink" title="跨平台技术的使用目的"></a>跨平台技术的使用目的</h2><p>   目前，我们前端项目中其实已经使用了跨平台技术：医动力中使用了部分H5页面。这种会带来一些好处，例如可以并行开发，可以不同端UI保持一致，加快开发节奏等。但是H5属于前端技术，对于移动端来说并没有复用人力。所以就有了移动端可以开发的跨平台技术例如RN，Flutter等。Flutter是Google主导的跨平台技术，目前已经到了3.0，技术社区很活跃，已经有比较多的厂商在项目中使用。本文主要基于Flutter来讲解。</p>
+<h2 id="跨平台技术的好处"><a href="#跨平台技术的好处" class="headerlink" title="跨平台技术的好处"></a>跨平台技术的好处</h2><ul>
+<li><p>UI一致性<br>医动力中UI不一致的问题一直被诟病，通过跨平台技术就可以很好解决这个问题，特别是Flutter因为是自己做的渲染，所以在iOS和Android的表现基本完全一致。</p>
+</li>
+<li><p>动态化技术<br>Flutter的一大特点，是支持热重载，就是不需要编辑即能看到修改代码后的效果。另外一般跨平台技术都能支持热更新，但是热更新在上应用市场时需要慎用。</p>
+</li>
+<li><p>APP体积<br>包大小也一直是APP优化的主要方向之一，目前主要是通过混淆，无用资源的识别，第三方库的按需引用等。第三方的跨平台技术由于封装的关系，同样的实现包体积会小很多。</p>
+</li>
+</ul>
+<h2 id="跨平台技术的一些弱点"><a href="#跨平台技术的一些弱点" class="headerlink" title="跨平台技术的一些弱点"></a>跨平台技术的一些弱点</h2><ul>
+<li><p>适配问题<br>跨平台技术绕不开的难题，由于需要跨平台所以在不同平台下的适配，包括原生接入了第三方SDK后都会存在一定的问题。另外，开发工具升级后，本身的版本适配也是一个问题。</p>
+</li>
+<li><p>组件贫乏<br>很多控件需要重新开发，前期需要很多人力去构建基础组件，维护组件。</p>
+</li>
+<li><p>维护问题<br>代码可读性比较差，跨平台代码天然与原生代码不一样，例如Flutter的回调地狱，一层一层的嵌套布局等，会增加维护成本。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>对于跨平台技术而言，首先这肯定是一种提高开发效率的工具，对于优化APP是有助力作用的，另一方面它也存在一些不可避免的问题，这个要求我们合理合规的去使用它。综上，我们在跨平台技术上需要做一些技术积累，找到和业务最合适的接入点去接入这些跨平台技术，并及时总结不断修正使用方式。</p>
+<h2 id="目标路线"><a href="#目标路线" class="headerlink" title="目标路线"></a>目标路线</h2><p>Flutter相对H5的优势主要是它的UI渲染引擎Skia来绘制UI时，能够达到颦美原生的UI效果，相对H5而言体验会顺畅很多，而且也可以避免对原生控件的依赖。基于这些优势，结合我们医动力项目中的实际情况，可以分阶段实现Flutter技术在移动端项目中的应用。</p>
+</li>
+</ul>
+<p><img src="media/16566818209440.jpg" alt></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/28/Java 反射机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ervin Zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ervin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/06/28/Java 反射机制/" itemprop="url">Java反射机制</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-06-28T00:00:00+08:00">
+                2022-06-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  207
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="什么叫反射"><a href="#什么叫反射" class="headerlink" title="什么叫反射"></a>什么叫反射</h1><p>Java中我们创建对象一般都是用“<strong>new</strong>”这个关键字的，例如<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Person p = <span class="keyword">new</span> Person();</span><br><span class="line">p.setName(<span class="string">"Ervin"</span>);</span><br></pre></td></tr></table></figure></p>
+<p>反射则是一开始不知道要初始化的对象是什么，所以没办法new出一个对象，这时候就需要用到反射，例如我们使用第三方SDK的时候有可能没有提供api，只能通过反射去获取类中的方法等。按照上面生成对象的例子，使用反射是这样的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Class cls = Class.forName(<span class="string">"com.ervin.entity.Person"</span>);</span><br><span class="line">Method method = cls.getMethod(<span class="string">"setName"</span>, String.class);</span><br><span class="line"><span class="comment">//Object person = cls.newInstance();</span></span><br><span class="line">Constructor constructor = cls.getConstructor();</span><br><span class="line">Object person = constructor.newInstance();</span><br><span class="line">method.invoke(person, <span class="string">"Ervin"</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>直接new对象是静态模式，在代码编译前就知道需要生成什么对象；反射是在运行时才知道要生成什么类，是动态的</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/19/怎么看懂UML类图和时序图/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -427,6 +775,221 @@
             </a>
           </div>
           <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/01/视频编码基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ervin Zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ervin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/05/01/视频编码基础/" itemprop="url">视频编码基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-05-01T08:00:00+08:00">
+                2022-05-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="视频传输基本原理"><a href="#视频传输基本原理" class="headerlink" title="视频传输基本原理"></a>视频传输基本原理</h1><p>视频是利用人眼的视觉暂留的原理，通过播放一系列的图片，使人眼产生运动的感觉。单纯传输视频画面，视频量非常大，对现有的网络和存储来说很不友好。为了能够使视频便于传输和存储，人们发现有视频有大量重复的信息，如果将重复信息在发送端去掉，在接收端回复回来，这样就大大减少了视频数据的文件，因此有了H.264视频压缩标准。</p>
+<p>视频里面最常用的编码格式就说H.264，基于这个编码格式还有H.265（后续研究），音频采样数据会采用AAC编码格式进行压缩。视频内容经过编码压缩后，确实有利于存储和传输。不过当要观看播放视频时，相应也需要解码过程，将压缩的视频还原。所以，编解码之间显然需要约定一种协议，这种协议大概的流程是：<strong>编码器将多张图像进行编码后产生一段一段的GOP（Group of picture），解码器则在播放时读取一段一段的GOP进行解码后读取画面再渲染显示。</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20210710150024450.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMDA0OTMy,size_16,color_FFFFFF,t_70" alt="GOP"></p>
+<blockquote>
+<p>GOP是一组连续的画面，由一张I帧和数张B帧和P帧组成，它是视频图像编码器和解码器存取的基本单位，它的排列顺序将会一直重复到影像结束。I帧是内部编码帧（也称为关键帧），P帧是前向预测帧（前向参考帧），B帧是双向内插帧（双向参考帧）。简单说，I帧是一个完整的画面，而P帧和B帧记录的是相对于I帧的变化。如果没有I帧，P和B是无法解码的。<br><img src="https://s2.51cto.com/images/blog/202107/08/84e6f4363aad1267eb6ccab8deff75fb.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" alt="在H.264编码中I帧，P帧，B帧传输的视频画面"></p>
+</blockquote>
+<h1 id="I帧-P帧-B帧"><a href="#I帧-P帧-B帧" class="headerlink" title="I帧,P帧,B帧"></a>I帧,P帧,B帧</h1><ul>
+<li><strong>I帧</strong><br>I帧:即Intra-coded picture（帧内编码图像帧），I帧表示<strong>关键帧</strong>，你可以理解为这一帧画面的完整保留；每个GOP组中第一帧一定是I帧，而且是一种特殊的I帧，也可以称为IDR帧，一个GOP可以有很多I帧，但是只有1个IDR帧。I帧法是基于离散余弦变换DCT（Discrete Cosine Transform）的压缩技术，这种算法与JPEG压缩算法类似。采用I帧压缩可达到1/6的压缩比而无明显的压缩痕迹。</li>
+</ul>
+<p><u>I帧的特点：</u></p>
+<ol>
+<li>它是一个全帧压缩编码帧。它将全帧图像信息进行JPEG压缩编码及传输</li>
+<li>解码时仅用I帧的数据就可以重构完整的图像</li>
+<li>I帧描述了图像背景和运动主体的详情</li>
+<li>I帧不需要参考其他画面而生成</li>
+<li>I帧是P帧和B帧的参考帧</li>
+<li>I帧所占数据的信息量比较大</li>
+</ol>
+<ul>
+<li><strong>P帧</strong><br>P帧:即Predictive-coded Picture（前向预测编码图像帧）。P帧表示的是这一帧跟之前的一个关键帧（或P帧）的差别，解码时需要用之前缓存的画面叠加上本帧定义的差别，生成最终画面。（也就是差别帧，P帧没有完整画面数据，只有与前一帧的画面差别的数据）</li>
+</ul>
+<p><img src="https://s2.51cto.com/images/blog/202107/08/8b94a54c69de71e27977d562b8eecfcf.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" alt="P帧"><br><u>P帧的特点：</u></p>
+<ol>
+<li>P帧是I帧后面相隔1-2帧的编码帧</li>
+<li>P帧采用运动补偿的方法传送它与前面的I或者P帧的差值及运动矢量预测误差</li>
+<li>解码时必须将I帧中的预测值与预测误差求和后才能重构完整的P帧图像</li>
+<li>P帧属于前向预测的帧间编码。它只参考前面最靠近它的I帧或P帧</li>
+<li>P帧可以是其后面P帧的参考帧，也可以是其前后的B帧的参考帧</li>
+<li>由于P帧是参考帧，它可能造成解码错误的扩散</li>
+<li>由于是差值传输，P帧的压缩比较高（大概I帧的一半大小）</li>
+</ol>
+<ul>
+<li><strong>B帧</strong><br>B帧：即Bidirectionally predicted picture（双向预测编码图像帧)。B帧是双向差别帧，也就是B帧记录的是本帧与前后帧的差别，换言之，要解码B帧，不仅要取得之前的缓存画面，还要解码之后的画面，通过前后画面的与本帧数据的叠加取得最终的画面。B帧压缩率高，但是解码时CPU会比较累。</li>
+</ul>
+<p><img src="https://s2.51cto.com/images/blog/202107/08/ca6f098048f8800d693d124a31b4f3eb.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" alt="B帧"><br><u>B帧的特点</u></p>
+<ol>
+<li>B帧是由前面的I或P帧和后面的P帧来进行预测的</li>
+<li>B帧传送的是它与前面的I帧或者P帧和后面的P帧之间的预测误差及运动矢量</li>
+<li>B帧是双向预测编码帧</li>
+<li>B帧压缩比最高，对解码性能要求也高（大概I帧的四分之一）</li>
+<li>需要参考前一个I帧或者P帧及其后面的一个P帧来生成一张完整的视频画面，所以P帧与B帧去掉的是视频帧在时间维度上的冗余信息。</li>
+</ol>
+<p><u>B帧存在的价值</u><br>从上面分析可知，I帧和P帧的解码算法比较简单，资源占用比较少，I只要自己完成就行了，P帧也只需要解码器把前一个画面缓存一下，遇到P时就使用之前缓存的画面就好了，如果只有I和P，解码器可以不用处理后续数据，边读边解码，那为什么还要引入B帧呢？因为B帧记录了前后帧的差别，<strong>比P帧能节约更多空间</strong>，这样视频文件可以变小，但是相应的就要求解码器性能比较高了，因为在解码时，不仅要用之前缓存的画面，还要知道下一个I或者P的画面（也就时说要预读，预解码），而且，B帧不能简单丢掉，因为B帧其实也包含了画面信息，如果简单丢掉，并用之前的缓慢简单重复，就会造成画面卡顿（丢帧）。</p>
+
+          
         
       
     </div>
@@ -1530,552 +2093,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/27/Java线程池实现原理（三）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ervin Zhang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ervin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/05/27/Java线程池实现原理（三）/" itemprop="url">Java线程池实现原理（三）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-27T10:20:00+08:00">
-                2020-05-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.5k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p><a href="https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html" target="_blank" rel="noopener">转自美团技术团队</a></p>
-</blockquote>
-<h1 id="线程池生命周期管理"><a href="#线程池生命周期管理" class="headerlink" title="线程池生命周期管理"></a>线程池生命周期管理</h1><p>上一期讲了线程池生命周期管理的任务管理，对于线程池来说，任务管理和线程管理是它必须关注的事情，而线程管理比任务管理则更复杂。</p>
-<h2 id="线程管理"><a href="#线程管理" class="headerlink" title="线程管理"></a>线程管理</h2><h3 id="Worker线程（工作线程）"><a href="#Worker线程（工作线程）" class="headerlink" title="Worker线程（工作线程）"></a>Worker线程（工作线程）</h3><p>线程池为了掌握线程的状态并维护线程的生命周期，设计了线程池内的工作线程Worker，先看一下源码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Worker</span> <span class="keyword">extends</span> <span class="title">AbstractQueuedSynchronizer</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="keyword">final</span> Thread thread;<span class="comment">//Worker持有的线程</span></span><br><span class="line">    Runnable firstTask;<span class="comment">//初始化的任务，可以为null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Worker这个线程，实现了Runnable接口，并持有一个线程thread变量，一个初始化的任务firstTask，thread是在调用构造方法时通过ThreadFactory来创建的线程，可以用来执行任务；firstTask用它来保存传入的第一个任务，这个任务可以有也可以为null。如果这个值时非空的，那么线程就会在启动初期立即执行这个任务，<strong>也就是对应核心线程（corePool）创建时的情况</strong>，如果这个值时null，那么就需要创建一个线程去执行任务列表（workQueue）中的任务，<strong>也就是非核心线程的创建</strong>。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/05/27/Java线程池实现原理（三）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/20/Java线程池实现原理（二）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ervin Zhang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ervin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/05/20/Java线程池实现原理（二）/" itemprop="url">Java线程池实现原理（二）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-20T10:13:00+08:00">
-                2020-05-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.7k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  9
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p><a href="https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html" target="_blank" rel="noopener">转自美团技术团队</a></p>
-</blockquote>
-<h1 id="线程池生命周期管理"><a href="#线程池生命周期管理" class="headerlink" title="线程池生命周期管理"></a>线程池生命周期管理</h1><p>线程池运行的状态，并不是用户显式设置的，而是伴随着线程池的运行，由线程池内部来维护。线程池内部使用一个变量维护两个值：运行状态（runState）和线程数量（workerCount）。在具体实现中，线程池将运行状态（runState）和线程数量（workerCount）两个关键参数的维护放在了一起。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/05/20/Java线程池实现原理（二）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/13/Java线程池实现原理（一）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ervin Zhang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ervin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/05/13/Java线程池实现原理（一）/" itemprop="url">Java线程池实现原理（一）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-13T10:57:46+08:00">
-                2020-05-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.4k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><h2 id="线程池是什么"><a href="#线程池是什么" class="headerlink" title="线程池是什么"></a>线程池是什么</h2><p>线程池（Thread Pool）是一种基于池化思想管理线程的工具，经常出现在多线程服务器中，或者涉及到一些复杂线程操作需要重复开启线程。线程过多会带来额外的开销，包括创建线程的开销，调度线程的开销等等，同时也降低了计算机的整体性能。<br>线程池能维护多个线程，等待监督管理分配可并发执行的任务，这种做法一方面避免了处理任务时创建销毁线程开销的代价，另一方面也避免了线程数量膨胀的过分调度问题，保证了对内核的充分利用。<br>Java中对线程池的实现都是基于ThreadPoolExcutor类，它能带来一系列的好处：</p>
-<ul>
-<li><strong>降低资源消耗：</strong> 通过池化技术重复利用已经创建的线程，降低线程创建和销毁造成的损耗</li>
-<li><strong>提高响应速度：</strong> 任务到达时，无需等待线程创建就可以立即执行（前提是线程池中有可用的线程）</li>
-<li><strong>提高线程的可管理性：</strong> 线程是稀缺资源，如果无限制创建，不仅会消耗系统资源，还会因为线程的不合理分布导致资源调度失衡，降低系统的稳定性。使用线程池可以进行统一的分配、调优和监控。不用开发者自己去维护这一整个流程。</li>
-<li><strong>提供更多更强大的功能：</strong> 线程池具备可拓展性，允许开发人员向其中增加更多的功能。比如延时定时线程池ScheduledThreadPoolExecutor，就允许任务延期执行或定期执行。</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/05/13/Java线程池实现原理（一）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2128,7 +2145,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2150,7 +2167,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2230,7 +2247,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">82.8k</span>
+    <span title="Site words total count">85.3k</span>
   
 </div>
 
