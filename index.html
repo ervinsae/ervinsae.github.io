@@ -414,7 +414,7 @@
 <p>视频里面最常用的编码格式就说H.264，基于这个编码格式还有H.265（后续研究），音频采样数据会采用AAC编码格式进行压缩。视频内容经过编码压缩后，确实有利于存储和传输。不过当要观看播放视频时，相应也需要解码过程，将压缩的视频还原。所以，编解码之间显然需要约定一种协议，这种协议大概的流程是：<strong>编码器将多张图像进行编码后产生一段一段的GOP（Group of picture），解码器则在播放时读取一段一段的GOP进行解码后读取画面再渲染显示。</strong></p>
 <p><img src="https://img-blog.csdnimg.cn/20210710150024450.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMDA0OTMy,size_16,color_FFFFFF,t_70" alt="GOP"></p>
 <blockquote>
-<p>GOP是一组连续的画面，由一张I帧和数张B帧和P帧组成，它是视频图像编码器和解码器存取的基本单位，它的排列顺序将会一直重复到影像结束。I帧是内部编码帧（也称为关键帧），P帧是前向预测帧（前向参考帧），B帧是双向内插帧（双向参考帧）。简单说，I帧是一个完整的画面，而P帧和B帧记录的是相对于I帧的变化。如果没有I帧，P和B是无法解码的。<br><img src="https://s2.51cto.com/images/blog/202107/08/84e6f4363aad1267eb6ccab8deff75fb.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184" alt="在H.264编码中I帧，P帧，B帧传输的视频画面"></p>
+<p>GOP是一组连续的画面，由一张I帧和数张B帧和P帧组成，它是视频图像编码器和解码器存取的基本单位，它的排列顺序将会一直重复到影像结束。I帧是内部编码帧（也称为关键帧），P帧是前向预测帧（前向参考帧），B帧是双向内插帧（双向参考帧）。简单说，I帧是一个完整的画面，而P帧和B帧记录的是相对于I帧的变化。如果没有I帧，P和B是无法解码的。<br><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h7xpz3rx0mj30hs07l3yu.jpg" alt="在H.264编码中I帧，P帧，B帧传输的视频画面"></p>
 </blockquote>
           <!--noindex-->
           <div class="post-button text-center">
