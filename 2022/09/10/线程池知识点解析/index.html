@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="线程池，线程,">
+  <meta name="keywords" content="线程,">
 
 
 
@@ -82,14 +82,14 @@
 
 
 <meta name="description" content="对线程池的一些理解 线程池是对线程的管理和调度，我们自己当然也可以去新建线程去处理并发操作，但是线程池提供了很好的解决线程之间调度，管理的能力，这些能力可能比我们自己去实现更优。 创建线程池有两种方式（本质上是一种），如下： 123456789101112//通过Executors封装好的线程池创建方法去创建Executors.newSingleThreadExecutor();Executors">
-<meta name="keywords" content="线程池，线程">
+<meta name="keywords" content="线程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线程池的一些知识点回顾">
 <meta property="og:url" content="http://yoursite.com/2022/09/10/线程池知识点解析/index.html">
 <meta property="og:site_name" content="Ervin">
 <meta property="og:description" content="对线程池的一些理解 线程池是对线程的管理和调度，我们自己当然也可以去新建线程去处理并发操作，但是线程池提供了很好的解决线程之间调度，管理的能力，这些能力可能比我们自己去实现更优。 创建线程池有两种方式（本质上是一种），如下： 123456789101112//通过Executors封装好的线程池创建方法去创建Executors.newSingleThreadExecutor();Executors">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2022-11-11T07:50:48.480Z">
+<meta property="og:updated_time" content="2022-11-23T07:26:33.208Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线程池的一些知识点回顾">
 <meta name="twitter:description" content="对线程池的一些理解 线程池是对线程的管理和调度，我们自己当然也可以去新建线程去处理并发操作，但是线程池提供了很好的解决线程之间调度，管理的能力，这些能力可能比我们自己去实现更优。 创建线程池有两种方式（本质上是一种），如下： 123456789101112//通过Executors封装好的线程池创建方法去创建Executors.newSingleThreadExecutor();Executors">
@@ -370,7 +370,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  920
+                  985
                 </span>
               
 
@@ -441,7 +441,12 @@
 <p>这样的过程说明，并不是先加入任务就一定先执行，看下面的例子<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">ExecutorService executors = <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">3</span>,</span><br><span class="line">                 <span class="number">6</span>,</span><br><span class="line">                 <span class="number">0L</span>,</span><br><span class="line">                 TimeUnit.MILLISECONDS,</span><br><span class="line">                 <span class="keyword">new</span> LinkedBlockingQueue&lt;&gt;(<span class="number">10</span>),</span><br><span class="line">                 <span class="keyword">new</span> ThreadPoolExecutor.DiscardPolicy());</span><br><span class="line">         <span class="comment">//ThreadTest01 test01 = new ThreadTest01();</span></span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">21</span>; i++) &#123;</span><br><span class="line">             <span class="keyword">int</span> taskId = i;</span><br><span class="line">             Runnable task = () -&gt; &#123;</span><br><span class="line">                 <span class="keyword">try</span> &#123;</span><br><span class="line">                     System.out.println(<span class="string">"thread-"</span> + Thread.currentThread().getName() + <span class="string">" is saving data:"</span> + taskId);</span><br><span class="line">                     <span class="comment">/*模拟存储数据耗时*/</span></span><br><span class="line">                     Thread.sleep(<span class="number">100</span>);</span><br><span class="line">                 &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                     e.printStackTrace();</span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;;</span><br><span class="line">             executors.execute(task);</span><br><span class="line">         &#125;</span><br><span class="line"> <span class="comment">/*运行结果：首先核心线程为3所以立马执行任务1，2，3；然后任务4到13被放入到队列中，14，15，16又会被新创建的3个线程（最大为6）执行，</span></span><br><span class="line"><span class="comment"> 再增加任务17到20时由于当前已经有6个线程在处理任务了，所以17到20的任务由于ThreadPoolExecutor.DiscardPolicy()策略会被丢弃。</span></span><br><span class="line"><span class="comment"> 然后6个线程又会依次从队列冲取出4到13任务去执行。*/</span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <a id="more"></a>
-<h1 id="线程池中几种队列的理解"><a href="#线程池中几种队列的理解" class="headerlink" title="线程池中几种队列的理解"></a>线程池中几种队列的理解</h1><h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>
+<h1 id="线程池中几种队列的理解"><a href="#线程池中几种队列的理解" class="headerlink" title="线程池中几种队列的理解"></a>线程池中几种队列的理解</h1><ol>
+<li>SynchronousQueue<br> synchronousQueue本身没有容量，是无缓冲等待队列，是一个不存储元素的阻塞队列，会直接将任务交给消费者，必须等队列中的添加元素被消费后才能继续添加新的元素。</li>
+<li>LinkedBlockingQueue</li>
+<li>ArrayBlockingQueue</li>
+</ol>
+
       
     </div>
     
@@ -458,8 +463,8 @@
       
         <div class="post-tags">
           
-            <a href="/tags/线程池，线程/" rel="tag"><i class="fa fa-tag"></i>
- 线程池，线程</a>
+            <a href="/tags/线程/" rel="tag"><i class="fa fa-tag"></i>
+ 线程</a>
           
         </div>
       
@@ -563,7 +568,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -574,7 +579,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -585,7 +590,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">52</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -647,7 +652,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#对线程池的一些理解"><span class="nav-number">1.</span> <span class="nav-text">对线程池的一些理解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程池中几种队列的理解"><span class="nav-number">2.</span> <span class="nav-text">线程池中几种队列的理解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#待续"><span class="nav-number">2.1.</span> <span class="nav-text">待续</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#对线程池的一些理解"><span class="nav-number">1.</span> <span class="nav-text">对线程池的一些理解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程池中几种队列的理解"><span class="nav-number">2.</span> <span class="nav-text">线程池中几种队列的理解</span></a></li></ol></div>
             
 
           </div>
@@ -667,7 +672,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -681,7 +686,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">86.5k</span>
+    <span title="Site words total count">87.4k</span>
   
 </div>
 
