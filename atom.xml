@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2023-01-18T03:42:39.346Z</updated>
+  <updated>2023-02-07T07:18:20.456Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>mmap的简单原理解析</title>
+    <link href="http://yoursite.com/2023/02/07/mmap%E7%9A%84%E7%AE%80%E5%8D%95%E5%8E%9F%E7%90%86/"/>
+    <id>http://yoursite.com/2023/02/07/mmap的简单原理/</id>
+    <published>2023-02-06T16:00:00.000Z</published>
+    <updated>2023-02-07T07:18:20.456Z</updated>
+    
+    <content type="html"><![CDATA[<p>mmap很早就知道一些，但是只是简单知道这个可以减少内存消耗，并不知道它的实现原理是怎么样的，所以也不知道它到底是怎么去减少内存消耗的，然后找了相关资料看了下，发现和android的bundle机制还有点相似，这里做个记录和总结</p><h2 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a>一些概念</h2><p>我们都知道linux进程分为<strong>用户空间</strong>和<strong>内核空间</strong>，后来在零拷贝原理中知道对于32位操作系统来说系统会给每个应用进程分配4G的虚拟内存空间，其中0-3G的内存地址属于用户空间，3-4G的内存地址属于内核空间。其中用户空间是不能共享的，而内核空间是运行操作系统的，它独立于普通的应用程序，是被所有应用程序共享的。所以对一个应用来说，只有3G的用户空间是属于应用本身的。参考：<a href="https://www.cnblogs.com/sparkdev/p/8410350.html" target="_blank" rel="noopener">内核空间与用户空间</a>。由于用户空间是隔离的，所以这里当一个进程想访问另外一个进程的用户数据时就涉及到进程之间的通讯了（RPC），Android使用bundle来更好的解决这个问题，后面单独写Android的bundle机制。</p><a id="more"></a><h2 id="mmap是什么"><a href="#mmap是什么" class="headerlink" title="mmap是什么"></a>mmap是什么</h2><p>mmap是一种内存映射文件的方法，即将一个文件或者其它对象映射到进程的地址空间，实现文件磁盘地址和进程虚拟地址空间中一段虚拟地址的一一对应关系。</p><p>实现了这样的映射关系后，进程就可以采用指针的方式读写操作这一段内存，而系统会自动回写改动过的页面到对应的文件磁盘上，即完成了对文件的操作而不必要再调用read，write等系统函数。相反，内核空间对这段区域的修改也直接反映用户空间（因为内核空间被所有进程公用），从而实现不同进程间的 文件共享。</p><h2 id="mmap的简单原理"><a href="#mmap的简单原理" class="headerlink" title="mmap的简单原理"></a>mmap的简单原理</h2><h3 id="传统的读写文件"><a href="#传统的读写文件" class="headerlink" title="传统的读写文件"></a>传统的读写文件</h3><p>一般来说，修改一个文件需要三个步骤</p><ul><li>把文件内容读入到内存中</li><li>修改内存中的内容</li><li>把内存的数据写入到文件中</li></ul><p>过程如下图：</p><p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5b5d56c88f4b49ddba0ed1b014928a49~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" alt></p><p>从上图可以看到磁盘中的文件file要被用户修改的时候，需要先把file文件拷贝到<strong>页缓存（page cache）</strong>中，然后通过系统函数read读到用户空间的临时buffer中（copy），修改之后，再通过write方法（copy）写回页缓存中，最终改变了磁盘中的file的文件。其中，页缓存是读写文件的中间层，内核使用页缓存与文件的数据块（连续的内存地址）关联起来。所以应用程序读写文件时，实际操作的是页缓存。这里为了实现文件修改在内存中是做了两次copy的。</p><h3 id="使用mmap读写文件"><a href="#使用mmap读写文件" class="headerlink" title="使用mmap读写文件"></a>使用mmap读写文件</h3><p>从上面读写文件的过程中，我们可以看到有一个地方是可以优化的：如果可以直接在用户空间操作（读写）页缓存，那么久可以免去页缓存的数据复制到用户空间的临时buffer的过程。mmap其实就是做这个事情的。</p><p>使用mmap系统调用可以将用户空间的虚拟内存地址与文件进行映射（怎么做到的？），对映射的虚拟内存地址就行读写操作就如同对文件进行读写操作一下，如图：<br><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/35a55af52d3042c79613feb41fc662d3~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" alt></p><p>mmap最终是调用了sendfile方法来实现映射关系的（具体怎么做到将用户空间的内存和页缓存做映射的，可以看这篇文章：<a href="https://developer.aliyun.com/article/375144" target="_blank" rel="noopener">认证分析mmap</a>，这里不深入写，只要知道mmap的第一层原理，它减少了将内核空间往用户空间拷贝的动作，所以性能会很好。）</p><p>由于读写文件都需要经过页缓存，所以mmap映射的正是文件的页缓存，而非磁盘中的文件本身。由于mmap映射的是文件的页缓存，所以就涉及到同步的问题：页缓存上面时候把数据同步到磁盘？linux内核并不会主动把mmap映射的页缓存同步到磁盘，而是需要用户主动触发。同步mmap映射的内存到磁盘有4个时机：</p><ul><li>调用msync函数主动进行数据同步（主动）</li><li>调用munmap函数对文件进行解除映射关系时（主动）</li><li>进程推出时（被动）</li><li>系统关机时（被动）</li></ul><p>mmap 函数会返回映射后的内存地址，我们可以通过此内存地址对文件进行读写操作。如图<br><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b59dc54fc6fc42a294e3cf1defc1a3b9~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;mmap很早就知道一些，但是只是简单知道这个可以减少内存消耗，并不知道它的实现原理是怎么样的，所以也不知道它到底是怎么去减少内存消耗的，然后找了相关资料看了下，发现和android的bundle机制还有点相似，这里做个记录和总结&lt;/p&gt;
+&lt;h2 id=&quot;一些概念&quot;&gt;&lt;a href=&quot;#一些概念&quot; class=&quot;headerlink&quot; title=&quot;一些概念&quot;&gt;&lt;/a&gt;一些概念&lt;/h2&gt;&lt;p&gt;我们都知道linux进程分为&lt;strong&gt;用户空间&lt;/strong&gt;和&lt;strong&gt;内核空间&lt;/strong&gt;，后来在零拷贝原理中知道对于32位操作系统来说系统会给每个应用进程分配4G的虚拟内存空间，其中0-3G的内存地址属于用户空间，3-4G的内存地址属于内核空间。其中用户空间是不能共享的，而内核空间是运行操作系统的，它独立于普通的应用程序，是被所有应用程序共享的。所以对一个应用来说，只有3G的用户空间是属于应用本身的。参考：&lt;a href=&quot;https://www.cnblogs.com/sparkdev/p/8410350.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;内核空间与用户空间&lt;/a&gt;。由于用户空间是隔离的，所以这里当一个进程想访问另外一个进程的用户数据时就涉及到进程之间的通讯了（RPC），Android使用bundle来更好的解决这个问题，后面单独写Android的bundle机制。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="技能提升" scheme="http://yoursite.com/tags/%E6%8A%80%E8%83%BD%E6%8F%90%E5%8D%87/"/>
+    
+  </entry>
   
   <entry>
     <title>随想（一）</title>
@@ -456,9 +479,9 @@
       <category term="技术" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="并发" scheme="http://yoursite.com/tags/%E5%B9%B6%E5%8F%91/"/>
-    
       <category term="技能提升" scheme="http://yoursite.com/tags/%E6%8A%80%E8%83%BD%E6%8F%90%E5%8D%87/"/>
+    
+      <category term="并发" scheme="http://yoursite.com/tags/%E5%B9%B6%E5%8F%91/"/>
     
       <category term="源码" scheme="http://yoursite.com/tags/%E6%BA%90%E7%A0%81/"/>
     
@@ -570,36 +593,6 @@
       <category term="Spring boot" scheme="http://yoursite.com/tags/Spring-boot/"/>
     
       <category term="后端" scheme="http://yoursite.com/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CSS布局之Position（定位）</title>
-    <link href="http://yoursite.com/2020/01/15/CSS%E5%B8%83%E5%B1%80%E4%B9%8BPosition%EF%BC%88%E5%AE%9A%E4%BD%8D%EF%BC%89/"/>
-    <id>http://yoursite.com/2020/01/15/CSS布局之Position（定位）/</id>
-    <published>2020-01-15T10:03:07.892Z</published>
-    <updated>2020-01-17T06:07:58.924Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="CSS重点属性之Position"><a href="#CSS重点属性之Position" class="headerlink" title="CSS重点属性之Position"></a>CSS重点属性之Position</h1><p>position属性指定了元素的定位类型，它有5个值</p><ul><li>static（默认）</li><li>relative</li><li>fixed</li><li>absolute</li><li>sticky</li></ul><p>元素可以使用的top / bottom / left / right的属性进行定位。然而，这些属性无法正常工作，除非先设定position属性。他们也有不同的工作方式，这取决于定位方法。</p><a id="more"></a><h2 id="static"><a href="#static" class="headerlink" title="static"></a>static</h2><p>HTML元素的默认值，没有定位，遵循正常的文档流对象。静态定位的元素不会收到top，bottom，left，right影响。</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-class">.static</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: static;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">3px</span> solid <span class="number">#73AD21</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><a href="https://www.runoob.com/try/try.php?filename=trycss_position_static" target="_blank" rel="noopener">运行效果</a></p><h2 id="fixed"><a href="#fixed" class="headerlink" title="fixed"></a>fixed</h2><p>元素的位置相对于浏览器窗口是固定位置。即使窗口是滚动的它也不会移动，这个类似于Android里面某个某个悬浮控件，屏幕滑动时该控件的位置也不变。</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span><span class="selector-class">.pos_fixed</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">position</span>:fixed;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">30px</span>;</span><br><span class="line">    <span class="attribute">right</span>:<span class="number">5px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><a href="https://www.runoob.com/try/try.php?filename=trycss_position_fixed" target="_blank" rel="noopener">运行效果</a><br>可以滑动浏览器看看效果。</p><blockquote><p>Fixed定位使元素的位置与文档流无关，因此不占据空间，Fixed定位的元素会与其它元素重叠。</p></blockquote><h2 id="relative"><a href="#relative" class="headerlink" title="relative"></a>relative</h2><p>相对其正常位置的定位（正常文档流是从上到下从左到右）</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h2</span><span class="selector-class">.pos_left</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">position</span>:relative;</span><br><span class="line">    <span class="attribute">left</span>:-<span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">h2</span><span class="selector-class">.pos_right</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">position</span>:relative;</span><br><span class="line">    <span class="attribute">left</span>:<span class="number">20px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><a href="https://www.runoob.com/try/try.php?filename=trycss_position_relative" target="_blank" rel="noopener">运行效果</a></p><h2 id="absolute"><a href="#absolute" class="headerlink" title="absolute"></a>absolute</h2><p><strong>绝对定位的元素位置相对于最近的已定位父元素，如果元素没有已定位的父元素，那么它的位置相对于<html></html></strong></p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h2</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">position</span>:absolute;</span><br><span class="line">    <span class="attribute">left</span>:<span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">150px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><a href="https://www.runoob.com/try/try.php?filename=trycss_position_absolute" target="_blank" rel="noopener">运行效果</a></p><blockquote><p>同fixed定位一样，absolute定位使元素的位置与文档流无关，因此不占据空间，和其它元素会有重叠。</p></blockquote><h2 id="sticky"><a href="#sticky" class="headerlink" title="sticky"></a>sticky</h2><p>基于用户的滚动位置来定位，粘性定位的元素是依赖于用户的滚动，在position：relative与position：fixed定位之间切换。它的行为就像position：relative；而当页面滚动超出目标区域时，它的表现就像position：fixed；它会固定在目标位置。固定的位置指的是top, right, bottom 或 left 之一，换言之，指定 top, right, bottom 或 left 四个阈值其中之一，才可使粘性定位生效。否则其行为与相对定位相同。</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-class">.sticky</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: -webkit-sticky; <span class="comment">/* Safari */</span></span><br><span class="line">    <span class="attribute">position</span>: sticky;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: green;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">2px</span> solid <span class="number">#4CAF50</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><a href="https://www.runoob.com/try/try.php?filename=trycss_position_sticky" target="_blank" rel="noopener">运行效果</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;CSS重点属性之Position&quot;&gt;&lt;a href=&quot;#CSS重点属性之Position&quot; class=&quot;headerlink&quot; title=&quot;CSS重点属性之Position&quot;&gt;&lt;/a&gt;CSS重点属性之Position&lt;/h1&gt;&lt;p&gt;position属性指定了元素的定位类型，它有5个值&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;static（默认）&lt;/li&gt;
-&lt;li&gt;relative&lt;/li&gt;
-&lt;li&gt;fixed&lt;/li&gt;
-&lt;li&gt;absolute&lt;/li&gt;
-&lt;li&gt;sticky&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;元素可以使用的top / bottom / left / right的属性进行定位。然而，这些属性无法正常工作，除非先设定position属性。他们也有不同的工作方式，这取决于定位方法。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="CSS" scheme="http://yoursite.com/tags/CSS/"/>
     
   </entry>
   

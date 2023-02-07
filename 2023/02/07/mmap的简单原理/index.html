@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="技能提升,">
 
 
 
@@ -81,17 +81,22 @@
 
 
 
-<meta name="description" content="stay hungry, stay foolish">
-<meta name="keywords" content="Developer">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ervin">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+<meta name="description" content="mmap很早就知道一些，但是只是简单知道这个可以减少内存消耗，并不知道它的实现原理是怎么样的，所以也不知道它到底是怎么去减少内存消耗的，然后找了相关资料看了下，发现和android的bundle机制还有点相似，这里做个记录和总结 一些概念我们都知道linux进程分为用户空间和内核空间，后来在零拷贝原理中知道对于32位操作系统来说系统会给每个应用进程分配4G的虚拟内存空间，其中0-3G的内存地址属于">
+<meta name="keywords" content="技能提升">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mmap的简单原理解析">
+<meta property="og:url" content="http://yoursite.com/2023/02/07/mmap的简单原理/index.html">
 <meta property="og:site_name" content="Ervin">
-<meta property="og:description" content="stay hungry, stay foolish">
+<meta property="og:description" content="mmap很早就知道一些，但是只是简单知道这个可以减少内存消耗，并不知道它的实现原理是怎么样的，所以也不知道它到底是怎么去减少内存消耗的，然后找了相关资料看了下，发现和android的bundle机制还有点相似，这里做个记录和总结 一些概念我们都知道linux进程分为用户空间和内核空间，后来在零拷贝原理中知道对于32位操作系统来说系统会给每个应用进程分配4G的虚拟内存空间，其中0-3G的内存地址属于">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5b5d56c88f4b49ddba0ed1b014928a49~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/35a55af52d3042c79613feb41fc662d3~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b59dc54fc6fc42a294e3cf1defc1a3b9~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:updated_time" content="2023-02-07T07:18:20.456Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ervin">
-<meta name="twitter:description" content="stay hungry, stay foolish">
+<meta name="twitter:title" content="mmap的简单原理解析">
+<meta name="twitter:description" content="mmap很早就知道一些，但是只是简单知道这个可以减少内存消耗，并不知道它的实现原理是怎么样的，所以也不知道它到底是怎么去减少内存消耗的，然后找了相关资料看了下，发现和android的bundle机制还有点相似，这里做个记录和总结 一些概念我们都知道linux进程分为用户空间和内核空间，后来在零拷贝原理中知道对于32位操作系统来说系统会给每个应用进程分配4G的虚拟内存空间，其中0-3G的内存地址属于">
+<meta name="twitter:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5b5d56c88f4b49ddba0ed1b014928a49~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
 
 
 
@@ -121,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2019/">
+  <link rel="canonical" href="http://yoursite.com/2023/02/07/mmap的简单原理/">
 
 
 
 
 
-  <title>归档 | Ervin</title>
+  <title>mmap的简单原理解析 | Ervin</title>
   
 
 
@@ -146,7 +151,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -272,390 +277,225 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/02/07/mmap的简单原理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ervin Zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ervin">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
-         
+          <h1 class="post-title" itemprop="name headline">mmap的简单原理解析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-02-07T00:00:00+08:00">
+                2023-02-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        好! 目前共计 60 篇日志。 继续努力。
-      </span>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/12/25/Spring Boot初解/" itemprop="url">
+          
+
+          
+            <div class="post-wordcount">
               
-                <span itemprop="name">SpringBoot初解</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k
+                </span>
               
-            </a>
-        
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-12-25T19:43:00+08:00" content="2019-12-25">
-          12-25
-        </time>
-      </div>
+              
+                <span class="post-meta-divider">|</span>
+              
 
-    </header>
-  </article>
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
 
+          
 
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/12/16/JS事件循环/" itemprop="url">
-              
-                <span itemprop="name">JS事件循环</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-12-16T09:15:58+08:00" content="2019-12-16">
-          12-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/07/18/日本游记（三）/" itemprop="url">
-              
-                <span itemprop="name">日本游记（三）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-18T07:14:30+08:00" content="2019-07-18">
-          07-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>mmap很早就知道一些，但是只是简单知道这个可以减少内存消耗，并不知道它的实现原理是怎么样的，所以也不知道它到底是怎么去减少内存消耗的，然后找了相关资料看了下，发现和android的bundle机制还有点相似，这里做个记录和总结</p>
+<h2 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a>一些概念</h2><p>我们都知道linux进程分为<strong>用户空间</strong>和<strong>内核空间</strong>，后来在零拷贝原理中知道对于32位操作系统来说系统会给每个应用进程分配4G的虚拟内存空间，其中0-3G的内存地址属于用户空间，3-4G的内存地址属于内核空间。其中用户空间是不能共享的，而内核空间是运行操作系统的，它独立于普通的应用程序，是被所有应用程序共享的。所以对一个应用来说，只有3G的用户空间是属于应用本身的。参考：<a href="https://www.cnblogs.com/sparkdev/p/8410350.html" target="_blank" rel="noopener">内核空间与用户空间</a>。由于用户空间是隔离的，所以这里当一个进程想访问另外一个进程的用户数据时就涉及到进程之间的通讯了（RPC），Android使用bundle来更好的解决这个问题，后面单独写Android的bundle机制。</p>
+<a id="more"></a>
+<h2 id="mmap是什么"><a href="#mmap是什么" class="headerlink" title="mmap是什么"></a>mmap是什么</h2><p>mmap是一种内存映射文件的方法，即将一个文件或者其它对象映射到进程的地址空间，实现文件磁盘地址和进程虚拟地址空间中一段虚拟地址的一一对应关系。</p>
+<p>实现了这样的映射关系后，进程就可以采用指针的方式读写操作这一段内存，而系统会自动回写改动过的页面到对应的文件磁盘上，即完成了对文件的操作而不必要再调用read，write等系统函数。相反，内核空间对这段区域的修改也直接反映用户空间（因为内核空间被所有进程公用），从而实现不同进程间的 文件共享。</p>
+<h2 id="mmap的简单原理"><a href="#mmap的简单原理" class="headerlink" title="mmap的简单原理"></a>mmap的简单原理</h2><h3 id="传统的读写文件"><a href="#传统的读写文件" class="headerlink" title="传统的读写文件"></a>传统的读写文件</h3><p>一般来说，修改一个文件需要三个步骤</p>
+<ul>
+<li>把文件内容读入到内存中</li>
+<li>修改内存中的内容</li>
+<li>把内存的数据写入到文件中</li>
+</ul>
+<p>过程如下图：</p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5b5d56c88f4b49ddba0ed1b014928a49~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" alt></p>
+<p>从上图可以看到磁盘中的文件file要被用户修改的时候，需要先把file文件拷贝到<strong>页缓存（page cache）</strong>中，然后通过系统函数read读到用户空间的临时buffer中（copy），修改之后，再通过write方法（copy）写回页缓存中，最终改变了磁盘中的file的文件。其中，页缓存是读写文件的中间层，内核使用页缓存与文件的数据块（连续的内存地址）关联起来。所以应用程序读写文件时，实际操作的是页缓存。这里为了实现文件修改在内存中是做了两次copy的。</p>
+<h3 id="使用mmap读写文件"><a href="#使用mmap读写文件" class="headerlink" title="使用mmap读写文件"></a>使用mmap读写文件</h3><p>从上面读写文件的过程中，我们可以看到有一个地方是可以优化的：如果可以直接在用户空间操作（读写）页缓存，那么久可以免去页缓存的数据复制到用户空间的临时buffer的过程。mmap其实就是做这个事情的。</p>
+<p>使用mmap系统调用可以将用户空间的虚拟内存地址与文件进行映射（怎么做到的？），对映射的虚拟内存地址就行读写操作就如同对文件进行读写操作一下，如图：<br><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/35a55af52d3042c79613feb41fc662d3~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" alt></p>
+<p>mmap最终是调用了sendfile方法来实现映射关系的（具体怎么做到将用户空间的内存和页缓存做映射的，可以看这篇文章：<a href="https://developer.aliyun.com/article/375144" target="_blank" rel="noopener">认证分析mmap</a>，这里不深入写，只要知道mmap的第一层原理，它减少了将内核空间往用户空间拷贝的动作，所以性能会很好。）</p>
+<p>由于读写文件都需要经过页缓存，所以mmap映射的正是文件的页缓存，而非磁盘中的文件本身。由于mmap映射的是文件的页缓存，所以就涉及到同步的问题：页缓存上面时候把数据同步到磁盘？linux内核并不会主动把mmap映射的页缓存同步到磁盘，而是需要用户主动触发。同步mmap映射的内存到磁盘有4个时机：</p>
+<ul>
+<li>调用msync函数主动进行数据同步（主动）</li>
+<li>调用munmap函数对文件进行解除映射关系时（主动）</li>
+<li>进程推出时（被动）</li>
+<li>系统关机时（被动）</li>
+</ul>
+<p>mmap 函数会返回映射后的内存地址，我们可以通过此内存地址对文件进行读写操作。如图<br><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b59dc54fc6fc42a294e3cf1defc1a3b9~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" alt></p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/07/04/日本游记（二）/" itemprop="url">
-              
-                <span itemprop="name">日本游记（二）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-04T22:17:22+08:00" content="2019-07-04">
-          07-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/06/27/日本游记/" itemprop="url">
-              
-                <span itemprop="name">日本游记（一）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-06-27T22:34:56+08:00" content="2019-06-27">
-          06-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/04/28/熵/" itemprop="url">
-              
-                <span itemprop="name">熵</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-28T00:12:34+08:00" content="2019-04-28">
-          04-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/28/Kotlin之集合操作符/" itemprop="url">
-              
-                <span itemprop="name">Kotlin之集合操作符</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-28T11:10:02+08:00" content="2019-03-28">
-          03-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/21/Android Https证书详解/" itemprop="url">
-              
-                <span itemprop="name">Android Https证书详解</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-21T10:36:35+08:00" content="2019-03-21">
-          03-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/18/Quantumult配置/" itemprop="url">
-              
-                <span itemprop="name">QUANTUMULT的配置</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-18T23:43:00+08:00" content="2019-03-18">
-          03-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/14/alfred简单配置/" itemprop="url">
-              
-                <span itemprop="name">Alfred的简单配置</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-14T23:19:27+08:00" content="2019-03-14">
-          03-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/技能提升/" rel="tag"><i class="fa fa-tag"></i>
+ 技能提升</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2023/01/18/随想/" rel="next" title="随想（一）">
+                <i class="fa fa-chevron-left"></i> 随想（一）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2019/page/2/">2</a><a class="extend next" rel="next" href="/archives/2019/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -663,6 +503,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -683,8 +527,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -775,6 +628,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一些概念"><span class="nav-number">1.</span> <span class="nav-text">一些概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mmap是什么"><span class="nav-number">2.</span> <span class="nav-text">mmap是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mmap的简单原理"><span class="nav-number">3.</span> <span class="nav-text">mmap的简单原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#传统的读写文件"><span class="nav-number">3.1.</span> <span class="nav-text">传统的读写文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用mmap读写文件"><span class="nav-number">3.2.</span> <span class="nav-text">使用mmap读写文件</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -929,6 +798,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
