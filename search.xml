@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title></title>
+    <url>%2F2023%2F03%2F10%2F%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%2F</url>
+    <content type="text"><![CDATA[背景团队内部要做一些分享，最近ChatGPT正火，而且正好也在研究深度学习在移动设备上的相关东西，所以就想就深度学习这个方向去沉淀一些东西供参考。 深度学习目前是两大框架，神仙打架。Google的Tensorflow和Meta的Pytorch，本文基于Tensorflow来讲。由于本人使用的是Mac M1版本，在折腾过程中遇到了很多问题，最终还是解决了。这里做个记录。 过程配置Mac自带了python环境，直接安装tensorflow后，运行：1&gt;&gt;&gt; import tensorflow as tf 直接就报错了：illegal hardware instruction python3 后面发现是由于Tensorflow不支持Arm的cpu架构，需要使用Macos专用的Tensorflow框架，也询问了ChatGPT，最终过程是这样的。 下载基于Arm架构的miniconda下载地址：https://github.com/conda-forge/miniforge/#download 输入下面三个命令 1234567#下载完以后在terminal依次输入以下三个命令# 授权chmod +x ~/Downloads/Miniforge3-MacOSX-arm64.sh# 执行下载的脚本sh ~/Downloads/Miniforge3-MacOSX-arm64.sh# 运行脚本source ~/miniforge3/bin/activate 下载conda环境 123conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/conda config --set show_channel_urls yes 创建conda虚拟环境 123conda create -n tf python==3.9conda activate tf 安装tensorflow 1234567# pip下载在国内也很慢，很容易网络连接超时，-i https://pypi.tuna.tsinghua.edu.cn/simple能够切换到清华源下载# 在终端中依次输入以下三行命令。这三行命令都是下载包，可能速度有点慢，但是切换源之后应该速度很快。conda install -c apple tensorflow-depspython -m pip install tensorflow-macos -i https://pypi.tuna.tsinghua.edu.cn/simplepython -m pip install tensorflow-metal -i https://pypi.tuna.tsinghua.edu.cn/simple 查看是否有效 12import tensorflow as tfprint(tf.__version__) 如果能打印出版本号证明环境安装OK了，这时候会在tf这个虚拟环境中运行tensorflow 在pycharm中使用刚刚配置的环境pycharm是专用来开发python的，刚刚我们本地创建了一个可以运行tf的环境（interpreter）,我们如果想在pycharm里面去使用刚刚的环境，需要做一些配置，按照如果配置： 其中miniforge3就是上面第一步下载后生成的文件夹，里面有conda环境，通过这样配置生成的一个py项目就能使用tf的运行项目了]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>技能提升</tag>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[mmap的简单原理解析]]></title>
     <url>%2F2023%2F02%2F07%2Fmmap%E7%9A%84%E7%AE%80%E5%8D%95%E5%8E%9F%E7%90%86%2F</url>
     <content type="text"><![CDATA[mmap很早就知道一些，但是只是简单知道这个可以减少内存消耗，并不知道它的实现原理是怎么样的，所以也不知道它到底是怎么去减少内存消耗的，然后找了相关资料看了下，发现和android的bundle机制还有点相似，这里做个记录和总结 一些概念我们都知道linux进程分为用户空间和内核空间，后来在零拷贝原理中知道对于32位操作系统来说系统会给每个应用进程分配4G的虚拟内存空间，其中0-3G的内存地址属于用户空间，3-4G的内存地址属于内核空间。其中用户空间是不能共享的，而内核空间是运行操作系统的，它独立于普通的应用程序，是被所有应用程序共享的。所以对一个应用来说，只有3G的用户空间是属于应用本身的。参考：内核空间与用户空间。由于用户空间是隔离的，所以这里当一个进程想访问另外一个进程的用户数据时就涉及到进程之间的通讯了（RPC），Android使用bundle来更好的解决这个问题，后面单独写Android的bundle机制。 mmap是什么mmap是一种内存映射文件的方法，即将一个文件或者其它对象映射到进程的地址空间，实现文件磁盘地址和进程虚拟地址空间中一段虚拟地址的一一对应关系。 实现了这样的映射关系后，进程就可以采用指针的方式读写操作这一段内存，而系统会自动回写改动过的页面到对应的文件磁盘上，即完成了对文件的操作而不必要再调用read，write等系统函数。相反，内核空间对这段区域的修改也直接反映用户空间（因为内核空间被所有进程公用），从而实现不同进程间的 文件共享。 mmap的简单原理传统的读写文件一般来说，修改一个文件需要三个步骤 把文件内容读入到内存中 修改内存中的内容 把内存的数据写入到文件中 过程如下图： 从上图可以看到磁盘中的文件file要被用户修改的时候，需要先把file文件拷贝到页缓存（page cache）中，然后通过系统函数read读到用户空间的临时buffer中（copy），修改之后，再通过write方法（copy）写回页缓存中，最终改变了磁盘中的file的文件。其中，页缓存是读写文件的中间层，内核使用页缓存与文件的数据块（连续的内存地址）关联起来。所以应用程序读写文件时，实际操作的是页缓存。这里为了实现文件修改在内存中是做了两次copy的。 使用mmap读写文件从上面读写文件的过程中，我们可以看到有一个地方是可以优化的：如果可以直接在用户空间操作（读写）页缓存，那么久可以免去页缓存的数据复制到用户空间的临时buffer的过程。mmap其实就是做这个事情的。 使用mmap系统调用可以将用户空间的虚拟内存地址与文件进行映射（怎么做到的？），对映射的虚拟内存地址就行读写操作就如同对文件进行读写操作一下，如图： mmap最终是调用了sendfile方法来实现映射关系的（具体怎么做到将用户空间的内存和页缓存做映射的，可以看这篇文章：认证分析mmap，这里不深入写，只要知道mmap的第一层原理，它减少了将内核空间往用户空间拷贝的动作，所以性能会很好。） 由于读写文件都需要经过页缓存，所以mmap映射的正是文件的页缓存，而非磁盘中的文件本身。由于mmap映射的是文件的页缓存，所以就涉及到同步的问题：页缓存上面时候把数据同步到磁盘？linux内核并不会主动把mmap映射的页缓存同步到磁盘，而是需要用户主动触发。同步mmap映射的内存到磁盘有4个时机： 调用msync函数主动进行数据同步（主动） 调用munmap函数对文件进行解除映射关系时（主动） 进程推出时（被动） 系统关机时（被动） mmap 函数会返回映射后的内存地址，我们可以通过此内存地址对文件进行读写操作。如图]]></content>
@@ -187,8 +199,8 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>技能提升</tag>
         <tag>并发</tag>
+        <tag>技能提升</tag>
         <tag>源码</tag>
       </tags>
   </entry>
@@ -685,8 +697,8 @@
       </categories>
       <tags>
         <tag>多线程</tag>
-        <tag>并发</tag>
         <tag>原理</tag>
+        <tag>并发</tag>
       </tags>
   </entry>
 </search>
