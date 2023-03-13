@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
+    <title><![CDATA[深度学习之环境搭建]]></title>
     <url>%2F2023%2F03%2F10%2F%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%2F</url>
     <content type="text"><![CDATA[背景团队内部要做一些分享，最近ChatGPT正火，而且正好也在研究深度学习在移动设备上的相关东西，所以就想就深度学习这个方向去沉淀一些东西供参考。 深度学习目前是两大框架，神仙打架。Google的Tensorflow和Meta的Pytorch，本文基于Tensorflow来讲。由于本人使用的是Mac M1版本，在折腾过程中遇到了很多问题，最终还是解决了。这里做个记录。 过程配置Mac自带了python环境，直接安装tensorflow后，运行：1&gt;&gt;&gt; import tensorflow as tf 直接就报错了：illegal hardware instruction python3 后面发现是由于Tensorflow不支持Arm的cpu架构，需要使用Macos专用的Tensorflow框架，也询问了ChatGPT，最终过程是这样的。 下载基于Arm架构的miniconda下载地址：https://github.com/conda-forge/miniforge/#download 输入下面三个命令 1234567#下载完以后在terminal依次输入以下三个命令# 授权chmod +x ~/Downloads/Miniforge3-MacOSX-arm64.sh# 执行下载的脚本sh ~/Downloads/Miniforge3-MacOSX-arm64.sh# 运行脚本source ~/miniforge3/bin/activate 下载conda环境 123conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/conda config --set show_channel_urls yes 创建conda虚拟环境 123conda create -n tf python==3.9conda activate tf 安装tensorflow 1234567# pip下载在国内也很慢，很容易网络连接超时，-i https://pypi.tuna.tsinghua.edu.cn/simple能够切换到清华源下载# 在终端中依次输入以下三行命令。这三行命令都是下载包，可能速度有点慢，但是切换源之后应该速度很快。conda install -c apple tensorflow-depspython -m pip install tensorflow-macos -i https://pypi.tuna.tsinghua.edu.cn/simplepython -m pip install tensorflow-metal -i https://pypi.tuna.tsinghua.edu.cn/simple 查看是否有效 12import tensorflow as tfprint(tf.__version__) 如果能打印出版本号证明环境安装OK了，这时候会在tf这个虚拟环境中运行tensorflow 在pycharm中使用刚刚配置的环境pycharm是专用来开发python的，刚刚我们本地创建了一个可以运行tf的环境（interpreter）,我们如果想在pycharm里面去使用刚刚的环境，需要做一些配置，按照如果配置： 其中miniforge3就是上面第一步下载后生成的文件夹，里面有conda环境，通过这样配置生成的一个py项目就能使用tf的运行项目了]]></content>
       <categories>
