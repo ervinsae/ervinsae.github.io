@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[杂记]]></title>
+    <url>%2F2023%2F03%2F16%2F%E4%B8%80%E4%BA%9B%E6%84%9F%E6%83%B3%2F</url>
+    <content type="text"><![CDATA[一天中最幸运的事情： 碰到一首可以单曲循环的歌 解决了一个难题 突然冒出一个令自己兴奋的想法，想立马去实施 完成了一项让自己满意的工作 消除了和另一个在意的人之间的矛盾 1，2，3，4，5都来一遍 。。。 天下无不散的宴席。人生是一场旅途，有人同行是一种缘分，珍惜同行时光，等到分别之时，挥手告别，微笑离开。 成年人能够依赖的只有自己，能够救自己的也只有自己。 永远不要去试探人性，人性通常都禁不起推敲。 不作恶，保持善良。 不以物喜，不以己悲。平静对待赞赏，坦然接受批评。持续反思，保持好奇心，多琢磨，多折腾。 AI的可怕之处在于，他永远在反思，在对未知事物保持敬畏。他的回答已经很完美了，最后还会来一句他有局限性。相比而言，作为人类认知不及AI万分之一，还经常飘。人类和AI共存的日子马上就要来临了。 美好的东西，站在远处观赏就好。靠的太近也许是另一番景象。 剖析自己，找到自己的缺点，就算改不掉也要时刻提醒自己。 不要看他说什么，看他做什么，他做什么代表他相信什么。 每个人只相信自己相信的东西。 多元的信息输入源很重要，信息茧房的产生其实就是常年接受一种信息源，不断强化你的既有认知。特别是目前的社交网络，信息流很多都是同质化，信息量密度低的内容，接触多了之后会让你不愿意或者没有耐心去思考稍微复杂的问题，让人变得无知且固执。 顿悟是什么感觉？王阳明砍竹子和牛顿被苹果砸都让他们顿悟了，外界的扰动触发了内心认知的一次升级。 命运和人定胜天可能是人生的两个不同纬度，后天的努力通过因果关系可以改变命运。 出了问题，有时候向内去找答案比向外求助更有用。 越来越相信平行宇宙的理论。]]></content>
+      <categories>
+        <category>读书</category>
+      </categories>
+      <tags>
+        <tag>思考</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[深度学习之环境搭建]]></title>
     <url>%2F2023%2F03%2F10%2F%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%2F</url>
     <content type="text"><![CDATA[背景团队内部要做一些分享，最近ChatGPT正火，而且正好也在研究深度学习在移动设备上的相关东西，所以就想就深度学习这个方向去沉淀一些东西供参考。 深度学习目前是两大框架，神仙打架。Google的Tensorflow和Meta的Pytorch，本文基于Tensorflow来讲。由于本人使用的是Mac M1版本，在折腾过程中遇到了很多问题，最终还是解决了。这里做个记录。 过程配置Mac自带了python环境，直接安装tensorflow后，运行：1&gt;&gt;&gt; import tensorflow as tf 直接就报错了：illegal hardware instruction python3 后面发现是由于Tensorflow不支持Arm的cpu架构，需要使用Macos专用的Tensorflow框架，也询问了ChatGPT，最终过程是这样的。 下载基于Arm架构的miniconda下载地址：https://github.com/conda-forge/miniforge/#download 输入下面三个命令 1234567#下载完以后在terminal依次输入以下三个命令# 授权chmod +x ~/Downloads/Miniforge3-MacOSX-arm64.sh# 执行下载的脚本sh ~/Downloads/Miniforge3-MacOSX-arm64.sh# 运行脚本source ~/miniforge3/bin/activate 下载conda环境 123conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/conda config --set show_channel_urls yes 创建conda虚拟环境 123conda create -n tf python==3.9conda activate tf 安装tensorflow 1234567# pip下载在国内也很慢，很容易网络连接超时，-i https://pypi.tuna.tsinghua.edu.cn/simple能够切换到清华源下载# 在终端中依次输入以下三行命令。这三行命令都是下载包，可能速度有点慢，但是切换源之后应该速度很快。conda install -c apple tensorflow-depspython -m pip install tensorflow-macos -i https://pypi.tuna.tsinghua.edu.cn/simplepython -m pip install tensorflow-metal -i https://pypi.tuna.tsinghua.edu.cn/simple 查看是否有效 12import tensorflow as tfprint(tf.__version__) 如果能打印出版本号证明环境安装OK了，这时候会在tf这个虚拟环境中运行tensorflow 在pycharm中使用刚刚配置的环境pycharm是专用来开发python的，刚刚我们本地创建了一个可以运行tf的环境（interpreter）,我们如果想在pycharm里面去使用刚刚的环境，需要做一些配置，按照如果配置： 其中miniforge3就是上面第一步下载后生成的文件夹，里面有conda环境，通过这样配置生成的一个py项目就能使用tf的运行项目了]]></content>

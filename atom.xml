@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2023-03-13T09:49:48.704Z</updated>
+  <updated>2023-03-16T14:29:02.025Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>杂记</title>
+    <link href="http://yoursite.com/2023/03/16/%E4%B8%80%E4%BA%9B%E6%84%9F%E6%83%B3/"/>
+    <id>http://yoursite.com/2023/03/16/一些感想/</id>
+    <published>2023-03-15T16:00:00.000Z</published>
+    <updated>2023-03-16T14:29:02.025Z</updated>
+    
+    <content type="html"><![CDATA[<p>一天中最幸运的事情：</p><ol><li>碰到一首可以单曲循环的歌</li><li>解决了一个难题</li><li>突然冒出一个令自己兴奋的想法，想立马去实施</li><li>完成了一项让自己满意的工作</li><li>消除了和另一个在意的人之间的矛盾</li><li>1，2，3，4，5都来一遍</li><li>。。。</li></ol><p>天下无不散的宴席。人生是一场旅途，有人同行是一种缘分，珍惜同行时光，等到分别之时，挥手告别，微笑离开。</p><p>成年人能够依赖的只有自己，能够救自己的也只有自己。</p><p>永远不要去试探人性，人性通常都禁不起推敲。</p><p>不作恶，保持善良。</p><p>不以物喜，不以己悲。平静对待赞赏，坦然接受批评。持续反思，保持好奇心，多琢磨，多折腾。</p><p>AI的可怕之处在于，他永远在反思，在对未知事物保持敬畏。他的回答已经很完美了，最后还会来一句他有局限性。相比而言，作为人类认知不及AI万分之一，还经常飘。人类和AI共存的日子马上就要来临了。</p><p>美好的东西，站在远处观赏就好。靠的太近也许是另一番景象。</p><p>剖析自己，找到自己的缺点，就算改不掉也要时刻提醒自己。</p><p>不要看他说什么，看他做什么，他做什么代表他相信什么。</p><p>每个人只相信自己相信的东西。</p><p>多元的信息输入源很重要，信息茧房的产生其实就是常年接受一种信息源，不断强化你的既有认知。特别是目前的社交网络，信息流很多都是同质化，信息量密度低的内容，接触多了之后会让你不愿意或者没有耐心去思考稍微复杂的问题，让人变得无知且固执。</p><p>顿悟是什么感觉？王阳明砍竹子和牛顿被苹果砸都让他们顿悟了，外界的扰动触发了内心认知的一次升级。</p><p>命运和人定胜天可能是人生的两个不同纬度，后天的努力通过因果关系可以改变命运。</p><p>出了问题，有时候向内去找答案比向外求助更有用。</p><p>越来越相信平行宇宙的理论。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;一天中最幸运的事情：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;碰到一首可以单曲循环的歌&lt;/li&gt;
+&lt;li&gt;解决了一个难题&lt;/li&gt;
+&lt;li&gt;突然冒出一个令自己兴奋的想法，想立马去实施&lt;/li&gt;
+&lt;li&gt;完成了一项让自己满意的工作&lt;/li&gt;
+&lt;li&gt;消除了和另一个在意的人之间的矛盾&lt;/li
+      
+    
+    </summary>
+    
+      <category term="读书" scheme="http://yoursite.com/categories/%E8%AF%BB%E4%B9%A6/"/>
+    
+    
+      <category term="思考" scheme="http://yoursite.com/tags/%E6%80%9D%E8%80%83/"/>
+    
+  </entry>
   
   <entry>
     <title>深度学习之环境搭建</title>
@@ -550,33 +581,6 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="Spring boot" scheme="http://yoursite.com/tags/Spring-boot/"/>
-    
-      <category term="后台" scheme="http://yoursite.com/tags/%E5%90%8E%E5%8F%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring boot之事务传播</title>
-    <link href="http://yoursite.com/2020/02/25/Spring%20boot%E4%B9%8B%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD/"/>
-    <id>http://yoursite.com/2020/02/25/Spring boot之事务传播/</id>
-    <published>2020-02-25T11:43:00.000Z</published>
-    <updated>2020-03-06T05:56:54.515Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>Spring在TransactionDefinition接口中规定了7种类型的事务传播行为。事务传播行为是Spring框架独有的事务增强特性，他不属于的事务实际提供方数据库行为，这是Spring为我们提供的强大工具箱。使用事务传播可以为我们开发提供许多便利。但是人们对他的误解也很多，你一定听过“service方法事务最好不要嵌套”的传言。要想正确使用工具首先需要了解工具。</p><h1 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h1><h2 id="什么是事务传播行为"><a href="#什么是事务传播行为" class="headerlink" title="什么是事务传播行为"></a>什么是事务传播行为</h2><p>事务传播行为用来描述由某一个事务传播行为修饰的方法被嵌套进另外一个方法时事务如何传播。<br>伪代码说明：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">methodA</span><span class="params">()</span></span>&#123;</span><br><span class="line">    methodB();</span><br><span class="line">    <span class="comment">//doSomething</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Transaction</span>(Propagation == XX)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">methodB</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//doSomething</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>代码中methodA()方法嵌套调用了methodB()方法，methodB()的事务传播行为由@Transaction（）设置来决定。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;Spring在TransactionDefinition接口中规定了7种类型的事务传播行为。事务传播行为是Spring框架独有的事务增强特性
-      
     
     </summary>
     
