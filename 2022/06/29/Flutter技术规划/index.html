@@ -81,20 +81,18 @@
 
 
 
-<meta name="description" content="跨平台技术的使用目的   目前，我们前端项目中其实已经使用了跨平台技术：医动力中使用了部分H5页面。这种会带来一些好处，例如可以并行开发，可以不同端UI保持一致，加快开发节奏等。但是H5属于前端技术，对于移动端来说并没有复用人力。所以就有了移动端可以开发的跨平台技术例如RN，Flutter等。Flutter是Google主导的跨平台技术，目前已经到了3.0，技术社区很活跃，已经有比较多的厂商在项目">
+<meta name="description" content="私有文章, 请输入密码查看。">
 <meta name="keywords" content="跨平台">
 <meta property="og:type" content="article">
 <meta property="og:title" content="跨平台技术Flutter技术规划">
 <meta property="og:url" content="http://yoursite.com/2022/06/29/Flutter技术规划/index.html">
 <meta property="og:site_name" content="Ervin">
-<meta property="og:description" content="跨平台技术的使用目的   目前，我们前端项目中其实已经使用了跨平台技术：医动力中使用了部分H5页面。这种会带来一些好处，例如可以并行开发，可以不同端UI保持一致，加快开发节奏等。但是H5属于前端技术，对于移动端来说并没有复用人力。所以就有了移动端可以开发的跨平台技术例如RN，Flutter等。Flutter是Google主导的跨平台技术，目前已经到了3.0，技术社区很活跃，已经有比较多的厂商在项目">
+<meta property="og:description" content="私有文章, 请输入密码查看。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2022/06/29/Flutter技术规划/media/16566818209440.jpg">
-<meta property="og:updated_time" content="2022-11-01T10:18:57.686Z">
+<meta property="og:updated_time" content="2023-03-20T10:26:24.956Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="跨平台技术Flutter技术规划">
-<meta name="twitter:description" content="跨平台技术的使用目的   目前，我们前端项目中其实已经使用了跨平台技术：医动力中使用了部分H5页面。这种会带来一些好处，例如可以并行开发，可以不同端UI保持一致，加快开发节奏等。但是H5属于前端技术，对于移动端来说并没有复用人力。所以就有了移动端可以开发的跨平台技术例如RN，Flutter等。Flutter是Google主导的跨平台技术，目前已经到了3.0，技术社区很活跃，已经有比较多的厂商在项目">
-<meta name="twitter:image" content="http://yoursite.com/2022/06/29/Flutter技术规划/media/16566818209440.jpg">
+<meta name="twitter:description" content="私有文章, 请输入密码查看。">
 
 
 
@@ -372,7 +370,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  787
+                  9
                 </span>
               
 
@@ -388,7 +386,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  1
                 </span>
               
             </div>
@@ -409,28 +407,18 @@
       
 
       
-        <h2 id="跨平台技术的使用目的"><a href="#跨平台技术的使用目的" class="headerlink" title="跨平台技术的使用目的"></a>跨平台技术的使用目的</h2><p>   目前，我们前端项目中其实已经使用了跨平台技术：医动力中使用了部分H5页面。这种会带来一些好处，例如可以并行开发，可以不同端UI保持一致，加快开发节奏等。但是H5属于前端技术，对于移动端来说并没有复用人力。所以就有了移动端可以开发的跨平台技术例如RN，Flutter等。Flutter是Google主导的跨平台技术，目前已经到了3.0，技术社区很活跃，已经有比较多的厂商在项目中使用。本文主要基于Flutter来讲解。</p>
-   <a id="more"></a>
-<h2 id="跨平台技术的好处"><a href="#跨平台技术的好处" class="headerlink" title="跨平台技术的好处"></a>跨平台技术的好处</h2><ul>
-<li><p>UI一致性<br>医动力中UI不一致的问题一直被诟病，通过跨平台技术就可以很好解决这个问题，特别是Flutter因为是自己做的渲染，所以在iOS和Android的表现基本完全一致。</p>
-</li>
-<li><p>动态化技术<br>Flutter的一大特点，是支持热重载，就是不需要编辑即能看到修改代码后的效果。另外一般跨平台技术都能支持热更新，但是热更新在上应用市场时需要慎用。</p>
-</li>
-<li><p>APP体积<br>包大小也一直是APP优化的主要方向之一，目前主要是通过混淆，无用资源的识别，第三方库的按需引用等。第三方的跨平台技术由于封装的关系，同样的实现包体积会小很多。</p>
-</li>
-</ul>
-<h2 id="跨平台技术的一些弱点"><a href="#跨平台技术的一些弱点" class="headerlink" title="跨平台技术的一些弱点"></a>跨平台技术的一些弱点</h2><ul>
-<li><p>适配问题<br>跨平台技术绕不开的难题，由于需要跨平台所以在不同平台下的适配，包括原生接入了第三方SDK后都会存在一定的问题。另外，开发工具升级后，本身的版本适配也是一个问题。</p>
-</li>
-<li><p>组件贫乏<br>很多控件需要重新开发，前期需要很多人力去构建基础组件，维护组件。</p>
-</li>
-<li><p>维护问题<br>代码可读性比较差，跨平台代码天然与原生代码不一样，例如Flutter的回调地狱，一层一层的嵌套布局等，会增加维护成本。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>对于跨平台技术而言，首先这肯定是一种提高开发效率的工具，对于优化APP是有助力作用的，另一方面它也存在一些不可避免的问题，这个要求我们合理合规的去使用它。综上，我们在跨平台技术上需要做一些技术积累，找到和业务最合适的接入点去接入这些跨平台技术，并及时总结不断修正使用方式。</p>
-<h2 id="目标路线"><a href="#目标路线" class="headerlink" title="目标路线"></a>目标路线</h2><p>Flutter相对H5的优势主要是它的UI渲染引擎Skia来绘制UI时，能够达到颦美原生的UI效果，相对H5而言体验会顺畅很多，而且也可以避免对原生控件的依赖。基于这些优势，结合我们医动力项目中的实际情况，可以分阶段实现Flutter技术在移动端项目中的应用。</p>
-</li>
-</ul>
-<p><img src="media/16566818209440.jpg" alt></p>
-
+        <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="ba49a4305adbec6aa31e04854330c87f824f4e6e1eebddd22b14ce12ea744f3a">ebb08aa0288e261ddeb0b4aadf3d63d9334d551ecfb20a988ee264721d658bcc117ae618d7bd0102b1a64628349aa697db762dff100a77ffc0d8dce728a495b90f3c3638a9eb9cccdd998e9c9068ef07abb960ad41796745f8645488ff22941863cf33a0fca5e848719cc18efd78040c594cb6ef6c42a8710e529b4ab25a45e37659edca2ad19d176eb3c649334813ec4500dafd3757a9d09de6ec43e302575b01bccbaabddc745652c5e40e7ad0c0b42bd4f13ee4d8a0e3467f68df90b6b42e9f72e80dd3bdc3d3720ef41136eeca11a8b68e171417553a7629954389d606e260a62765aa4f3d42420eb61cc4aba9d680191de54edd1a6462f7529747889f6540a282fb509283859a69f42ec299a29f96089c42841fab1d28b59d765124f06acbf125857717111d9c6e32ee694ec4d62163180f9336072d0380fa76d12d628f4b1c6a831d6bb9bca67fcb1c6c8717a32b3f70f67fe5444882e66dc16a977364eb1295c6cf68ced1cfb2b4ab0fc42ab9e7c67a47b319609250d69cfc4245794a500787c55ed6da1ba188355e416acde0458a2f2197a3fec0ceb8e52c2374f1f7127b9666df428162ddaa8433d9c0d890918a0359d8a307a4a35363cda78d8ac2fde860c31bf14573cfb044485b47579ec867e00bd0caadf74d7a2298c146c59cdcf3194efb7161fd38edc4f76b469f24d2369f7e52ed852065326096d384708cd5aa79c258e3210ab8eb8c3f78f710e92742349a147cf46ad303cd7aca5c3dc9df804caa726deaa48a122bd3ccfffe6ddb35b8897e82f811d1413025d34bc2b6954d05e7c22e5a0acf8462c48159440293c9cbc9d9118b8ec71fbc3cdea05a71501aee182cbfcde2f88403f398b10257f0f64b14a2a467e353d61534d076231764f71078cbbc1fadbece02cc8a73c0741975ce60b35dfa02726bdb0d9f16f456d446535e61ddd5cd116c26da4b73f2874c0e3144f803d94b2f923ce0003db4874b0019c9fed3c4455a197480302c9a7470e5f02d22987baed37f4a1425b330b5e93e84e7c2c5175e029ff6aa909f3b9f36a2bd33e3725565d611f85d04a1bd6d0539a451396f96f16f855d4a623bc027286ac1d69cfd9582a1baf5c6281e937133b4c53eb57e104640dbf576e685f34ec1be290c519bfaed92ca23b21c6d05447ce698cea623a417caf944d8c77e55b1663a0949d3caa700f11aed014148e2a35cf47c7aaa450e3b8c42b747668027c989a8b89bb85128c866ea38c77ee242b1b4a038571b8a4c359b262f2e08301b1e219fc969fb348c7969790e5ff07a0c445af7b34a267d38694274cfece91512e252c7b28f624ec436ac91d7e1133136201f989da05b32d9fabc3ff749afa4db7e13993ce18cfc23890eaa6af83089b9b18d30c416caa70cd1aed3addd6baffedc4dfdc7b00342d73b8c8d4d5b321871cfa4d6cb854a684787655b10eea4bedf7a0ff54f90ee722574df1d5158811d2ab620f2412afc05c2ed163bf7c2a07347385bbb5a9ca13f2d8e304b2a5b0b194485f823d55fb0536051eafe23c63845335bafd724a0b9f0e5855db1b99c0c1fa5a9fd8bc23fc1887cb120180d30e5d04fb951c90dada7e82aa5b0d069131ccf3d8b4b56e05f669bdfc34f5a3b500f0550bf2bf9824bafdbbb4d8e24cba38080afe78cca4bdc60bb887153c0dd416bec230737a83042a33696c544c0d984d1d0792640db7da7a8c144b9cd63c053d298175fea9c7790062c285d640a02a11899d33079c17dbe9980f9c8b23075f57da345c0a68f65e8e217ba83e1723ce6740b3cc29c6f7f99198c785f8d3b0d518899526d94ee969343543a5652cc270bbc773a48afb266aadc0b1c89a4c20b7ae30e49e43e00132fb71f4ae09ae60886367092f925173443406cb06f9b3663ad4d182f166b6397fdfd7b1dded9b9eecf8feeea1cfa6862d9c518bfd2dd02a9b123e0c974393bd2d05ce0793680b46b9e4277e94db386daa3e85f63217c96c7a7576b6d291f1720099714bcdd9f97234728cd3057b864f66d7479d96eeb2ab4df52530afebf04ad4d038edd23b2a28412bdcf0d59c1cacb1b36114dbbbdfb3c13c109aa12f104d5da095ab1382fc130ea70477e71862522f7060e373ffa15835f52cea59c7bd8c3d2ed104476201175b35afaf49f5388bb5a28a32fff87209acc416cd09a8005639784da3d8623880ea4bb842c934cf29cc1100edcbddf4f2e29887dc1f18309f387f95e49b4fd16dfe8836e994e08caee89822cff37189324e4849da8145c59a5687d24eee2faed7f596d30ce2e4cc96fd15f70d6dba9657e03af7f0f354776a4f5a3c5b9827da527be9ce4a8bf15ddc646d92f97a3ed2c4d287b311fd4b55ee02e30147b52213db862b2a5dd710b929b5297b458ce124ad3504d2eab15da33fc88757bb3f07f8bd0ebe1377ed652f5ceacc0c173dbc7112f6cb665f0832cc1530262187f594f5102f02ebd473c5e3b32ef6f28dc784f9ffa70a54c0f879a6fc4673b378522d7e5daa5902b0c0e1421b7df82b9798b0c84125294c2ca12291dd946f36e99b4a448ef25125de2453d19a5435836864d5a36685ef96d71abda150aae8a0f8d5d7e85735eae75413b3f2f21ac181880e1464b65c89efa942ca7d11d3885ed30faa5721c37d4bc955520d4a29c979f378f4720f9f4f30ba12329176eab47db83ea1a972f0f2bb877b450e58777e299c6883fdb3a7f399ccf76980f3232f7a889c78bdeea7e1e0f324d52c4c438ae01bd5097a2996a072f1c64064135a75b34bce365b369aa87c76ca68c7eed0c70bac116ae356575e466371d61676587b69c62362a815fc80ddae36265f48d718c9368c09ddeb13c313581b036a127a53aed94895261cc088ebd15fc6d8f3eb77ab7fb020367afaa17bd36d21a4e33c3cd1791471e475a0ef66b4daf40bf0b47eb84fe2834913c44d3eaa2c5c71600e975ec91ed7b687b5996329377959f6a0eee35c60818e24a266c19dac88e247c29ff3b8c102da7cecb9b1f6ce9324e1e1ff8873f72009f56f2cab4d8bd3dba3bd7f3cc6bb30ce41d8413211b0a91c6609f5591a57e610ee458a61e3b0a7fc20c069365b8e14a5a0f4c90b83ce1645adeb96a6c271ae03f9ca10e26721d71e7f3c8673e40dffa40ce9287113c92754cf433d0db8bc69cc8a9a5f9fe3e3681be6b0c30bbef9b21b46058837661008a017577569e4fb37c49346f356c72b08f377b646c9f903351202aac051330f8318bc0cdeac083a35680cac584a578ce0044b9c9c1f467fd071a8ed39acd26db1b9556705bb27953cdde34fba6b5f7c9a36a607a5f7cefde6728f8fd725b989bfbfe9c3598d76ffc573f17fc08505282a15937d722225121c25f143a2c32476daf3d8bd8bdb775660b265be8ddc032a8dd8eeb4c3cae803fa614f94771cd5efe33f180c65f4bc98b3ee98cc48f3cbb430e3902fa557731af74169bc62ef6bbf2ce8bff28859cd0d2e18ffae089fb800134a2b84042054712bad915e130528b03f45494d2a40ba15b44eac4231393bb158fa239f3e8c9ea3ee3251aea951297dc2ab364d5775e8417b846266ecbc0d226a14af88e3565c7957a043858b80981e0791ef05c3540e5ab11d6f1be62fb84e89f76d2c1e2019c0daa20782eba1d1a44864ff1c71e62d38a4661fad7e2da4faa12a052e1adbe3904ed915987e6b2278cb4bb5a22e6f4a6ec61bf22a5e33102f2b8be343c5e914db0527c3d9685ff4ad4a00d79406e40b7535486041c57e52a1b956308147c46ca90d053f68ce1df13a79a03cd4fcd5c72522bf3962de201b178654149e372354541eb93eb619183b3254ff698ae206daabc9c033a16e9f102492fe49b0811c21909c7db16a99f199befaf912d2b493820047b46d4a87eb9a86a2c78d3091b2fb18111d23415474123a5c78e4eddedbacb5e640e3cf2a025769705731dbee4b1223a33f25059328c857b21b1e2288d74efaac7b4fe13ed6f44ab9ecc0c5d3105f93a04de1e685447c12cf3411d1345945c6b1eee8a6c77365703fa123eba5884a1e8c398344e3c27f6b5226e601d66994e1c8eba6a9fe8bce44bb13c2808a376fbe29d01e3f31ce89142128447f8564617cea9f6b557f32e551f9adf1ca57192d15a9dd4f0868deefc65afd35266d1a8eb3a2989a17ec39cc72c31815acad367bba8508cb441b2306aa0470a6418f561a85ba7fdd55d1e0c45a85fd4e9b4204da53a544cd0324bdf870440b342a0698b292bba372f55aacd58ed7654f4a950474ec99b2dde15421e2ae761ee40eef0dce2afc7b447a9d7feb63ebb1cb7e85487a3d639682e0811bcf65586a97cbebc95b3811ce7c2077dce2a0f9c4e05e5ff2d631ba770eca7ae480ad7ecf650e41557ee3053d92c147e06821ada5747a2dd093078d94aa90882f40b8c3d08dc466b383792eea73564e25375852b3875520949f54e3cce294fdec2ef68c791b78a4518bbb6029e7feeeafe124a923677f842d14f23ca61247ce8e33c41fe04cf210fa78a4a7cdd9dfd3499c619adbc2d392ff9f93fb8e89c845c3d8ce5c5ed2ced72dbb1f6b578765ccfa3321cdf7ec75a626a6339e6874c5e4b704c1ab9b12600b6b0d862008bf75f8d28f52125d87bd762c6a74a30394be33197bd389a6b23304b0a56c340bcf71a1c29bb80f95158fba77d33bcd0a834d584ecf119f0c9794a4a3aeb8e73894e6d1a2ab2562e199a2771a5d681a5ea5871bee6f1f27c008e59759c2826e8d23a21200beca2a2220b40a7277bfcfa3d7cb5ad46283c427a729e4ed48d5bf67eca82ff76fce381f10e699019a986ab1c5e913c0fc6f503b9958b5c6a43f69361e38f05224cbfc5cbc50f9e8e3d575c3a72a41f8b0849006753ca056ffba00b23131b22af211d</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码。</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
       
     </div>
     
@@ -525,17 +513,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -627,22 +606,6 @@
       </section>
 
       
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#跨平台技术的使用目的"><span class="nav-number">1.</span> <span class="nav-text">跨平台技术的使用目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跨平台技术的好处"><span class="nav-number">2.</span> <span class="nav-text">跨平台技术的好处</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跨平台技术的一些弱点"><span class="nav-number">3.</span> <span class="nav-text">跨平台技术的一些弱点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目标路线"><span class="nav-number">5.</span> <span class="nav-text">目标路线</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
 
       
 
@@ -670,7 +633,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">89.8k</span>
+    <span title="Site words total count">89k</span>
   
 </div>
 
