@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android,规划,半衰期,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Ervin" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="本文摘自CSND的《寒冬已至？四面楚歌的Android工程师该何去何从》，对于文中的一些观点比较认同，转载部分。  Android开发的天花板很多人觉得很多人会觉得Android技术深度不深，技术栈不庞大，Android职业发展有限，这个真是大大的误解。先说技术上，Android的技术栈随着时间的推移变得越来越庞大，细分领域也越来越多，主要有Android应用开发、逆向安全、音视频、车联网、物联">
+<meta name="keywords" content="Android,规划,半衰期">
+<meta property="og:type" content="article">
+<meta property="og:title" content="寒冬将至，Android的出路">
+<meta property="og:url" content="http://yoursite.com/2018/11/14/寒冬已至，Android的出路/index.html">
+<meta property="og:site_name" content="Ervin">
+<meta property="og:description" content="本文摘自CSND的《寒冬已至？四面楚歌的Android工程师该何去何从》，对于文中的一些观点比较认同，转载部分。  Android开发的天花板很多人觉得很多人会觉得Android技术深度不深，技术栈不庞大，Android职业发展有限，这个真是大大的误解。先说技术上，Android的技术栈随着时间的推移变得越来越庞大，细分领域也越来越多，主要有Android应用开发、逆向安全、音视频、车联网、物联">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://nimg.ws.126.net/?url=http%3A%2F%2Fspider.nosdn.127.net%2F123f022a99659255e455bf21d37d4150.jpeg&thumbnail=690x2147483647&quality=75&type=jpg">
+<meta property="og:image" content="https://nimg.ws.126.net/?url=http%3A%2F%2Fspider.nosdn.127.net%2F50daaac532daa7e224ddf4da5f436bdf.jpeg&thumbnail=690x2147483647&quality=75&type=jpg">
+<meta property="og:updated_time" content="2018-11-14T07:14:22.521Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="寒冬将至，Android的出路">
+<meta name="twitter:description" content="本文摘自CSND的《寒冬已至？四面楚歌的Android工程师该何去何从》，对于文中的一些观点比较认同，转载部分。  Android开发的天花板很多人觉得很多人会觉得Android技术深度不深，技术栈不庞大，Android职业发展有限，这个真是大大的误解。先说技术上，Android的技术栈随着时间的推移变得越来越庞大，细分领域也越来越多，主要有Android应用开发、逆向安全、音视频、车联网、物联">
+<meta name="twitter:image" content="https://nimg.ws.126.net/?url=http%3A%2F%2Fspider.nosdn.127.net%2F123f022a99659255e455bf21d37d4150.jpeg&thumbnail=690x2147483647&quality=75&type=jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/14/寒冬已至，Android的出路/">
+
+
+
+
+
+  <title>寒冬将至，Android的出路 | Ervin</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ervin</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">真正的强者是认清了生活的本质，并且去热爱他的人。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/14/寒冬已至，Android的出路/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ervin Zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ervin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">寒冬将至，Android的出路</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-14T09:17:29+08:00">
+                2018-11-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/文章/" itemprop="url" rel="index">
+                    <span itemprop="name">文章</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本文摘自CSND的《寒冬已至？四面楚歌的Android工程师该何去何从》，对于文中的一些观点比较认同，转载部分。</p>
+</blockquote>
+<h2 id="Android开发的天花板"><a href="#Android开发的天花板" class="headerlink" title="Android开发的天花板"></a>Android开发的天花板</h2><p>很多人觉得很多人会觉得Android技术深度不深，技术栈不庞大，Android职业发展有限，这个真是大大的误解。先说技术上，Android的技术栈随着时间的推移变得越来越庞大，细分领域也越来越多，主要有Android应用开发、逆向安全、音视频、车联网、物联网、手机开发和SDK开发等等，每个细分领域都有很多技术栈组成，深度都足够精深，就拿所有细分领域通用的Android系统底层源码来说，就会叫你学起来生不如死。</p>
+<a id="more"></a>
+<p>再说职业上，确实Android应用开发很难升任CTO，一般的CTO主要是后端，这主要是两个原因：后端的技术栈很早就成熟了，我8年前转做Android开发时，那帮30多岁的Java开发就已经很厉害了，随着时间的推移，后端技术大牛远比Android大牛的人数要多，也更厉害，他们做技术经理时，我们都还在搬砖；</p>
+<p>后端确实可以统筹全局，在公司业务上属于重要地位。</p>
+<p>不过我们忽略了最重要的一点，如果我们是做后端的，一定能做到CTO吗？我想也是很难的，所以不要眼睛只盯着高处，先想想自己能达到什么程度，站在半山腰就说山下面的风景不开阔本身也不合理啊。</p>
+<h2 id="是否要转行"><a href="#是否要转行" class="headerlink" title="是否要转行"></a>是否要转行</h2><p>Android不热门了，很多Android开发已经转行了，有的正走在转行的路上，还有的迟疑不决，到底要不要转呢？我们来分析下。</p>
+<h3 id="转什么好"><a href="#转什么好" class="headerlink" title="转什么好"></a>转什么好</h3><p>每个人的自身情况不同，转的方向也会有所区别，转人工智能相关开发肯定是最好的，毕竟风口上的猪也能飞，跟着风口无可厚非。只可惜人工智能相关对学历和算法要求很高，最起码得是个硕士吧，而且这只是低配。那么大多数Android开发可以转的方向主要有前端、后端和Python等等。我大概说一下：</p>
+<p><strong>转前端</strong>，这个是我认为最好转的一个方向，前端的理念很多都和Android类似，也可以作为Android的延伸，向大前端发展，如果对界面感兴趣的可以转前端试试。</p>
+<p><strong>转后端</strong>，后端这个就是完全的转行了，看似Java大家都会，但是后端的技术栈可不是只有Java，各种框架绝对叫你头大，很多人强调后端技术深，各种处理高并发看似十分有技术含量，不过这只是为数不多的公司在做。如果想要稳定的可以转后端试试。</p>
+<p><strong>转Python</strong>，Python最近真是很火，因为他跟人工智能发生了关联，其实大部分学Python的没有搞什么人工智能相关，基本都是在搞爬虫。追求浪潮的可以转Python试试。</p>
+<h3 id="不要轻易转行，要转就早点转"><a href="#不要轻易转行，要转就早点转" class="headerlink" title="不要轻易转行，要转就早点转"></a>不要轻易转行，要转就早点转</h3><p>转行有两种我认为是正常的，一种是行业消失或者没落了，个人无法施展才华。另一种是兴趣不在本行，因此转一个自己感兴趣的。而现在大部分转行纯属是为了跟风，为了那点钱，而忽略了长期的发展。我们来看看下面的图。<br><img src="https://nimg.ws.126.net/?url=http%3A%2F%2Fspider.nosdn.127.net%2F123f022a99659255e455bf21d37d4150.jpeg&amp;thumbnail=690x2147483647&amp;quality=75&amp;type=jpg" alt></p>
+<p>从图中可以看出，大部分人在35岁前是在加速期，35岁后是上升或者衰落期。以Android开发转前端来说，假设一个Android高级A同学转行前端会变为前端初级，这时从事前端的人都在加速提高，A同学要想赶超前面的拥有同样加速度的人是不可能办到的，这就导致他在转行前期极为被动，A同学还要保证在35岁前成为前端专家或者Leader才有可能在35岁后不进入衰落期，当然这时A同学的Android基本也就荒废了，很难成为专家。如果还想要在技术领域走的更远，就不要轻易的进行转行，如果想要转越早越好，越快越好，因为其他的竞争者都在加速提高，没人会停下等你的。</p>
+<h3 id="转行大部分都不是质变"><a href="#转行大部分都不是质变" class="headerlink" title="转行大部分都不是质变"></a>转行大部分都不是质变</h3><p>一个开发的质变可以理解为在一个领域的大幅提升，或者是不相关领域的跨界，举个例子：可以在Android领域由高级质变为了专家，或者是由一个高级开发升到了Leader，再或者跨界开始做了一些技术相关的培训、演讲、出书等等而被人所熟知。凡是能帮助35岁后进入上升期的都可以看做是一次质变，而转行很少是质变，更多的是倒退回到原点重新出发，形象点来说，就是换了个不同的砖头接着搬砖而已（高技术含量的除外）。因此我们更应该去追求质变，而不是平行或者倒退，一次倒退可以承受，多次倒退就很难在35岁后进入上升期。</p>
+<h2 id="如何提升竞争力"><a href="#如何提升竞争力" class="headerlink" title="如何提升竞争力"></a>如何提升竞争力</h2><h3 id="选择一个细分领域"><a href="#选择一个细分领域" class="headerlink" title="选择一个细分领域"></a>选择一个细分领域</h3><p>Android现在细分的领域非常多，前面说到的有应用开发、逆向安全、音视频、车联网、物联网、手机开发、SDK开发和智能电视盒子开发等等，在这些领域中选择一个并不断深入。比如音视频，在8年前我刚入门Android时，音视频就是闷声发大财了（PC端），工资高的令人乍舌，现在在移动端，音视频更是青出于蓝，是一个非常好的选择，如果想要入门可以看看何俊林《Android音视频开发》。</p>
+<h3 id="尽量学习半衰期长的知识"><a href="#尽量学习半衰期长的知识" class="headerlink" title="尽量学习半衰期长的知识"></a><strong>尽量学习半衰期长的知识</strong></h3><p>知识半衰期指的是：随着知识更新周期变短，知识裂变速度加快，一个知识落伍的周期。知识半衰期长的职业都是越老越值钱的，比如英语老师和外科医生，知识更新慢并且几乎不会落伍。这一点我们程序员是绝对比不了的，我们的大部分知识半衰期是比较短的，一个框架短短几年可能就会被淘汰，这也导致程序员需要不断的学习新知识，而我们每个人的时间和精力是有限的，那么根据知识半衰期，有策略的进行学习就变得尤为重要。（这个观点很有吸引力）</p>
+<p><img src="https://nimg.ws.126.net/?url=http%3A%2F%2Fspider.nosdn.127.net%2F50daaac532daa7e224ddf4da5f436bdf.jpeg&amp;thumbnail=690x2147483647&amp;quality=75&amp;type=jpg" alt></p>
+<p>上面的半衰期图不完全准确，但是却值得参考，如果你是其他的技术领域也可以参考这个半衰期图。这个图不是告诉我们不要去学RN和小程序，而是结合自身工作尽量学习半衰期长的知识。</p>
+<h3 id="做减法，尽量专精一门技术"><a href="#做减法，尽量专精一门技术" class="headerlink" title="做减法，尽量专精一门技术"></a>做减法，尽量专精一门技术</h3><p>现在的社会，技术分工越来越细，越细就意味着大部分企业（小作坊除外）需要专精的人才（最好是精通一门通多门）。你会发现身边脱颖而出的技术人大多都是靠一门技术，却很少看到会一堆技术却都不精通的冒出来。好比在武侠的世界，高手对决都在同一个时间段拿出看家武学，如果看家武学都不精，分分钟被虐，剩下的武学也无需拿出来献丑了。联想到现实版本就是去大公司面试Android，结果Android技术了解不深，被各种虐，剩下的前端技术、后端技术、Python什么的，面试官也没兴趣了解了。</p>
+<p>所以并不是你会的技术越多越好，一定要做好减法，先专精一门，然后再去学别的技术。（值得借鉴）</p>
+<h3 id="说说最近Android火热的技术"><a href="#说说最近Android火热的技术" class="headerlink" title="说说最近Android火热的技术"></a>说说最近Android火热的技术</h3><p>Android相关的火热技术最近几年也是频出，没事就在刷屏，我来说说对这些火热技术的看法。</p>
+<p><strong>Kotlin</strong>，从知识的半衰期来看，这门语言非常值得学习，不过想要普及还是非常难，因为Kotlin还没有表现出非用它不可的竞争力，另外很多企业使用的成本比较高，大多数领导都是不求有功但求无过，不会下力气推广。</p>
+<p><strong>Flutter</strong>，从知识的半衰期来看，这个框架存在的时间相对不会长，目前也就一些有技术储备的公司去试验去尝试，如果自己公司技术储备不够，就贸然当小白鼠显然不是很明智。</p>
+<p>这两个技术都建议大家来学习，但不要指望它们会给你增加什么太大竞争力，李四1周能学会，张三同样也能。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i>
+ Android</a>
+          
+            <a href="/tags/规划/" rel="tag"><i class="fa fa-tag"></i>
+ 规划</a>
+          
+            <a href="/tags/半衰期/" rel="tag"><i class="fa fa-tag"></i>
+ 半衰期</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/09/微信小程序之CSS/" rel="next" title="小程序之CSS入门">
+                <i class="fa fa-chevron-left"></i> 小程序之CSS入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/23/Kotlin-Tips/" rel="prev" title="怎么用Kotlin去提高生产力：Kotlin Tips">
+                怎么用Kotlin去提高生产力：Kotlin Tips <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Ervin Zhang">
+            
+              <p class="site-author-name" itemprop="name">Ervin Zhang</p>
+              <p class="site-description motion-element" itemprop="description">stay hungry, stay foolish</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/ervinsae" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:ervinsae@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/ervinsae" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Android开发的天花板"><span class="nav-number">1.</span> <span class="nav-text">Android开发的天花板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#是否要转行"><span class="nav-number">2.</span> <span class="nav-text">是否要转行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#转什么好"><span class="nav-number">2.1.</span> <span class="nav-text">转什么好</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不要轻易转行，要转就早点转"><span class="nav-number">2.2.</span> <span class="nav-text">不要轻易转行，要转就早点转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转行大部分都不是质变"><span class="nav-number">2.3.</span> <span class="nav-text">转行大部分都不是质变</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何提升竞争力"><span class="nav-number">3.</span> <span class="nav-text">如何提升竞争力</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选择一个细分领域"><span class="nav-number">3.1.</span> <span class="nav-text">选择一个细分领域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#尽量学习半衰期长的知识"><span class="nav-number">3.2.</span> <span class="nav-text">尽量学习半衰期长的知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做减法，尽量专精一门技术"><span class="nav-number">3.3.</span> <span class="nav-text">做减法，尽量专精一门技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#说说最近Android火热的技术"><span class="nav-number">3.4.</span> <span class="nav-text">说说最近Android火热的技术</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ervin Zhang</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">91.6k</span>
+  
+</div>
+
+
+<div class="powered-by">
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>次
+</span>
+
+<span class="post-meta-divider">|</span>
+</div>
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":180,"height":360},"mobile":{"show":false,"scale":0.5},"log":false});</script></body>
+</html>
