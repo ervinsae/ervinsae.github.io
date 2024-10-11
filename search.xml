@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[常见认知偏差]]></title>
+    <url>%2F2024%2F10%2F11%2F%E5%B8%B8%E8%A7%81%E8%AE%A4%E7%9F%A5%E5%81%8F%E5%B7%AE%2F</url>
+    <content type="text"><![CDATA[origin: BBSHARE]]></content>
+      <categories>
+        <category>读书</category>
+      </categories>
+      <tags>
+        <tag>思考</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[sing-box订阅]]></title>
     <url>%2F2024%2F03%2F19%2FSing-Box%E8%AE%A2%E9%98%85%2F</url>
     <content type="text"><![CDATA[最近使用ClaudFlare Vless薅了一波羊毛，作为备用节点感觉完全足够了（ClaudFlare真的是个宝藏）。然后使用Mac上的Clash去订阅发现它不支持Vless协议，iOS上小火箭是支持的但是QX又不支持，然后偶然间X上看到了一个博主在说sing-box，印象中好像在它testfligth时就开始下载了，但是一直不知道怎么用，然后就看了下推文，发现它是个GFW工具，然后它也支持订阅，只是需要转换，这里记载下转换的方式。 部署步骤打开 Replit 项目：https://replit.com/@misaka-blog/sing-box-subscribe ，然后点击“Fork”按钮，克隆成自己的项目 找到这个文件：providers.json，将 “url” 后面的值改成自己的机场 / 自建节点订阅链接地址 然后点击绿色的“Run”按钮，待配置好项目依赖之后，选择配置模板（Singbox 1.8.0 及以上请输入 1，以下版本输入3），我是1.8.9版本，所以输入1 待一切无误后，可以在左侧的文件列表看到 config.json 文件，即可代表完成生成 之后，将config.json文件导入到sing-box中，路径：Profies - New Profile - type选择local，file选择import，然后导入Create。]]></content>
@@ -208,9 +219,9 @@
         <category>技术</category>
       </categories>
       <tags>
+        <tag>基础</tag>
         <tag>多线程</tag>
         <tag>并发</tag>
-        <tag>基础</tag>
       </tags>
   </entry>
   <entry>
@@ -279,8 +290,8 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>并发</tag>
         <tag>技能提升</tag>
+        <tag>并发</tag>
         <tag>源码</tag>
       </tags>
   </entry>
@@ -292,8 +303,8 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>后端</tag>
         <tag>Spring boot</tag>
+        <tag>后端</tag>
       </tags>
   </entry>
   <entry>
@@ -304,8 +315,8 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>后端</tag>
         <tag>Spring boot</tag>
+        <tag>后端</tag>
       </tags>
   </entry>
   <entry>
@@ -316,8 +327,8 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>后端</tag>
         <tag>Spring boot</tag>
+        <tag>后端</tag>
       </tags>
   </entry>
   <entry>
@@ -498,8 +509,8 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>Scala</tag>
         <tag>后端</tag>
+        <tag>Scala</tag>
       </tags>
   </entry>
   <entry>
@@ -763,9 +774,9 @@
         <category>技术</category>
       </categories>
       <tags>
+        <tag>基础</tag>
         <tag>多线程</tag>
         <tag>并发</tag>
-        <tag>基础</tag>
       </tags>
   </entry>
   <entry>
