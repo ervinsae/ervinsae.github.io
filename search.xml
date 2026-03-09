@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[关于Kotlin中副作用的理解]]></title>
-    <url>%2F2026%2F03%2F09%2F%E5%85%B3%E4%BA%8EKotlin%E4%B8%AD%E5%89%AF%E4%BD%9C%E7%94%A8%E7%9A%84%E7%90%86%E8%A7%A3%2F</url>
-    <content type="text"><![CDATA[review代码的时候看到一个副作用，有点忘记原理了，就问了下AI，我觉得它回答的非常好，记录一下： 12345678910111213141516LaunchedEffect(boValue, countDownTime) &#123; if (countDownTime == CountDownState.Finished.times) &#123; navigator.navigate(BOExceptionDestination())&#123; popUpTo(BOWornDetectionDestination.route) &#123; inclusive = true &#125; &#125; &#125; if (boValue &gt; 0) &#123; navigator.navigate(BOResultDestination(boValue.toInt()))&#123; popUpTo(BOWornDetectionDestination.route) &#123; inclusive = true &#125;&#125; &#125; &#125; 提问：不太明白这个副作用函数的运行机制，你上面说它会开启一个协程来执行内部代码，但是又会监听LaunchedEffect中的key值，这个是怎么做到的？另外，如果key值变化了，主线程中正在执行的代码会怎么样？请作为Android资深工程师用浅显易懂的方式给我讲清楚。 AI回答：现在我们把上面的比喻套在你的代码上： LaunchedEffect(boValue, countDownTime) { … } 首次运行： 你的界面第一次显示时，boValue 可能是 0，countDownTime 是 30。 LaunchedEffect 记录下 (key1=0, key2=30)，并启动一个协程来执行 {} 里的代码。 这个协程现在开始运行，它会检查 if 条件，发现都不满足，然后就“挂起” (suspend)，等待下一次 key 的变化。 当 countDownTime 变化时： 1秒后，countDownTime 变成了 29。这导致了界面重组 (Recomposition)。 在重组过程中，LaunchedEffect 会再次被执行。它对比新旧 key： 旧 key: (boValue=0, countDownTime=30) 新 key: (boValue=0, countDownTime=29)◦它发现 countDownTime 变了！于是： 立即取消上一个 countDownTime=30 时启动的协程。 启动一个全新的协程，并记录下新的 key (0, 29)。这个新协程又从头开始执行 {} 里的逻辑。这个过程会每秒重复一次。 如果 boValue 突然变化了： 假设在倒计时到 25 秒时，血氧传感器返回了数据，boValue 从 0 变成了 98。 界面再次重组。LaunchedEffect 对比 key： 旧 key: (boValue=0, countDownTime=25) 新 key: (boValue=98, countDownTime=25) 它发现 boValue 变了！于是： 立即取消上一个 (0, 25) 的协程。 启动一个全新的协程。这个新协程一进来就检查 if (boValue &gt; 0)，条件满足，立刻执行 navigator.navigate(…) 进行页面跳转。任务完成！ 关于主线程的问题你还问到：“如果key值变化了，主线程中正在执行的代码会怎么样？”这是一个非常好的问题，涉及到协程的核心优势。 LaunchedEffect 里的代码默认运行在主线程上，但它是可挂起 (suspendable) 的。 当协程执行到一个挂起点（比如 delay(1000) 或者其他需要等待的异步操作）时，它会释放主线程，但并不会销毁自己。主线程可以去干别的事，比如响应用户点击、刷新动画等，UI 不会被卡住。 当 key 变化时，是 Compose 框架在主线程的重组阶段发现了 key 的变化，然后它会向旧的协程发送一个取消信号。 正在运行的协程（无论它当前是真正在执行 CPU 指令，还是正处于挂起状态）收到取消信号后，会在下一个挂起点或检查点响应取消，并抛出 CancellationException 来终止自己。 这一切的取消和重启调度都是由 Compose 框架和 Kotlin 协程库在背后无缝完成的，不会阻塞主线程的正常工作。 总结 机制：LaunchedEffect 不是“边运行边监听”，而是在每次重组时，通过对比新旧 key 值来决定是否取消旧协程，启动新协程。 目的：确保副作用代码（比如网络请求、数据库操作、导航）始终与当前的 state (也就是 key) 保持同步。 线程：代码虽然在主线程协程中，但由于其“可挂起”的特性，不会阻塞 UI 渲染。它的生命周期管理是自动且安全的。]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>技能提升</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[测试]]></title>
-    <url>%2F2026%2F03%2F07%2F2026-03-07%2F</url>
-    <content type="text"><![CDATA[测试文档111]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[OpenClaw常用命令自查表]]></title>
     <url>%2F2026%2F03%2F07%2FOpenClaw%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5%E8%A1%A8%2F</url>
     <content type="text"><![CDATA[🔍 文档内容摘要核心 CLI 命令 openclaw gateway — 运行 WebSocket 网关服务器 openclaw gateway start|stop|restart — 管理网关服务 openclaw channels login — WhatsApp 二维码配对 openclaw channels add — 添加机器人 openclaw channels status --probe — 渠道状态检测 openclaw onboard — 交互式设置向导 openclaw doctor — 健康检查 + 快速修复 openclaw models list|set|status — 模型管理 + 认证状态 快速安装 npm install -g openclaw@latest openclaw onboarding --install-daemon 全局标志：--dev、--profile、--json 渠道管理 WhatsApp: channels add --whatsapp Telegram: channels add --telegram Discord: channels add --discord Slack: channels add --slack 工作区结构 AGENTS.md — 指令 SOUL.md — 人格/语调 USER.md — 偏好 IDENTITY.md — 名称 MEMORY.md — 长期记忆 BOOT.md — 启动 ROOT: ~/.OPENCLAW/WORKSPACE 斜杠命令/COMMANDS /status — 运行状态 /model &lt;m&gt; — 切换模型 /compact — 压缩上下文 /new — 开启新会话 /stop — 中止 /think — 推理模式 基本路径映射 CONFIG: ~/.openclaw/openclaw.json CREDENTIALS: ~/.openclaw/credentials/ LOGS: /tmp/openclaw/*.log 语音与 TTS OpenAI / ElevenLabs: Premium Edge TTS: Free (No API Key) messages.tts.auto: &quot;always&quot; 记忆与模型 向量搜索：memory search 模型切换：models 认证设置：models auth 故障排除 没有私信回复 → PAIRING LIST → APPROVE 群组中静默 → MENTIONPATTERNS CONFIG 网关关闭 → DOCTOR --DEEP 记忆错误 → MEMORY INDEX 自动化与研究 浏览器操控：browser start 定时任务：cron list 心跳检查：30m 🌐 最终状态 页面: X (Twitter) - OpenClaw 速查表图片 URL: https://x.com/NFTCPS/status/2029182520806543800/photo/1 文档: 已整理为 Markdown 格式，包含速查表全部 10 个模块内容 💡 补充说明原文网站： http://moltfounders.com/openclaw-mega-cheatsheet 内容由 AI 生成仅供参考]]></content>
@@ -36,6 +20,17 @@
       </categories>
       <tags>
         <tag>思考</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[关于Kotlin中副作用的理解]]></title>
+    <url>%2F2025%2F11%2F12%2F%E5%85%B3%E4%BA%8EKotlin%E4%B8%AD%E5%89%AF%E4%BD%9C%E7%94%A8%E7%9A%84%E7%90%86%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[review代码的时候看到一个副作用，有点忘记原理了，就问了下AI，我觉得它回答的非常好，记录一下： 12345678910111213141516LaunchedEffect(boValue, countDownTime) &#123; if (countDownTime == CountDownState.Finished.times) &#123; navigator.navigate(BOExceptionDestination())&#123; popUpTo(BOWornDetectionDestination.route) &#123; inclusive = true &#125; &#125; &#125; if (boValue &gt; 0) &#123; navigator.navigate(BOResultDestination(boValue.toInt()))&#123; popUpTo(BOWornDetectionDestination.route) &#123; inclusive = true &#125;&#125; &#125; &#125; 提问：不太明白这个副作用函数的运行机制，你上面说它会开启一个协程来执行内部代码，但是又会监听LaunchedEffect中的key值，这个是怎么做到的？另外，如果key值变化了，主线程中正在执行的代码会怎么样？请作为Android资深工程师用浅显易懂的方式给我讲清楚。 AI回答：现在我们把上面的比喻套在你的代码上： LaunchedEffect(boValue, countDownTime) { … } 首次运行： 你的界面第一次显示时，boValue 可能是 0，countDownTime 是 30。 LaunchedEffect 记录下 (key1=0, key2=30)，并启动一个协程来执行 {} 里的代码。 这个协程现在开始运行，它会检查 if 条件，发现都不满足，然后就“挂起” (suspend)，等待下一次 key 的变化。 当 countDownTime 变化时： 1秒后，countDownTime 变成了 29。这导致了界面重组 (Recomposition)。 在重组过程中，LaunchedEffect 会再次被执行。它对比新旧 key： 旧 key: (boValue=0, countDownTime=30) 新 key: (boValue=0, countDownTime=29)◦它发现 countDownTime 变了！于是： 立即取消上一个 countDownTime=30 时启动的协程。 启动一个全新的协程，并记录下新的 key (0, 29)。这个新协程又从头开始执行 {} 里的逻辑。这个过程会每秒重复一次。 如果 boValue 突然变化了： 假设在倒计时到 25 秒时，血氧传感器返回了数据，boValue 从 0 变成了 98。 界面再次重组。LaunchedEffect 对比 key： 旧 key: (boValue=0, countDownTime=25) 新 key: (boValue=98, countDownTime=25) 它发现 boValue 变了！于是： 立即取消上一个 (0, 25) 的协程。 启动一个全新的协程。这个新协程一进来就检查 if (boValue &gt; 0)，条件满足，立刻执行 navigator.navigate(…) 进行页面跳转。任务完成！ 关于主线程的问题你还问到：“如果key值变化了，主线程中正在执行的代码会怎么样？”这是一个非常好的问题，涉及到协程的核心优势。 LaunchedEffect 里的代码默认运行在主线程上，但它是可挂起 (suspendable) 的。 当协程执行到一个挂起点（比如 delay(1000) 或者其他需要等待的异步操作）时，它会释放主线程，但并不会销毁自己。主线程可以去干别的事，比如响应用户点击、刷新动画等，UI 不会被卡住。 当 key 变化时，是 Compose 框架在主线程的重组阶段发现了 key 的变化，然后它会向旧的协程发送一个取消信号。 正在运行的协程（无论它当前是真正在执行 CPU 指令，还是正处于挂起状态）收到取消信号后，会在下一个挂起点或检查点响应取消，并抛出 CancellationException 来终止自己。 这一切的取消和重启调度都是由 Compose 框架和 Kotlin 协程库在背后无缝完成的，不会阻塞主线程的正常工作。 总结 机制：LaunchedEffect 不是“边运行边监听”，而是在每次重组时，通过对比新旧 key 值来决定是否取消旧协程，启动新协程。 目的：确保副作用代码（比如网络请求、数据库操作、导航）始终与当前的 state (也就是 key) 保持同步。 线程：代码虽然在主线程协程中，但由于其“可挂起”的特性，不会阻塞 UI 渲染。它的生命周期管理是自动且安全的。]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>技能提升</tag>
       </tags>
   </entry>
   <entry>
@@ -302,8 +297,8 @@
       </categories>
       <tags>
         <tag>基础</tag>
-        <tag>多线程</tag>
         <tag>并发</tag>
+        <tag>多线程</tag>
       </tags>
   </entry>
   <entry>
@@ -857,8 +852,8 @@
       </categories>
       <tags>
         <tag>基础</tag>
-        <tag>多线程</tag>
         <tag>并发</tag>
+        <tag>多线程</tag>
       </tags>
   </entry>
   <entry>
@@ -869,9 +864,9 @@
         <category>技术</category>
       </categories>
       <tags>
+        <tag>并发</tag>
         <tag>多线程</tag>
         <tag>原理</tag>
-        <tag>并发</tag>
       </tags>
   </entry>
 </search>

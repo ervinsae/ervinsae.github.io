@@ -287,381 +287,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2026/03/09/关于Kotlin中副作用的理解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ervin Zhang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ervin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2026/03/09/关于Kotlin中副作用的理解/" itemprop="url">关于Kotlin中副作用的理解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2026-03-09T07:05:48+00:00">
-                2026-03-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  952
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>review代码的时候看到一个副作用，有点忘记原理了，就问了下AI，我觉得它回答的非常好，记录一下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">LaunchedEffect(boValue, countDownTime) &#123;</span><br><span class="line">        if (countDownTime == CountDownState.Finished.times) &#123;</span><br><span class="line">            navigator.navigate(BOExceptionDestination())&#123;</span><br><span class="line">                popUpTo(BOWornDetectionDestination.route) &#123;</span><br><span class="line">                    inclusive = true</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        if (boValue &gt; 0) &#123;</span><br><span class="line">            navigator.navigate(BOResultDestination(boValue.toInt()))&#123;</span><br><span class="line">                popUpTo(BOWornDetectionDestination.route) &#123;</span><br><span class="line">                    inclusive = true</span><br><span class="line">                &#125;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>提问：不太明白这个副作用函数的运行机制，你上面说它会开启一个协程来执行内部代码，但是又会监听LaunchedEffect中的key值，这个是怎么做到的？另外，如果key值变化了，主线程中正在执行的代码会怎么样？请作为Android资深工程师用浅显易懂的方式给我讲清楚。</p>
-<p>AI回答：<br>现在我们把上面的比喻套在你的代码上：</p>
-<h3 id="LaunchedEffect-boValue-countDownTime-…"><a href="#LaunchedEffect-boValue-countDownTime-…" class="headerlink" title="LaunchedEffect(boValue, countDownTime) { … }"></a>LaunchedEffect(boValue, countDownTime) { … }</h3><ol>
-<li>首次运行：</li>
-</ol>
-<ul>
-<li>你的界面第一次显示时，boValue 可能是 0，countDownTime 是 30。</li>
-<li>LaunchedEffect 记录下 (key1=0, key2=30)，并启动一个协程来执行 {} 里的代码。</li>
-<li>这个协程现在开始运行，它会检查 if 条件，发现都不满足，<strong>然后就“挂起” (suspend)</strong>，等待下一次 key 的变化。</li>
-</ul>
-<ol start="2">
-<li>当 countDownTime 变化时：<ul>
-<li>1秒后，countDownTime 变成了 29。这导致了界面重组 (Recomposition)。</li>
-<li>在重组过程中，LaunchedEffect 会再次被执行。它对比新旧 key：<ul>
-<li>旧 key: (boValue=0, countDownTime=30)</li>
-<li>新 key: (boValue=0, countDownTime=29)◦它发现 countDownTime 变了！于是：</li>
-<li>立即取消上一个 countDownTime=30 时启动的协程。</li>
-<li>启动一个全新的协程，并记录下新的 key (0, 29)。这个新协程又从头开始执行 {} 里的逻辑。这个过程会每秒重复一次。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>如果 boValue 突然变化了：</li>
-</ol>
-<ul>
-<li>假设在倒计时到 25 秒时，血氧传感器返回了数据，boValue 从 0 变成了 98。</li>
-<li>界面再次重组。LaunchedEffect 对比 key：<ul>
-<li>旧 key: (boValue=0, countDownTime=25)</li>
-<li>新 key: (boValue=98, countDownTime=25)</li>
-</ul>
-</li>
-<li>它发现 boValue 变了！于是：<ul>
-<li>立即取消上一个 (0, 25) 的协程。</li>
-<li>启动一个全新的协程。这个新协程一进来就检查 if (boValue &gt; 0)，条件满足，立刻执行 navigator.navigate(…) 进行页面跳转。任务完成！</li>
-</ul>
-</li>
-</ul>
-<h3 id="关于主线程的问题"><a href="#关于主线程的问题" class="headerlink" title="关于主线程的问题"></a>关于主线程的问题</h3><pre><code>你还问到：“如果key值变化了，主线程中正在执行的代码会怎么样？”这是一个非常好的问题，涉及到协程的核心优势。
-</code></pre><ul>
-<li>LaunchedEffect 里的代码默认运行在主线程上，但它是可挂起 (suspendable) 的。</li>
-<li>当协程执行到一个挂起点（比如 delay(1000) 或者其他需要等待的异步操作）时，它会释放主线程，但并不会销毁自己。主线程可以去干别的事，比如响应用户点击、刷新动画等，UI 不会被卡住。</li>
-<li>当 key 变化时，是 Compose 框架在主线程的重组阶段发现了 key 的变化，然后它会向旧的协程发送一个取消信号。</li>
-<li>正在运行的协程（无论它当前是真正在执行 CPU 指令，还是正处于挂起状态）收到取消信号后，会在下一个挂起点或检查点响应取消，并抛出 CancellationException 来终止自己。</li>
-<li>这一切的取消和重启调度都是由 Compose 框架和 Kotlin 协程库在背后无缝完成的，不会阻塞主线程的正常工作。</li>
-</ul>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
-<li>机制：LaunchedEffect 不是“边运行边监听”，而是在每次重组时，通过对比新旧 key 值来决定是否<strong>取消旧协程，启动新协程</strong>。</li>
-<li>目的：确保副作用代码（比如网络请求、数据库操作、导航）始终与当前的 state (也就是 key) 保持同步。</li>
-<li>线程：代码虽然在主线程协程中，但由于其“可挂起”的特性，不会阻塞 UI 渲染。它的生命周期管理是自动且安全的。</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2026/03/07/2026-03-07/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ervin Zhang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ervin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2026/03/07/2026-03-07/" itemprop="url">测试</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2026-03-07T00:00:00+00:00">
-                2026-03-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  5
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="测试文档"><a href="#测试文档" class="headerlink" title="测试文档"></a>测试文档</h1><p>111</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2026/03/07/OpenClaw命令速查表/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1033,6 +658,230 @@
 <p>这些做事风格在处理事情上无论是过程还是结果都可能千差万别。我总结大概有两种类型，一种是对上管理型，一种是处理问题型。</p>
 <p>虽然对上管理型最终也是要解决问题的，但是他是面向上级解决问题，在解决问题的时候不太会思考怎么解决问题，而在意的是解决问题的结果。这种可能问题最终是被解决了，但是可能不是最佳方式，可能是临时解决，基于这种对上解决问题的方式也注定他在处理问题时不会考虑相对长远的事情，属于领导发现问题解决问题，再发现再解决。这种方式可能比较高效，但是对组织是否有益可能不一定。问题如果都是单点式的处理，就不能形成问题-解决-总结-经验-避免下次再出现的闭环。导致的结果是，可能相同的问题重复出现。</p>
 <p>处理问题型其实也就是面向问题解决问题，有可能领导发现的是A问题，但是分析下来其实A是由于BCD问题导致的，其实你可以只解决A，领导的问题被解决了，但是BCD还在那里。因为这种处理问题的方式你会思考问题本身，所以你会总结经验，因为很多问题有相似性。这种方式相对处理问题会低效，但是可能对组织的长远发展是有易的。前期问题比较多，但是一旦处理好之后问题会越来越少，因为每一次的问题处理都是对一类问题的处理。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2025/11/12/关于Kotlin中副作用的理解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ervin Zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ervin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2025/11/12/关于Kotlin中副作用的理解/" itemprop="url">关于Kotlin中副作用的理解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-11-12T00:00:00+00:00">
+                2025-11-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  952
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>review代码的时候看到一个副作用，有点忘记原理了，就问了下AI，我觉得它回答的非常好，记录一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">LaunchedEffect(boValue, countDownTime) &#123;</span><br><span class="line">        if (countDownTime == CountDownState.Finished.times) &#123;</span><br><span class="line">            navigator.navigate(BOExceptionDestination())&#123;</span><br><span class="line">                popUpTo(BOWornDetectionDestination.route) &#123;</span><br><span class="line">                    inclusive = true</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        if (boValue &gt; 0) &#123;</span><br><span class="line">            navigator.navigate(BOResultDestination(boValue.toInt()))&#123;</span><br><span class="line">                popUpTo(BOWornDetectionDestination.route) &#123;</span><br><span class="line">                    inclusive = true</span><br><span class="line">                &#125;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>提问：不太明白这个副作用函数的运行机制，你上面说它会开启一个协程来执行内部代码，但是又会监听LaunchedEffect中的key值，这个是怎么做到的？另外，如果key值变化了，主线程中正在执行的代码会怎么样？请作为Android资深工程师用浅显易懂的方式给我讲清楚。</p>
+<p>AI回答：<br>现在我们把上面的比喻套在你的代码上：</p>
+<h3 id="LaunchedEffect-boValue-countDownTime-…"><a href="#LaunchedEffect-boValue-countDownTime-…" class="headerlink" title="LaunchedEffect(boValue, countDownTime) { … }"></a>LaunchedEffect(boValue, countDownTime) { … }</h3><ol>
+<li>首次运行：</li>
+</ol>
+<ul>
+<li>你的界面第一次显示时，boValue 可能是 0，countDownTime 是 30。</li>
+<li>LaunchedEffect 记录下 (key1=0, key2=30)，并启动一个协程来执行 {} 里的代码。</li>
+<li>这个协程现在开始运行，它会检查 if 条件，发现都不满足，<strong>然后就“挂起” (suspend)</strong>，等待下一次 key 的变化。</li>
+</ul>
+<ol start="2">
+<li>当 countDownTime 变化时：<ul>
+<li>1秒后，countDownTime 变成了 29。这导致了界面重组 (Recomposition)。</li>
+<li>在重组过程中，LaunchedEffect 会再次被执行。它对比新旧 key：<ul>
+<li>旧 key: (boValue=0, countDownTime=30)</li>
+<li>新 key: (boValue=0, countDownTime=29)◦它发现 countDownTime 变了！于是：</li>
+<li>立即取消上一个 countDownTime=30 时启动的协程。</li>
+<li>启动一个全新的协程，并记录下新的 key (0, 29)。这个新协程又从头开始执行 {} 里的逻辑。这个过程会每秒重复一次。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>如果 boValue 突然变化了：</li>
+</ol>
+<ul>
+<li>假设在倒计时到 25 秒时，血氧传感器返回了数据，boValue 从 0 变成了 98。</li>
+<li>界面再次重组。LaunchedEffect 对比 key：<ul>
+<li>旧 key: (boValue=0, countDownTime=25)</li>
+<li>新 key: (boValue=98, countDownTime=25)</li>
+</ul>
+</li>
+<li>它发现 boValue 变了！于是：<ul>
+<li>立即取消上一个 (0, 25) 的协程。</li>
+<li>启动一个全新的协程。这个新协程一进来就检查 if (boValue &gt; 0)，条件满足，立刻执行 navigator.navigate(…) 进行页面跳转。任务完成！</li>
+</ul>
+</li>
+</ul>
+<h3 id="关于主线程的问题"><a href="#关于主线程的问题" class="headerlink" title="关于主线程的问题"></a>关于主线程的问题</h3><pre><code>你还问到：“如果key值变化了，主线程中正在执行的代码会怎么样？”这是一个非常好的问题，涉及到协程的核心优势。
+</code></pre><ul>
+<li>LaunchedEffect 里的代码默认运行在主线程上，但它是可挂起 (suspendable) 的。</li>
+<li>当协程执行到一个挂起点（比如 delay(1000) 或者其他需要等待的异步操作）时，它会释放主线程，但并不会销毁自己。主线程可以去干别的事，比如响应用户点击、刷新动画等，UI 不会被卡住。</li>
+<li>当 key 变化时，是 Compose 框架在主线程的重组阶段发现了 key 的变化，然后它会向旧的协程发送一个取消信号。</li>
+<li>正在运行的协程（无论它当前是真正在执行 CPU 指令，还是正处于挂起状态）收到取消信号后，会在下一个挂起点或检查点响应取消，并抛出 CancellationException 来终止自己。</li>
+<li>这一切的取消和重启调度都是由 Compose 框架和 Kotlin 协程库在背后无缝完成的，不会阻塞主线程的正常工作。</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>机制：LaunchedEffect 不是“边运行边监听”，而是在每次重组时，通过对比新旧 key 值来决定是否<strong>取消旧协程，启动新协程</strong>。</li>
+<li>目的：确保副作用代码（比如网络请求、数据库操作、导航）始终与当前的 state (也就是 key) 保持同步。</li>
+<li>线程：代码虽然在主线程协程中，但由于其“可挂起”的特性，不会阻塞 UI 渲染。它的生命周期管理是自动且安全的。</li>
+</ul>
 
           
         
@@ -2136,6 +1985,187 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2024/03/14/随想（2）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ervin Zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ervin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2024/03/14/随想（2）/" itemprop="url">随想（二）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-03-14T00:00:00+00:00">
+                2024-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书/" itemprop="url" rel="index">
+                    <span itemprop="name">读书</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  662
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近看了一些书《芯片战争》、《枪炮，钢铁，病菌》，看了一些许知远做的《十三邀》采访的一些人物采访，基于这些记录我的一些思考。都是一些点状的，可能是思维认知的一次缓慢升级过程，重要的不是它是什么，而是我产生了这些思考并记录下来，希望后面的自己能从这些点状的思考中获取一些能量把它织成一张网。</p>
+<ul>
+<li>在这个特定时代，大部分成功的人（商业）都在高喊着理想主义，伟大愿景；做的其实都是现实主义，鼠目寸光的事情（逻辑思维）。理想和现实不能说是背道而驰，起码不是同一个方向，也就是想的说的和做的不同。往往，诗和远方在现实面前会被击的粉碎。</li>
+<li>大家为什么而活着？什么是对的？</li>
+<li>一个成功的商人一定不是理想主义者，就算原来是一个理想主义者，在残酷的商业竞争下也会变成一个极度的现实主义者。</li>
+<li>过去，信息很匮乏，知识是分散的，有知识的人获取知识的效率是远高于没有知识的，大家都固化在自己的知识阶级中；现在，信息极度爆炸，信息量多到大家没精力去去伪存真。所有的信息扑面而来，大家能做的是只接受自己愿意接收的，信息茧房形成了。你看，知识流动过低和过快导致的结果好像是一致的。我们现在追求的极致效率，在带给我们方便的同时其实也深深的伤害了我们。</li>
+<li>过去四十年快速发展给我们造成了速度和效率一日千里是常态的假象，其实看过人类历史的发展停滞和缓慢才是主旋律。</li>
+<li>站在知识付费厂商角度：我们做的事情是在推动知识平权，让更多的人更容易获取知识，提高整个社会的认知水平，最好能达成一种高认知的社会共识（什么是对的，什么是错的）；站在消费者角度：我买了这个知识，这个知识就是我的，至于我有没有看，有没有吸收不重要，重要的是我参与了知识的传递(我是他们中的一员)；站在第三方角度：贩卖焦虑，过度包装，说是让社会达成共识，其实什么都达不成。</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -2188,7 +2218,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">77</span>
+                  <span class="site-state-item-count">76</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2290,7 +2320,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">94.9k</span>
+    <span title="Site words total count">94.8k</span>
   
 </div>
 
