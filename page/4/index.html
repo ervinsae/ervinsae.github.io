@@ -287,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2026/03/09/JS事件循环/">
+    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2020/05/27/Java线程池实现原理（三）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ervin Zhang">
@@ -306,7 +306,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2026/03/09/JS事件循环/" itemprop="url">JS事件循环</a></h1>
+                <a class="post-title-link" href="/2020/05/27/Java线程池实现原理（三）/" itemprop="url">Java线程池实现原理（三）</a></h1>
         
 
         <div class="post-meta">
@@ -318,8 +318,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2026-03-09T06:32:00+00:00">
-                2026-03-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-27T10:20:00+00:00">
+                2020-05-27
               </time>
             
 
@@ -372,7 +372,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.2k
+                  1.5k
                 </span>
               
 
@@ -388,7 +388,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  8
+                  5
                 </span>
               
             </div>
@@ -410,11 +410,16 @@
 
       
         
-          <p>最近在看js事件循环，事件循环是js运行的核心，js是单线程的，js的异步事件就是依赖于事件循环机制，这里进行总结一下。</p>
-<h1 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h1><p>首先，我们来解释下事件循环是什么东西：就我们所知道的，浏览器的js是单线程的，也就是说，在同一时刻，最多有且只有一个代码段在执行，可是浏览器又能很好的处理异步请求，这是为什么呢？</p>
+          <blockquote>
+<p><a href="https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html" target="_blank" rel="noopener">转自美团技术团队</a></p>
+</blockquote>
+<h1 id="线程池生命周期管理"><a href="#线程池生命周期管理" class="headerlink" title="线程池生命周期管理"></a>线程池生命周期管理</h1><p>上一期讲了线程池生命周期管理的任务管理，对于线程池来说，任务管理和线程管理是它必须关注的事情，而线程管理比任务管理则更复杂。</p>
+<h2 id="线程管理"><a href="#线程管理" class="headerlink" title="线程管理"></a>线程管理</h2><h3 id="Worker线程（工作线程）"><a href="#Worker线程（工作线程）" class="headerlink" title="Worker线程（工作线程）"></a>Worker线程（工作线程）</h3><p>线程池为了掌握线程的状态并维护线程的生命周期，设计了线程池内的工作线程Worker，先看一下源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Worker</span> <span class="keyword">extends</span> <span class="title">AbstractQueuedSynchronizer</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="keyword">final</span> Thread thread;<span class="comment">//Worker持有的线程</span></span><br><span class="line">    Runnable firstTask;<span class="comment">//初始化的任务，可以为null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Worker这个线程，实现了Runnable接口，并持有一个线程thread变量，一个初始化的任务firstTask，thread是在调用构造方法时通过ThreadFactory来创建的线程，可以用来执行任务；firstTask用它来保存传入的第一个任务，这个任务可以有也可以为null。如果这个值时非空的，那么线程就会在启动初期立即执行这个任务，<strong>也就是对应核心线程（corePool）创建时的情况</strong>，如果这个值时null，那么就需要创建一个线程去执行任务列表（workQueue）中的任务，<strong>也就是非核心线程的创建</strong>。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2026/03/09/JS事件循环/#more" rel="contents">
+            <a class="btn" href="/2020/05/27/Java线程池实现原理（三）/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -465,7 +470,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2026/03/09/Java线程池实现原理（一）/">
+    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2020/05/20/Java线程池实现原理（二）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ervin Zhang">
@@ -484,7 +489,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2026/03/09/Java线程池实现原理（一）/" itemprop="url">Java线程池实现原理（一）</a></h1>
+                <a class="post-title-link" href="/2020/05/20/Java线程池实现原理（二）/" itemprop="url">Java线程池实现原理（二）</a></h1>
         
 
         <div class="post-meta">
@@ -496,8 +501,188 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2026-03-09T06:32:00+00:00">
-                2026-03-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-20T10:13:00+00:00">
+                2020-05-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p><a href="https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html" target="_blank" rel="noopener">转自美团技术团队</a></p>
+</blockquote>
+<h1 id="线程池生命周期管理"><a href="#线程池生命周期管理" class="headerlink" title="线程池生命周期管理"></a>线程池生命周期管理</h1><p>线程池运行的状态，并不是用户显式设置的，而是伴随着线程池的运行，由线程池内部来维护。线程池内部使用一个变量维护两个值：运行状态（runState）和线程数量（workerCount）。在具体实现中，线程池将运行状态（runState）和线程数量（workerCount）两个关键参数的维护放在了一起。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/05/20/Java线程池实现原理（二）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2020/05/18/Java线程池实现原理（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ervin Zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ervin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/18/Java线程池实现原理（一）/" itemprop="url">Java线程池实现原理（一）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-18T00:00:00+00:00">
+                2020-05-18
               </time>
             
 
@@ -597,7 +782,7 @@
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2026/03/09/Java线程池实现原理（一）/#more" rel="contents">
+            <a class="btn" href="/2020/05/18/Java线程池实现原理（一）/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -648,7 +833,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2026/03/09/Kotlin-Tips/">
+    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2020/05/12/JavaGuide之AQS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ervin Zhang">
@@ -667,7 +852,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2026/03/09/Kotlin-Tips/" itemprop="url">怎么用Kotlin去提高生产力：Kotlin Tips</a></h1>
+                <a class="post-title-link" href="/2020/05/12/JavaGuide之AQS/" itemprop="url">JavaGuide之AQS</a></h1>
         
 
         <div class="post-meta">
@@ -679,8 +864,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2026-03-09T06:32:00+00:00">
-                2026-03-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-12T14:21:34+00:00">
+                2020-05-12
               </time>
             
 
@@ -733,7 +918,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  10.7k
+                  9.6k
                 </span>
               
 
@@ -749,7 +934,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  46
+                  38
                 </span>
               
             </div>
@@ -771,57 +956,28 @@
 
       
         
-          <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
-<li><a href="#Tip1-更简洁的字符串">Tip1-更简洁的字符串</a><ul>
-<li>1、三个引号  2、字符串模版</li>
-</ul>
-</li>
-<li><a href="#Tip2-Kotlin中大多数控制结构都是表达式">Tip2-Kotlin中大多数控制结构都是表达式</a><ul>
-<li>1、语句和表达式  2、if  3、when</li>
-</ul>
-</li>
-<li><a href="#Tip3-更好调用的函数-显式参数名及默认参数值">Tip3-更好调用的函数：显式参数名及默认参数值</a><ul>
-<li>1、显式参数名  2、默认参数值  3、@JvmOverloads </li>
-</ul>
-</li>
-<li><a href="#Tip4-扩展函数和属性">Tip4-扩展函数和属性</a><ul>
-<li>1、扩展函数  2、扩展属性</li>
-</ul>
-</li>
-<li><a href="#Tip5-懒初始化bylazy和延迟初始化lateinit">Tip5-懒初始化bylazy和延迟初始化lateinit</a><ul>
-<li>1、by lazy  2、lateinit</li>
-</ul>
-</li>
-<li><a href="#Tip6-不用再手写findViewById">Tip6-不用再手写findViewById</a><ul>
-<li>1、Activity  2、子View或者include标签  3、Fragment</li>
-</ul>
-</li>
-<li><a href="#Tip7-利用局部函数抽取重复代码">Tip7-利用局部函数抽取重复代码</a><ul>
-<li>1、局部函数  2、扩展函数</li>
-</ul>
-</li>
-<li><a href="#Tip8-使用数据类来快速实现model类">Tip8-使用数据类来快速实现model类</a>  </li>
-<li><a href="#Tip9-用类委托来快速实现装饰器模式">Tip9-用类委托来快速实现装饰器模式</a> </li>
-<li><a href="#Tip10-Lambda表达式简化OnClickListener">Tip10-Lambda表达式简化OnClickListener</a></li>
-<li><a href="#Tip11-with函数来简化代码">Tip11-with函数来简化代码</a> </li>
-<li><a href="#Tip12-apply函数来简化代码">Tip12-apply函数来简化代码</a> </li>
-<li><a href="#Tip13-在编译阶段避免掉NullPointerException">Tip13-在编译阶段避免掉NullPointerException</a><ul>
-<li>1、可空和不可空类型  2、let  3、Elvis操作符</li>
-</ul>
-</li>
-<li><a href="#Tip14-运算符重载">Tip14-运算符重载</a> </li>
-<li><a href="#Tip15-高阶函数简化代码">Tip15-高阶函数简化代码</a> </li>
-<li><a href="#Tip16-用Lambda来简化策略模式">Tip16-用Lambda来简化策略模式</a>
+          <blockquote>
+<p><a href="https://www.javadoop.com/post/AbstractQueuedSynchronizer-2" target="_blank" rel="noopener">文章转载：一行一行源码分析清楚 AbstractQueuedSynchronizer (二)</a></p>
+</blockquote>
+<p>文章比较长，信息量比较大，建议在 pc 上阅读。文章标题是为了呼应前文，其实可以单独成文的，主要是希望读者看文章能系统看。</p>
+<p>本文关注以下几点内容：</p>
+<ol>
+<li>深入理解 ReentrantLock 公平锁和非公平锁的区别</li>
+<li>深入分析 AbstractQueuedSynchronizer 中的 ConditionObject</li>
+<li>深入理解 Java 线程中断和 InterruptedException 异常</li>
+</ol>
+<p>基本上本文把以上几点都说清楚了，我假设读者看过<a href="http://hongjiev.github.io/2017/06/16/AbstractQueuedSynchronizer/" target="_blank" rel="noopener">上一篇文章中对 AbstractQueuedSynchronizer 的介绍 </a>，当然如果你已经熟悉 AQS 中的独占锁了，那也可以直接看这篇。各小节之间基本上没什么关系，大家可以只关注自己感兴趣的部分。</p>
+<p>其实这篇文章的信息量很大，初学者估计<strong>至少要 1 小时</strong>才能看完，希望本文对得起大家的时间。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2026/03/09/Kotlin-Tips/#more" rel="contents">
+            <a class="btn" href="/2020/05/12/JavaGuide之AQS/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
           <!--/noindex-->
         
       
-    </li></ul></div>
+    </div>
     
     
     
@@ -865,7 +1021,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2026/03/09/2023-03-20/">
+    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2020/02/25/Spring boot之事务传播/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ervin Zhang">
@@ -884,7 +1040,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2026/03/09/2023-03-20/" itemprop="url">杂记（2）</a></h1>
+                <a class="post-title-link" href="/2020/02/25/Spring boot之事务传播/" itemprop="url">Spring boot之事务传播</a></h1>
         
 
         <div class="post-meta">
@@ -896,8 +1052,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2026-03-09T06:32:00+00:00">
-                2026-03-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-25T19:43:00+00:00">
+                2020-02-25
               </time>
             
 
@@ -919,8 +1075,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/读书/" itemprop="url" rel="index">
-                    <span itemprop="name">读书</span>
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
                   </a>
                 </span>
 
@@ -950,7 +1106,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  348
+                  241
                 </span>
               
 
@@ -989,22 +1145,585 @@
       
         
           
-            <ul>
-<li><p>思维其实是有维度的，点，线，面，体。</p>
+            <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>Spring在TransactionDefinition接口中规定了7种类型的事务传播行为。事务传播行为是Spring框架独有的事务增强特性，他不属于的事务实际提供方数据库行为，这是Spring为我们提供的强大工具箱。使用事务传播可以为我们开发提供许多便利。但是人们对他的误解也很多，你一定听过“service方法事务最好不要嵌套”的传言。要想正确使用工具首先需要了解工具。</p>
+<h1 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h1><h2 id="什么是事务传播行为"><a href="#什么是事务传播行为" class="headerlink" title="什么是事务传播行为"></a>什么是事务传播行为</h2><p>事务传播行为用来描述由某一个事务传播行为修饰的方法被嵌套进另外一个方法时事务如何传播。<br>伪代码说明：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">methodA</span><span class="params">()</span></span>&#123;</span><br><span class="line">    methodB();</span><br><span class="line">    <span class="comment">//doSomething</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Transaction</span>(Propagation == XX)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">methodB</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//doSomething</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码中methodA()方法嵌套调用了methodB()方法，methodB()的事务传播行为由@Transaction（）设置来决定。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2020/02/15/Spring boot之事务/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ervin Zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ervin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/15/Spring boot之事务/" itemprop="url">Spring boot之事务</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-15T19:43:00+00:00">
+                2020-02-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  958
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Spring的事务机制"><a href="#Spring的事务机制" class="headerlink" title="Spring的事务机制"></a>Spring的事务机制</h1><p>所有的数据库访问技术都有事务处理机制，这些技术提供了API用于开启事务，提交事务完成数据操作，或者在发生错误的时候回滚数据。Spring的事务机制是用统一的机制来处理不同数据访问技术的事务处理，Spirng的事务机制提供了一个PlatformTransactionManager接口，不同的数据访问技术的事务使用不同的接口实现，如下表：</p>
+<table>
+<thead>
+<tr>
+<th>数据访问技术</th>
+<th>实现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JDBC</td>
+<td>DataSourceTransactionManager</td>
+</tr>
+<tr>
+<td>JPA</td>
+<td>JPATransactionManager</td>
+</tr>
+<tr>
+<td>Hibernate</td>
+<td>HibernateTransactionManager</td>
+</tr>
+<tr>
+<td>JDO</td>
+<td>JdoTransactionManager</td>
+</tr>
+</tbody>
+</table>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/02/15/Spring boot之事务/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2020/02/11/Spring boot之JPA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ervin Zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ervin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/11/Spring boot之JPA/" itemprop="url">Spring boot之JPA</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-11T21:43:00+00:00">
+                2020-02-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Spring-boot连接数据库背景知识"><a href="#Spring-boot连接数据库背景知识" class="headerlink" title="Spring boot连接数据库背景知识"></a>Spring boot连接数据库背景知识</h2><ul>
+<li><strong>JDBC</strong><br>Java DataBase Connectivity是Java连接数据操作的原生接口。JDBC对Java程序员而言是API，对实现与数据库连接的服务提供商而言是接口模型。作为API，JDBC为程序开发提供标准的接口，并为各个数据库厂商及第三方中间件厂商实现与数据库的连接提供了标准的方法。<blockquote>
+<p>一句话概括：JDBC是所有框架操作数据库必须要用的，有数据库厂商提供，但是为了方便JAVA程序员调用各个数据库，各个数据库厂商都要实现JDBC接口（提供统一的标准）</p>
+</blockquote>
 </li>
-<li><p>丛林法则，弱肉强食，雪豹捕猎羚羊，本质上他们都是为了活下去。</p>
-</li>
-<li><p>LLM最重要的三个元素，数据，算法，算力。其中算力和硬件（半导体）有关，也就是门槛。预计各大巨头公司都会发展自己的LLM，只是目前微软领先了一个身位。国内由于算力就被卡死，不能用最先进的H100，导致始终会比国外要慢一拍，所以可能的机会是换个赛道，基于有缺陷的模型深度构建应用层，丰富基于模型的生态，继续卷。所以，我预测是未来几年在国内做应用的会有一波新的机会。</p>
-</li>
-<li><p>类似chatGPT这类的大模型，参数达到了175B（1750亿）个，还有一些小型的模型（典型的是Anthropic, PBC开发的Claude，参数是170万），其实普通用户在使用上区分不出他们有什么区别。下面是我问他和chatGPT有什么区别，挺有意思的。</p>
-</li>
+<li><strong>JPA</strong><br>JAVA Persistence API是JAVA持久化规范，<strong>是ORM框架的标准</strong>（注意，它是一种标准），主流ORM框架都实现了这个标准。Sun引入新的JPA ORM规范出于两个原因：其一，简化现有的JAVA EE和JAVA SE应用开发工作；第二，Sun希望整合ORM技术，实现统一化操作。ORM是一种思想，是插入在应用程序与JDBC API之间的一个中间层，JDBC并不能很好地支持面向对象的程序设计，ORM解决了这个问题，通过JDBC将字段高效地与对象进行映射，具体实现（ORM框架）有：hibernate，toppling，spring data jpa，open jpa等。spring data jpa是对JPA规范的再次抽象，底层还是用的实现JPA的hibernate技术。本文讲的JPA就是其具体实现：Spring data jpa。</li>
+<li>hibernate<br>一个标准的ORM框架，实现了JPA接口</li>
+<li>mybatis<br>一个持久化框架，但是不完全是一个ORM框架，不是依照JPA规范。</li>
 </ul>
-<p><img src="https://s1.locimg.com/2023/03/30/df761d3b8e272.jpg" alt="claude.jpg"></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/02/11/Spring boot之JPA/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2020/01/15/CSS布局之Position（定位）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ervin Zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ervin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/15/CSS布局之Position（定位）/" itemprop="url">CSS布局之Position（定位）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-15T19:43:00+00:00">
+                2020-01-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  557
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="CSS重点属性之Position"><a href="#CSS重点属性之Position" class="headerlink" title="CSS重点属性之Position"></a>CSS重点属性之Position</h1><p>position属性指定了元素的定位类型，它有5个值</p>
 <ul>
-<li>目前能想到使用这类语言模型干得活有：翻译，查询，知识普及，文章创作或润色，codepilot等等（想象力匮乏），后续陆续如果加上图片，声音甚至是视频，那想象空间就无限大了，基本就实现了AIGC。</li>
+<li>static（默认）</li>
+<li>relative</li>
+<li>fixed</li>
+<li>absolute</li>
+<li>sticky</li>
 </ul>
-
-          
+<p>元素可以使用的top / bottom / left / right的属性进行定位。然而，这些属性无法正常工作，除非先设定position属性。他们也有不同的工作方式，这取决于定位方法。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/01/15/CSS布局之Position（定位）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1051,7 +1770,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2026/03/09/2024-11-06/">
+    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2020/01/08/CSS布局之Flex布局/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ervin Zhang">
@@ -1070,7 +1789,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2026/03/09/2024-11-06/" itemprop="url">对抗内耗</a></h1>
+                <a class="post-title-link" href="/2020/01/08/CSS布局之Flex布局/" itemprop="url">CSS布局之Flex布局</a></h1>
         
 
         <div class="post-meta">
@@ -1082,684 +1801,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2026-03-09T06:32:00+00:00">
-                2026-03-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/读书/" itemprop="url" rel="index">
-                    <span itemprop="name">读书</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  0
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="https://s1.locimg.com/2024/11/06/d9be193b0d9cb.jpeg" alt></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2026/03/09/2025-06-11/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ervin Zhang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ervin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2026/03/09/2025-06-11/" itemprop="url">随想（三）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2026-03-09T06:32:00+00:00">
-                2026-03-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/读书/" itemprop="url" rel="index">
-                    <span itemprop="name">读书</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  495
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在职场中呆久了，接触到不同的人，他们的做事风格各异，这种风格可能和性格，环境以及过往经验有关。</p>
-<p>这些做事风格在处理事情上无论是过程还是结果都可能千差万别。我总结大概有两种类型，一种是对上管理型，一种是处理问题型。</p>
-<p>虽然对上管理型最终也是要解决问题的，但是他是面向上级解决问题，在解决问题的时候不太会思考怎么解决问题，而在意的是解决问题的结果。这种可能问题最终是被解决了，但是可能不是最佳方式，可能是临时解决，基于这种对上解决问题的方式也注定他在处理问题时不会考虑相对长远的事情，属于领导发现问题解决问题，再发现再解决。这种方式可能比较高效，但是对组织是否有益可能不一定。问题如果都是单点式的处理，就不能形成问题-解决-总结-经验-避免下次再出现的闭环。导致的结果是，可能相同的问题重复出现。</p>
-<p>处理问题型其实也就是面向问题解决问题，有可能领导发现的是A问题，但是分析下来其实A是由于BCD问题导致的，其实你可以只解决A，领导的问题被解决了，但是BCD还在那里。因为这种处理问题的方式你会思考问题本身，所以你会总结经验，因为很多问题有相似性。这种方式相对处理问题会低效，但是可能对组织的长远发展是有易的。前期问题比较多，但是一旦处理好之后问题会越来越少，因为每一次的问题处理都是对一类问题的处理。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2026/03/09/2026-03-07/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ervin Zhang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ervin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2026/03/09/2026-03-07/" itemprop="url">测试</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2026-03-09T06:32:00+00:00">
-                2026-03-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  5
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="测试文档"><a href="#测试文档" class="headerlink" title="测试文档"></a>测试文档</h1><p>111</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2026/03/09/AI Agents/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ervin Zhang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ervin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2026/03/09/AI Agents/" itemprop="url">AI Agents</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2026-03-09T06:32:00+00:00">
-                2026-03-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/文章/" itemprop="url" rel="index">
-                    <span itemprop="name">文章</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  498
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>很久没有更新blog了，自从3月份OpenAI推出了GPT3.5以来，AI圈子爆红了一段时间，大家讨论了很多关于AI的话题，随着时间流逝，讨论的热度也逐渐消退，似乎OpenAI只是激起了一点水花而已。但是，在AI圈子的人，特别是长期关注AI发展的人（2023-3月以前）据我观察其实是更活跃了，这期间也出过了很多很多技术，各个大厂层出不穷的推出了自己的LLM。作为一个被隔绝的旁观者，我只能尽量去体验一些我能体验的模型，然后关注下Twitter中AI大佬发布的最新动态。在此过程中，我看了两篇文章，这里做一下总结和心得。</p>
-<h2 id="关于这两篇文章"><a href="#关于这两篇文章" class="headerlink" title="关于这两篇文章"></a>关于这两篇文章</h2><p>在此之前，我自己申请了Azure Open Ai，里面创建了几个模型，然后使用cloudflare把API暴露出来，使用Opencat或者其它AI工具客户端设置代理就可以用了；当然Open AI的web端还有Poe都是可以用的。另外，我还尝试使用Python用Long Chain工具和Azure AI接口想把自己的Blog向量化，做一个自己的私有知识库，但是一直卡在token太多这个问题里面，然后工作事情较多就一直耽搁了。。。（还是想抽时间把这个实现了）。</p>
-<p>回到主题，我看了两篇文章一个是7月份发布的来自Lilian Weng的个人Bolg，就是讲AI Agents的，文章是<a href="https://www.aixinzhijie.com/article/6824818" target="_blank" rel="noopener">软件2.0雏形初现，OpenAI的下一步</a>，感觉这篇文章中的观点非常受启发，所以打算记录一下；另一篇是Twitter中宝玉大佬转发的杨立昆教授在《AI:Grappling with a New Kind of Intelligence》中的发言类容（这里不给链接了）。</p>
-<p>下面我会大量摘抄两篇文章中的内容，然后就一些点记录一下自己的观点。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2026/03/09/Android Https证书详解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ervin Zhang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ervin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2026/03/09/Android Https证书详解/" itemprop="url">Android Https证书详解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2026-03-09T06:32:00+00:00">
-                2026-03-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-08T00:00:00+00:00">
+                2020-01-08
               </time>
             
 
@@ -1850,10 +1893,11 @@
 
       
         
-          <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>现在主流APP基本都在使用https做数据请求的通道了，相比较于Http，Https多了一个TLS的加密协议（传输层安全协议），具体Https的介绍在blog中已经写过，这里记录下在实际开发过程中，客户端要怎么配置。</p>
+          <h1 id="Flex布局"><a href="#Flex布局" class="headerlink" title="Flex布局"></a>Flex布局</h1><p><a href="https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="noopener">文章来源</a></p>
+<p>前面讲过CSS基本的布局方法，默认排列位inline（行内元素）和block（块状元素），传统的布局解决方案，基于盒装模型，依赖display属性+position属性+float属性。它对于那些特殊布局非常不方便，09年，W3C提出了一种新的方案–Flex布局，可以简便完整响应式实现各种页面布局。目前已经得到了所有浏览器的支持，小程序也是支持Flex的。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2026/03/09/Android Https证书详解/#more" rel="contents">
+            <a class="btn" href="/2020/01/08/CSS布局之Flex布局/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1904,7 +1948,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2026/03/09/Android内存优化（一）/">
+    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2019/12/25/Spring Boot初解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ervin Zhang">
@@ -1923,7 +1967,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2026/03/09/Android内存优化（一）/" itemprop="url">Android内存优化（一）</a></h1>
+                <a class="post-title-link" href="/2019/12/25/Spring Boot初解/" itemprop="url">SpringBoot初解</a></h1>
         
 
         <div class="post-meta">
@@ -1935,8 +1979,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2026-03-09T06:32:00+00:00">
-                2026-03-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-25T19:43:00+00:00">
+                2019-12-25
               </time>
             
 
@@ -1989,7 +2033,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.4k
+                  954
                 </span>
               
 
@@ -2005,7 +2049,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  3
                 </span>
               
             </div>
@@ -2027,10 +2071,10 @@
 
       
         
-          <h1 id="Android内存优化（一）"><a href="#Android内存优化（一）" class="headerlink" title="Android内存优化（一）"></a>Android内存优化（一）</h1><p>在Android开发的时候，我们大部分使用的是java的api，但是对于移动端来说，内存是一个很敏感的资源，如果不注意的话很容易crash，而内存优化又没有一个可以立竿见影的东西说是使用了就会很显著的降低内存消耗，而是需要在代码中根据具体的使用场景来合理去优化，每个细节都做到了优化那么整体的性能当然就会提升。所针对Android这种移动平台，也推出了更符合自己的api，比如SparseArray（稀疏数组）以及ArrayMap用来代替HashMap，在某些情况下合理使用会带来更好的性能提升。</p>
+          <h1 id="SpringBoot是什么"><a href="#SpringBoot是什么" class="headerlink" title="SpringBoot是什么"></a>SpringBoot是什么</h1><p>从本质上来说，Springboot是一个专注于框架的框架。Spring Boot就是对各种框架的整合，让他们集成在一起更加简单。目前ssm框架还是比较常用的，其中ss指的无非就是Spring和SpringMVC，我们可以简单的认为“Spring Boot &gt;= Spring + SpringMVC”。Spring Boot的配置极其简单，可以让你不用或者只需要很少的配置就可以快速运行项目。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2026/03/09/Android内存优化（一）/#more" rel="contents">
+            <a class="btn" href="/2019/12/25/Spring Boot初解/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
