@@ -287,6 +287,264 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2026/03/14/OpenClaw安装指南/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ervin Zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ervin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2026/03/14/OpenClaw安装指南/" itemprop="url">OpenClaw 安装指南</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2026-03-14T00:00:00+00:00">
+                2026-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  716
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>OpenClaw 是一个强大的 AI Agent 框架，可以将 AI 能力接入 WhatsApp、Telegram、Discord、Slack 等多种即时通讯平台。本文记录了从零开始安装和配置 OpenClaw 的完整流程。</p>
+<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p>安装 OpenClaw 之前，需要确保本地已有以下环境：</p>
+<ul>
+<li><strong>Node.js</strong> &gt;= 18.x（推荐使用 LTS 版本）</li>
+<li><strong>npm</strong> &gt;= 9.x</li>
+<li>稳定的网络连接（需要访问 npm 源以及 AI 模型 API）</li>
+</ul>
+<p>可以通过以下命令检查版本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+<h2 id="安装-OpenClaw"><a href="#安装-OpenClaw" class="headerlink" title="安装 OpenClaw"></a>安装 OpenClaw</h2><p>使用 npm 全局安装最新版本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g openclaw@latest</span><br></pre></td></tr></table></figure>
+<p>安装完成后，验证是否安装成功：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw --version</span><br></pre></td></tr></table></figure>
+<h2 id="初始化配置"><a href="#初始化配置" class="headerlink" title="初始化配置"></a>初始化配置</h2><p>运行交互式引导向导，完成初始设置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw onboard</span><br></pre></td></tr></table></figure>
+<p>向导会引导你完成以下配置：</p>
+<ul>
+<li>选择 AI 模型（OpenAI、Claude、Gemini 等）</li>
+<li>配置 API Key</li>
+<li>选择接入的通讯渠道</li>
+<li>初始化工作区目录</li>
+</ul>
+<p>如果希望以后台守护进程方式运行，可以加上参数：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw onboarding --install-daemon</span><br></pre></td></tr></table></figure>
+<h2 id="配置-AI-模型"><a href="#配置-AI-模型" class="headerlink" title="配置 AI 模型"></a>配置 AI 模型</h2><p>查看当前支持的模型列表：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw models list</span><br></pre></td></tr></table></figure>
+<p>设置默认模型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw models <span class="built_in">set</span> &lt;model-name&gt;</span><br></pre></td></tr></table></figure>
+<p>配置模型的 API 认证信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw models auth</span><br></pre></td></tr></table></figure>
+<h2 id="启动网关服务"><a href="#启动网关服务" class="headerlink" title="启动网关服务"></a>启动网关服务</h2><p>OpenClaw 通过 WebSocket 网关来对接各平台渠道，启动网关：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw gateway start</span><br></pre></td></tr></table></figure>
+<p>其他常用网关命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">openclaw gateway stop      <span class="comment"># 停止网关</span></span><br><span class="line">openclaw gateway restart   <span class="comment"># 重启网关</span></span><br><span class="line">openclaw gateway           <span class="comment"># 查看网关状态</span></span><br></pre></td></tr></table></figure>
+<h2 id="接入通讯渠道"><a href="#接入通讯渠道" class="headerlink" title="接入通讯渠道"></a>接入通讯渠道</h2><p>以 WhatsApp 为例，添加渠道：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw channels add --whatsapp</span><br></pre></td></tr></table></figure>
+<p>执行后会弹出二维码，用手机 WhatsApp 扫码配对即可。其他平台同理：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">openclaw channels add --telegram</span><br><span class="line">openclaw channels add --discord</span><br><span class="line">openclaw channels add --slack</span><br></pre></td></tr></table></figure>
+<p>添加后可以检查渠道状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw channels status --probe</span><br></pre></td></tr></table></figure>
+<h2 id="工作区文件说明"><a href="#工作区文件说明" class="headerlink" title="工作区文件说明"></a>工作区文件说明</h2><p>OpenClaw 的工作区默认位于 <code>~/.OPENCLAW/WORKSPACE</code>，包含以下核心配置文件：</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AGENTS.md</code></td>
+<td>定义 Agent 的指令与行为</td>
+</tr>
+<tr>
+<td><code>SOUL.md</code></td>
+<td>设定 AI 的人格与语气风格</td>
+</tr>
+<tr>
+<td><code>USER.md</code></td>
+<td>记录用户偏好</td>
+</tr>
+<tr>
+<td><code>IDENTITY.md</code></td>
+<td>设置 Agent 的名称与身份</td>
+</tr>
+<tr>
+<td><code>MEMORY.md</code></td>
+<td>长期记忆存储</td>
+</tr>
+<tr>
+<td><code>BOOT.md</code></td>
+<td>启动时执行的初始化内容</td>
+</tr>
+</tbody>
+</table>
+<h2 id="健康检查"><a href="#健康检查" class="headerlink" title="健康检查"></a>健康检查</h2><p>如果遇到问题，可以运行诊断命令，OpenClaw 会自动检测常见错误并提供修复建议：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">openclaw doctor</span><br><span class="line"></span><br><span class="line"><span class="comment"># 深度诊断</span></span><br><span class="line">openclaw doctor --deep</span><br></pre></td></tr></table></figure>
+<h2 id="常见问题排查"><a href="#常见问题排查" class="headerlink" title="常见问题排查"></a>常见问题排查</h2><ul>
+<li><strong>没有收到私信回复</strong> → 执行 <code>PAIRING LIST</code> 并确认 <code>APPROVE</code></li>
+<li><strong>群组中 Bot 没有响应</strong> → 检查 <code>MENTIONPATTERNS CONFIG</code></li>
+<li><strong>网关意外关闭</strong> → 执行 <code>openclaw doctor --deep</code></li>
+<li><strong>记忆功能异常</strong> → 执行 <code>openclaw memory index</code> 重建索引</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>OpenClaw 的安装流程整体比较顺滑，核心就是三步：<strong>全局安装 → 执行 onboard 初始化 → 启动网关接入渠道</strong>。配置完成后，AI Agent 就可以在你日常使用的即时通讯平台上运行，极大地扩展了 AI 的使用场景。</p>
+<p>更多命令可以参考：<a href="/2026/03/07/OpenClaw命令速查表/">OpenClaw 命令速查表</a></p>
+<p><em>内容由 AI 生成，仅供参考</em></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2026/03/07/OpenClaw命令速查表/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1985,187 +2243,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2024/03/14/随想（2）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ervin Zhang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ervin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2024/03/14/随想（2）/" itemprop="url">随想（二）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-03-14T00:00:00+00:00">
-                2024-03-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/读书/" itemprop="url" rel="index">
-                    <span itemprop="name">读书</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  662
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近看了一些书《芯片战争》、《枪炮，钢铁，病菌》，看了一些许知远做的《十三邀》采访的一些人物采访，基于这些记录我的一些思考。都是一些点状的，可能是思维认知的一次缓慢升级过程，重要的不是它是什么，而是我产生了这些思考并记录下来，希望后面的自己能从这些点状的思考中获取一些能量把它织成一张网。</p>
-<ul>
-<li>在这个特定时代，大部分成功的人（商业）都在高喊着理想主义，伟大愿景；做的其实都是现实主义，鼠目寸光的事情（逻辑思维）。理想和现实不能说是背道而驰，起码不是同一个方向，也就是想的说的和做的不同。往往，诗和远方在现实面前会被击的粉碎。</li>
-<li>大家为什么而活着？什么是对的？</li>
-<li>一个成功的商人一定不是理想主义者，就算原来是一个理想主义者，在残酷的商业竞争下也会变成一个极度的现实主义者。</li>
-<li>过去，信息很匮乏，知识是分散的，有知识的人获取知识的效率是远高于没有知识的，大家都固化在自己的知识阶级中；现在，信息极度爆炸，信息量多到大家没精力去去伪存真。所有的信息扑面而来，大家能做的是只接受自己愿意接收的，信息茧房形成了。你看，知识流动过低和过快导致的结果好像是一致的。我们现在追求的极致效率，在带给我们方便的同时其实也深深的伤害了我们。</li>
-<li>过去四十年快速发展给我们造成了速度和效率一日千里是常态的假象，其实看过人类历史的发展停滞和缓慢才是主旋律。</li>
-<li>站在知识付费厂商角度：我们做的事情是在推动知识平权，让更多的人更容易获取知识，提高整个社会的认知水平，最好能达成一种高认知的社会共识（什么是对的，什么是错的）；站在消费者角度：我买了这个知识，这个知识就是我的，至于我有没有看，有没有吸收不重要，重要的是我参与了知识的传递(我是他们中的一员)；站在第三方角度：贩卖焦虑，过度包装，说是让社会达成共识，其实什么都达不成。</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2218,7 +2295,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-count">77</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2320,7 +2397,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">94.8k</span>
+    <span title="Site words total count">95.6k</span>
   
 </div>
 
