@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="AI,OpenClaw,Skill,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Ervin" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="如何使用 Skill：从理解概念到亲手做一个自己的 Skill这两年，越来越多的 AI 工具开始支持“Skill”机制。很多人第一次看到这个词，会下意识把它理解成“插件”或者“扩展功能”。这么理解不算错，但还不够准确。">
+<meta name="keywords" content="AI,OpenClaw,Skill">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何使用 Skill：从理解概念到亲手做一个自己的 Skill">
+<meta property="og:url" content="https://ervinsae.github.io/2026/03/29/2026-03-29-ru-he-shi-yong-skill-cong-li-jie-gai-nian-dao-qin-shou-zuo-yi-ge-zi-ji-de-skill/index.html">
+<meta property="og:site_name" content="Ervin">
+<meta property="og:description" content="如何使用 Skill：从理解概念到亲手做一个自己的 Skill这两年，越来越多的 AI 工具开始支持“Skill”机制。很多人第一次看到这个词，会下意识把它理解成“插件”或者“扩展功能”。这么理解不算错，但还不够准确。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2026-03-29T07:45:23.968Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何使用 Skill：从理解概念到亲手做一个自己的 Skill">
+<meta name="twitter:description" content="如何使用 Skill：从理解概念到亲手做一个自己的 Skill这两年，越来越多的 AI 工具开始支持“Skill”机制。很多人第一次看到这个词，会下意识把它理解成“插件”或者“扩展功能”。这么理解不算错，但还不够准确。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ervinsae.github.io/2026/03/29/2026-03-29-ru-he-shi-yong-skill-cong-li-jie-gai-nian-dao-qin-shou-zuo-yi-ge-zi-ji-de-skill/">
+
+
+
+
+
+  <title>如何使用 Skill：从理解概念到亲手做一个自己的 Skill | Ervin</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ervin</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">真正的强者是认清了生活的本质，并且去热爱他的人。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2026/03/29/2026-03-29-ru-he-shi-yong-skill-cong-li-jie-gai-nian-dao-qin-shou-zuo-yi-ge-zi-ji-de-skill/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ervin Zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ervin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">如何使用 Skill：从理解概念到亲手做一个自己的 Skill</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2026-03-29T00:00:00+00:00">
+                2026-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="如何使用-Skill：从理解概念到亲手做一个自己的-Skill"><a href="#如何使用-Skill：从理解概念到亲手做一个自己的-Skill" class="headerlink" title="如何使用 Skill：从理解概念到亲手做一个自己的 Skill"></a>如何使用 Skill：从理解概念到亲手做一个自己的 Skill</h2><p>这两年，越来越多的 AI 工具开始支持“Skill”机制。很多人第一次看到这个词，会下意识把它理解成“插件”或者“扩展功能”。这么理解不算错，但还不够准确。</p>
+<a id="more"></a>
+<p>如果要用一句话概括：<strong>Skill 本质上是一套交给 AI 的“领域操作手册”</strong>。它不是重新训练模型，也不是单纯加一个按钮，而是把某类任务的工作方式、工具调用方式、上下文约束和实践经验，整理成 AI 可以直接使用的结构化说明。</p>
+<p>这篇文章就想把三件事讲清楚：</p>
+<ol>
+<li>Skill 是什么  </li>
+<li>Skill 有什么作用  </li>
+<li>怎么通过自己做一个 Skill，真正理解它的价值  </li>
+</ol>
+<hr>
+<h2 id="一、Skill-是什么？"><a href="#一、Skill-是什么？" class="headerlink" title="一、Skill 是什么？"></a>一、Skill 是什么？</h2><p>在 OpenClaw 这类兼容 AgentSkills 的系统里，一个 Skill 通常就是一个目录，里面至少有一个 <code>SKILL.md</code> 文件。</p>
+<p>最简形式大概长这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">my-skill/</span><br><span class="line">└── SKILL.md</span><br></pre></td></tr></table></figure>
+<p>其中：</p>
+<ul>
+<li><strong>Skill</strong>：整个技能目录</li>
+<li><strong><code>SKILL.md</code></strong>：这个 Skill 的入口文件</li>
+<li><strong>可选内容</strong>：还可以带 <code>scripts/</code>、<code>references/</code>、<code>assets/</code> 等资源</li>
+</ul>
+<p>一个典型的 Skill 结构可能是这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">blog-helper/</span><br><span class="line">├── SKILL.md</span><br><span class="line">├── scripts/</span><br><span class="line">│   └── find_latest_post.py</span><br><span class="line">└── references/</span><br><span class="line">    └── blog-rules.md</span><br></pre></td></tr></table></figure>
+<h3 id="Skill-的本质"><a href="#Skill-的本质" class="headerlink" title="Skill 的本质"></a>Skill 的本质</h3><p>Skill 做的事情，不是“让模型变聪明”，而是：</p>
+<ul>
+<li>告诉 AI <strong>什么时候应该用这个 Skill</strong></li>
+<li>告诉 AI <strong>遇到这类任务时应该怎么做</strong></li>
+<li>告诉 AI <strong>该调用哪些工具、按什么顺序做</strong></li>
+<li>在需要时提供脚本、参考文档、模板等资源</li>
+</ul>
+<p>所以更准确地说，<strong>Skill 是“能力编排”</strong>，不是“能力凭空生成”。</p>
+<h3 id="Skill-不是什么？"><a href="#Skill-不是什么？" class="headerlink" title="Skill 不是什么？"></a>Skill 不是什么？</h3><p>这几点很容易混淆：</p>
+<ul>
+<li><strong>Skill 不是模型微调</strong></li>
+<li><strong>Skill 不是系统提示词的简单复制</strong></li>
+<li><strong>Skill 也不一定等于插件</strong></li>
+<li><strong>Skill 更像一层面向任务的工作流封装</strong></li>
+</ul>
+<p>也就是说，模型本身还是那个模型，但有了 Skill 之后，它在特定场景下会更像一个“受过专门训练的助手”。</p>
+<hr>
+<h2 id="二、Skill-的作用：为什么它有价值？"><a href="#二、Skill-的作用：为什么它有价值？" class="headerlink" title="二、Skill 的作用：为什么它有价值？"></a>二、Skill 的作用：为什么它有价值？</h2><p>Skill 最大的价值，不是“增加功能”，而是<strong>让 AI 更稳定地把功能用对</strong>。</p>
+<h3 id="1-把通用-AI-变成领域助手"><a href="#1-把通用-AI-变成领域助手" class="headerlink" title="1. 把通用 AI 变成领域助手"></a>1. 把通用 AI 变成领域助手</h3><p>默认情况下，AI 是通用的。它能回答很多问题，但不一定知道你的项目结构、工具链、目录约定、交付格式。</p>
+<p>有了 Skill 之后，你可以把这些上下文固化下来。</p>
+<p>比如：</p>
+<ul>
+<li>你的博客文章都放在 <code>source/_posts</code></li>
+<li>你的输出默认要用中文</li>
+<li>生成文章时必须带 frontmatter</li>
+<li>需要先读最新文章，再做总结</li>
+</ul>
+<p>这些东西如果每次都靠临时描述，AI 经常会漏；但写进 Skill 之后，就变成了稳定流程。</p>
+<h3 id="2-让高频任务变成标准动作"><a href="#2-让高频任务变成标准动作" class="headerlink" title="2. 让高频任务变成标准动作"></a>2. 让高频任务变成标准动作</h3><p>很多任务其实不是“不会做”，而是“每次都要重新解释一遍”。</p>
+<p>例如：</p>
+<ul>
+<li>查天气</li>
+<li>看 GitHub PR 状态</li>
+<li>搜网页资料</li>
+<li>检查博客最新文章</li>
+<li>生成固定格式的周报或日报</li>
+</ul>
+<p>这些任务最适合做成 Skill。因为它们的目标明确、流程稳定、重复率高。</p>
+<h3 id="3-把经验沉淀下来，而不是每次从头来过"><a href="#3-把经验沉淀下来，而不是每次从头来过" class="headerlink" title="3. 把经验沉淀下来，而不是每次从头来过"></a>3. 把经验沉淀下来，而不是每次从头来过</h3><p>一个好的 Skill，实际上是在沉淀经验。</p>
+<p>比如一个 GitHub 相关的 Skill，除了告诉 AI “用 <code>gh</code> 命令”，更重要的是它会约束 AI：</p>
+<ul>
+<li>先看 PR 状态，再看 CI</li>
+<li>不要凭空猜测失败原因</li>
+<li>要优先读取日志</li>
+<li>创建评论时给出具体建议</li>
+</ul>
+<p>这就是经验的封装。</p>
+<h3 id="4-Skill-的作用举例"><a href="#4-Skill-的作用举例" class="headerlink" title="4. Skill 的作用举例"></a>4. Skill 的作用举例</h3><p>下面举几个直观例子：</p>
+<h4 id="例子一：天气-Skill"><a href="#例子一：天气-Skill" class="headerlink" title="例子一：天气 Skill"></a>例子一：天气 Skill</h4><p>当用户问：</p>
+<blockquote>
+<p>今天深圳龙岗区天气怎么样？</p>
+</blockquote>
+<p>如果系统里有天气 Skill，AI 就知道要调用天气查询方式，而不是自己凭常识编造。</p>
+<h4 id="例子二：GitHub-Skill"><a href="#例子二：GitHub-Skill" class="headerlink" title="例子二：GitHub Skill"></a>例子二：GitHub Skill</h4><p>当用户问：</p>
+<blockquote>
+<p>帮我看看这个 PR 为什么没过 CI</p>
+</blockquote>
+<p>如果系统里有 GitHub Skill，AI 就会优先走 <code>gh</code> CLI 或对应流程，查看 PR、CI、日志，而不是只停留在泛泛分析。</p>
+<h4 id="例子三：搜索-Skill"><a href="#例子三：搜索-Skill" class="headerlink" title="例子三：搜索 Skill"></a>例子三：搜索 Skill</h4><p>当用户问：</p>
+<blockquote>
+<p>帮我查一下这篇文章的资料来源</p>
+</blockquote>
+<p>如果系统里有搜索 Skill，AI 就会知道什么时候该用搜索、什么时候该用网页提取、什么时候需要做深度研究。</p>
+<p>你会发现，<strong>Skill 解决的不是“能不能做”，而是“能不能稳定、准确、低摩擦地做”</strong>。</p>
+<hr>
+<h2 id="三、怎么使用-Skill？"><a href="#三、怎么使用-Skill？" class="headerlink" title="三、怎么使用 Skill？"></a>三、怎么使用 Skill？</h2><p>如果你在用 OpenClaw，一般可以从三个层面理解“使用 Skill”。</p>
+<h3 id="1-查看当前有哪些-Skill"><a href="#1-查看当前有哪些-Skill" class="headerlink" title="1. 查看当前有哪些 Skill"></a>1. 查看当前有哪些 Skill</h3><p>最直接的方式是用 CLI 看：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw skills list</span><br></pre></td></tr></table></figure>
+<p>如果你只想看当前环境下真正可用的 Skill，可以看：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw skills list --eligible</span><br></pre></td></tr></table></figure>
+<p>如果你想知道为什么某个 Skill 不能用，可以检查：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw skills check</span><br></pre></td></tr></table></figure>
+<p>如果你要看某个 Skill 的详细信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw skills info &lt;name&gt;</span><br></pre></td></tr></table></figure>
+<p>比如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw skills info github</span><br></pre></td></tr></table></figure>
+<h3 id="2-让-AI-在对话里自然触发"><a href="#2-让-AI-在对话里自然触发" class="headerlink" title="2. 让 AI 在对话里自然触发"></a>2. 让 AI 在对话里自然触发</h3><p>很多 Skill 不需要你手动“点开使用”。只要你提出的任务符合触发条件，AI 就会自动选择合适的 Skill。</p>
+<p>比如：</p>
+<ul>
+<li>“今天深圳天气怎么样” → 可能触发天气 Skill</li>
+<li>“帮我看这个 PR 状态” → 可能触发 GitHub Skill</li>
+<li>“帮我查网页资料” → 可能触发搜索 Skill</li>
+</ul>
+<p>这也是 Skill 很有意思的地方：<strong>它不是额外增加一个操作负担，而是在背后改善 AI 的决策质量。</strong></p>
+<h3 id="3-自定义-Skill-位置"><a href="#3-自定义-Skill-位置" class="headerlink" title="3. 自定义 Skill 位置"></a>3. 自定义 Skill 位置</h3><p>OpenClaw 通常会从这些位置加载 Skill：</p>
+<ul>
+<li>内置 Skills</li>
+<li><code>~/.openclaw/skills</code></li>
+<li>当前工作区下的 <code>skills/</code></li>
+</ul>
+<p>如果你自己写 Skill，最常见的做法就是放在当前工作区的 <code>skills/</code> 目录里。</p>
+<p>一个经验点是：<strong>新增或修改 Skill 后，最稳妥的方式是开启一个新会话，或者重启 Gateway，让新的 Skill 配置生效。</strong></p>
+<hr>
+<h2 id="四、实践：自己做一个-Skill"><a href="#四、实践：自己做一个-Skill" class="headerlink" title="四、实践：自己做一个 Skill"></a>四、实践：自己做一个 Skill</h2><p>纸上谈兵意义不大。真正理解 Skill，最好的办法就是自己做一个。</p>
+<p>这里我用一个非常贴近日常使用的例子来说明：<strong>做一个“博客助手” Skill</strong>。</p>
+<p>目标是这样的：</p>
+<blockquote>
+<p>当我问“我上一篇文章写了什么”时，AI 能自动去博客目录里找到最新文章，读取内容，然后给我一个准确总结。</p>
+</blockquote>
+<p>这个例子很适合，因为它能清楚展示 Skill 的三个核心价值：</p>
+<ol>
+<li>固化上下文  </li>
+<li>固化流程  </li>
+<li>复用工具  </li>
+</ol>
+<hr>
+<h2 id="五、示例：做一个-blog-helper-Skill"><a href="#五、示例：做一个-blog-helper-Skill" class="headerlink" title="五、示例：做一个 blog-helper Skill"></a>五、示例：做一个 blog-helper Skill</h2><h3 id="第一步：创建目录"><a href="#第一步：创建目录" class="headerlink" title="第一步：创建目录"></a>第一步：创建目录</h3><p>先在工作区创建 Skill 目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p skills/blog-helper/scripts</span><br></pre></td></tr></table></figure>
+<p>目录结构先搭起来：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">skills/</span><br><span class="line">└── blog-helper/</span><br><span class="line">    ├── SKILL.md</span><br><span class="line">    └── scripts/</span><br><span class="line">        └── find_latest_post.py</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="第二步：写一个辅助脚本"><a href="#第二步：写一个辅助脚本" class="headerlink" title="第二步：写一个辅助脚本"></a>第二步：写一个辅助脚本</h3><p>这个脚本负责找到博客目录里最新的一篇文章。</p>
+<p><code>skills/blog-helper/scripts/find_latest_post.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"></span><br><span class="line">BLOG_DIR = Path(<span class="string">"~/my-blog/source/_posts"</span>).expanduser()</span><br><span class="line"></span><br><span class="line">posts = [p <span class="keyword">for</span> p <span class="keyword">in</span> BLOG_DIR.glob(<span class="string">"*.md"</span>) <span class="keyword">if</span> p.is_file()]</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> posts:</span><br><span class="line">    <span class="keyword">raise</span> SystemExit(<span class="string">"No markdown posts found."</span>)</span><br><span class="line"></span><br><span class="line">latest = sorted(posts, key=<span class="keyword">lambda</span> p: p.stat().st_mtime, reverse=<span class="keyword">True</span>)[<span class="number">0</span>]</span><br><span class="line">print(latest)</span><br></pre></td></tr></table></figure>
+<p>这里你只需要把 <code>BLOG_DIR</code> 改成你自己的博客文章目录即可。</p>
+<p>这个脚本本身并不复杂，但它有一个好处：<strong>把“如何找最新文章”这件事固定了下来</strong>。以后不需要每次让 AI 重新想一遍怎么找。</p>
+<hr>
+<h3 id="第三步：编写-SKILL-md"><a href="#第三步：编写-SKILL-md" class="headerlink" title="第三步：编写 SKILL.md"></a>第三步：编写 <code>SKILL.md</code></h3><p>这是最关键的一步。</p>
+<p><code>skills/blog-helper/SKILL.md</code></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">name: blog-helper</span><br><span class="line">description: Help inspect blog posts, find the latest article, summarize article content, and draft new blog posts. Use when the user asks about their latest blog post, wants a summary of an existing article, or wants help drafting a new markdown article.</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="section"># Blog Helper</span></span><br><span class="line"></span><br><span class="line">Use this skill when the user asks about their blog posts, especially when they want to know what the latest post is about, need a summary, or want a new article draft.</span><br><span class="line"></span><br><span class="line"><span class="section">## Workflow</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">1. </span>Run <span class="code">`python &#123;baseDir&#125;/scripts/find_latest_post.py`</span> to get the newest markdown post.</span><br><span class="line"><span class="bullet">2. </span>Use the read tool to open that file.</span><br><span class="line"><span class="bullet">3. </span>Summarize the article in Chinese.</span><br><span class="line"><span class="bullet">4. </span>Output in this structure:</span><br><span class="line">   - title</span><br><span class="line">   - one-sentence summary</span><br><span class="line">   - 3 to 5 key points</span><br><span class="line"></span><br><span class="line"><span class="section">## Rules</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">- </span>Prefer concise Chinese output unless the user asks for English.</span><br><span class="line"><span class="bullet">- </span>If the article has frontmatter, use the title from frontmatter first.</span><br><span class="line"><span class="bullet">- </span>Do not guess content without reading the file.</span><br><span class="line"><span class="bullet">- </span>If no file is found, clearly say so.</span><br></pre></td></tr></table></figure>
+<h3 id="这份-SKILL-md-做了什么？"><a href="#这份-SKILL-md-做了什么？" class="headerlink" title="这份 SKILL.md 做了什么？"></a>这份 <code>SKILL.md</code> 做了什么？</h3><p>表面上看，它只是几段 Markdown；但实际上，它定义了一套清晰流程：</p>
+<ul>
+<li>什么时候用这个 Skill</li>
+<li>先做什么，再做什么</li>
+<li>输出结构是什么</li>
+<li>哪些行为不能做</li>
+</ul>
+<p>这就是 Skill 的核心：<strong>把模糊任务变成稳定工作流</strong>。</p>
+<hr>
+<h2 id="六、这个-Skill-怎么被使用？"><a href="#六、这个-Skill-怎么被使用？" class="headerlink" title="六、这个 Skill 怎么被使用？"></a>六、这个 Skill 怎么被使用？</h2><p>当你后面在对话里说：</p>
+<blockquote>
+<p>我上一篇文章写的是什么内容？</p>
+</blockquote>
+<p>如果这个 Skill 已经被 OpenClaw 正确加载，AI 就更容易走你预设好的路径：</p>
+<ol>
+<li>先运行脚本找最新文章  </li>
+<li>再读取文章  </li>
+<li>然后按固定格式总结  </li>
+</ol>
+<p>而不是像一个完全通用的助手那样，从零开始猜你的博客目录、猜你的文件位置、猜你想要什么格式。</p>
+<p>这就是 Skill 的价值：<strong>减少歧义，减少重复提示，减少错误路径。</strong></p>
+<hr>
+<h2 id="七、从这个例子里，你应该理解什么？"><a href="#七、从这个例子里，你应该理解什么？" class="headerlink" title="七、从这个例子里，你应该理解什么？"></a>七、从这个例子里，你应该理解什么？</h2><p>通过这个博客助手例子，可以看到 Skill 至少解决了三个问题。</p>
+<h3 id="1-它保存了上下文"><a href="#1-它保存了上下文" class="headerlink" title="1. 它保存了上下文"></a>1. 它保存了上下文</h3><p>比如博客目录在哪、输出默认用什么语言、总结格式是什么。</p>
+<h3 id="2-它约束了流程"><a href="#2-它约束了流程" class="headerlink" title="2. 它约束了流程"></a>2. 它约束了流程</h3><p>不是“自由发挥”，而是：</p>
+<ul>
+<li>先找文件</li>
+<li>再读文件</li>
+<li>再总结</li>
+</ul>
+<p>顺序是清楚的。</p>
+<h3 id="3-它让能力可复用"><a href="#3-它让能力可复用" class="headerlink" title="3. 它让能力可复用"></a>3. 它让能力可复用</h3><p>以后你不只是能问一次“上一篇文章写了什么”，还可以继续扩展：</p>
+<ul>
+<li>帮我找上一篇 AI 相关文章</li>
+<li>帮我总结最近三篇文章的主题变化</li>
+<li>帮我按这个风格起一个新标题</li>
+<li>直接生成一篇新草稿</li>
+</ul>
+<p>只要 Skill 设计得好，这些都可以逐步加进去。</p>
+<hr>
+<h2 id="八、写-Skill-时的几个实践建议"><a href="#八、写-Skill-时的几个实践建议" class="headerlink" title="八、写 Skill 时的几个实践建议"></a>八、写 Skill 时的几个实践建议</h2><p>最后给几个很实用的建议。</p>
+<h3 id="1-先写“什么时候用”，再写“怎么做”"><a href="#1-先写“什么时候用”，再写“怎么做”" class="headerlink" title="1. 先写“什么时候用”，再写“怎么做”"></a>1. 先写“什么时候用”，再写“怎么做”</h3><p>Skill 的触发描述比正文更重要。因为 AI 只有先判断“该不该用这个 Skill”，才会去看后面的正文。</p>
+<h3 id="2-不要把-Skill-写成大而全说明书"><a href="#2-不要把-Skill-写成大而全说明书" class="headerlink" title="2. 不要把 Skill 写成大而全说明书"></a>2. 不要把 Skill 写成大而全说明书</h3><p>Skill 最怕冗长。真正有用的 Skill，应该是：</p>
+<ul>
+<li>触发条件明确</li>
+<li>步骤简洁</li>
+<li>规则清楚</li>
+<li>资源按需拆分</li>
+</ul>
+<h3 id="3-能脚本化的就脚本化"><a href="#3-能脚本化的就脚本化" class="headerlink" title="3. 能脚本化的就脚本化"></a>3. 能脚本化的就脚本化</h3><p>如果某段逻辑每次都要重复，最好单独放进 <code>scripts/</code>。</p>
+<p>因为脚本比自然语言更稳定，也更省上下文。</p>
+<h3 id="4-不要让-Skill-依赖猜测"><a href="#4-不要让-Skill-依赖猜测" class="headerlink" title="4. 不要让 Skill 依赖猜测"></a>4. 不要让 Skill 依赖猜测</h3><p>像“应该在某个目录里”“可能是这个文件”这种模糊表达，都应该尽量消灭掉。Skill 越具体，AI 用起来越稳。</p>
+<hr>
+<h2 id="九、结语"><a href="#九、结语" class="headerlink" title="九、结语"></a>九、结语</h2><p>Skill 最值得重视的地方，不在于它听起来多高级，而在于它提供了一种很实用的能力沉淀方式：</p>
+<ul>
+<li>把一次次临时提示，变成长期可复用的规则  </li>
+<li>把模糊任务，变成可执行流程  </li>
+<li>把通用 AI，变成更懂你工作方式的助手  </li>
+</ul>
+<p>所以如果你真的想把 AI 用深，不要只停留在“提问”。更进一步的做法，是开始建立属于自己的 Skill。</p>
+<p>因为从那一刻开始，你用的就不再只是一个通用模型，而是一套逐渐贴合你自己的工作系统。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AI/" rel="tag"><i class="fa fa-tag"></i>
+ AI</a>
+          
+            <a href="/tags/OpenClaw/" rel="tag"><i class="fa fa-tag"></i>
+ OpenClaw</a>
+          
+            <a href="/tags/Skill/" rel="tag"><i class="fa fa-tag"></i>
+ Skill</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2026/03/15/vibe-coding-tips-2026/" rel="next" title="Vibe Coding 使用技巧">
+                <i class="fa fa-chevron-left"></i> Vibe Coding 使用技巧
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Ervin Zhang">
+            
+              <p class="site-author-name" itemprop="name">Ervin Zhang</p>
+              <p class="site-description motion-element" itemprop="description">stay hungry, stay foolish</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">82</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/ervinsae" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:ervinsae@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/ervinsae" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用-Skill：从理解概念到亲手做一个自己的-Skill"><span class="nav-number">1.</span> <span class="nav-text">如何使用 Skill：从理解概念到亲手做一个自己的 Skill</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Skill-是什么？"><span class="nav-number">2.</span> <span class="nav-text">一、Skill 是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Skill-的本质"><span class="nav-number">2.1.</span> <span class="nav-text">Skill 的本质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Skill-不是什么？"><span class="nav-number">2.2.</span> <span class="nav-text">Skill 不是什么？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、Skill-的作用：为什么它有价值？"><span class="nav-number">3.</span> <span class="nav-text">二、Skill 的作用：为什么它有价值？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-把通用-AI-变成领域助手"><span class="nav-number">3.1.</span> <span class="nav-text">1. 把通用 AI 变成领域助手</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-让高频任务变成标准动作"><span class="nav-number">3.2.</span> <span class="nav-text">2. 让高频任务变成标准动作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-把经验沉淀下来，而不是每次从头来过"><span class="nav-number">3.3.</span> <span class="nav-text">3. 把经验沉淀下来，而不是每次从头来过</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Skill-的作用举例"><span class="nav-number">3.4.</span> <span class="nav-text">4. Skill 的作用举例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#例子一：天气-Skill"><span class="nav-number">3.4.1.</span> <span class="nav-text">例子一：天气 Skill</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例子二：GitHub-Skill"><span class="nav-number">3.4.2.</span> <span class="nav-text">例子二：GitHub Skill</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例子三：搜索-Skill"><span class="nav-number">3.4.3.</span> <span class="nav-text">例子三：搜索 Skill</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、怎么使用-Skill？"><span class="nav-number">4.</span> <span class="nav-text">三、怎么使用 Skill？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-查看当前有哪些-Skill"><span class="nav-number">4.1.</span> <span class="nav-text">1. 查看当前有哪些 Skill</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-让-AI-在对话里自然触发"><span class="nav-number">4.2.</span> <span class="nav-text">2. 让 AI 在对话里自然触发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-自定义-Skill-位置"><span class="nav-number">4.3.</span> <span class="nav-text">3. 自定义 Skill 位置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、实践：自己做一个-Skill"><span class="nav-number">5.</span> <span class="nav-text">四、实践：自己做一个 Skill</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、示例：做一个-blog-helper-Skill"><span class="nav-number">6.</span> <span class="nav-text">五、示例：做一个 blog-helper Skill</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步：创建目录"><span class="nav-number">6.1.</span> <span class="nav-text">第一步：创建目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步：写一个辅助脚本"><span class="nav-number">6.2.</span> <span class="nav-text">第二步：写一个辅助脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步：编写-SKILL-md"><span class="nav-number">6.3.</span> <span class="nav-text">第三步：编写 SKILL.md</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#这份-SKILL-md-做了什么？"><span class="nav-number">6.4.</span> <span class="nav-text">这份 SKILL.md 做了什么？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、这个-Skill-怎么被使用？"><span class="nav-number">7.</span> <span class="nav-text">六、这个 Skill 怎么被使用？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、从这个例子里，你应该理解什么？"><span class="nav-number">8.</span> <span class="nav-text">七、从这个例子里，你应该理解什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-它保存了上下文"><span class="nav-number">8.1.</span> <span class="nav-text">1. 它保存了上下文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-它约束了流程"><span class="nav-number">8.2.</span> <span class="nav-text">2. 它约束了流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-它让能力可复用"><span class="nav-number">8.3.</span> <span class="nav-text">3. 它让能力可复用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、写-Skill-时的几个实践建议"><span class="nav-number">9.</span> <span class="nav-text">八、写 Skill 时的几个实践建议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-先写“什么时候用”，再写“怎么做”"><span class="nav-number">9.1.</span> <span class="nav-text">1. 先写“什么时候用”，再写“怎么做”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-不要把-Skill-写成大而全说明书"><span class="nav-number">9.2.</span> <span class="nav-text">2. 不要把 Skill 写成大而全说明书</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-能脚本化的就脚本化"><span class="nav-number">9.3.</span> <span class="nav-text">3. 能脚本化的就脚本化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-不要让-Skill-依赖猜测"><span class="nav-number">9.4.</span> <span class="nav-text">4. 不要让 Skill 依赖猜测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#九、结语"><span class="nav-number">10.</span> <span class="nav-text">九、结语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ervin Zhang</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">104k</span>
+  
+</div>
+
+
+<div class="powered-by">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>次
+</span>
+
+<span class="post-meta-divider">|</span>
+</div>
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":180,"height":360},"mobile":{"show":false,"scale":0.5},"log":false});</script></body>
+</html>
