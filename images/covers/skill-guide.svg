@@ -1,0 +1,50 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1120"/>
+      <stop offset="0.52" stop-color="#111827"/>
+      <stop offset="1" stop-color="#065F46"/>
+    </linearGradient>
+    <filter id="blur" x="0" y="0" width="1200" height="630" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="42"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <g filter="url(#blur)" opacity="0.5">
+    <circle cx="220" cy="120" r="100" fill="#34D399"/>
+    <circle cx="1010" cy="120" r="120" fill="#10B981"/>
+    <circle cx="940" cy="520" r="120" fill="#14B8A6"/>
+  </g>
+
+  <rect x="88" y="78" width="1024" height="474" rx="30" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/>
+
+  <rect x="136" y="124" width="168" height="42" rx="21" fill="#10B981" fill-opacity="0.18"/>
+  <text x="162" y="151" fill="#6EE7B7" font-size="24" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">OpenClaw Skill</text>
+
+  <text x="136" y="244" fill="white" font-size="56" font-weight="700" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">如何使用 Skill</text>
+  <text x="136" y="318" fill="#D1FAE5" font-size="40" font-weight="600" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">从理解概念到亲手做一个自己的 Skill</text>
+
+  <text x="136" y="392" fill="#C7D2FE" font-size="28" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">把 Skill 看成一套交给 AI 的领域操作手册</text>
+
+  <g opacity="0.95">
+    <rect x="136" y="448" width="150" height="16" rx="8" fill="#34D399"/>
+    <rect x="302" y="448" width="126" height="16" rx="8" fill="#6EE7B7"/>
+    <rect x="444" y="448" width="176" height="16" rx="8" fill="#A7F3D0" fill-opacity="0.85"/>
+    <rect x="136" y="480" width="240" height="16" rx="8" fill="#2DD4BF" fill-opacity="0.85"/>
+    <rect x="392" y="480" width="156" height="16" rx="8" fill="#99F6E4" fill-opacity="0.72"/>
+  </g>
+
+  <g>
+    <rect x="850" y="186" width="190" height="220" rx="22" fill="#071A16" fill-opacity="0.64" stroke="rgba(255,255,255,0.1)"/>
+    <rect x="884" y="226" width="126" height="14" rx="7" fill="#34D399"/>
+    <rect x="884" y="258" width="94" height="12" rx="6" fill="#6EE7B7" fill-opacity="0.88"/>
+    <rect x="884" y="292" width="138" height="12" rx="6" fill="#A7F3D0" fill-opacity="0.78"/>
+    <rect x="884" y="326" width="86" height="12" rx="6" fill="#99F6E4" fill-opacity="0.82"/>
+    <rect x="884" y="360" width="122" height="12" rx="6" fill="#CCFBF1" fill-opacity="0.72"/>
+    <text x="884" y="432" fill="#ECFDF5" font-size="24" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">SKILL.md</text>
+  </g>
+
+  <text x="136" y="526" fill="#94A3B8" font-size="22" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">Ervin Blog</text>
+</svg>
