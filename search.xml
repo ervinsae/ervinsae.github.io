@@ -323,8 +323,8 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>基础</tag>
         <tag>技能提升</tag>
+        <tag>基础</tag>
       </tags>
   </entry>
   <entry>
@@ -379,9 +379,9 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>基础</tag>
         <tag>并发</tag>
         <tag>多线程</tag>
+        <tag>基础</tag>
       </tags>
   </entry>
   <entry>
@@ -450,9 +450,9 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>技能提升</tag>
         <tag>并发</tag>
         <tag>源码</tag>
+        <tag>技能提升</tag>
       </tags>
   </entry>
   <entry>
@@ -934,9 +934,9 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>基础</tag>
         <tag>并发</tag>
         <tag>多线程</tag>
+        <tag>基础</tag>
       </tags>
   </entry>
   <entry>
