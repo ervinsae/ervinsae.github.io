@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="AI,工程效率,OpenSpec,Claude Code,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Ervin" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="最近看到一篇很长的文章，主题是 Harness 最佳实践：在 Java Spring Boot 项目中落地 OpenSpec + Claude Code。看完之后，我觉得它最有价值的地方，不是又介绍了一个“新概念”，而是把一件很多团队已经隐约意识到、但还没系统化表达的事情讲清楚了：  AI 真正要进入生产研发流程，重点从来不是“它能不能多写点代码”，而是“它能不能在边界内、按流程、可审计地工作”。">
+<meta name="keywords" content="AI,工程效率,OpenSpec,Claude Code">
+<meta property="og:type" content="article">
+<meta property="og:title" content="把AI编码纳入工程流程：从Harness到OpenSpec实践">
+<meta property="og:url" content="https://ervinsae.github.io/2026/04/04/把AI编码纳入工程流程：从Harness到OpenSpec实践/index.html">
+<meta property="og:site_name" content="Ervin">
+<meta property="og:description" content="最近看到一篇很长的文章，主题是 Harness 最佳实践：在 Java Spring Boot 项目中落地 OpenSpec + Claude Code。看完之后，我觉得它最有价值的地方，不是又介绍了一个“新概念”，而是把一件很多团队已经隐约意识到、但还没系统化表达的事情讲清楚了：  AI 真正要进入生产研发流程，重点从来不是“它能不能多写点代码”，而是“它能不能在边界内、按流程、可审计地工作”。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2026-04-04T00:01:17.994Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="把AI编码纳入工程流程：从Harness到OpenSpec实践">
+<meta name="twitter:description" content="最近看到一篇很长的文章，主题是 Harness 最佳实践：在 Java Spring Boot 项目中落地 OpenSpec + Claude Code。看完之后，我觉得它最有价值的地方，不是又介绍了一个“新概念”，而是把一件很多团队已经隐约意识到、但还没系统化表达的事情讲清楚了：  AI 真正要进入生产研发流程，重点从来不是“它能不能多写点代码”，而是“它能不能在边界内、按流程、可审计地工作”。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ervinsae.github.io/2026/04/04/把AI编码纳入工程流程：从Harness到OpenSpec实践/">
+
+
+
+
+
+  <title>把AI编码纳入工程流程：从Harness到OpenSpec实践 | Ervin</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ervin</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">真正的强者是认清了生活的本质，并且去热爱他的人。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2026/04/04/把AI编码纳入工程流程：从Harness到OpenSpec实践/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ervin Zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ervin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">把AI编码纳入工程流程：从Harness到OpenSpec实践</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2026-04-04T00:00:00+00:00">
+                2026-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近看到一篇很长的文章，主题是 <strong>Harness 最佳实践：在 Java Spring Boot 项目中落地 OpenSpec + Claude Code</strong>。看完之后，我觉得它最有价值的地方，不是又介绍了一个“新概念”，而是把一件很多团队已经隐约意识到、但还没系统化表达的事情讲清楚了：</p>
+<blockquote>
+<p>AI 真正要进入生产研发流程，重点从来不是“它能不能多写点代码”，而是“它能不能在边界内、按流程、可审计地工作”。</p>
+</blockquote>
+<p>这也是我对 Harness 这个词最直白的理解：<strong>不是让 AI 更自由，而是让 AI 在工程规则里稳定工作。</strong></p>
+<a id="more"></a>
+<h2 id="文章到底在讲什么"><a href="#文章到底在讲什么" class="headerlink" title="文章到底在讲什么"></a>文章到底在讲什么</h2><p>如果只用一句话概括，原文想解决的问题是：</p>
+<p><strong>怎么把 AI 从一个“偶尔帮忙写代码的工具”，变成一套真正能进入团队研发流程的工程能力。</strong></p>
+<p>作者拿 Java Spring Boot 项目做例子，但里面很多原则并不只适用于 Java。只要你的项目已经有一定历史包袱、业务约定复杂、上线风险不低，这套思路其实都值得参考。</p>
+<p>文章一开始就点到了一个很现实的问题：</p>
+<ul>
+<li>AI 最大的风险，不是写不出来</li>
+<li>而是它在你没有明确约束的时候，去碰了高风险区域</li>
+<li>比如 SQL、配置、脚本、部署、隐性业务约定这些地方</li>
+</ul>
+<p>很多“AI 翻车”不是模型不够聪明，而是团队没有把规则、流程和边界准备好。</p>
+<h2 id="这套思路的核心，其实只有四件事"><a href="#这套思路的核心，其实只有四件事" class="headerlink" title="这套思路的核心，其实只有四件事"></a>这套思路的核心，其实只有四件事</h2><p>我把原文压缩之后，觉得真正值得记住的是下面四条。</p>
+<h3 id="1-用-OpenSpec-管住变更生命周期"><a href="#1-用-OpenSpec-管住变更生命周期" class="headerlink" title="1. 用 OpenSpec 管住变更生命周期"></a>1. 用 OpenSpec 管住变更生命周期</h3><p>作者推荐的主流程是：</p>
+<p><code>/opsx:propose -&gt; /opsx:apply -&gt; /opsx:verify -&gt; /opsx:archive</code></p>
+<p>这个流程的意义，不只是多了几个命令，而是把一次需求变更拆成了完整生命周期：</p>
+<ul>
+<li><code>propose</code>：先拆需求，形成 proposal、design、tasks</li>
+<li><code>apply</code>：按确认后的方案实施，不边做边扩需求</li>
+<li><code>verify</code>：检查实现是否和变更工件一致</li>
+<li><code>archive</code>：归档，清理上下文，避免 change 污染</li>
+</ul>
+<p>这背后的核心思想我很认同：</p>
+<blockquote>
+<p>先把“要改什么”说清楚，再让 AI 去“怎么改”。</p>
+</blockquote>
+<p>很多时候，AI 不是实现错了，而是从一开始就理解错了边界。</p>
+<h3 id="2-AGENTS-md-只做导航，不做百科全书"><a href="#2-AGENTS-md-只做导航，不做百科全书" class="headerlink" title="2. AGENTS.md 只做导航，不做百科全书"></a>2. AGENTS.md 只做导航，不做百科全书</h3><p>这是原文里我很赞同的一点。</p>
+<p>很多团队会下意识把所有规则都往 <code>AGENTS.md</code> 里堆，最后变成一个又长又乱的大杂烩。AI 每次进仓库先看一坨规则，但真正项目知识又埋在里面，效果其实并不好。</p>
+<p>更合理的分层应该是：</p>
+<ul>
+<li><code>AGENTS.md</code>：告诉 AI 先看什么、按什么流程做</li>
+<li><code>docs/</code>：承载真正的项目知识、业务规则、历史坑点、隐性约定</li>
+</ul>
+<p>也就是说，<code>AGENTS.md</code> 更像入口地图，<code>docs/</code> 才是知识库。</p>
+<p>这个思路特别适合老项目。因为老项目最大的问题，往往不是代码难，而是“知识分布混乱”。</p>
+<h3 id="3-真正的硬约束不能只靠提示词，要靠-permissions-和-hooks"><a href="#3-真正的硬约束不能只靠提示词，要靠-permissions-和-hooks" class="headerlink" title="3. 真正的硬约束不能只靠提示词，要靠 permissions 和 hooks"></a>3. 真正的硬约束不能只靠提示词，要靠 permissions 和 hooks</h3><p>这一点其实非常工程化。</p>
+<p>写在文档里的规则，本质上都是软约束。AI 可能遵守，也可能在复杂上下文里漏掉。而真正能把事故概率压下来的，是硬护栏。</p>
+<p>比如下面这些目录，本来就应该默认高风险：</p>
+<ul>
+<li><code>application*.yml</code></li>
+<li><code>bootstrap*.yml</code></li>
+<li><code>db/</code></li>
+<li><code>sql/</code></li>
+<li><code>deploy/</code></li>
+<li><code>infra/</code></li>
+<li><code>secrets/</code></li>
+</ul>
+<p>对于这些路径，原文的建议很明确：</p>
+<ul>
+<li>权限层先 deny</li>
+<li>hook 再做一次路径校验</li>
+</ul>
+<p>同理，命令执行也要分层：</p>
+<p>允许的可以是：</p>
+<ul>
+<li><code>mvn test</code></li>
+<li><code>mvn -DskipTests compile</code></li>
+<li><code>git diff</code></li>
+<li><code>git status</code></li>
+</ul>
+<p>默认禁止的应该是：</p>
+<ul>
+<li><code>git push</code></li>
+<li><code>kubectl</code></li>
+<li><code>terraform</code></li>
+<li><code>helm</code></li>
+<li><code>rm -rf</code></li>
+</ul>
+<p>这套设计本质上是在回答一个问题：</p>
+<blockquote>
+<p>当模型判断失误时，谁来兜底？</p>
+</blockquote>
+<p>答案不应该是“希望它别出错”，而应该是“系统本身拦得住”。</p>
+<h3 id="4-把评审能力拆开，不要混成一个动作"><a href="#4-把评审能力拆开，不要混成一个动作" class="headerlink" title="4. 把评审能力拆开，不要混成一个动作"></a>4. 把评审能力拆开，不要混成一个动作</h3><p>原文非常强调：实现、验证、评审、架构检查、SQL 风险检查，这些不能混为一谈。</p>
+<p>比如：</p>
+<ul>
+<li><code>/opsx:verify</code> 只负责检查实现是否和 OpenSpec 工件一致</li>
+<li><code>/prepare-review</code> 负责整理改动摘要，方便人工 review</li>
+<li><code>/spring-architecture-review</code> 检查 Spring 分层是否被破坏</li>
+<li><code>/sql-risk-review</code> 检查 SQL / Mapper / 批量更新风险</li>
+<li><code>reviewer</code> 子代理做只读视角的独立审计</li>
+</ul>
+<p>这个设计的好处很明显：</p>
+<ul>
+<li>每种检查目标单一</li>
+<li>不容易相互覆盖又相互遗漏</li>
+<li>出问题时更容易定位，到底是 proposal 错了，还是实现偏了，还是架构/SQL 风险没控住</li>
+</ul>
+<p>这比“让 AI 最后自己 review 一遍”靠谱得多。</p>
+<h2 id="我最认同的一点：隐性约定必须显性化"><a href="#我最认同的一点：隐性约定必须显性化" class="headerlink" title="我最认同的一点：隐性约定必须显性化"></a>我最认同的一点：隐性约定必须显性化</h2><p>如果让我从整篇文章里只挑一个最值钱的点，我会选这个。</p>
+<p>真实项目里最坑人的，往往不是写在文档里的规则，而是那些：</p>
+<ul>
+<li>大家都知道</li>
+<li>但没人明确写下来</li>
+<li>一旦改错，代码能跑，联调却出问题</li>
+</ul>
+<p>比如：</p>
+<ul>
+<li>某个字段的 <code>null</code> 和 <code>0</code> 历史语义并不一样</li>
+<li>某个接口里某个字段前端就是依赖它回显</li>
+<li>某个状态流转不能只看表面枚举值</li>
+</ul>
+<p>这种东西，人靠口口相传还能勉强维持；一旦交给 AI，如果没有文档，它几乎不可能稳定猜对。</p>
+<p>所以作者建议把这些内容单独沉淀到类似：</p>
+<p><code>docs/architecture/implicit-contracts.md</code></p>
+<p>我觉得这不是“文档工作”，这是<strong>工程降风险工作</strong>。</p>
+<p>AI 时代，很多团队要补的不是 prompt，而是项目知识本身。</p>
+<h2 id="这套方式适合什么项目"><a href="#这套方式适合什么项目" class="headerlink" title="这套方式适合什么项目"></a>这套方式适合什么项目</h2><p>文章里给的判断也比较务实。</p>
+<p>它最适合的不是小 demo，也不是一次性脚本，而是这类项目：</p>
+<ul>
+<li>有一定历史包袱的业务系统</li>
+<li>有较多口头约定或隐性契约</li>
+<li>希望把 AI 编码从“个人技巧”变成“团队流程能力”</li>
+</ul>
+<p>如果只是一个纯实验项目、从 0 到 1 的小仓库，没必要一下子把约束拉满。因为约束太重，本身也会降低效率。</p>
+<p>这一点我也认同：</p>
+<blockquote>
+<p>Harness 不是越重越好，而是要和项目复杂度、风险等级匹配。</p>
+</blockquote>
+<h2 id="放到-Spring-Boot-项目里，最值得优先加护栏的地方"><a href="#放到-Spring-Boot-项目里，最值得优先加护栏的地方" class="headerlink" title="放到 Spring Boot 项目里，最值得优先加护栏的地方"></a>放到 Spring Boot 项目里，最值得优先加护栏的地方</h2><p>原文提了几个点，我觉得基本都踩在真实痛点上：</p>
+<h3 id="Controller-里写业务逻辑"><a href="#Controller-里写业务逻辑" class="headerlink" title="Controller 里写业务逻辑"></a>Controller 里写业务逻辑</h3><p>这是很多老项目最常见的脏点。AI 一旦顺着已有坏味道继续写，只会越堆越乱。</p>
+<h3 id="直接改-SQL、配置、数据库脚本"><a href="#直接改-SQL、配置、数据库脚本" class="headerlink" title="直接改 SQL、配置、数据库脚本"></a>直接改 SQL、配置、数据库脚本</h3><p>这种改动本地跑通不代表线上安全。很多事故都不是复杂逻辑错了，而是这些底层东西被轻率改动。</p>
+<h3 id="Service-越写越胖"><a href="#Service-越写越胖" class="headerlink" title="Service 越写越胖"></a>Service 越写越胖</h3><p>AI 连续补代码的时候，很容易把各种职责都堆到一个 Service 里。短期看省事，长期会让系统越来越难维护。</p>
+<h3 id="测试只覆盖-happy-path"><a href="#测试只覆盖-happy-path" class="headerlink" title="测试只覆盖 happy path"></a>测试只覆盖 happy path</h3><p>这是传统开发会犯的毛病，AI 也一样会犯。尤其是它往往倾向于补一个“能过的测试”，而不是补真正有约束力的测试。</p>
+<h3 id="批量更新没有-where-限制"><a href="#批量更新没有-where-限制" class="headerlink" title="批量更新没有 where 限制"></a>批量更新没有 where 限制</h3><p>这不是普通 bug，这基本就是事故预备动作。数据库规范和 SQL 风险审查必须把它当成显式检查项。</p>
+<h2 id="我自己的理解：Harness-不是新发明，而是旧工程经验的新组织方式"><a href="#我自己的理解：Harness-不是新发明，而是旧工程经验的新组织方式" class="headerlink" title="我自己的理解：Harness 不是新发明，而是旧工程经验的新组织方式"></a>我自己的理解：Harness 不是新发明，而是旧工程经验的新组织方式</h2><p>看完这篇文章，我最大的感受其实是：</p>
+<p><strong>Harness 并不是什么横空出世的新发明。</strong></p>
+<p>以前没有 AI 的时候，我们也一直在做类似的事：</p>
+<ul>
+<li>定规则</li>
+<li>做权限控制</li>
+<li>分层审查</li>
+<li>跑自动检查</li>
+<li>给高风险动作加护栏</li>
+<li>把知识沉淀到文档</li>
+</ul>
+<p>只是以前这些事情是分散的，没有一个统一的名字。现在因为 AI coding 普及，大家突然发现：这些工程经验必须重新被系统化，必须真正放到流程前面。</p>
+<p>所以 Harness 对我来说，不是一个“追新词”的事情，而是一个提醒：</p>
+<blockquote>
+<p>当工具越来越强时，工程边界反而要更清楚。</p>
+</blockquote>
+<p>AI 不是不能放进生产流程，而是不能裸奔进生产流程。</p>
+<h2 id="如果让我给团队一个最小落地建议"><a href="#如果让我给团队一个最小落地建议" class="headerlink" title="如果让我给团队一个最小落地建议"></a>如果让我给团队一个最小落地建议</h2><p>不一定一上来就把整套体系铺满。我会更建议按下面这个顺序慢慢上：</p>
+<h3 id="第一阶段：先把最小闭环跑通"><a href="#第一阶段：先把最小闭环跑通" class="headerlink" title="第一阶段：先把最小闭环跑通"></a>第一阶段：先把最小闭环跑通</h3><p>先有这些：</p>
+<ul>
+<li>OpenSpec change 生命周期</li>
+<li><code>AGENTS.md</code></li>
+<li><code>docs/</code> 知识分层</li>
+<li>隐性约定文档</li>
+<li>一个只读 reviewer</li>
+</ul>
+<p>先解决“能不能把一次需求改动完整走完”。</p>
+<h3 id="第二阶段：补硬护栏"><a href="#第二阶段：补硬护栏" class="headerlink" title="第二阶段：补硬护栏"></a>第二阶段：补硬护栏</h3><p>再加：</p>
+<ul>
+<li>permissions</li>
+<li>写入保护 hook</li>
+<li>change 上下文检查</li>
+<li>自动编译 / 测试 / 打包校验</li>
+</ul>
+<p>把高风险动作拦起来。</p>
+<h3 id="第三阶段：再做团队专用能力沉淀"><a href="#第三阶段：再做团队专用能力沉淀" class="headerlink" title="第三阶段：再做团队专用能力沉淀"></a>第三阶段：再做团队专用能力沉淀</h3><p>比如：</p>
+<ul>
+<li>Spring 架构审查 skill</li>
+<li>SQL 风险审查 skill</li>
+<li>PR 摘要整理 skill</li>
+<li>子代理 reviewer</li>
+</ul>
+<p>到这个阶段，AI 才开始从“会写代码的助手”变成“能参与团队流程的一环”。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>这篇文章最值得看的地方，不是它给出了某个唯一正确的目录结构，而是它讲清楚了一件事：</p>
+<p><strong>AI coding 真正进入生产，不靠模型自己突然变得足够聪明，而靠团队把流程、知识、权限、审查和约束搭起来。</strong></p>
+<p>工具能力越强，越不能只靠“感觉它应该知道”。</p>
+<p>把需求工件化，把隐性约定写下来，把危险路径锁住，把审查动作拆开，把 change 生命周期走完整——这些听起来不性感，但真正能决定 AI 最后是在帮你提效，还是在帮你制造隐患。</p>
+<p>如果只记一句话，我会记这句：</p>
+<blockquote>
+<p>AI 不是要“放开跑”，而是要“在可控的路上稳定跑”。</p>
+</blockquote>
+<hr>
+<p>参考原文：<br>[万字长文预警] Harness 最佳实践：在 Java Spring Boot 项目中落地 OpenSpec + Claude Code<br><a href="https://mp.weixin.qq.com/s/3qKvWajntkYLArH4ZShAhg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3qKvWajntkYLArH4ZShAhg</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AI/" rel="tag"><i class="fa fa-tag"></i>
+ AI</a>
+          
+            <a href="/tags/工程效率/" rel="tag"><i class="fa fa-tag"></i>
+ 工程效率</a>
+          
+            <a href="/tags/OpenSpec/" rel="tag"><i class="fa fa-tag"></i>
+ OpenSpec</a>
+          
+            <a href="/tags/Claude-Code/" rel="tag"><i class="fa fa-tag"></i>
+ Claude Code</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2026/03/29/2026-03-29-ru-he-shi-yong-skill-cong-li-jie-gai-nian-dao-qin-shou-zuo-yi-ge-zi-ji-de-skill/" rel="next" title="如何使用 Skill：从理解概念到亲手做一个自己的 Skill">
+                <i class="fa fa-chevron-left"></i> 如何使用 Skill：从理解概念到亲手做一个自己的 Skill
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Ervin Zhang">
+            
+              <p class="site-author-name" itemprop="name">Ervin Zhang</p>
+              <p class="site-description motion-element" itemprop="description">stay hungry, stay foolish</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/ervinsae" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:ervinsae@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/ervinsae" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#文章到底在讲什么"><span class="nav-number">1.</span> <span class="nav-text">文章到底在讲什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这套思路的核心，其实只有四件事"><span class="nav-number">2.</span> <span class="nav-text">这套思路的核心，其实只有四件事</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-用-OpenSpec-管住变更生命周期"><span class="nav-number">2.1.</span> <span class="nav-text">1. 用 OpenSpec 管住变更生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-AGENTS-md-只做导航，不做百科全书"><span class="nav-number">2.2.</span> <span class="nav-text">2. AGENTS.md 只做导航，不做百科全书</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-真正的硬约束不能只靠提示词，要靠-permissions-和-hooks"><span class="nav-number">2.3.</span> <span class="nav-text">3. 真正的硬约束不能只靠提示词，要靠 permissions 和 hooks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-把评审能力拆开，不要混成一个动作"><span class="nav-number">2.4.</span> <span class="nav-text">4. 把评审能力拆开，不要混成一个动作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我最认同的一点：隐性约定必须显性化"><span class="nav-number">3.</span> <span class="nav-text">我最认同的一点：隐性约定必须显性化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这套方式适合什么项目"><span class="nav-number">4.</span> <span class="nav-text">这套方式适合什么项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#放到-Spring-Boot-项目里，最值得优先加护栏的地方"><span class="nav-number">5.</span> <span class="nav-text">放到 Spring Boot 项目里，最值得优先加护栏的地方</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Controller-里写业务逻辑"><span class="nav-number">5.1.</span> <span class="nav-text">Controller 里写业务逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直接改-SQL、配置、数据库脚本"><span class="nav-number">5.2.</span> <span class="nav-text">直接改 SQL、配置、数据库脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-越写越胖"><span class="nav-number">5.3.</span> <span class="nav-text">Service 越写越胖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试只覆盖-happy-path"><span class="nav-number">5.4.</span> <span class="nav-text">测试只覆盖 happy path</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#批量更新没有-where-限制"><span class="nav-number">5.5.</span> <span class="nav-text">批量更新没有 where 限制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我自己的理解：Harness-不是新发明，而是旧工程经验的新组织方式"><span class="nav-number">6.</span> <span class="nav-text">我自己的理解：Harness 不是新发明，而是旧工程经验的新组织方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如果让我给团队一个最小落地建议"><span class="nav-number">7.</span> <span class="nav-text">如果让我给团队一个最小落地建议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一阶段：先把最小闭环跑通"><span class="nav-number">7.1.</span> <span class="nav-text">第一阶段：先把最小闭环跑通</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二阶段：补硬护栏"><span class="nav-number">7.2.</span> <span class="nav-text">第二阶段：补硬护栏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三阶段：再做团队专用能力沉淀"><span class="nav-number">7.3.</span> <span class="nav-text">第三阶段：再做团队专用能力沉淀</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">8.</span> <span class="nav-text">最后</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ervin Zhang</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">106.5k</span>
+  
+</div>
+
+
+<div class="powered-by">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>次
+</span>
+
+<span class="post-meta-divider">|</span>
+</div>
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":180,"height":360},"mobile":{"show":false,"scale":0.5},"log":false});</script></body>
+</html>
