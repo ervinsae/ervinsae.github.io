@@ -287,6 +287,240 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2025/11/12/关于Kotlin中副作用的理解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ervin Zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ervin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2025/11/12/关于Kotlin中副作用的理解/" itemprop="url">关于Kotlin中副作用的理解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-11-12T00:00:00+00:00">
+                2025-11-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  952
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+      <div class="post-cover post-cover-index">
+        
+          <a class="post-cover-link" href="/2025/11/12/关于Kotlin中副作用的理解/" aria-label="关于Kotlin中副作用的理解">
+            <img class="post-cover-image" src="/images/covers/kotlin-side-effects-gemini-wide.png" alt="关于Kotlin中副作用的理解" itemprop="image">
+          </a>
+        
+      </div>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>review代码的时候看到一个副作用，有点忘记原理了，就问了下AI，我觉得它回答的非常好，记录一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">LaunchedEffect(boValue, countDownTime) &#123;</span><br><span class="line">        if (countDownTime == CountDownState.Finished.times) &#123;</span><br><span class="line">            navigator.navigate(BOExceptionDestination())&#123;</span><br><span class="line">                popUpTo(BOWornDetectionDestination.route) &#123;</span><br><span class="line">                    inclusive = true</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        if (boValue &gt; 0) &#123;</span><br><span class="line">            navigator.navigate(BOResultDestination(boValue.toInt()))&#123;</span><br><span class="line">                popUpTo(BOWornDetectionDestination.route) &#123;</span><br><span class="line">                    inclusive = true</span><br><span class="line">                &#125;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>提问：不太明白这个副作用函数的运行机制，你上面说它会开启一个协程来执行内部代码，但是又会监听LaunchedEffect中的key值，这个是怎么做到的？另外，如果key值变化了，主线程中正在执行的代码会怎么样？请作为Android资深工程师用浅显易懂的方式给我讲清楚。</p>
+<p>AI回答：<br>现在我们把上面的比喻套在你的代码上：</p>
+<h3 id="LaunchedEffect-boValue-countDownTime-…"><a href="#LaunchedEffect-boValue-countDownTime-…" class="headerlink" title="LaunchedEffect(boValue, countDownTime) { … }"></a>LaunchedEffect(boValue, countDownTime) { … }</h3><ol>
+<li>首次运行：</li>
+</ol>
+<ul>
+<li>你的界面第一次显示时，boValue 可能是 0，countDownTime 是 30。</li>
+<li>LaunchedEffect 记录下 (key1=0, key2=30)，并启动一个协程来执行 {} 里的代码。</li>
+<li>这个协程现在开始运行，它会检查 if 条件，发现都不满足，<strong>然后就“挂起” (suspend)</strong>，等待下一次 key 的变化。</li>
+</ul>
+<ol start="2">
+<li>当 countDownTime 变化时：<ul>
+<li>1秒后，countDownTime 变成了 29。这导致了界面重组 (Recomposition)。</li>
+<li>在重组过程中，LaunchedEffect 会再次被执行。它对比新旧 key：<ul>
+<li>旧 key: (boValue=0, countDownTime=30)</li>
+<li>新 key: (boValue=0, countDownTime=29)◦它发现 countDownTime 变了！于是：</li>
+<li>立即取消上一个 countDownTime=30 时启动的协程。</li>
+<li>启动一个全新的协程，并记录下新的 key (0, 29)。这个新协程又从头开始执行 {} 里的逻辑。这个过程会每秒重复一次。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>如果 boValue 突然变化了：</li>
+</ol>
+<ul>
+<li>假设在倒计时到 25 秒时，血氧传感器返回了数据，boValue 从 0 变成了 98。</li>
+<li>界面再次重组。LaunchedEffect 对比 key：<ul>
+<li>旧 key: (boValue=0, countDownTime=25)</li>
+<li>新 key: (boValue=98, countDownTime=25)</li>
+</ul>
+</li>
+<li>它发现 boValue 变了！于是：<ul>
+<li>立即取消上一个 (0, 25) 的协程。</li>
+<li>启动一个全新的协程。这个新协程一进来就检查 if (boValue &gt; 0)，条件满足，立刻执行 navigator.navigate(…) 进行页面跳转。任务完成！</li>
+</ul>
+</li>
+</ul>
+<h3 id="关于主线程的问题"><a href="#关于主线程的问题" class="headerlink" title="关于主线程的问题"></a>关于主线程的问题</h3><pre><code>你还问到：“如果key值变化了，主线程中正在执行的代码会怎么样？”这是一个非常好的问题，涉及到协程的核心优势。
+</code></pre><ul>
+<li>LaunchedEffect 里的代码默认运行在主线程上，但它是可挂起 (suspendable) 的。</li>
+<li>当协程执行到一个挂起点（比如 delay(1000) 或者其他需要等待的异步操作）时，它会释放主线程，但并不会销毁自己。主线程可以去干别的事，比如响应用户点击、刷新动画等，UI 不会被卡住。</li>
+<li>当 key 变化时，是 Compose 框架在主线程的重组阶段发现了 key 的变化，然后它会向旧的协程发送一个取消信号。</li>
+<li>正在运行的协程（无论它当前是真正在执行 CPU 指令，还是正处于挂起状态）收到取消信号后，会在下一个挂起点或检查点响应取消，并抛出 CancellationException 来终止自己。</li>
+<li>这一切的取消和重启调度都是由 Compose 框架和 Kotlin 协程库在背后无缝完成的，不会阻塞主线程的正常工作。</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>机制：LaunchedEffect 不是“边运行边监听”，而是在每次重组时，通过对比新旧 key 值来决定是否<strong>取消旧协程，启动新协程</strong>。</li>
+<li>目的：确保副作用代码（比如网络请求、数据库操作、导航）始终与当前的 state (也就是 key) 保持同步。</li>
+<li>线程：代码虽然在主线程协程中，但由于其“可挂起”的特性，不会阻塞 UI 渲染。它的生命周期管理是自动且安全的。</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2025/06/06/习得性无助/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1890,198 +2124,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2023/05/11/杂记（3）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ervin Zhang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ervin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2023/05/11/杂记（3）/" itemprop="url">杂记（3）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-05-11T00:00:00+00:00">
-                2023-05-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/读书/" itemprop="url" rel="index">
-                    <span itemprop="name">读书</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="如何做一个“内核稳”的人"><a href="#如何做一个“内核稳”的人" class="headerlink" title="如何做一个“内核稳”的人"></a>如何做一个“内核稳”的人</h2><ol>
-<li><p>不急着反应，别人肯定你，不欣喜若狂；别人批评你，不盲目自卑内耗。这都是别人的看法，和本来的你关系不大。</p>
-</li>
-<li><p>多内观自己的坏情绪。会因为什么事情焦虑、恐惧、内耗，把这些事情从头到尾梳理一遍，以第三者角度看待事情，就会理智很多。</p>
-</li>
-<li><p>提高自己的经济能力。这个重要，但不是最重要。所以如果自己的经济能力暂时不会有太大的改 善，先从心态开始练起。</p>
-</li>
-<li><p>不要有过多的解释欲。不是所有人都值得你解释，只对自己在乎的几个人说自己的事，必要的时候甚至可以不说。 </p>
-</li>
-<li><p>接受别人可以是任何样子。可以是聪明的，也可以是傻逼的。可以是漂亮的，也可以是丑陋的。可以是善良的，也可以是阴狠的。</p>
-</li>
-<li><p>存在即合理。世界上很多东西不符合自己的三观，但它必然有存在的理由，抱着平和的心态多去看世界，了解多样性，就能更有包容心。</p>
-</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2023/05/11/杂记（3）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2134,7 +2176,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-count">84</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2156,7 +2198,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2236,7 +2278,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">106.5k</span>
+    <span title="Site words total count">109k</span>
   
 </div>
 
