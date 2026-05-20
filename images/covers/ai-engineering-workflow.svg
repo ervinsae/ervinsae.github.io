@@ -1,0 +1,52 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1120"/>
+      <stop offset="0.5" stop-color="#111827"/>
+      <stop offset="1" stop-color="#065F46"/>
+    </linearGradient>
+    <filter id="blur" x="0" y="0" width="1200" height="630" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="42"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <g filter="url(#blur)" opacity="0.52">
+    <circle cx="198" cy="135" r="96" fill="#34D399"/>
+    <circle cx="1040" cy="106" r="110" fill="#10B981"/>
+    <circle cx="955" cy="516" r="126" fill="#14B8A6"/>
+  </g>
+
+  <rect x="92" y="78" width="1016" height="474" rx="28" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/>
+
+  <rect x="136" y="124" width="196" height="42" rx="21" fill="rgba(16,185,129,0.18)"/>
+  <text x="160" y="151" fill="#6EE7B7" font-size="24" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" letter-spacing="1">AI × 工程流程</text>
+
+  <text x="136" y="244" fill="#FFFFFF" font-size="56" font-weight="700" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">AI工程化：怎么把传统软</text>
+  <text x="136" y="318" fill="#FFFFFF" font-size="56" font-weight="700" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">件…</text>
+  <text x="136" y="392" fill="#D1FAE5" font-size="40" font-weight="600" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">让需求、设计、编码、测试、发布和运</text>
+  <text x="136" y="448" fill="#D1FAE5" font-size="40" font-weight="600" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">维…</text>
+
+  <text x="136" y="522" fill="#C7D2FE" font-size="28" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">不是多一个聊天窗口，而是重构整条软件交付链路</text>
+
+  <g opacity="0.92">
+    <rect x="136" y="448" width="148" height="16" rx="8" fill="#34D399"/>
+    <rect x="300" y="448" width="174" height="16" rx="8" fill="#6EE7B7" fill-opacity="0.85"/>
+    <rect x="490" y="448" width="132" height="16" rx="8" fill="#A7F3D0" fill-opacity="0.8"/>
+    <rect x="136" y="480" width="214" height="16" rx="8" fill="#2DD4BF" fill-opacity="0.8"/>
+    <rect x="366" y="480" width="164" height="16" rx="8" fill="#99F6E4" fill-opacity="0.72"/>
+  </g>
+
+  <g>
+    <rect x="848" y="194" width="182" height="206" rx="20" fill="rgba(7,26,22,0.64)" stroke="rgba(255,255,255,0.1)"/>
+    <rect x="878" y="230" width="122" height="14" rx="7" fill="#34D399"/>
+    <rect x="878" y="262" width="92" height="12" rx="6" fill="#6EE7B7" fill-opacity="0.85"/>
+    <rect x="878" y="302" width="110" height="12" rx="6" fill="#A7F3D0" fill-opacity="0.92"/>
+    <rect x="878" y="334" width="136" height="12" rx="6" fill="#A7F3D0" fill-opacity="0.72"/>
+    <rect x="878" y="366" width="84" height="12" rx="6" fill="#2DD4BF" fill-opacity="0.8"/>
+    <text x="878" y="430" fill="#ECFDF5" font-size="24" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">让需求、设计、编码、测试、发布和运维</text>
+  </g>
+
+  <text x="136" y="526" fill="#94A3B8" font-size="22" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">Ervin Blog</text>
+</svg>
