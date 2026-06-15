@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="AI,Agent,工程效率,企业智能,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Ervin" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="昨天看到 Satya Nadella 在 X 上发的一篇长文：A frontier without an ecosystem is not stable。这篇文章表面上是在谈 AI 时代企业应该如何构建自己的能力，但我觉得它真正有价值的地方，不是又提出了一个关于大模型的判断，而是把一个更底层的问题说清楚了： AI 时代，公司的核心资产不会只是“用了哪个模型”，而是能不能把自己的经验、流程、判断和组">
+<meta name="keywords" content="AI,Agent,工程效率,企业智能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI时代公司的新护城河：不是模型，而是学习回路">
+<meta property="og:url" content="https://ervinsae.github.io/2026/06/15/2026-06-15-firm-learning-loop-ai-era/index.html">
+<meta property="og:site_name" content="Ervin">
+<meta property="og:description" content="昨天看到 Satya Nadella 在 X 上发的一篇长文：A frontier without an ecosystem is not stable。这篇文章表面上是在谈 AI 时代企业应该如何构建自己的能力，但我觉得它真正有价值的地方，不是又提出了一个关于大模型的判断，而是把一个更底层的问题说清楚了： AI 时代，公司的核心资产不会只是“用了哪个模型”，而是能不能把自己的经验、流程、判断和组">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2026-06-15T07:30:35.782Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI时代公司的新护城河：不是模型，而是学习回路">
+<meta name="twitter:description" content="昨天看到 Satya Nadella 在 X 上发的一篇长文：A frontier without an ecosystem is not stable。这篇文章表面上是在谈 AI 时代企业应该如何构建自己的能力，但我觉得它真正有价值的地方，不是又提出了一个关于大模型的判断，而是把一个更底层的问题说清楚了： AI 时代，公司的核心资产不会只是“用了哪个模型”，而是能不能把自己的经验、流程、判断和组">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ervinsae.github.io/2026/06/15/2026-06-15-firm-learning-loop-ai-era/">
+
+
+
+
+
+  <title>AI时代公司的新护城河：不是模型，而是学习回路 | Ervin</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ervin</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">真正的强者是认清了生活的本质，并且去热爱他的人。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2026/06/15/2026-06-15-firm-learning-loop-ai-era/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ervin Zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ervin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">AI时代公司的新护城河：不是模型，而是学习回路</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2026-06-15T00:00:00+00:00">
+                2026-06-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+      <div class="post-cover post-cover-detail">
+        
+          <img class="post-cover-image" src="/images/covers/firm-learning-loop-ai-era-hand-drawn-edu-wide.png" alt="AI时代公司的新护城河：不是模型，而是学习回路" itemprop="image">
+        
+      </div>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>昨天看到 Satya Nadella 在 X 上发的一篇长文：<a href="https://x.com/i/status/2066182223213293753" target="_blank" rel="noopener">A frontier without an ecosystem is not stable</a>。这篇文章表面上是在谈 AI 时代企业应该如何构建自己的能力，但我觉得它真正有价值的地方，不是又提出了一个关于大模型的判断，而是把一个更底层的问题说清楚了：</p>
+<p><strong>AI 时代，公司的核心资产不会只是“用了哪个模型”，而是能不能把自己的经验、流程、判断和组织记忆，变成一套持续变强的学习系统。</strong></p>
+<p>这件事如果说得更直白一点，就是：未来企业之间的差距，不只取决于谁接入了更强的模型，而取决于谁能把模型放进自己的业务循环里，让每一次使用都留下可复用的知识、信号和改进。</p>
+<a id="more"></a>
+<h2 id="这篇文章到底在讲什么"><a href="#这篇文章到底在讲什么" class="headerlink" title="这篇文章到底在讲什么"></a>这篇文章到底在讲什么</h2><p>Satya 这篇文章的核心判断是：AI 带来的变化，不是传统意义上的又一次软件工具升级。</p>
+<p>过去几十年，企业用数字系统提升人的效率。比如 ERP、CRM、协同办公、数据平台，本质上都是把人的工作流程数字化，让人做得更快、更可见、更可管理。</p>
+<p>但这一次不太一样。</p>
+<p>AI 不只是帮人记录、查询、自动化，而是开始和人的认知过程发生循环。人提出目标、做判断、积累经验；AI 执行任务、总结模式、生成反馈；然后这些反馈又反过来帮助组织学得更快。</p>
+<p>这就让企业的核心问题发生了变化。</p>
+<p>以前企业要问的是：</p>
+<ul>
+<li>我能不能买到更好的软件</li>
+<li>我能不能把流程数字化</li>
+<li>我能不能让员工更高效</li>
+</ul>
+<p>现在更关键的问题变成：</p>
+<ul>
+<li>我的业务知识能不能被 AI 系统吸收</li>
+<li>我的工作流能不能越用越好</li>
+<li>我的组织经验能不能沉淀成可复用能力</li>
+<li>我的核心判断会不会被通用模型快速商品化</li>
+</ul>
+<p>这也是文章标题里“frontier ecosystem”的意思。只追求 frontier model，也就是最前沿的模型，本身是不够稳定的。真正稳定的 AI 未来，应该是一个生态：每家公司、每个行业、每个国家，都能在模型之上建立自己的学习能力，而不是把全部价值交给少数几个通用模型。</p>
+<h2 id="Human-Capital-和-Token-Capital：一个很重要的区分"><a href="#Human-Capital-和-Token-Capital：一个很重要的区分" class="headerlink" title="Human Capital 和 Token Capital：一个很重要的区分"></a>Human Capital 和 Token Capital：一个很重要的区分</h2><p>文章里有一个概念很值得展开：human capital 和 token capital。</p>
+<p>Human capital 很好理解，就是公司里人的知识、判断、关系、创造力、模式识别能力。它不是简历上的技能列表，而是人长期在业务里积累出来的真实经验。</p>
+<p>比如：</p>
+<ul>
+<li>哪类客户其实最难服务</li>
+<li>哪个指标看起来健康但其实有误导性</li>
+<li>哪个流程表面高效但长期会制造债务</li>
+<li>哪个需求听起来合理但背后是假问题</li>
+<li>哪些团队协作方式会让事情真正推进</li>
+</ul>
+<p>这些东西很难完全写进标准文档里，但它们确实构成了公司的能力。</p>
+<p>Token capital 则可以理解成公司自己构建和拥有的 AI 能力。这里的 token 不是币，而是 AI 系统处理、生成、学习和执行任务时消耗的计算表达单位。更准确地说，它代表企业把模型、数据、工作流、知识库、评估体系和反馈机制组合起来之后形成的智能资产。</p>
+<p>这两个概念放在一起，文章的判断就很清楚了：</p>
+<p><strong>AI 能力越强，人的判断不是越不重要，而是越重要。</strong></p>
+<p>原因很简单。没有人的方向感，AI 只是算力在原地打转。模型可以生成很多东西，但它不知道哪些目标值得追，哪些模式真正重要，哪些结果对业务有意义。</p>
+<p>所以未来企业真正要建设的，不是一个“替代人”的系统，而是一套让 human capital 和 token capital 互相复利的系统。</p>
+<p>人的判断指导 AI，AI 的执行和反馈放大人的判断；人的经验被系统吸收，系统又把这些经验变成更多人可以使用的能力。</p>
+<p>这才是重点。</p>
+<h2 id="真正的机会不是选模型，而是建立学习回路"><a href="#真正的机会不是选模型，而是建立学习回路" class="headerlink" title="真正的机会不是选模型，而是建立学习回路"></a>真正的机会不是选模型，而是建立学习回路</h2><p>很多公司现在谈 AI 落地，第一反应还是选模型。</p>
+<p>用 GPT，还是 Claude？用 Gemini，还是开源模型？要不要私有化？要不要微调？这些问题当然重要，但它们可能不是最根本的问题。</p>
+<p>Satya 的观点更接近另一个方向：真正的机会，是在模型之上建立学习回路。</p>
+<p>这个学习回路至少包括几件事：</p>
+<ul>
+<li>把业务工作流接入 AI 系统</li>
+<li>把领域知识变成可查询、可调用、可更新的知识资产</li>
+<li>用私有评估集衡量模型是否真的解决业务问题</li>
+<li>用真实业务过程产生的反馈改进系统</li>
+<li>让每一次任务执行都沉淀新的信号</li>
+</ul>
+<p>这和“拿 AI 做一个工具”是两回事。</p>
+<p>如果只是让 AI 帮你写一封邮件、总结一篇文档、生成一段代码，那它确实提高了单次效率。但任务结束之后，组织并没有变得更聪明。下一次遇到类似问题，还是从头再来。</p>
+<p>学习回路的不同之处在于：每一次使用都会留下东西。</p>
+<p>比如一次销售跟进，不只是生成一封邮件，而是沉淀客户反应、话术效果、行业差异和成交路径；一次代码生成，不只是完成一个功能，而是沉淀项目约定、测试策略、隐性架构规则和故障经验；一次客服处理，不只是回答用户，而是更新问题分类、产品缺陷和知识库。</p>
+<p>当这些信号持续积累，企业就不只是“用了 AI”，而是在让 AI 系统承载自己的组织经验。</p>
+<h2 id="公司真正要保护的，是自己的隐性知识"><a href="#公司真正要保护的，是自己的隐性知识" class="headerlink" title="公司真正要保护的，是自己的隐性知识"></a>公司真正要保护的，是自己的隐性知识</h2><p>这篇文章里还有一个很现实的担忧：如果所有价值都流向少数几个通用模型，企业和行业会被掏空。</p>
+<p>这不是一个纯技术问题，而是经济结构问题。</p>
+<p>如果所有公司的数据、流程、经验、判断，最后都被少数模型吸收，然后这些模型再把能力以标准化产品的形式卖回给所有人，那么长期看，企业自己的差异化会被削弱。</p>
+<p>这有点像过去全球化里某些产业被外包掏空的过程。账面效率可能提高了，但本地能力、工艺经验、产业知识和就业结构被慢慢抽走。AI 时代如果处理不好，也可能出现类似问题：公司的知识不断被外部模型商品化，最后自己只剩下调用接口的能力。</p>
+<p>所以企业必须回答一个问题：</p>
+<p><strong>我的哪些知识，必须留在自己的学习系统里？</strong></p>
+<p>这里的“留住”不是简单地把数据锁起来，而是要让这些知识在内部系统中持续发挥作用。</p>
+<p>比如：</p>
+<ul>
+<li>私有知识库保存机构记忆</li>
+<li>私有 eval 衡量业务真实结果</li>
+<li>私有工作流记录任务执行轨迹</li>
+<li>私有反馈机制让系统越用越懂业务</li>
+<li>私有 agent 系统把经验变成可复用动作</li>
+</ul>
+<p>这才是企业在 AI 时代的主权问题。</p>
+<p>不是“我有没有模型”，而是“我有没有自己的学习回路”。</p>
+<h2 id="为什么“可替换模型”很重要"><a href="#为什么“可替换模型”很重要" class="headerlink" title="为什么“可替换模型”很重要"></a>为什么“可替换模型”很重要</h2><p>文章里有一个判断我觉得特别关键：企业应该能替换通用模型，但不能丢掉自己积累出来的公司经验。</p>
+<p>这句话背后其实是一个架构原则。</p>
+<p>如果一家公司的 AI 能力完全绑定在某个模型上，那么模型一换，能力就断了。它积累的提示词、流程、知识、评估、反馈，可能都和那个模型强耦合。</p>
+<p>这种系统看起来跑得很快，但不够稳。</p>
+<p>更合理的架构应该是：</p>
+<ul>
+<li>通用模型可以替换</li>
+<li>企业知识库可以保留</li>
+<li>工作流可以复用</li>
+<li>评估体系可以持续</li>
+<li>反馈数据可以继续积累</li>
+<li>agent 行为可以逐步优化</li>
+</ul>
+<p>模型是底座，但公司自己的学习系统才是资产。</p>
+<p>这也解释了为什么“只追逐最新模型”并不是长期战略。最新模型会变，价格会变，能力边界会变，供应商格局也会变。但企业自己的领域知识、流程经验和判断体系，如果能沉淀下来，就会形成更稳定的复利。</p>
+<p>在这个意义上，AI 架构的重点不只是调用能力，而是解耦能力。</p>
+<p>你要能使用最好的模型，也要能在模型变化时保住自己的组织记忆。</p>
+<h2 id="放到软件研发里，这件事其实很具体"><a href="#放到软件研发里，这件事其实很具体" class="headerlink" title="放到软件研发里，这件事其实很具体"></a>放到软件研发里，这件事其实很具体</h2><p>这篇文章虽然讲的是企业，但我觉得放到软件研发里尤其有启发。</p>
+<p>很多团队现在使用 AI coding，还是停留在“让模型多写点代码”的阶段。它当然有帮助，但如果没有学习回路，收益会很快碰到天花板。</p>
+<p>一个真正有复利的研发 AI 系统，应该沉淀这些东西：</p>
+<ul>
+<li>项目的架构约定</li>
+<li>历史事故和踩坑记录</li>
+<li>代码评审标准</li>
+<li>测试策略</li>
+<li>高风险目录和禁止操作</li>
+<li>需求到实现的拆解模式</li>
+<li>常见 bug 的诊断路径</li>
+<li>团队对“好代码”的判断</li>
+</ul>
+<p>这些东西如果只存在于资深工程师脑子里，AI 每次进入项目时都要重新猜。如果把它们整理成 <code>AGENTS.md</code>、Skill、评审脚本、私有知识库、项目级 eval，那 AI 就有机会越用越贴近团队。</p>
+<p>这也是我最近越来越认同的一点：AI coding 的核心不是“生成代码”，而是“把团队的工程判断显性化”。</p>
+<p>代码只是输出，判断才是资产。</p>
+<p>一个团队如果能把判断沉淀到系统里，它用任何模型都会越来越强；反过来，如果所有经验都散落在聊天窗口里，再强的模型也只能带来一次性效率。</p>
+<h2 id="我的理解：企业-AI-化的终点不是自动化，而是组织学习速度"><a href="#我的理解：企业-AI-化的终点不是自动化，而是组织学习速度" class="headerlink" title="我的理解：企业 AI 化的终点不是自动化，而是组织学习速度"></a>我的理解：企业 AI 化的终点不是自动化，而是组织学习速度</h2><p>很多人谈 AI 时代的企业，容易落到“减少多少人”“替代多少岗位”“自动化多少任务”这些问题上。</p>
+<p>这些当然会发生，但我觉得它们不是最值得关注的主线。</p>
+<p>更重要的问题是：企业能不能学得更快。</p>
+<p>能不能把一线经验快速变成系统能力？能不能把个体判断变成团队资产？能不能让每一次客户互动、每一次代码提交、每一次故障复盘都反哺 AI 系统？能不能让新人更快站到组织已有经验之上，而不是从零摸索？</p>
+<p>如果可以，那么 AI 带来的就不是一次工具升级，而是组织学习速度的变化。</p>
+<p>这也是 Satya 这篇文章最打动我的地方。它没有把 AI 描述成一个简单的替代机器，而是把它放进企业如何积累知识、放大判断、形成差异化的框架里。</p>
+<p>所以如果用一句话总结我的理解：</p>
+<p><strong>AI 时代公司的护城河，不是拥有某个最强模型，而是拥有一套能把人的经验转化为系统能力、并且持续复利的学习回路。</strong></p>
+<p>模型会迭代，接口会变化，价格会下降。但一家公司的隐性知识、业务判断和组织学习方式，如果能被系统化沉淀下来，就会成为真正难以复制的东西。</p>
+<p>这大概也是“frontier ecosystem”比“frontier model”更重要的原因。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AI/" rel="tag"><i class="fa fa-tag"></i>
+ AI</a>
+          
+            <a href="/tags/Agent/" rel="tag"><i class="fa fa-tag"></i>
+ Agent</a>
+          
+            <a href="/tags/工程效率/" rel="tag"><i class="fa fa-tag"></i>
+ 工程效率</a>
+          
+            <a href="/tags/企业智能/" rel="tag"><i class="fa fa-tag"></i>
+ 企业智能</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2026/06/03/2026-06-03-random-forest-explained/" rel="next" title="随机森林算法：用“周末吃饭投票”讲清楚它为什么靠谱">
+                <i class="fa fa-chevron-left"></i> 随机森林算法：用“周末吃饭投票”讲清楚它为什么靠谱
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Ervin Zhang">
+            
+              <p class="site-author-name" itemprop="name">Ervin Zhang</p>
+              <p class="site-description motion-element" itemprop="description">stay hungry, stay foolish</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/ervinsae" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:ervinsae@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/ervinsae" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#这篇文章到底在讲什么"><span class="nav-number">1.</span> <span class="nav-text">这篇文章到底在讲什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Human-Capital-和-Token-Capital：一个很重要的区分"><span class="nav-number">2.</span> <span class="nav-text">Human Capital 和 Token Capital：一个很重要的区分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#真正的机会不是选模型，而是建立学习回路"><span class="nav-number">3.</span> <span class="nav-text">真正的机会不是选模型，而是建立学习回路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#公司真正要保护的，是自己的隐性知识"><span class="nav-number">4.</span> <span class="nav-text">公司真正要保护的，是自己的隐性知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么“可替换模型”很重要"><span class="nav-number">5.</span> <span class="nav-text">为什么“可替换模型”很重要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#放到软件研发里，这件事其实很具体"><span class="nav-number">6.</span> <span class="nav-text">放到软件研发里，这件事其实很具体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我的理解：企业-AI-化的终点不是自动化，而是组织学习速度"><span class="nav-number">7.</span> <span class="nav-text">我的理解：企业 AI 化的终点不是自动化，而是组织学习速度</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ervin Zhang</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">132.4k</span>
+  
+</div>
+
+
+<div class="powered-by">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>次
+</span>
+
+<span class="post-meta-divider">|</span>
+</div>
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":180,"height":360},"mobile":{"show":false,"scale":0.5},"log":false});</script></body>
+</html>
