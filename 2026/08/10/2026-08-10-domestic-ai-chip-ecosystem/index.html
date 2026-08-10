@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="AI,国产算力,芯片生态,工程化,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Ervin" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="最近看到一篇基于梁文锋讲话整理的文章，里面有一个很值得展开的判断：国产 AI 芯片的最大问题，可能正在从“生态不好、用不起来”，变成“能用，但产能不够”。 这句话如果只当成产业情绪来看，很容易落到“国产替代”四个字上。但从工程角度看，它真正有意思的地方在于：AI 基础设施的竞争，可能正在从单纯的芯片性能，转向“芯片、编译器、算子生态、迁移成本、供应能力”共同构成的系统竞争。">
+<meta name="keywords" content="AI,国产算力,芯片生态,工程化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="国产 AI 芯片的机会，不只是“替代英伟达”">
+<meta property="og:url" content="https://ervinsae.github.io/2026/08/10/2026-08-10-domestic-ai-chip-ecosystem/index.html">
+<meta property="og:site_name" content="Ervin">
+<meta property="og:description" content="最近看到一篇基于梁文锋讲话整理的文章，里面有一个很值得展开的判断：国产 AI 芯片的最大问题，可能正在从“生态不好、用不起来”，变成“能用，但产能不够”。 这句话如果只当成产业情绪来看，很容易落到“国产替代”四个字上。但从工程角度看，它真正有意思的地方在于：AI 基础设施的竞争，可能正在从单纯的芯片性能，转向“芯片、编译器、算子生态、迁移成本、供应能力”共同构成的系统竞争。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2026-08-10T01:51:29.756Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="国产 AI 芯片的机会，不只是“替代英伟达”">
+<meta name="twitter:description" content="最近看到一篇基于梁文锋讲话整理的文章，里面有一个很值得展开的判断：国产 AI 芯片的最大问题，可能正在从“生态不好、用不起来”，变成“能用，但产能不够”。 这句话如果只当成产业情绪来看，很容易落到“国产替代”四个字上。但从工程角度看，它真正有意思的地方在于：AI 基础设施的竞争，可能正在从单纯的芯片性能，转向“芯片、编译器、算子生态、迁移成本、供应能力”共同构成的系统竞争。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ervinsae.github.io/2026/08/10/2026-08-10-domestic-ai-chip-ecosystem/">
+
+
+
+
+
+  <title>国产 AI 芯片的机会，不只是“替代英伟达” | Ervin</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ervin</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">真正的强者是认清了生活的本质，并且去热爱他的人。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ervinsae.github.io/2026/08/10/2026-08-10-domestic-ai-chip-ecosystem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ervin Zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ervin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">国产 AI 芯片的机会，不只是“替代英伟达”</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2026-08-10T00:00:00+00:00">
+                2026-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+      <div class="post-cover post-cover-detail">
+        
+          <img class="post-cover-image" src="/images/covers/domestic-ai-chip-ecosystem-hand-drawn-edu-wide.png" alt="国产 AI 芯片的机会，不只是“替代英伟达”" itemprop="image">
+        
+      </div>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近看到一篇基于梁文锋讲话整理的文章，里面有一个很值得展开的判断：国产 AI 芯片的最大问题，可能正在从“生态不好、用不起来”，变成“能用，但产能不够”。</p>
+<p>这句话如果只当成产业情绪来看，很容易落到“国产替代”四个字上。但从工程角度看，它真正有意思的地方在于：AI 基础设施的竞争，可能正在从单纯的芯片性能，转向“芯片、编译器、算子生态、迁移成本、供应能力”共同构成的系统竞争。</p>
+<a id="more"></a>
+<h2 id="CUDA-的护城河，过去强在哪里？"><a href="#CUDA-的护城河，过去强在哪里？" class="headerlink" title="CUDA 的护城河，过去强在哪里？"></a>CUDA 的护城河，过去强在哪里？</h2><p>英伟达真正强的地方，不只是 GPU 本身，而是 CUDA 形成了一个长期累积的开发者生态。</p>
+<p>对于大模型团队来说，买到卡只是第一步。真正麻烦的是后面这一整套问题：</p>
+<ul>
+<li>训练框架能不能稳定跑起来？</li>
+<li>常用算子有没有高性能实现？</li>
+<li>编译器和运行时能不能把模型结构有效映射到硬件上？</li>
+<li>遇到性能瓶颈时，有没有足够成熟的调试工具？</li>
+<li>迁移已有工程时，会不会把团队拖进长期适配泥潭？</li>
+</ul>
+<p>这些东西叠在一起，才是 CUDA 的护城河。</p>
+<p>所以过去讨论国产 AI 芯片时，很多人并不是怀疑硬件一定做不出来，而是担心“做出来以后，工程团队能不能高效用起来”。对大模型公司来说，算力不是买来摆在那里看的，算力必须能被训练任务吃进去，能被工程系统稳定调度，能被团队快速迭代。</p>
+<h2 id="变化点：AI-也在反过来改造-AI-基础设施"><a href="#变化点：AI-也在反过来改造-AI-基础设施" class="headerlink" title="变化点：AI 也在反过来改造 AI 基础设施"></a>变化点：AI 也在反过来改造 AI 基础设施</h2><p>这篇文章里最有意思的一个观点，是“有了 AI 之后，构建生态比以前容易很多”。</p>
+<p>这句话听起来有点绕，但它其实很关键：以前迁移芯片生态，很多工作都要靠专家手写、手调、手测。现在 AI Coding、自动代码生成、自动测试、自动迁移工具逐渐成熟，底层生态建设本身也可以被 AI 加速。</p>
+<p>更具体一点，如果一个团队有足够清晰的中间表达和编译体系，它就不一定要一行行手写所有硬件适配代码。它可以把高层计算意图表达出来，再通过编译器、算子生成、性能搜索和自动验证，把一部分复杂工作自动化。</p>
+<p>这也是 TileLang 这类高级语言值得关注的原因。它不是一个“再造 CUDA 语法”的小工具，而更像是在尝试把算子表达、硬件适配和自动优化之间重新分层。</p>
+<p>如果这个方向成立，生态迁移的难度就会发生变化：</p>
+<ul>
+<li>过去是“每换一类硬件，就要重新啃一遍大量底层适配”。</li>
+<li>以后可能变成“把高层表达保持住，让编译器和自动化工具去吸收不同硬件差异”。</li>
+</ul>
+<p>这并不意味着适配会突然变简单，但它意味着适配成本可能被系统性压低。</p>
+<h2 id="“用英伟达的卡，但不依赖英伟达生态”"><a href="#“用英伟达的卡，但不依赖英伟达生态”" class="headerlink" title="“用英伟达的卡，但不依赖英伟达生态”"></a>“用英伟达的卡，但不依赖英伟达生态”</h2><p>文章里提到一个很有代表性的说法：某些训练虽然仍然使用英伟达的卡，但已经在尝试不完全依赖英伟达原有生态，而是通过自己的高级编译器和上层生态完成核心工作。</p>
+<p>这个思路非常重要。</p>
+<p>因为真正的国产替代，并不是今天把 A 卡换成 B 卡，然后祈祷所有代码都不变。更现实的路径是先把自己的软件栈抽象出来：模型怎么表达，算子怎么生成，性能怎么验证，任务怎么调度，都尽量掌握在自己手里。</p>
+<p>一旦这套软件层足够独立，底层硬件就不再是唯一绑定项。英伟达卡可以是一个后端，国产卡也可以是另一个后端。这样迁移国产芯片时，团队面对的就不是“从零开始重写生态”，而是“把既有编译和运行体系迁移到新后端”。</p>
+<p>这件事对大模型公司尤其重要。模型规模越大，训练系统越复杂，就越不能把命运完全压在单一供应链和单一生态上。</p>
+<h2 id="专用芯片时代，生态规则可能会重写"><a href="#专用芯片时代，生态规则可能会重写" class="headerlink" title="专用芯片时代，生态规则可能会重写"></a>专用芯片时代，生态规则可能会重写</h2><p>过去 GPU 的发展有很强的游戏卡历史路径。CUDA 能成为主流，也和英伟达长期把通用计算能力叠加到 GPU 生态上有关。</p>
+<p>但当 AI 计算本身变成一个比游戏更大的市场时，芯片设计逻辑就会变化。未来的 AI 加速器会更像为大模型训练和推理专门设计的计算系统，而不是游戏图形能力的延伸。</p>
+<p>这意味着一件事：如果硬件本身正在从通用 GPU 走向更专用的 AI 计算系统，那么软件生态也未必永远围绕旧路径展开。</p>
+<p>英伟达当然仍然强，而且会继续强很长时间。但它的护城河不再只是“别人没有 CUDA”，而是要继续证明它在新一代专用算力、互联、软件栈、供货能力和总体成本上的综合优势。</p>
+<p>对于国产 AI 芯片来说，这正是窗口期：不是在旧规则下硬追，而是在规则变化时重建一套适合自己的软硬件协同体系。</p>
+<h2 id="真正的瓶颈：从“能不能用”转向“够不够用”"><a href="#真正的瓶颈：从“能不能用”转向“够不够用”" class="headerlink" title="真正的瓶颈：从“能不能用”转向“够不够用”"></a>真正的瓶颈：从“能不能用”转向“够不够用”</h2><p>如果文章里的判断成立，那么国产算力接下来最值得关注的问题不是“有没有团队愿意适配”，而是“有多少可用产能可以交付给头部模型团队”。</p>
+<p>这两类问题的性质完全不同。</p>
+<p>“能不能用”是技术闭环问题。它需要编译器、框架、算子库、调试工具、稳定性验证和真实训练任务来证明。</p>
+<p>“够不够用”是供给链问题。它涉及制造、封装、良率、交付节奏、集群建设、网络互联、能耗和运维能力。</p>
+<p>前者可以通过工程努力逐步收敛，后者则更像产业系统工程。对于大模型训练来说，一万张卡和十万张卡不是简单的数量差，而是决定能不能训练更大模型、能不能进行更多实验、能不能缩短迭代周期的战略差距。</p>
+<p>所以我更愿意把这篇文章的核心读成一句话：国产 AI 芯片不是没有机会，而是机会已经从“生态证明题”推进到了“产能和系统交付题”。</p>
+<h2 id="“四倍加两年”的现实感"><a href="#“四倍加两年”的现实感" class="headerlink" title="“四倍加两年”的现实感"></a>“四倍加两年”的现实感</h2><p>文章中还有一个很现实的表达：如果国产方案需要更多卡才能顶上一张英伟达卡，并且代际上落后一定时间，那是否还能算可替代？</p>
+<p>我的理解是，这要看约束条件。</p>
+<p>在一个完全开放、供给充足、成本可控的市场里，性能领先的一方当然更有吸引力。但如果先进卡买不到，或者供应不稳定，那么“可获得、可规模化、可持续迭代”的方案，本身就会变得非常有价值。</p>
+<p>工程世界里，最优解很少只看单点性能。它还要看交付确定性、迁移成本、维护成本、长期路线和组织控制力。</p>
+<p>如果一套国产算力方案性能落后，但可以稳定拿到，可以持续优化，可以让团队把关键软件层掌握在自己手里，那么它就不是简单的“低配替代”，而是一种战略冗余和长期能力建设。</p>
+<h2 id="对工程团队的启发"><a href="#对工程团队的启发" class="headerlink" title="对工程团队的启发"></a>对工程团队的启发</h2><p>这件事不只和芯片公司有关，也和所有做 AI 应用、AI 平台、AI 工程化的人有关。</p>
+<p>以后做 AI 系统，可能不能再默认“底层永远是同一种 GPU、同一种 CUDA 路径、同一种云资源”。更稳的做法是从一开始就把可迁移性纳入架构：</p>
+<ul>
+<li>模型训练和推理尽量减少对单一硬件后端的强绑定。</li>
+<li>算子、编译、部署链路要能被测试和验证，而不是靠经验手工维护。</li>
+<li>性能评估不能只看理论峰值，要看真实任务吞吐、延迟、稳定性和排障成本。</li>
+<li>工程平台要保留多后端实验能力，为未来硬件变化留出空间。</li>
+</ul>
+<p>说到底，AI 基础设施正在变成一个更典型的工程系统问题。它不是某个单点突破就能解决，而是要把工具链、组织能力、供应链和业务节奏合在一起看。</p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>我不认为 CUDA 的护城河会在短时间内消失。英伟达的硬件、软件、开发者生态和产业惯性依然非常强。</p>
+<p>但我也同意这篇文章里最值得重视的那层判断：生态差距不是静态的。AI 会降低代码迁移成本，高级编译器会重新组织硬件适配方式，专用 AI 芯片会改变软件栈的设计重心。</p>
+<p>如果国产 AI 芯片能把“能不能用”的问题解决到足够可信，那么下一场真正的竞争就会变成：谁能提供更多稳定可用的算力，谁能让大模型团队更快完成训练和迭代。</p>
+<p>到了那个阶段，问题就不再是“国产卡有没有生态”，而是“国产算力能不能成为一种可依赖的基础设施”。</p>
+<hr>
+<p>注：本文基于 X 上 GlobalMoney 文章及公开转帖内容做技术视角分析，涉及讲话转述、具体型号和产能数字的部分，仍应以当事方和厂商正式公开信息为准。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AI/" rel="tag"><i class="fa fa-tag"></i>
+ AI</a>
+          
+            <a href="/tags/国产算力/" rel="tag"><i class="fa fa-tag"></i>
+ 国产算力</a>
+          
+            <a href="/tags/芯片生态/" rel="tag"><i class="fa fa-tag"></i>
+ 芯片生态</a>
+          
+            <a href="/tags/工程化/" rel="tag"><i class="fa fa-tag"></i>
+ 工程化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2026/07/25/2026-07-25-keep-moving-forward/" rel="next" title="当你变好，你才会遇到更好的">
+                <i class="fa fa-chevron-left"></i> 当你变好，你才会遇到更好的
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Ervin Zhang">
+            
+              <p class="site-author-name" itemprop="name">Ervin Zhang</p>
+              <p class="site-description motion-element" itemprop="description">stay hungry, stay foolish</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">98</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">78</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/ervinsae" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:ervinsae@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/ervinsae" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CUDA-的护城河，过去强在哪里？"><span class="nav-number">1.</span> <span class="nav-text">CUDA 的护城河，过去强在哪里？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变化点：AI-也在反过来改造-AI-基础设施"><span class="nav-number">2.</span> <span class="nav-text">变化点：AI 也在反过来改造 AI 基础设施</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#“用英伟达的卡，但不依赖英伟达生态”"><span class="nav-number">3.</span> <span class="nav-text">“用英伟达的卡，但不依赖英伟达生态”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#专用芯片时代，生态规则可能会重写"><span class="nav-number">4.</span> <span class="nav-text">专用芯片时代，生态规则可能会重写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#真正的瓶颈：从“能不能用”转向“够不够用”"><span class="nav-number">5.</span> <span class="nav-text">真正的瓶颈：从“能不能用”转向“够不够用”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#“四倍加两年”的现实感"><span class="nav-number">6.</span> <span class="nav-text">“四倍加两年”的现实感</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对工程团队的启发"><span class="nav-number">7.</span> <span class="nav-text">对工程团队的启发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结尾"><span class="nav-number">8.</span> <span class="nav-text">结尾</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ervin Zhang</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">142.4k</span>
+  
+</div>
+
+
+<div class="powered-by">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>次
+</span>
+
+<span class="post-meta-divider">|</span>
+</div>
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":180,"height":360},"mobile":{"show":false,"scale":0.5},"log":false});</script></body>
+</html>
