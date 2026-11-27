@@ -1219,7 +1219,7 @@ pre code {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #e2dd81;
+  background: #c8a7cb;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2703,6 +2703,47 @@ header.header {
 }
 .sub-menu .menu-item {
   display: inline-block;
+}
+.posts-expand > .post-block {
+  padding: 25px;
+}
+.index.posts-expand > .post-block + .post-block {
+  margin-top: 60px;
+}
+.index.posts-expand > .post-block .post-eof {
+  display: none;
+}
+@media (max-width: 767px) {
+  .posts-expand > .post-block {
+    padding: 16px;
+  }
+  .index.posts-expand > .post-block + .post-block {
+    margin-top: 24px;
+  }
+}
+.main-inner.posts-expand {
+  padding-top: 24px;
+}
+.index.posts-expand .post-header,
+.index.posts-expand .post-button {
+  text-align: center;
+}
+.index.posts-expand .post-meta {
+  justify-content: center;
+}
+.index.posts-expand .post-button {
+  margin-top: 40px;
+}
+.index.posts-expand .post-button .btn {
+  background: var(--brand-hover-color);
+  border: 2px solid var(--brand-hover-color);
+  color: var(--body-bg-color);
+  padding: 0 20px;
+  transition-property: background-color, border-color, color;
+}
+.index.posts-expand .post-button .btn:hover {
+  background: var(--body-bg-color);
+  color: var(--brand-hover-color);
 }
 .post-block {
   box-shadow: 0 0 5px rgba(202,203,203,0.5);
