@@ -1219,7 +1219,7 @@ pre code {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #1862ff;
+  background: #62ffde;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2675,4 +2675,12 @@ header.header {
   .post-cover-image {
     max-height: 260px;
   }
+}
+.footer-inner:has(> .wordcount + .busuanzi-count) {
+  flex-flow: row wrap;
+  align-items: baseline;
+  column-gap: 0.8em;
+}
+.footer-inner:has(> .wordcount + .busuanzi-count) > :not(.wordcount):not(.busuanzi-count) {
+  flex: 0 0 100%;
 }

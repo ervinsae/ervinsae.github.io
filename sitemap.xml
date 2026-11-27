@@ -11,60 +11,6 @@
   </url>
   
   <url>
-    <loc>https://ervinsae.github.io/2019/04/28/%E7%86%B5/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2022/09/10/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9F%A5%E8%AF%86%E7%82%B9%E8%A7%A3%E6%9E%90/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2018/10/20/%E7%BD%91%E6%98%93%E4%BA%91%E4%BF%A1IM%E9%9B%86%E6%88%90%E8%A6%81%E7%82%B9/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2021/06/18/%E7%BD%91%E6%98%93%E4%BA%91%E4%BF%A1%E8%A7%86%E9%A2%91%E8%80%97%E7%94%B5%E5%8F%91%E7%83%AD%E6%B5%8B%E8%AF%95/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2018/11/03/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-TCP%E5%92%8CUDP/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2020/07/23/%E8%81%8A%E8%81%8AHashMap/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://ervinsae.github.io/2022/11/01/%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E5%9F%BA%E7%A1%80/</loc>
     
     <lastmod>2026-11-27</lastmod>
@@ -93,78 +39,6 @@
   
   <url>
     <loc>https://ervinsae.github.io/categories/index.html</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2025/11/12/%E5%85%B3%E4%BA%8EKotlin%E4%B8%AD%E5%89%AF%E4%BD%9C%E7%94%A8%E7%9A%84%E7%90%86%E8%A7%A3/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2020/07/14/%E5%9F%BA%E4%BA%8ECAS%E6%80%9D%E6%83%B3%E7%9A%84AtomicBoolean/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2018/11/14/%E5%AF%92%E5%86%AC%E5%B7%B2%E8%87%B3%EF%BC%8CAndroid%E7%9A%84%E5%87%BA%E8%B7%AF/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2018/12/16/%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2018/12/21/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%8C%EF%BC%89/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2024/10/11/%E5%B8%B8%E8%A7%81%E8%AE%A4%E7%9F%A5%E5%81%8F%E5%B7%AE/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2018/11/09/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8BCSS/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2022/05/19/%E6%80%8E%E4%B9%88%E7%9C%8B%E6%87%82UML%E7%B1%BB%E5%9B%BE%E5%92%8C%E6%97%B6%E5%BA%8F%E5%9B%BE/</loc>
     
     <lastmod>2026-11-27</lastmod>
     
@@ -272,6 +146,60 @@
   </url>
   
   <url>
+    <loc>https://ervinsae.github.io/2019/04/28/%E7%86%B5/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2022/09/10/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9F%A5%E8%AF%86%E7%82%B9%E8%A7%A3%E6%9E%90/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2018/10/20/%E7%BD%91%E6%98%93%E4%BA%91%E4%BF%A1IM%E9%9B%86%E6%88%90%E8%A6%81%E7%82%B9/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2021/06/18/%E7%BD%91%E6%98%93%E4%BA%91%E4%BF%A1%E8%A7%86%E9%A2%91%E8%80%97%E7%94%B5%E5%8F%91%E7%83%AD%E6%B5%8B%E8%AF%95/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2018/11/03/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-TCP%E5%92%8CUDP/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2020/07/23/%E8%81%8A%E8%81%8AHashMap/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://ervinsae.github.io/2023/02/07/mmap%E7%9A%84%E7%AE%80%E5%8D%95%E5%8E%9F%E7%90%86/</loc>
     
     <lastmod>2026-11-27</lastmod>
@@ -326,7 +254,7 @@
   </url>
   
   <url>
-    <loc>https://ervinsae.github.io/2020/05/30/Kotlin%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0/</loc>
+    <loc>https://ervinsae.github.io/2025/11/12/%E5%85%B3%E4%BA%8EKotlin%E4%B8%AD%E5%89%AF%E4%BD%9C%E7%94%A8%E7%9A%84%E7%90%86%E8%A7%A3/</loc>
     
     <lastmod>2026-11-27</lastmod>
     
@@ -335,7 +263,7 @@
   </url>
   
   <url>
-    <loc>https://ervinsae.github.io/2018/10/20/Mac%E4%B8%8B%E7%9A%84%E5%85%A8%E5%B1%80%E4%BB%A3%E7%90%86/</loc>
+    <loc>https://ervinsae.github.io/2020/07/14/%E5%9F%BA%E4%BA%8ECAS%E6%80%9D%E6%83%B3%E7%9A%84AtomicBoolean/</loc>
     
     <lastmod>2026-11-27</lastmod>
     
@@ -344,7 +272,7 @@
   </url>
   
   <url>
-    <loc>https://ervinsae.github.io/2018/11/30/Mac%E4%B8%8B%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
+    <loc>https://ervinsae.github.io/2018/11/14/%E5%AF%92%E5%86%AC%E5%B7%B2%E8%87%B3%EF%BC%8CAndroid%E7%9A%84%E5%87%BA%E8%B7%AF/</loc>
     
     <lastmod>2026-11-27</lastmod>
     
@@ -353,7 +281,7 @@
   </url>
   
   <url>
-    <loc>https://ervinsae.github.io/2026/03/07/OpenClaw%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5%E8%A1%A8/</loc>
+    <loc>https://ervinsae.github.io/2018/12/16/%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
     
     <lastmod>2026-11-27</lastmod>
     
@@ -362,7 +290,7 @@
   </url>
   
   <url>
-    <loc>https://ervinsae.github.io/2026/03/14/OpenClaw%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97/</loc>
+    <loc>https://ervinsae.github.io/2018/12/21/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%8C%EF%BC%89/</loc>
     
     <lastmod>2026-11-27</lastmod>
     
@@ -371,7 +299,7 @@
   </url>
   
   <url>
-    <loc>https://ervinsae.github.io/2019/03/18/Quantumult%E9%85%8D%E7%BD%AE/</loc>
+    <loc>https://ervinsae.github.io/2024/10/11/%E5%B8%B8%E8%A7%81%E8%AE%A4%E7%9F%A5%E5%81%8F%E5%B7%AE/</loc>
     
     <lastmod>2026-11-27</lastmod>
     
@@ -380,7 +308,7 @@
   </url>
   
   <url>
-    <loc>https://ervinsae.github.io/2019/01/30/SBT%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</loc>
+    <loc>https://ervinsae.github.io/2018/11/09/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8BCSS/</loc>
     
     <lastmod>2026-11-27</lastmod>
     
@@ -389,16 +317,7 @@
   </url>
   
   <url>
-    <loc>https://ervinsae.github.io/2024/03/19/Sing-Box%E8%AE%A2%E9%98%85/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2019/12/25/Spring%20Boot%E5%88%9D%E8%A7%A3/</loc>
+    <loc>https://ervinsae.github.io/2022/05/19/%E6%80%8E%E4%B9%88%E7%9C%8B%E6%87%82UML%E7%B1%BB%E5%9B%BE%E5%92%8C%E6%97%B6%E5%BA%8F%E5%9B%BE/</loc>
     
     <lastmod>2026-11-27</lastmod>
     
@@ -488,42 +407,6 @@
   </url>
   
   <url>
-    <loc>https://ervinsae.github.io/2018/12/04/Https%E8%AF%A6%E8%A7%A3/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2019/12/16/JS%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2022/06/28/Java%20%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2020/05/12/JavaGuide%E4%B9%8BAQS/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://ervinsae.github.io/2018/01/04/JavaGuide%E4%B9%8Bvolatile/</loc>
     
     <lastmod>2026-11-27</lastmod>
@@ -597,6 +480,240 @@
   
   <url>
     <loc>https://ervinsae.github.io/2019/03/28/Kotlin%E4%B9%8B%E9%9B%86%E5%90%88%E6%93%8D%E4%BD%9C%E7%AC%A6/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2020/05/30/Kotlin%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2018/10/20/Mac%E4%B8%8B%E7%9A%84%E5%85%A8%E5%B1%80%E4%BB%A3%E7%90%86/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2018/11/30/Mac%E4%B8%8B%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2026/03/07/OpenClaw%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5%E8%A1%A8/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2026/03/14/OpenClaw%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2019/03/18/Quantumult%E9%85%8D%E7%BD%AE/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2019/01/30/SBT%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2024/03/19/Sing-Box%E8%AE%A2%E9%98%85/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2019/12/25/Spring%20Boot%E5%88%9D%E8%A7%A3/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2023/03/20/2023-03-20/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2024/11/06/2024-11-06/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2025/12/11/2025-06-11/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2026/03/15/2026-03-14-ai-yu-cheng-xu-yuan-bei-gai-bian-de-bu-shi-zhi-ye-er-shi-jia-zhi-zhong-xin/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2026/03/15/2026-03-15-yong-bao-xin-liu-vibe-coding-de-shi-jian-ji-qiao/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2026/03/29/2026-03-29-ru-he-shi-yong-skill-cong-li-jie-gai-nian-dao-qin-shou-zuo-yi-ge-zi-ji-de-skill/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2026/04/14/2026-04-14-openclaw-vs-hermes-not-same-layer/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2026/04/18/2026-04-18-local-gpt-proxy-pool/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2026/05/20/2026-05-20-ai-engineering-workflow/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2026/05/23/2026-05-23-ai-agent-harness-relationship/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2026/05/24/2026-05-24-claude-code-multi-agent-architecture/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2026/05/24/2026-05-24-multi-agent-harness-context-isolation/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2026/05/29/2026-05-29-karpathy-guidelines-skills/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2026/06/03/2026-06-03-random-forest-explained/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2026/06/15/2026-06-15-firm-learning-loop-ai-era/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2026/06/19/2026-06-19-economist-2026-cover-signals/</loc>
+    
+    <lastmod>2026-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ervinsae.github.io/2026/06/20/2026-06-20-pichai-stanford-three-filters/</loc>
     
     <lastmod>2026-11-27</lastmod>
     
@@ -785,7 +902,7 @@
   </url>
   
   <url>
-    <loc>https://ervinsae.github.io/2023/03/20/2023-03-20/</loc>
+    <loc>https://ervinsae.github.io/2018/12/04/Https%E8%AF%A6%E8%A7%A3/</loc>
     
     <lastmod>2026-11-27</lastmod>
     
@@ -794,7 +911,7 @@
   </url>
   
   <url>
-    <loc>https://ervinsae.github.io/2024/11/06/2024-11-06/</loc>
+    <loc>https://ervinsae.github.io/2019/12/16/JS%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/</loc>
     
     <lastmod>2026-11-27</lastmod>
     
@@ -803,7 +920,7 @@
   </url>
   
   <url>
-    <loc>https://ervinsae.github.io/2025/12/11/2025-06-11/</loc>
+    <loc>https://ervinsae.github.io/2022/06/28/Java%20%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/</loc>
     
     <lastmod>2026-11-27</lastmod>
     
@@ -812,124 +929,7 @@
   </url>
   
   <url>
-    <loc>https://ervinsae.github.io/2026/03/15/2026-03-14-ai-yu-cheng-xu-yuan-bei-gai-bian-de-bu-shi-zhi-ye-er-shi-jia-zhi-zhong-xin/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2026/03/15/2026-03-15-yong-bao-xin-liu-vibe-coding-de-shi-jian-ji-qiao/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2026/03/29/2026-03-29-ru-he-shi-yong-skill-cong-li-jie-gai-nian-dao-qin-shou-zuo-yi-ge-zi-ji-de-skill/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2026/04/14/2026-04-14-openclaw-vs-hermes-not-same-layer/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2026/04/18/2026-04-18-local-gpt-proxy-pool/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2026/05/20/2026-05-20-ai-engineering-workflow/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2026/05/23/2026-05-23-ai-agent-harness-relationship/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2026/05/24/2026-05-24-claude-code-multi-agent-architecture/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2026/05/24/2026-05-24-multi-agent-harness-context-isolation/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2026/05/29/2026-05-29-karpathy-guidelines-skills/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2026/06/03/2026-06-03-random-forest-explained/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2026/06/15/2026-06-15-firm-learning-loop-ai-era/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2026/06/19/2026-06-19-economist-2026-cover-signals/</loc>
-    
-    <lastmod>2026-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ervinsae.github.io/2026/06/20/2026-06-20-pichai-stanford-three-filters/</loc>
+    <loc>https://ervinsae.github.io/2020/05/12/JavaGuide%E4%B9%8BAQS/</loc>
     
     <lastmod>2026-11-27</lastmod>
     
